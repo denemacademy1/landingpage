@@ -3063,12 +3063,176 @@ section { position: relative; z-index: 1; }
   color: transparent;
 }
 
+
+/* ═══════════════════════════════════════════
+   MODAL TEST D'ÉLIGIBILITÉ
+   ═══════════════════════════════════════════ */
+.elig-overlay {
+  position: fixed; inset: 0; z-index: 1000;
+  background: rgba(8,6,18,0.88);
+  backdrop-filter: blur(6px);
+  opacity: 0; pointer-events: none;
+  transition: opacity .3s ease;
+}
+.elig-overlay.open { opacity: 1; pointer-events: auto; }
+
+.elig-panel {
+  position: fixed; bottom: 0; left: 50%; z-index: 1001;
+  transform: translateX(-50%) translateY(100%);
+  width: 100%; max-width: 560px;
+  background: #110d20;
+  border: 1.5px solid rgba(192,132,252,0.25);
+  border-bottom: none;
+  border-radius: 24px 24px 0 0;
+  padding: 32px 28px 40px;
+  transition: transform .4s cubic-bezier(.22,1,.36,1);
+  max-height: 92vh;
+  overflow-y: auto;
+}
+.elig-panel.open { transform: translateX(-50%) translateY(0); }
+
+@media (min-width: 640px) {
+  .elig-panel {
+    top: 50%; bottom: auto;
+    transform: translateX(-50%) translateY(calc(-50% + 30px));
+    border: 1.5px solid rgba(192,132,252,0.25);
+    border-radius: 24px;
+    max-height: 88vh;
+  }
+  .elig-panel.open { transform: translateX(-50%) translateY(-50%); }
+}
+
+.elig-close {
+  position: absolute; top: 16px; right: 18px;
+  background: rgba(255,255,255,0.07); border: none;
+  width: 32px; height: 32px; border-radius: 50%;
+  color: rgba(255,255,255,0.5); font-size: 18px;
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  transition: background .2s;
+}
+.elig-close:hover { background: rgba(255,255,255,0.15); }
+
+.elig-progress-wrap {
+  height: 4px; background: rgba(255,255,255,0.08);
+  border-radius: 99px; margin-bottom: 28px;
+  overflow: hidden;
+}
+.elig-progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #6B5BFF, #c084fc);
+  border-radius: 99px;
+  transition: width .4s ease;
+}
+
+.elig-step-label {
+  font-size: 11px; font-weight: 700; letter-spacing: 1.5px;
+  color: #a78bfa; text-transform: uppercase; margin-bottom: 8px;
+}
+.elig-step-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 20px; font-weight: 800; color: #fff;
+  margin-bottom: 6px; line-height: 1.3;
+}
+.elig-step-sub {
+  font-size: 13px; color: rgba(255,255,255,0.45);
+  margin-bottom: 24px; line-height: 1.5;
+}
+
+.elig-input {
+  width: 100%; padding: 14px 16px;
+  background: rgba(255,255,255,0.05);
+  border: 1.5px solid rgba(192,132,252,0.2);
+  border-radius: 12px; color: #fff; font-size: 15px;
+  font-family: inherit; margin-bottom: 12px;
+  transition: border-color .2s;
+  box-sizing: border-box;
+}
+.elig-input:focus { outline: none; border-color: #a78bfa; }
+.elig-input::placeholder { color: rgba(255,255,255,0.3); }
+
+.elig-input-hint {
+  font-size: 12px; color: rgba(255,255,255,0.35);
+  margin-top: -8px; margin-bottom: 16px; padding-left: 4px;
+}
+
+.elig-options { display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px; }
+.elig-option {
+  width: 100%; padding: 14px 18px; text-align: left;
+  background: rgba(255,255,255,0.04);
+  border: 1.5px solid rgba(192,132,252,0.15);
+  border-radius: 12px; color: rgba(255,255,255,0.75);
+  font-size: 14px; font-family: inherit; cursor: pointer;
+  transition: all .2s; line-height: 1.4;
+}
+.elig-option:hover { border-color: rgba(192,132,252,0.5); color: #fff; background: rgba(107,91,255,0.1); }
+.elig-option.selected { border-color: #a78bfa; background: rgba(107,91,255,0.18); color: #fff; font-weight: 600; }
+
+.elig-textarea {
+  width: 100%; min-height: 110px; padding: 14px 16px;
+  background: rgba(255,255,255,0.05);
+  border: 1.5px solid rgba(192,132,252,0.2);
+  border-radius: 12px; color: #fff; font-size: 15px;
+  font-family: inherit; resize: vertical; margin-bottom: 8px;
+  transition: border-color .2s; box-sizing: border-box;
+}
+.elig-textarea:focus { outline: none; border-color: #a78bfa; }
+.elig-textarea::placeholder { color: rgba(255,255,255,0.3); }
+
+.elig-btn-next {
+  width: 100%; padding: 16px;
+  background: linear-gradient(135deg, #e879f9, #c084fc, #a855f7);
+  border: none; border-radius: 50px;
+  color: #fff; font-size: 16px; font-weight: 700;
+  font-family: 'Poppins', sans-serif; cursor: pointer;
+  transition: transform .2s, box-shadow .2s;
+  margin-top: 4px;
+}
+.elig-btn-next:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(192,132,252,0.4); }
+.elig-btn-next:disabled { opacity: 0.5; cursor: default; transform: none; }
+
+.elig-confirm {
+  text-align: center; padding: 8px 0;
+}
+.elig-confirm-icon {
+  width: 64px; height: 64px;
+  background: linear-gradient(135deg, rgba(107,91,255,0.2), rgba(192,132,252,0.2));
+  border: 2px solid rgba(192,132,252,0.4);
+  border-radius: 50%; margin: 0 auto 20px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 28px;
+}
+.elig-confirm-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 22px; font-weight: 800; color: #fff; margin-bottom: 12px;
+}
+.elig-confirm-text {
+  font-size: 15px; color: rgba(255,255,255,0.65);
+  line-height: 1.7; margin-bottom: 24px;
+}
+.elig-confirm-text strong { color: #c084fc; }
+.elig-btn-close-confirm {
+  padding: 14px 36px;
+  background: rgba(255,255,255,0.07);
+  border: 1.5px solid rgba(192,132,252,0.25);
+  border-radius: 50px; color: #fff; font-size: 14px;
+  font-family: inherit; cursor: pointer;
+  transition: background .2s;
+}
+.elig-btn-close-confirm:hover { background: rgba(255,255,255,0.12); }
+
+.elig-error {
+  font-size: 12px; color: #f87171;
+  margin-top: -6px; margin-bottom: 12px; padding-left: 4px;
+  display: none;
+}
+.elig-error.show { display: block; }
+
 </style>
 </head>
 <body class="grid-bg">
 
 <!-- Sticky CTA Mobile (apparaît au scroll) -->
-<a href="#" id="stickyMobile" class="sticky-mobile" aria-label="Faire le test d'éligibilité">
+<a href="#" id="stickyMobile" onclick="openEligModal();return false;" class="sticky-mobile" aria-label="Faire le test d'éligibilité">
   Faire le test d'éligibilité →
 </a>
 
@@ -3083,7 +3247,7 @@ section { position: relative; z-index: 1; }
   <a href="#hero" class="nav-brand">
     <img src="logo.png" alt="DENEM Academy" class="nav-logo-img">
   </a>
-  <a href="#" class="btn-nav">Faire le test d'éligibilité →</a>
+  <a href="#" onclick="openEligModal();return false;" class="btn-nav">Faire le test d'éligibilité →</a>
 </nav>
 
 <!-- ═══════════════════════════════════════════
@@ -3145,7 +3309,7 @@ section { position: relative; z-index: 1; }
         <span class="eligibilite-label">Fais le test d'éligibilité avant de te lancer</span>
         <span class="eligibilite-sub">Découvre si tu es prêt et si cette opportunité est faite pour toi.</span>
       </div>
-      <a href="#" class="eligibilite-btn">
+      <a href="#" onclick="openEligModal();return false;" class="eligibilite-btn">
         Faire le test →
       </a>
     </div>
@@ -3468,7 +3632,7 @@ section { position: relative; z-index: 1; }
         <span class="eligibilite-label">Fais le test d'éligibilité Expert IA</span>
         <span class="eligibilite-sub">Découvre si tu es prêt et si cette opportunité est faite pour toi.</span>
       </div>
-      <a href="#" class="eligibilite-btn">Faire le test →</a>
+      <a href="#" onclick="openEligModal();return false;" class="eligibilite-btn">Faire le test →</a>
     </div>
   </div>
 </div>
@@ -3599,7 +3763,7 @@ section { position: relative; z-index: 1; }
         <span class="eligibilite-label">Fais le test d'éligibilité Expert IA</span>
         <span class="eligibilite-sub">Découvre si tu es prêt et si cette opportunité est faite pour toi.</span>
       </div>
-      <a href="#" class="eligibilite-btn">Faire le test →</a>
+      <a href="#" onclick="openEligModal();return false;" class="eligibilite-btn">Faire le test →</a>
     </div>
   </div>
 </div>
@@ -4114,7 +4278,7 @@ section { position: relative; z-index: 1; }
         <span class="eligibilite-label">Fais le test d'éligibilité Expert IA</span>
         <span class="eligibilite-sub">Découvre si tu es prêt et si cette opportunité est faite pour toi.</span>
       </div>
-      <a href="#" class="eligibilite-btn">Faire le test →</a>
+      <a href="#" onclick="openEligModal();return false;" class="eligibilite-btn">Faire le test →</a>
     </div>
   </div>
 </div>
@@ -4176,7 +4340,7 @@ section { position: relative; z-index: 1; }
           <span class="eligibilite-label">Fais le test d'éligibilité Expert IA</span>
           <span class="eligibilite-sub">Découvre si tu es prêt et si cette opportunité est faite pour toi.</span>
         </div>
-        <a href="#" class="eligibilite-btn">Faire le test →</a>
+        <a href="#" onclick="openEligModal();return false;" class="eligibilite-btn">Faire le test →</a>
       </div>
     </div>
   </div>
@@ -4611,5 +4775,214 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbo
 })();
 
 </script>
+
+<!-- ═══════════════════════════════════════════
+     MODAL TEST D'ÉLIGIBILITÉ
+     ═══════════════════════════════════════════ -->
+<div id="eligOverlay" class="elig-overlay" onclick="closeEligModal()"></div>
+<div id="eligPanel" class="elig-panel" role="dialog" aria-modal="true" aria-label="Test d'éligibilité">
+  <button class="elig-close" onclick="closeEligModal()" aria-label="Fermer">✕</button>
+  <div class="elig-progress-wrap"><div class="elig-progress-bar" id="eligBar" style="width:25%"></div></div>
+
+  <!-- STEP 1 : Contact -->
+  <div class="elig-step" id="eStep1">
+    <div class="elig-step-label">Étape 1 / 4</div>
+    <div class="elig-step-title">Par où on commence&nbsp;?</div>
+    <div class="elig-step-sub">Quelques infos pour qu'on puisse t'appeler.</div>
+
+    <input class="elig-input" id="ePrenom" type="text" placeholder="Prénom" autocomplete="given-name">
+    <input class="elig-input" id="eEmail" type="email" placeholder="Email" autocomplete="email">
+    <input class="elig-input" id="eTel" type="tel" placeholder="Téléphone (ex: 06 12 34 56 78)" autocomplete="tel">
+    <div class="elig-input-hint">📞 On te rappelle sous 24h — promis, pas de spam.</div>
+    <div class="elig-error" id="eErr1">Merci de remplir tous les champs.</div>
+
+    <button class="elig-btn-next" onclick="eligGoTo(2)">Continuer →</button>
+  </div>
+
+  <!-- STEP 2 : Situation -->
+  <div class="elig-step" id="eStep2" style="display:none">
+    <div class="elig-step-label">Étape 2 / 4</div>
+    <div class="elig-step-title">Où tu en es aujourd'hui&nbsp;?</div>
+    <div class="elig-step-sub">Coche la case qui te correspond le mieux.</div>
+    <div class="elig-options" id="eSituationOpts">
+      <button class="elig-option" onclick="eligSelect(this,'situation')">💼 Salarié et je veux me reconvertir</button>
+      <button class="elig-option" onclick="eligSelect(this,'situation')">🔄 En reconversion / recherche d'emploi</button>
+      <button class="elig-option" onclick="eligSelect(this,'situation')">🚀 Déjà freelance dans un autre domaine</button>
+      <button class="elig-option" onclick="eligSelect(this,'situation')">🏢 Entrepreneur / dirigeant</button>
+    </div>
+    <div class="elig-error" id="eErr2">Merci de choisir une option.</div>
+    <button class="elig-btn-next" onclick="eligGoTo(3)">Continuer →</button>
+  </div>
+
+  <!-- STEP 3 : Timeline -->
+  <div class="elig-step" id="eStep3" style="display:none">
+    <div class="elig-step-label">Étape 3 / 4</div>
+    <div class="elig-step-title">Quand veux-tu te lancer&nbsp;?</div>
+    <div class="elig-step-sub">Sois honnête — il n'y a pas de mauvaise réponse.</div>
+    <div class="elig-options" id="eTimelineOpts">
+      <button class="elig-option" onclick="eligSelect(this,'timeline')">⚡ Le plus vite possible</button>
+      <button class="elig-option" onclick="eligSelect(this,'timeline')">📅 Dans les 3 prochains mois</button>
+      <button class="elig-option" onclick="eligSelect(this,'timeline')">🗓️ Dans les 6 prochains mois</button>
+      <button class="elig-option" onclick="eligSelect(this,'timeline')">🔍 Je me renseigne pour plus tard</button>
+    </div>
+    <div class="elig-error" id="eErr3">Merci de choisir une option.</div>
+    <button class="elig-btn-next" onclick="eligGoTo(4)">Continuer →</button>
+  </div>
+
+  <!-- STEP 4 : Motivation -->
+  <div class="elig-step" id="eStep4" style="display:none">
+    <div class="elig-step-label">Étape 4 / 4</div>
+    <div class="elig-step-title">Pourquoi tu veux devenir Expert IA&nbsp;?</div>
+    <div class="elig-step-sub">C'est la réponse qu'on lira avant de t'appeler.</div>
+    <textarea class="elig-textarea" id="eMotivation" placeholder="En une phrase, dis-nous ce qui t'a décidé..."></textarea>
+    <div class="elig-error" id="eErr4">Merci d'écrire quelques mots.</div>
+    <button class="elig-btn-next" id="eBtnSubmit" onclick="eligSubmit()">Envoyer ma candidature →</button>
+  </div>
+
+  <!-- CONFIRMATION -->
+  <div class="elig-step" id="eStepConfirm" style="display:none">
+    <div class="elig-confirm">
+      <div class="elig-confirm-icon">✅</div>
+      <div class="elig-confirm-title">C'est bien reçu, <span id="eConfirmPrenom"></span>&nbsp;!</div>
+      <div class="elig-confirm-text">
+        Un chargé Expert IA de DENEM va t'appeler <strong>sous 24h</strong> pour un échange de 15 minutes.<br><br>
+        Aucune pression, juste une conversation pour comprendre où tu en es et voir si on peut t'aider.<br><br>
+        À très vite. 🙌
+      </div>
+      <button class="elig-btn-close-confirm" onclick="closeEligModal()">Fermer</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── MODAL ÉLIGIBILITÉ ─────────────────────────
+const ELIG_DATA = { prenom:'', email:'', tel:'', situation:'', timeline:'', motivation:'' };
+
+function openEligModal() {
+  document.getElementById('eligOverlay').classList.add('open');
+  document.getElementById('eligPanel').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  eligGoTo(1, true);
+}
+function closeEligModal() {
+  document.getElementById('eligOverlay').classList.remove('open');
+  document.getElementById('eligPanel').classList.remove('open');
+  document.body.style.overflow = '';
+}
+window.openEligModal = openEligModal;
+window.closeEligModal = closeEligModal;
+
+function eligGoTo(step, init) {
+  if (!init) {
+    // Validation avant d'avancer
+    if (step === 2) {
+      const p = document.getElementById('ePrenom').value.trim();
+      const e = document.getElementById('eEmail').value.trim();
+      const t = document.getElementById('eTel').value.trim();
+      const err = document.getElementById('eErr1');
+      if (!p || !e || !t || !/\S+@\S+\.\S+/.test(e)) { err.classList.add('show'); return; }
+      err.classList.remove('show');
+      ELIG_DATA.prenom = p; ELIG_DATA.email = e; ELIG_DATA.tel = t;
+    }
+    if (step === 3) {
+      const err = document.getElementById('eErr2');
+      if (!ELIG_DATA.situation) { err.classList.add('show'); return; }
+      err.classList.remove('show');
+    }
+    if (step === 4) {
+      const err = document.getElementById('eErr3');
+      if (!ELIG_DATA.timeline) { err.classList.add('show'); return; }
+      err.classList.remove('show');
+    }
+  }
+  // Masquer tous les steps
+  [1,2,3,4,'Confirm'].forEach(s => {
+    const el = document.getElementById('eStep' + s);
+    if (el) el.style.display = 'none';
+  });
+  const target = document.getElementById('eStep' + step);
+  if (target) target.style.display = 'block';
+  // Progress bar
+  const pct = {1:25, 2:50, 3:75, 4:100}[step] || 100;
+  document.getElementById('eligBar').style.width = pct + '%';
+  // Scroll to top of panel
+  document.getElementById('eligPanel').scrollTop = 0;
+}
+window.eligGoTo = eligGoTo;
+
+function eligSelect(btn, group) {
+  const parent = btn.closest('.elig-options');
+  parent.querySelectorAll('.elig-option').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  const text = btn.textContent.trim().replace(/^[\p{Emoji}\s]+/u, '').trim();
+  ELIG_DATA[group] = text;
+}
+window.eligSelect = eligSelect;
+
+function eligSubmit() {
+  const m = document.getElementById('eMotivation').value.trim();
+  const err = document.getElementById('eErr4');
+  if (!m) { err.classList.add('show'); return; }
+  err.classList.remove('show');
+  ELIG_DATA.motivation = m;
+  const btn = document.getElementById('eBtnSubmit');
+  btn.disabled = true;
+  btn.textContent = 'Envoi en cours…';
+  // Appel Firebase (défini dans le module ci-dessous)
+  if (window.saveEligLead) {
+    window.saveEligLead(ELIG_DATA).then(() => {
+      document.getElementById('eConfirmPrenom').textContent = ELIG_DATA.prenom;
+      eligGoTo('Confirm');
+    }).catch(() => {
+      btn.disabled = false;
+      btn.textContent = 'Envoyer ma candidature →';
+      alert('Une erreur est survenue, réessaie dans quelques secondes.');
+    });
+  } else {
+    // Fallback si Firebase non chargé
+    document.getElementById('eConfirmPrenom').textContent = ELIG_DATA.prenom;
+    eligGoTo('Confirm');
+  }
+}
+window.eligSubmit = eligSubmit;
+
+// Fermer avec Escape
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeEligModal();
+});
+</script>
+
+<!-- Firebase SDK -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
+import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBdNN-iiK5KoBqkX4FX1PJ5CmlWUma8NaU",
+  authDomain: "denem-academy-5de41.firebaseapp.com",
+  projectId: "denem-academy-5de41",
+  storageBucket: "denem-academy-5de41.firebasestorage.app",
+  messagingSenderId: "570632584566",
+  appId: "1:570632584566:web:4305443183280686a7ce57",
+  measurementId: "G-Q1ZXJ4X4F5"
+};
+
+const app = initializeApp(firebaseConfig);
+const db  = getFirestore(app);
+
+window.saveEligLead = async function(data) {
+  await addDoc(collection(db, "leads"), {
+    prenom:     data.prenom,
+    email:      data.email,
+    telephone:  data.tel,
+    situation:  data.situation,
+    timeline:   data.timeline,
+    motivation: data.motivation,
+    source:     "landing-page",
+    createdAt:  serverTimestamp()
+  });
+};
+</script>
+
 </body>
 </html>
