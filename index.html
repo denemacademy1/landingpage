@@ -792,7 +792,7 @@ section { padding: 96px 24px; }
 .testi-card:hover { border-color: var(--violet); transform: translateY(-4px); }
 .testi-header { display: flex; align-items: center; gap: 14px; }
 .testi-avatar {
-  width: 50px; height: 50px;
+  width: 54px; height: 54px;
   border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
   font-family: 'Syne', sans-serif;
@@ -800,9 +800,15 @@ section { padding: 96px 24px; }
   font-size: 18px;
   color: #fff;
   flex-shrink: 0;
+  overflow: hidden;
 }
-.av-violet { background: linear-gradient(135deg, #6B5BFF, #9b8bff); }
-.av-teal   { background: linear-gradient(135deg, #0d9488, #2dd4bf); }
+.testi-avatar img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.av-violet { background: linear-gradient(135deg, #6B5BFF, #9b8bff); border: 2px solid rgba(107,91,255,0.5); }
+.av-teal   { background: linear-gradient(135deg, #0d9488, #2dd4bf); border: 2px solid rgba(45,212,191,0.5); }
 .testi-name {
   font-family: 'Syne', sans-serif;
   font-weight: 700;
@@ -3252,19 +3258,6 @@ section { position: relative; z-index: 1; }
   </div>
 </section>
 
-<div class="eligibilite-section">
-  <div class="eligibilite-cta fade-up">
-    <div class="eligibilite-inner">
-      <div class="eligibilite-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
-      <div class="eligibilite-text">
-        <span class="eligibilite-label">Fais le test d'éligibilité Expert IA</span>
-        <span class="eligibilite-sub">Découvre si tu es prêt et si cette opportunité est faite pour toi.</span>
-      </div>
-      <a href="#" class="eligibilite-btn">Faire le test →</a>
-    </div>
-  </div>
-</div>
-
 
 <!-- ═══════════════════════════════════════════
      COMPARAISON HISTORIQUE
@@ -3467,6 +3460,19 @@ section { position: relative; z-index: 1; }
   </div>
 </section>
 
+<div class="eligibilite-section">
+  <div class="eligibilite-cta fade-up">
+    <div class="eligibilite-inner">
+      <div class="eligibilite-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+      <div class="eligibilite-text">
+        <span class="eligibilite-label">Fais le test d'éligibilité Expert IA</span>
+        <span class="eligibilite-sub">Découvre si tu es prêt et si cette opportunité est faite pour toi.</span>
+      </div>
+      <a href="#" class="eligibilite-btn">Faire le test →</a>
+    </div>
+  </div>
+</div>
+
 <!-- ═══════════════════════════════════════════
      MÉTHODE BTD — Mécanisme unique
      ═══════════════════════════════════════════ -->
@@ -3553,7 +3559,7 @@ section { position: relative; z-index: 1; }
     <div class="testi-grid">
       <div class="testi-card fade-up">
         <div class="testi-header">
-          <div class="testi-avatar av-violet">BF</div>
+          <div class="testi-avatar av-violet"><img src="baptiste.jpeg" alt="Baptiste Fort"></div>
           <div>
             <div class="testi-name">Baptiste Fort</div>
             <span class="testi-badge">35 000€ / mois · Expert IA Freelance</span>
@@ -3566,7 +3572,7 @@ section { position: relative; z-index: 1; }
 
       <div class="testi-card fade-up delay-2">
         <div class="testi-header">
-          <div class="testi-avatar av-teal">J</div>
+          <div class="testi-avatar av-teal"><img src="joseph.jpeg" alt="Joseph"></div>
           <div>
             <div class="testi-name">Joseph</div>
             <span class="testi-badge">20 000€ / mois · Expert IA Freelance</span>
@@ -3641,12 +3647,140 @@ section { position: relative; z-index: 1; }
 </section>
 
 <!-- ═══════════════════════════════════════════
-     [SECTION VIDÉOS — Temporairement retirée : à réactiver une fois les vraies vidéos tournées]
+     TÉMOIGNAGES VIDÉO 9:16
      ═══════════════════════════════════════════ -->
+<section id="videos">
+  <div class="container">
+    <div class="sec-ribbon sec-ribbon--violet fade-up" style="transform:rotate(-1.5deg)"><span class="sec-ribbon-text">Ils témoignent</span></div>
+    <h2 class="section-title fade-up">Ce qu'ils disent, dans leurs propres mots.</h2>
+    <p class="section-sub fade-up delay-1">Pas des acteurs. Pas des scripts. Des membres du réseau DENEM qui racontent leur parcours.</p>
+
+    <div class="vid-carousel-wrap fade-up delay-2">
+      <button class="vid-btn vid-btn-prev" id="vidPrev" aria-label="Précédent">&#8249;</button>
+      <div class="vid-mask">
+        <div class="vid-track" id="vidTrack">
+
+          <div class="vid-card">
+            <div class="vid-slot">
+              <span class="vid-num">01</span>
+              <div class="vid-placeholder">
+                <div class="vid-play-icon"></div>
+                <span class="vid-label">Témoignage à venir<br>Remplace par une vidéo 9:16</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="vid-card">
+            <div class="vid-slot">
+              <span class="vid-num">02</span>
+              <div class="vid-placeholder">
+                <div class="vid-play-icon"></div>
+                <span class="vid-label">Témoignage à venir<br>Remplace par une vidéo 9:16</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="vid-card">
+            <div class="vid-slot">
+              <span class="vid-num">03</span>
+              <div class="vid-placeholder">
+                <div class="vid-play-icon"></div>
+                <span class="vid-label">Témoignage à venir<br>Remplace par une vidéo 9:16</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="vid-card">
+            <div class="vid-slot">
+              <span class="vid-num">04</span>
+              <div class="vid-placeholder">
+                <div class="vid-play-icon"></div>
+                <span class="vid-label">Témoignage à venir<br>Remplace par une vidéo 9:16</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="vid-card">
+            <div class="vid-slot">
+              <span class="vid-num">05</span>
+              <div class="vid-placeholder">
+                <div class="vid-play-icon"></div>
+                <span class="vid-label">Témoignage à venir<br>Remplace par une vidéo 9:16</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <button class="vid-btn vid-btn-next" id="vidNext" aria-label="Suivant">&#8250;</button>
+    </div>
+
+    <div class="vid-dots" id="vidDots">
+      <button class="vid-dot active"></button>
+      <button class="vid-dot"></button>
+      <button class="vid-dot"></button>
+    </div>
+    <p class="vid-caption">Fais glisser ou utilise les flèches · Formats 9:16 · Vrais membres du réseau</p>
+  </div>
+</section>
 
 <!-- ═══════════════════════════════════════════
-     [SECTION GALERIE PREUVES — Temporairement retirée : à réactiver une fois les vraies factures/captures anonymisées disponibles]
+     GALERIE PREUVES — Factures & Screenshots
      ═══════════════════════════════════════════ -->
+<section id="galerie">
+  <div class="container">
+    <div class="sec-ribbon sec-ribbon--teal fade-up" style="transform:rotate(-1deg)"><span class="sec-ribbon-text">Preuves concrètes</span></div>
+    <h2 class="section-title fade-up">Les résultats, pas les promesses.</h2>
+    <p class="section-sub fade-up delay-1">Factures anonymisées, screenshots de virements, retours clients. La preuve que ça marche pour de vraies personnes.</p>
+
+    <div class="galerie-tabs fade-up delay-1">
+      <button class="galerie-tab active" onclick="switchTab(this,'factures')">Factures &amp; revenus</button>
+      <button class="galerie-tab" onclick="switchTab(this,'temoignages')">Screenshots clients</button>
+    </div>
+
+    <div class="galerie-grid" id="tab-factures">
+      <div class="proof-card" onclick="openLightbox(this)">
+        <div class="proof-card-placeholder"><div class="proof-add-icon">+</div><span>Facture à ajouter</span></div>
+        <div class="proof-card-overlay">🔍 Agrandir</div>
+      </div>
+      <div class="proof-card" onclick="openLightbox(this)">
+        <div class="proof-card-placeholder"><div class="proof-add-icon">+</div><span>Facture à ajouter</span></div>
+        <div class="proof-card-overlay">🔍 Agrandir</div>
+      </div>
+      <div class="proof-card" onclick="openLightbox(this)">
+        <div class="proof-card-placeholder"><div class="proof-add-icon">+</div><span>Virement à ajouter</span></div>
+        <div class="proof-card-overlay">🔍 Agrandir</div>
+      </div>
+      <div class="proof-card" onclick="openLightbox(this)">
+        <div class="proof-card-placeholder"><div class="proof-add-icon">+</div><span>Facture à ajouter</span></div>
+        <div class="proof-card-overlay">🔍 Agrandir</div>
+      </div>
+      <div class="proof-card" onclick="openLightbox(this)">
+        <div class="proof-card-placeholder"><div class="proof-add-icon">+</div><span>Virement à ajouter</span></div>
+        <div class="proof-card-overlay">🔍 Agrandir</div>
+      </div>
+      <div class="proof-card" onclick="openLightbox(this)">
+        <div class="proof-card-placeholder"><div class="proof-add-icon">+</div><span>Facture à ajouter</span></div>
+        <div class="proof-card-overlay">🔍 Agrandir</div>
+      </div>
+    </div>
+
+    <div class="galerie-grid" id="tab-temoignages" style="display:none;">
+      <div class="proof-card" onclick="openLightbox(this)">
+        <div class="proof-card-placeholder"><div class="proof-add-icon">+</div><span>Screenshot à ajouter</span></div>
+        <div class="proof-card-overlay">🔍 Agrandir</div>
+      </div>
+      <div class="proof-card" onclick="openLightbox(this)">
+        <div class="proof-card-placeholder"><div class="proof-add-icon">+</div><span>Message client à ajouter</span></div>
+        <div class="proof-card-overlay">🔍 Agrandir</div>
+      </div>
+      <div class="proof-card" onclick="openLightbox(this)">
+        <div class="proof-card-placeholder"><div class="proof-add-icon">+</div><span>Avis à ajouter</span></div>
+        <div class="proof-card-overlay">🔍 Agrandir</div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- Lightbox -->
 <div class="lightbox" id="lightbox" onclick="closeLightbox()">
