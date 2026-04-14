@@ -692,6 +692,49 @@ section { padding: 96px 24px; }
    MARCHÉ RÉEL
    ============================================= */
 #marche { background: var(--bg-alt); }
+/* ── Offres empilées ── */
+.offres-stack {
+  position: relative;
+  height: 260px;
+  max-width: 560px;
+  margin: 48px auto 16px;
+}
+.offre-card {
+  position: absolute;
+  width: 220px;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.55);
+  border: 1px solid rgba(255,255,255,0.1);
+  transition: transform .3s, box-shadow .3s;
+  cursor: default;
+}
+.offre-card img { width: 100%; display: block; }
+.offre-card:hover {
+  transform: scale(1.06) translateY(-8px) rotate(0deg) !important;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.7);
+  z-index: 10;
+}
+.offre-c1 { top: 20px;  left: 0px;   rotate: -6deg;  z-index: 1; }
+.offre-c2 { top: 10px;  left: 100px; rotate: -2deg;  z-index: 2; }
+.offre-c3 { top: 0px;   left: 200px; rotate: 3deg;   z-index: 3; }
+.offre-c4 { top: 15px;  left: 300px; rotate: 7deg;   z-index: 4; }
+@media(max-width:600px) {
+  .offres-stack { height: 200px; max-width: 100%; }
+  .offre-card { width: 160px; }
+  .offre-c1 { left: 0px; }
+  .offre-c2 { left: 70px; }
+  .offre-c3 { left: 140px; }
+  .offre-c4 { left: 210px; }
+}
+.offres-caption {
+  text-align: center;
+  font-size: .78rem;
+  color: rgba(255,255,255,0.35);
+  font-style: italic;
+  margin-bottom: 56px;
+}
+
 .marche-intro {
   font-size: 17px;
   color: rgba(255,255,255,0.68);
@@ -3476,6 +3519,15 @@ section { position: relative; z-index: 1; }
     <div class="sec-ribbon sec-ribbon--teal fade-up" style="transform:rotate(-1.5deg)"><span class="sec-ribbon-text">Le gap de marché</span></div>
     <h2 class="section-title fade-up">Des entreprises qui cherchent. Personne pour répondre.</h2>
     <p class="marche-intro fade-up delay-1">Chaque semaine, des milliers de TPE et PME françaises réalisent qu'elles doivent intégrer l'IA. Leur problème ? Elles ne savent pas par où commencer. Elles n'ont pas le budget pour un grand cabinet. Elles veulent quelqu'un de concret, disponible, qui parle leur langue.</p>
+
+    <!-- Cartes offres d'emploi empilées -->
+    <div class="offres-stack fade-up delay-2">
+      <div class="offre-card offre-c1"><img src="ex3.png" alt="Offre Responsable IA"></div>
+      <div class="offre-card offre-c2"><img src="ex4.png" alt="Offre Expert IA H/F"></div>
+      <div class="offre-card offre-c3"><img src="ex1.jpg" alt="Recrutement Consultants IA"></div>
+      <div class="offre-card offre-c4"><img src="ex2.jpg" alt="Recrutement Leaders IA"></div>
+    </div>
+    <p class="offres-caption fade-up delay-3">↑ Quelques exemples réels parmi des centaines de nouvelles offres chaque semaine.</p>
 
     <div class="marche-grid">
       <div class="marche-col fade-up">
