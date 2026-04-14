@@ -1829,7 +1829,7 @@ section { position: relative; z-index: 1; }
   line-height: 1;
 }
 .vid-btn:hover { background: var(--violet); border-color: var(--violet); transform: translateY(-50%) scale(1.1); }
-.vid-btn:disabled { opacity: 0.25; cursor: default; pointer-events: none; }
+.vid-btn:disabled { opacity: 1; cursor: pointer; pointer-events: auto; }
 .vid-btn-prev { left: 0; }
 .vid-btn-next { right: 0; }
 
@@ -4441,14 +4441,13 @@ document.querySelectorAll('.stat-num[data-count]').forEach(el => counterObs.obse
   const btnNext = document.getElementById('vidNext');
   const dotsWrap= document.getElementById('vidDots');
   const TOTAL   = cards.length;
-  const VISIBLE = 3; // cartes visibles simultanément
-  const MAX_POS = Math.max(0, TOTAL - VISIBLE);
+  const VISIBLE = 3;
+  const STEPS   = Math.max(1, TOTAL - VISIBLE + 1); // nombre de positions possibles
   let cur = 0;
 
-  // Recalcule la largeur d'un pas en px (1 carte + gap)
   function stepPx() {
     if (!cards[0]) return 0;
-    return cards[0].offsetWidth + 14; // 14 = gap
+    return cards[0].offsetWidth + 14;
   }
 
   function updateDots() {
@@ -4456,16 +4455,11 @@ document.querySelectorAll('.stat-num[data-count]').forEach(el => counterObs.obse
     dots.forEach((d, i) => d.classList.toggle('active', i === cur));
   }
 
-  function updateBtns() {
-    if (btnPrev) btnPrev.disabled = cur === 0;
-    if (btnNext) btnNext.disabled = cur >= MAX_POS;
-  }
-
   function goTo(n) {
-    cur = Math.max(0, Math.min(n, MAX_POS));
+    // boucle infinie
+    cur = ((n % STEPS) + STEPS) % STEPS;
     track.style.transform = `translateX(-${cur * stepPx()}px)`;
     updateDots();
-    updateBtns();
   }
 
   btnPrev?.addEventListener('click', () => goTo(cur - 1));
@@ -4486,7 +4480,7 @@ document.querySelectorAll('.stat-num[data-count]').forEach(el => counterObs.obse
 
   // Recalculer à la resize
   window.addEventListener('resize', () => goTo(cur));
-  updateBtns();
+  goTo(0);
 })();
 
 // ── TABS GALERIE ─────────────────────────────
