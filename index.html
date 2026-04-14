@@ -852,6 +852,66 @@ section { padding: 96px 24px; }
   color: var(--teal);
 }
 
+/* ── LinkedIn proof ── */
+.li-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+@media(max-width:900px){ .li-grid { grid-template-columns: repeat(2,1fr); } }
+@media(max-width:520px){ .li-grid { grid-template-columns: 1fr; } }
+
+.li-card {
+  background: var(--bg-alt);
+  border: 1px solid var(--w07);
+  border-radius: 16px;
+  padding: 24px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  transition: border-color .2s, transform .2s;
+}
+.li-card:hover { border-color: #0A66C2; transform: translateY(-4px); }
+
+.li-avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid var(--w07);
+  flex-shrink: 0;
+}
+.li-avatar img { width: 100%; height: 100%; object-fit: cover; }
+
+.li-info { display: flex; flex-direction: column; gap: 4px; flex: 1; }
+.li-name  { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; color: #fff; }
+.li-company { font-size: .8rem; color: var(--teal); font-weight: 600; }
+.li-headline { font-size: .8rem; color: rgba(255,255,255,.6); line-height: 1.45; }
+.li-followers {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: .75rem;
+  color: rgba(255,255,255,.4);
+  margin-top: 4px;
+}
+
+.li-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #0A66C2;
+  color: #fff;
+  font-size: .78rem;
+  font-weight: 700;
+  padding: 8px 16px;
+  border-radius: 50px;
+  text-decoration: none;
+  transition: background .2s, transform .2s;
+  align-self: flex-start;
+}
+.li-btn:hover { background: #004fa3; transform: scale(1.04); }
+
 /* =============================================
    TRANSFORMATION — TIMELINE
    ============================================= */
@@ -3611,6 +3671,77 @@ section { position: relative; z-index: 1; }
     </div>
 
     <p class="testi-footer fade-up">Ces profils ne sont pas des exceptions. Ils sont la preuve que la méthode fonctionne — quand elle est appliquée dans le bon ordre.</p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     LINKEDIN PROOF — profils vérifiables
+     ═══════════════════════════════════════════ -->
+<section id="linkedin-proof" style="padding:60px 0 40px;">
+  <div class="container">
+    <p class="fade-up" style="text-align:center;font-size:.85rem;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);font-weight:700;margin-bottom:12px;">Profils vérifiables</p>
+    <h2 class="section-title fade-up" style="margin-bottom:8px;">Des vrais experts, pas des personnages.</h2>
+    <p class="section-sub fade-up delay-1" style="margin-bottom:48px;">Retrouve-les directement sur LinkedIn. Leurs parcours sont publics, leurs résultats aussi.</p>
+
+    <div class="li-grid fade-up delay-1">
+
+      <div class="li-card">
+        <div class="li-avatar"><img src="baptiste.jpeg" alt="Baptiste Fort"></div>
+        <div class="li-info">
+          <div class="li-name">Baptiste Fort</div>
+          <div class="li-company">Vision IA</div>
+          <div class="li-headline">J'aide les PME à gagner +20h/semaine grâce aux systèmes IA automatisés</div>
+          <div class="li-followers"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg> 13 672 abonnés</div>
+        </div>
+        <a class="li-btn" href="https://www.linkedin.com/in/baptiste-fort-vision-ia/" target="_blank" rel="noopener">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          Voir le profil
+        </a>
+      </div>
+
+      <div class="li-card">
+        <div class="li-avatar"><img src="joseph.jpeg" alt="Joseph Mont"></div>
+        <div class="li-info">
+          <div class="li-name">Joseph Mont</div>
+          <div class="li-company">PIVOIA</div>
+          <div class="li-headline">Agents IA sur mesure 24h/24 · +30 entreprises accompagnées</div>
+          <div class="li-followers"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg> 7 825 abonnés</div>
+        </div>
+        <a class="li-btn" href="https://www.linkedin.com/in/joseph-mont-pivoia/" target="_blank" rel="noopener">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          Voir le profil
+        </a>
+      </div>
+
+      <div class="li-card">
+        <div class="li-avatar"><img src="ugo.jpeg" alt="Ugo Sartini"></div>
+        <div class="li-info">
+          <div class="li-name">Ugo Sartini</div>
+          <div class="li-company">NOESIS.AI</div>
+          <div class="li-headline">Déploiement d'infrastructure IA · +30 projets IA délivrés</div>
+          <div class="li-followers"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg> 6 854 abonnés</div>
+        </div>
+        <a class="li-btn" href="https://www.linkedin.com/in/ugo-sartini-noesis/" target="_blank" rel="noopener">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          Voir le profil
+        </a>
+      </div>
+
+      <div class="li-card">
+        <div class="li-avatar"><img src="amir.jpeg" alt="Amir Kellou Sidhoum"></div>
+        <div class="li-info">
+          <div class="li-name">Amir Kellou Sidhoum</div>
+          <div class="li-company">DENEM Labs · Centrale Paris</div>
+          <div class="li-headline">Consultant IA Agentique & LLMOps · Formation, Audits, Delivery</div>
+          <div class="li-followers"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg> +500 relations</div>
+        </div>
+        <a class="li-btn" href="https://www.linkedin.com/in/amir-kellou-sidhoum/" target="_blank" rel="noopener">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          Voir le profil
+        </a>
+      </div>
+
+    </div>
   </div>
 </section>
 
