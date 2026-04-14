@@ -392,23 +392,29 @@
         <button class="e-btn-back" onclick="goTo(3)">← Retour</button>
         <div class="e-step-counter">Étape 4 sur 6</div>
         <div class="e-step-title">Pourquoi tu veux devenir Expert IA ?</div>
-        <div class="e-step-sub">Choisis ce qui te correspond le mieux.</div>
+        <div class="e-step-sub">Plusieurs choix possibles — coche tout ce qui te correspond.</div>
 
         <div class="e-options" id="eMotivationOpts">
-          <button class="e-option" onclick="selectOpt(this,'motivation')">
+          <button class="e-option" onclick="toggleOpt(this,'motivation')">
             <span class="e-opt-check"></span>🌊 Prendre la vague IA avant tout le monde
           </button>
-          <button class="e-option" onclick="selectOpt(this,'motivation')">
+          <button class="e-option" onclick="toggleOpt(this,'motivation')">
             <span class="e-opt-check"></span>💎 Saisir l'opportunité de la décennie
           </button>
-          <button class="e-option" onclick="selectOpt(this,'motivation')">
+          <button class="e-option" onclick="toggleOpt(this,'motivation')">
             <span class="e-opt-check"></span>🏖️ Obtenir un meilleur lifestyle
           </button>
-          <button class="e-option" onclick="selectOpt(this,'motivation')">
+          <button class="e-option" onclick="toggleOpt(this,'motivation')">
             <span class="e-opt-check"></span>💰 Augmenter mes revenus
           </button>
+          <button class="e-option" onclick="toggleOpt(this,'motivation')">
+            <span class="e-opt-check"></span>💻 Me lancer dans la tech
+          </button>
+          <button class="e-option" onclick="toggleOpt(this,'motivation')">
+            <span class="e-opt-check"></span>🤖 Intérêt pour ce domaine
+          </button>
         </div>
-        <div class="e-error" id="eErr4">Merci de choisir une option.</div>
+        <div class="e-error" id="eErr4">Merci de choisir au moins une option.</div>
         <button class="e-btn-next" onclick="goTo(5)">Continuer →</button>
       </div>
 
@@ -486,7 +492,7 @@
   </footer>
 
   <script>
-    const DATA = { prenom:'', email:'', tel:'', situation:'', timeline:'', motivation:'', revenus:'', score:'' };
+    const DATA = { prenom:'', email:'', tel:'', situation:'', timeline:'', motivation:[], revenus:'', score:'' };
 
     function goTo(step) {
       // Validation
@@ -511,7 +517,7 @@
       }
       if (step === 5) {
         const err = document.getElementById('eErr4');
-        if (!DATA.motivation) { err.classList.add('show'); return; }
+        if (!DATA.motivation.length) { err.classList.add('show'); return; }
         err.classList.remove('show');
       }
       if (step === 6) {
@@ -538,6 +544,16 @@
       btn.classList.add('selected');
       const text = btn.textContent.trim().replace(/^[\p{Emoji}\s]+/u, '').trim();
       DATA[group] = text;
+    }
+
+    function toggleOpt(btn, group) {
+      btn.classList.toggle('selected');
+      const text = btn.textContent.trim().replace(/^[\p{Emoji}\s]+/u, '').trim();
+      if (btn.classList.contains('selected')) {
+        if (!DATA[group].includes(text)) DATA[group].push(text);
+      } else {
+        DATA[group] = DATA[group].filter(v => v !== text);
+      }
     }
 
     function submitForm() {
@@ -595,7 +611,7 @@
         telephone:  data.tel,
         situation:  data.situation,
         timeline:   data.timeline,
-        motivation: data.motivation,
+        motivation: Array.isArray(data.motivation) ? data.motivation.join(', ') : data.motivation,
         revenus:    data.revenus,
         score:      data.score,
         source:     "landing-page",
