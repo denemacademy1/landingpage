@@ -4971,7 +4971,7 @@ const app = initializeApp(firebaseConfig);
 const db  = getFirestore(app);
 
 window.saveEligLead = async function(data) {
-  await addDoc(collection(db, "leads"), {
+  await addDoc(collection(db, "candidatures"), {
     prenom:     data.prenom,
     email:      data.email,
     telephone:  data.tel,
