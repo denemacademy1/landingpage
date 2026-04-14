@@ -843,88 +843,144 @@ section { padding: 96px 24px; }
   color: rgba(255,255,255,0.38);
   letter-spacing: .04em;
 }
-.testi-li-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  margin-top: 12px;
-  color: #0A66C2;
-  font-size: .75rem;
-  font-weight: 700;
-  text-decoration: none;
-  opacity: .8;
-  transition: opacity .2s;
-}
-.testi-li-btn:hover { opacity: 1; }
-
-.testi-footer {
-  text-align: center;
-  margin-top: 48px;
-  font-family: 'Syne', sans-serif;
-  font-weight: 700;
-  font-size: clamp(16px, 2vw, 20px);
-  color: var(--teal);
-}
-
-/* ── LinkedIn proof ── */
-.li-grid {
+/* =============================================
+   TÉMOIGNAGES V2 — Cartes fusionnées
+   ============================================= */
+.testi-grid-v2 {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-top: 60px;
+  margin-bottom: 40px;
 }
-@media(max-width:900px){ .li-grid { grid-template-columns: repeat(2,1fr); } }
-@media(max-width:520px){ .li-grid { grid-template-columns: 1fr; } }
+@media (max-width: 880px) { .testi-grid-v2 { grid-template-columns: 1fr; } }
 
-.li-card {
-  background: var(--bg-alt);
-  border: 1px solid var(--w07);
-  border-radius: 16px;
-  padding: 24px 20px 20px;
+.testi-card-v2 {
+  padding: 32px 28px;
+  border-radius: 20px;
+  border: 1.5px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.02);
+  transition: transform .35s, border-color .35s, background .35s;
   display: flex;
   flex-direction: column;
-  gap: 14px;
-  transition: border-color .2s, transform .2s;
 }
-.li-card:hover { border-color: #0A66C2; transform: translateY(-4px); }
+.testi-card-v2:hover {
+  transform: translateY(-6px);
+  border-color: rgba(45,212,191,0.4);
+  background: rgba(45,212,191,0.03);
+}
+.testi-card-v2-featured {
+  border-color: rgba(107,91,255,0.35);
+  background: radial-gradient(ellipse at top, rgba(107,91,255,0.06) 0%, transparent 60%), rgba(255,255,255,0.02);
+}
+.testi-card-v2-featured:hover { border-color: rgba(107,91,255,0.55); }
 
-.li-avatar {
+.testi-card-v2-header {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.testi-card-v2-avatar {
   width: 64px;
   height: 64px;
   border-radius: 50%;
-  overflow: hidden;
-  border: 2px solid var(--w07);
+  object-fit: cover;
+  border: 2px solid rgba(45,212,191,0.3);
   flex-shrink: 0;
 }
-.li-avatar img { width: 100%; height: 100%; object-fit: cover; }
-
-.li-info { display: flex; flex-direction: column; gap: 4px; flex: 1; }
-.li-name  { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; color: #fff; }
-.li-company { font-size: .8rem; color: var(--teal); font-weight: 600; }
-.li-headline { font-size: .8rem; color: rgba(255,255,255,.6); line-height: 1.45; }
-.li-followers {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  font-size: .75rem;
-  color: rgba(255,255,255,.4);
-  margin-top: 4px;
+.testi-card-v2-featured .testi-card-v2-avatar { border-color: rgba(107,91,255,0.4); }
+.testi-card-v2-identity { flex: 1; min-width: 0; }
+.testi-card-v2-name {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 800;
+  font-size: 18px;
+  color: var(--w);
+  margin-bottom: 2px;
 }
-
-.li-btn {
+.testi-card-v2-company {
+  font-size: 12px;
+  color: rgba(255,255,255,0.5);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.testi-card-v2-badge {
+  display: inline-block;
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  font-weight: 800;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: rgba(45,212,191,0.12);
+  color: var(--teal);
+  border: 1px solid rgba(45,212,191,0.3);
+}
+.testi-card-v2-featured .testi-card-v2-badge {
+  background: rgba(107,91,255,0.15);
+  color: #9B8FFF;
+  border-color: rgba(107,91,255,0.4);
+}
+.testi-card-v2-quote {
+  font-size: 15px;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.8);
+  font-style: italic;
+  margin-bottom: 24px;
+  flex-grow: 1;
+}
+.testi-card-v2-footer {
+  padding-top: 18px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+.testi-card-v2-stats {
+  font-size: 12px;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 12px;
+  letter-spacing: 0.3px;
+}
+.testi-card-v2-linkedin {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: #0A66C2;
-  color: #fff;
-  font-size: .78rem;
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
   font-weight: 700;
-  padding: 8px 16px;
-  border-radius: 50px;
+  color: var(--teal);
   text-decoration: none;
-  transition: background .2s, transform .2s;
-  align-self: flex-start;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(45,212,191,0.08);
+  border: 1px solid rgba(45,212,191,0.25);
+  transition: all .2s;
 }
-.li-btn:hover { background: #004fa3; transform: scale(1.04); }
+.testi-card-v2-linkedin:hover {
+  background: rgba(45,212,191,0.15);
+  border-color: rgba(45,212,191,0.5);
+  transform: translateX(2px);
+}
+.testi-footer-v2 {
+  text-align: center;
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(16px, 2vw, 20px);
+  font-weight: 700;
+  color: var(--teal);
+  max-width: 720px;
+  margin: 40px auto 0;
+  line-height: 1.5;
+}
+.testi-disclaimer-v2 {
+  text-align: center;
+  font-size: 13px;
+  color: rgba(255,255,255,0.35);
+  max-width: 720px;
+  margin: 24px auto 0;
+  font-style: italic;
+  line-height: 1.6;
+}
 
 /* =============================================
    TRANSFORMATION — TIMELINE
@@ -3386,22 +3442,22 @@ section { position: relative; z-index: 1; }
 
     <div class="stats-grid">
       <div class="stat-card fade-up">
-        <div class="stat-num" data-count="73" data-suffix="%">0%</div>
+        <div class="stat-num">73%</div>
         <p class="stat-label">des dirigeants de PME veulent intégrer l'IA d'ici 2026 mais ne savent pas par où commencer</p>
         <p class="stat-source">McKinsey, State of AI 2024</p>
       </div>
       <div class="stat-card fade-up delay-1">
-        <div class="stat-num" data-prefix="+" data-count="40" data-suffix="%">0%</div>
+        <div class="stat-num">+40%</div>
         <p class="stat-label">d'offres d'emploi mentionnant l'IA en France sur les 12 derniers mois</p>
         <p class="stat-source">LinkedIn Workforce Report, 2025</p>
       </div>
       <div class="stat-card fade-up delay-2">
-        <div class="stat-num" data-prefix="×" data-count="8">0</div>
+        <div class="stat-num">×8</div>
         <p class="stat-label">augmentation du nombre d'entreprises cherchant des compétences IA en 2 ans</p>
         <p class="stat-source">France Num · Baromètre 2025</p>
       </div>
       <div class="stat-card fade-up delay-3">
-        <div class="stat-num" data-prefix="&lt; " data-count="3" data-suffix="%">0%</div>
+        <div class="stat-num">&lt; 3%</div>
         <p class="stat-label">des actifs en France sont réellement formés à déployer l'IA en entreprise</p>
         <p class="stat-source">Étude OPIIEC, 2024</p>
       </div>
@@ -3626,69 +3682,88 @@ section { position: relative; z-index: 1; }
 </section>
 
 <!-- ═══════════════════════════════════════════
-     TÉMOIGNAGES
+     TÉMOIGNAGES V2 — Fusion cartes + LinkedIn
      ═══════════════════════════════════════════ -->
 <section id="preuves">
   <div class="container">
     <div class="sec-ribbon sec-ribbon--teal fade-up" style="transform:rotate(-1.5deg)"><span class="sec-ribbon-text">Ils l'ont fait avant toi</span></div>
-    <h2 class="section-title fade-up">Quatre profils. Reconversions réussies. Des résultats réels.</h2>
-    <p class="section-sub fade-up delay-1">Avant de te parler de méthode, voilà ce que ça produit. Et oui, de vraies personnes — tu peux aller voir leur LinkedIn.</p>
+    <h2 class="section-title fade-up">Quatre profils. Reconversions réussies. Résultats réels et vérifiables.</h2>
+    <p class="section-sub fade-up delay-1">Tous sont actifs sur LinkedIn. Leurs parcours sont publics, leurs résultats aussi. Clique sur chaque profil pour vérifier par toi-même.</p>
 
-    <div class="testi-grid">
-      <div class="testi-card fade-up">
-        <div class="testi-header">
-          <div class="testi-avatar av-violet"><img src="baptiste.jpeg" alt="Baptiste Fort"></div>
-          <div>
-            <div class="testi-name">Baptiste Fort</div>
-            <span class="testi-badge">35 000€ / mois</span>
+    <div class="testi-grid-v2">
+
+      <!-- Ugo — 15K€ -->
+      <div class="testi-card-v2 fade-up">
+        <div class="testi-card-v2-header">
+          <img src="ugo.jpeg" alt="Ugo Sartini" class="testi-card-v2-avatar">
+          <div class="testi-card-v2-identity">
+            <div class="testi-card-v2-name">Ugo Sartini</div>
+            <div class="testi-card-v2-company">NOESIS.AI</div>
+            <div class="testi-card-v2-badge">15 000 € – 20 000 € / mois</div>
           </div>
         </div>
-        <p class="testi-quote">"Grâce aux 90 jours de suivi intensif et aux modules techniques de l'Academy, j'ai opéré un pivot technologique majeur : j'ai appris à concevoir et à déployer des systèmes complexes basés sur l'Intelligence Artificielle. La véritable valeur ajoutée n'est pas seulement de 'générer du code', mais de garantir la production d'un code de haute qualité, optimisé et scalable grâce à l'IA. Cette maîtrise technique m'a permis de sortir du marché des TPE pour adresser des comptes plus importants avec des besoins d'automatisation critiques. La Denem Academy ne vous apprend pas juste à utiliser des outils, elle vous apprend à bâtir une infrastructure technologique IA qui devient un levier de croissance réel pour vos clients."</p>
-        <div class="testi-stats">18 mois &nbsp;·&nbsp; +35 clients servis &nbsp;·&nbsp; De 0 à 35k€/mois</div>
-        <a class="testi-li-btn" href="https://www.linkedin.com/in/baptiste-fort-46873524b/" target="_blank" rel="noopener"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg> Voir le profil LinkedIn</a>
+        <p class="testi-card-v2-quote">"Aujourd'hui, mon agence génère entre 15K€ et 20K€ de CA mensuel. Le marché IA explose, mais ce qui fait vraiment la différence, c'est le conseil stratégique — pas juste la technique. DENEM m'a donné les deux."</p>
+        <div class="testi-card-v2-footer">
+          <div class="testi-card-v2-stats">Agence IA · +30 projets délivrés · 6 854 abonnés LinkedIn</div>
+          <a href="https://www.linkedin.com/in/ugo-sartini-04a14620a/" class="testi-card-v2-linkedin" target="_blank" rel="noopener">Voir sur LinkedIn →</a>
+        </div>
       </div>
 
-      <div class="testi-card fade-up delay-2">
-        <div class="testi-header">
-          <div class="testi-avatar av-teal"><img src="joseph.jpeg" alt="Joseph"></div>
-          <div>
-            <div class="testi-name">Joseph</div>
-            <span class="testi-badge">25 000€ / mois</span>
+      <!-- Joseph — 25K€ -->
+      <div class="testi-card-v2 fade-up delay-1">
+        <div class="testi-card-v2-header">
+          <img src="joseph.jpeg" alt="Joseph Mont" class="testi-card-v2-avatar">
+          <div class="testi-card-v2-identity">
+            <div class="testi-card-v2-name">Joseph Mont</div>
+            <div class="testi-card-v2-company">PIVOIA</div>
+            <div class="testi-card-v2-badge">25 000 € / mois</div>
           </div>
         </div>
-        <p class="testi-quote">"Grâce à l'accompagnement DENEM, j'ai enfin pu structurer et lancer ma propre agence. Les résultats ne se sont pas fait attendre : ce mois-ci, je réalise 25 000 € de CA hors taxes, et j'en suis déjà à 50 000 € cumulés depuis le début de l'année. Moi qui pensais être 'nul en vente', la méthode de la Denem Academy m'a donné les clés qu'il me manquait pour passer au niveau supérieur. Je ne sais pas comment j'aurais pu franchir cette étape sans eux."</p>
-        <div class="testi-stats">12 mois &nbsp;·&nbsp; 8 clients actifs &nbsp;·&nbsp; Retainers mensuels</div>
-        <a class="testi-li-btn" href="https://www.linkedin.com/in/joseph-mont/" target="_blank" rel="noopener"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg> Voir le profil LinkedIn</a>
+        <p class="testi-card-v2-quote">"Je pensais être nul en vente. La méthode DENEM m'a donné les clés qu'il me manquait. Ce mois-ci : 25K€ de CA. Je ne sais pas comment j'aurais franchi cette étape sans eux."</p>
+        <div class="testi-card-v2-footer">
+          <div class="testi-card-v2-stats">Agents IA 24h/24 · +30 entreprises accompagnées · 7 825 abonnés LinkedIn</div>
+          <a href="https://www.linkedin.com/in/joseph-mont/" class="testi-card-v2-linkedin" target="_blank" rel="noopener">Voir sur LinkedIn →</a>
+        </div>
       </div>
 
-      <div class="testi-card fade-up delay-1">
-        <div class="testi-header">
-          <div class="testi-avatar av-violet"><img src="ugo.jpeg" alt="Ugo"></div>
-          <div>
-            <div class="testi-name">Ugo</div>
-            <span class="testi-badge">15 000€ / mois</span>
+      <!-- Baptiste — 35K€ -->
+      <div class="testi-card-v2 fade-up delay-2">
+        <div class="testi-card-v2-header">
+          <img src="baptiste.jpeg" alt="Baptiste Fort" class="testi-card-v2-avatar">
+          <div class="testi-card-v2-identity">
+            <div class="testi-card-v2-name">Baptiste Fort</div>
+            <div class="testi-card-v2-company">Vision IA</div>
+            <div class="testi-card-v2-badge">35 000 € / mois</div>
           </div>
         </div>
-        <p class="testi-quote">"Aujourd'hui, mon agence génère entre 15 000 € et 20 000 € de chiffre d'affaires mensuel. Le marché de l'IA est en pleine explosion et la demande des entreprises est colossale. Mais au-delà de la simple intégration technique, le véritable enjeu pour les entreprises réside dans le conseil stratégique. Elles ont besoin d'experts capables de les orienter vers les bons outils et de structurer leur transformation numérique. La Denem Academy est le partenaire idéal pour acquérir cette double compétence : la maîtrise technique des outils IA et la vision stratégique nécessaire pour accompagner les entreprises. C'est grâce à cette formation que j'ai pu développer les compétences indispensables pour m'imposer comme un acteur de référence dans ce secteur."</p>
-        <div class="testi-stats">Agence IA &nbsp;·&nbsp; 15K–20K€/mois &nbsp;·&nbsp; Conseil stratégique</div>
-        <a class="testi-li-btn" href="https://www.linkedin.com/in/ugo-sartini-04a14620a/" target="_blank" rel="noopener"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg> Voir le profil LinkedIn</a>
+        <p class="testi-card-v2-quote">"DENEM ne m'a pas juste appris à utiliser des outils. Ils m'ont appris à bâtir une infrastructure IA qui devient un vrai levier pour mes clients. J'ai pu sortir du marché TPE pour adresser des comptes plus importants."</p>
+        <div class="testi-card-v2-footer">
+          <div class="testi-card-v2-stats">18 mois · +35 clients servis · 13 672 abonnés LinkedIn</div>
+          <a href="https://www.linkedin.com/in/baptiste-fort-46873524b/" class="testi-card-v2-linkedin" target="_blank" rel="noopener">Voir sur LinkedIn →</a>
+        </div>
       </div>
 
-      <div class="testi-card fade-up delay-2">
-        <div class="testi-header">
-          <div class="testi-avatar av-teal"><img src="othmane.jpeg" alt="Othmane"></div>
-          <div>
-            <div class="testi-name">Othmane</div>
-            <span class="testi-badge">50 000€ / mois</span>
+      <!-- Othmane — 50K€ -->
+      <div class="testi-card-v2 testi-card-v2-featured fade-up delay-3">
+        <div class="testi-card-v2-header">
+          <img src="othmane.jpeg" alt="Othmane Halim" class="testi-card-v2-avatar">
+          <div class="testi-card-v2-identity">
+            <div class="testi-card-v2-name">Othmane Halim</div>
+            <div class="testi-card-v2-company">Expert IA · Conseil &amp; Déploiement</div>
+            <div class="testi-card-v2-badge">+50 000 € / mois</div>
           </div>
         </div>
-        <p class="testi-quote">"Ce qui fait la différence, c'est avant tout la force du réseau. Se retrouver entouré d'autres entrepreneurs qui font face aux mêmes défis permet d'échanger des bonnes pratiques et de créer des synergies qu'on ne trouve nulle part ailleurs. L'expertise transmise sur les dernières avancées en IA m'a permis de proposer des solutions d'une précision chirurgicale à mes clients, me positionnant immédiatement comme un acteur de confiance."</p>
-        <div class="testi-stats">Expert IA &nbsp;·&nbsp; +50K€/mois &nbsp;·&nbsp; Réseau & synergies</div>
-        <a class="testi-li-btn" href="https://www.linkedin.com/in/othmanehalim/" target="_blank" rel="noopener"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg> Voir le profil LinkedIn</a>
+        <p class="testi-card-v2-quote">"Ce qui fait la différence, c'est le réseau. Être entouré d'autres entrepreneurs qui affrontent les mêmes défis crée des synergies qu'on ne trouve nulle part ailleurs. C'est ça, la vraie valeur de DENEM."</p>
+        <div class="testi-card-v2-footer">
+          <div class="testi-card-v2-stats">Conseil stratégique IA · +500 relations LinkedIn · Réseau premium</div>
+          <a href="https://www.linkedin.com/in/othmanehalim/" class="testi-card-v2-linkedin" target="_blank" rel="noopener">Voir sur LinkedIn →</a>
+        </div>
       </div>
+
     </div>
 
-    <p class="testi-footer fade-up">Ces profils ne sont pas des exceptions. Ils sont la preuve que la méthode fonctionne — quand elle est appliquée dans le bon ordre.</p>
+    <p class="testi-footer-v2 fade-up">Ces profils ne sont pas des exceptions. Ils sont la preuve que la méthode fonctionne — quand elle est appliquée dans le bon ordre.</p>
+    <p class="testi-disclaimer-v2 fade-up delay-1">Résultats non contractuels. Les revenus mentionnés reflètent les parcours individuels de membres du réseau DENEM, obtenus après plusieurs mois de travail et dépendent de l'investissement personnel, du marché et du positionnement de chacun. Aucun résultat n'est garanti.</p>
   </div>
 </section>
 
@@ -4024,7 +4099,7 @@ section { position: relative; z-index: 1; }
         </div>
         <div class="tl-right">
           <h3 class="tl-title">La maîtrise</h3>
-          <p class="tl-text">Tu maîtrises les 4 outils que utilisent les meilleurs Experts IA. Claude, n8n, Cowork, Codex. Pas pour coder — pour construire des solutions que les entreprises paient.</p>
+          <p class="tl-text">Tu maîtrises les 4 outils qu'utilisent les meilleurs Experts IA. Claude, n8n, Cowork, Codex. Pas pour coder — pour construire des solutions que les entreprises paient.</p>
         </div>
       </div>
 
@@ -4071,8 +4146,8 @@ section { position: relative; z-index: 1; }
 <section id="pour-qui">
   <div class="container">
     <div class="sec-ribbon sec-ribbon--violet fade-up" style="transform:rotate(-1.5deg)"><span class="sec-ribbon-text">C'est pour toi ?</span></div>
-    <h2 class="section-title fade-up">Ce guide est fait pour toi si…</h2>
-    <p class="section-sub fade-up delay-1">On préfère être direct dès le départ. Voilà à qui ce guide s'adresse — et à qui il ne s'adresse pas.</p>
+    <h2 class="section-title fade-up">Le programme DENEM Academy est fait pour toi si…</h2>
+    <p class="section-sub fade-up delay-1">On préfère être direct dès le départ. Voilà à qui le programme s'adresse — et à qui il ne s'adresse pas.</p>
 
     <div class="pourqui-grid">
       <div class="pourqui-col pourqui-col-yes fade-up">
@@ -4098,7 +4173,7 @@ section { position: relative; z-index: 1; }
       </div>
     </div>
 
-    <p class="pourqui-conclusion fade-up delay-2">Si tu te reconnais dans la colonne de gauche, le guide va te parler comme jamais.</p>
+    <p class="pourqui-conclusion fade-up delay-2">Si tu te reconnais dans la colonne de gauche, fais le test d'éligibilité. On se parle sous 24h.</p>
   </div>
 </section>
 
