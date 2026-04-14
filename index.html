@@ -123,13 +123,26 @@ nav.scrolled {
   letter-spacing: .02em;
 }
 
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
 .nav-link {
-  color: rgba(255,255,255,0.6);
+  color: #fff;
   text-decoration: none;
   font-size: 14px;
-  transition: color .2s;
+  font-weight: 500;
+  letter-spacing: .02em;
+  padding-bottom: 2px;
+  border-bottom: 1.5px solid transparent;
+  transition: border-color .2s;
 }
-.nav-link:hover { color: var(--w); }
+.nav-link:hover { border-bottom-color: #fff; }
 
 .btn-nav {
   display: inline-block;
@@ -1435,7 +1448,7 @@ footer {
    ============================================= */
 @media (max-width: 768px) {
   nav { padding: 0 20px; }
-  .nav-link { display: none; }
+  .nav-links { display: none; }
   section { padding: 72px 20px; }
   .groupe-grid   { grid-template-columns: 1fr; gap: 36px; }
   .comp-grid     { grid-template-columns: 1fr; }
@@ -3260,6 +3273,12 @@ section { position: relative; z-index: 1; }
   <a href="#hero" class="nav-brand">
     <img src="logo.png" alt="DENEM Academy" class="nav-logo-img">
   </a>
+  <ul class="nav-links">
+    <li><a href="#methode-btd" class="nav-link">La méthode</a></li>
+    <li><a href="#preuves" class="nav-link">Use cases</a></li>
+    <li><a href="#transformation" class="nav-link">Le programme</a></li>
+    <li><a href="#groupe" class="nav-link">Vision</a></li>
+  </ul>
   <a href="eligibilite.html" class="btn-nav">Faire le test d'éligibilité →</a>
 </nav>
 
