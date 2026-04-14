@@ -313,7 +313,7 @@
 
       <!-- STEP 1 : Contact -->
       <div class="e-step active" id="eStep1">
-        <div class="e-step-counter">Étape 1 sur 4</div>
+        <div class="e-step-counter">Étape 1 sur 6</div>
         <div class="e-step-title">Commençons par te connaître</div>
         <div class="e-step-sub">Pour accéder à tes résultats et à ta roadmap si tu es éligible.</div>
 
@@ -338,7 +338,7 @@
       <!-- STEP 2 : Situation -->
       <div class="e-step" id="eStep2">
         <button class="e-btn-back" onclick="goTo(1)">← Retour</button>
-        <div class="e-step-counter">Étape 2 sur 4</div>
+        <div class="e-step-counter">Étape 2 sur 6</div>
         <div class="e-step-title">Où tu en es aujourd'hui ?</div>
         <div class="e-step-sub">Coche la case qui te correspond le mieux.</div>
 
@@ -364,7 +364,7 @@
       <!-- STEP 3 : Timeline -->
       <div class="e-step" id="eStep3">
         <button class="e-btn-back" onclick="goTo(2)">← Retour</button>
-        <div class="e-step-counter">Étape 3 sur 4</div>
+        <div class="e-step-counter">Étape 3 sur 6</div>
         <div class="e-step-title">Quand veux-tu te lancer ?</div>
         <div class="e-step-sub">Sois honnête — il n'y a pas de mauvaise réponse.</div>
 
@@ -390,12 +390,75 @@
       <!-- STEP 4 : Motivation -->
       <div class="e-step" id="eStep4">
         <button class="e-btn-back" onclick="goTo(3)">← Retour</button>
-        <div class="e-step-counter">Étape 4 sur 4</div>
+        <div class="e-step-counter">Étape 4 sur 6</div>
         <div class="e-step-title">Pourquoi tu veux devenir Expert IA ?</div>
-        <div class="e-step-sub">C'est la réponse qu'on lira avant de t'appeler.</div>
+        <div class="e-step-sub">Choisis ce qui te correspond le mieux.</div>
 
-        <textarea class="e-textarea" id="eMotivation" placeholder="En une phrase, dis-nous ce qui t'a décidé..."></textarea>
-        <div class="e-error" id="eErr4">Merci d'écrire quelques mots.</div>
+        <div class="e-options" id="eMotivationOpts">
+          <button class="e-option" onclick="selectOpt(this,'motivation')">
+            <span class="e-opt-check"></span>🌊 Prendre la vague IA avant tout le monde
+          </button>
+          <button class="e-option" onclick="selectOpt(this,'motivation')">
+            <span class="e-opt-check"></span>💎 Saisir l'opportunité de la décennie
+          </button>
+          <button class="e-option" onclick="selectOpt(this,'motivation')">
+            <span class="e-opt-check"></span>🏖️ Obtenir un meilleur lifestyle
+          </button>
+          <button class="e-option" onclick="selectOpt(this,'motivation')">
+            <span class="e-opt-check"></span>💰 Augmenter mes revenus
+          </button>
+        </div>
+        <div class="e-error" id="eErr4">Merci de choisir une option.</div>
+        <button class="e-btn-next" onclick="goTo(5)">Continuer →</button>
+      </div>
+
+      <!-- STEP 5 : Revenus souhaités -->
+      <div class="e-step" id="eStep5">
+        <button class="e-btn-back" onclick="goTo(4)">← Retour</button>
+        <div class="e-step-counter">Étape 5 sur 6</div>
+        <div class="e-step-title">Quels revenus veux-tu générer par mois ?</div>
+        <div class="e-step-sub">Sois ambitieux — c'est pour ça que tu es là.</div>
+
+        <div class="e-options" id="eRevenusOpts">
+          <button class="e-option" onclick="selectOpt(this,'revenus')">
+            <span class="e-opt-check"></span>💶 1 000 – 2 000 € / mois
+          </button>
+          <button class="e-option" onclick="selectOpt(this,'revenus')">
+            <span class="e-opt-check"></span>💶 2 000 – 4 000 € / mois
+          </button>
+          <button class="e-option" onclick="selectOpt(this,'revenus')">
+            <span class="e-opt-check"></span>💶 4 000 – 7 000 € / mois
+          </button>
+          <button class="e-option" onclick="selectOpt(this,'revenus')">
+            <span class="e-opt-check"></span>🚀 +7 000 € / mois
+          </button>
+        </div>
+        <div class="e-error" id="eErr5">Merci de choisir une option.</div>
+        <button class="e-btn-next" onclick="goTo(6)">Continuer →</button>
+      </div>
+
+      <!-- STEP 6 : Motivation sur 10 -->
+      <div class="e-step" id="eStep6">
+        <button class="e-btn-back" onclick="goTo(5)">← Retour</button>
+        <div class="e-step-counter">Étape 6 sur 6</div>
+        <div class="e-step-title">Ta motivation pour te lancer, sur 10 ?</div>
+        <div class="e-step-sub">Honnêteté totale — aucune mauvaise réponse.</div>
+
+        <div class="e-options" id="eScoreOpts">
+          <button class="e-option" onclick="selectOpt(this,'score')">
+            <span class="e-opt-check"></span>😐 1 à 3 — Je découvre, pas encore décidé
+          </button>
+          <button class="e-option" onclick="selectOpt(this,'score')">
+            <span class="e-opt-check"></span>🙂 4 à 6 — Motivé mais j'ai encore des doutes
+          </button>
+          <button class="e-option" onclick="selectOpt(this,'score')">
+            <span class="e-opt-check"></span>💪 7 à 8 — Très motivé, je veux avancer vite
+          </button>
+          <button class="e-option" onclick="selectOpt(this,'score')">
+            <span class="e-opt-check"></span>🔥 9 à 10 — Je suis prêt, j'attends le feu vert
+          </button>
+        </div>
+        <div class="e-error" id="eErr6">Merci de choisir une option.</div>
         <button class="e-btn-next" id="eBtnSubmit" onclick="submitForm()">Envoyer ma candidature →</button>
       </div>
 
@@ -423,7 +486,7 @@
   </footer>
 
   <script>
-    const DATA = { prenom:'', email:'', tel:'', situation:'', timeline:'', motivation:'' };
+    const DATA = { prenom:'', email:'', tel:'', situation:'', timeline:'', motivation:'', revenus:'', score:'' };
 
     function goTo(step) {
       // Validation
@@ -446,14 +509,24 @@
         if (!DATA.timeline) { err.classList.add('show'); return; }
         err.classList.remove('show');
       }
+      if (step === 5) {
+        const err = document.getElementById('eErr4');
+        if (!DATA.motivation) { err.classList.add('show'); return; }
+        err.classList.remove('show');
+      }
+      if (step === 6) {
+        const err = document.getElementById('eErr5');
+        if (!DATA.revenus) { err.classList.add('show'); return; }
+        err.classList.remove('show');
+      }
 
       // Masquer tous, afficher le bon
       document.querySelectorAll('.e-step').forEach(s => s.classList.remove('active'));
       const target = document.getElementById('eStep' + step);
       if (target) target.classList.add('active');
 
-      // Progress
-      const pct = { 1:25, 2:50, 3:75, 4:100 }[step] || 100;
+      // Progress (6 étapes)
+      const pct = { 1:17, 2:33, 3:50, 4:67, 5:83, 6:100 }[step] || 100;
       document.getElementById('eBar').style.width = pct + '%';
 
       // Scroll top
@@ -468,11 +541,9 @@
     }
 
     function submitForm() {
-      const m = document.getElementById('eMotivation').value.trim();
-      const err = document.getElementById('eErr4');
-      if (!m) { err.classList.add('show'); return; }
+      const err = document.getElementById('eErr6');
+      if (!DATA.score) { err.classList.add('show'); return; }
       err.classList.remove('show');
-      DATA.motivation = m;
 
       const btn = document.getElementById('eBtnSubmit');
       btn.disabled = true;
@@ -525,6 +596,8 @@
         situation:  data.situation,
         timeline:   data.timeline,
         motivation: data.motivation,
+        revenus:    data.revenus,
+        score:      data.score,
         source:     "landing-page",
         createdAt:  serverTimestamp()
       });
