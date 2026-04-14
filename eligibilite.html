@@ -493,9 +493,19 @@
 
   <script>
     const DATA = { prenom:'', email:'', tel:'', situation:'', timeline:'', motivation:[], revenus:'', score:'' };
+    let docId = null; // ID du document Firestore créé au step 1
+
+    function showStep(step) {
+      document.querySelectorAll('.e-step').forEach(s => s.classList.remove('active'));
+      const target = document.getElementById('eStep' + step);
+      if (target) target.classList.add('active');
+      const pct = { 1:17, 2:33, 3:50, 4:67, 5:83, 6:100 }[step] || 100;
+      document.getElementById('eBar').style.width = pct + '%';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
 
     function goTo(step) {
-      // Validation
+      // ── Validation ──
       if (step === 2) {
         const p = document.getElementById('ePrenom').value.trim();
         const e = document.getElementById('eEmail').value.trim();
@@ -504,39 +514,38 @@
         if (!p || !e || !t || !/\S+@\S+\.\S+/.test(e)) { err.classList.add('show'); return; }
         err.classList.remove('show');
         DATA.prenom = p; DATA.email = e; DATA.tel = t;
+
+        // ── Sauvegarde immédiate dès le step 1 ──
+        if (window.createLead) {
+          window.createLead(DATA).then(id => { docId = id; });
+        }
       }
       if (step === 3) {
         const err = document.getElementById('eErr2');
         if (!DATA.situation) { err.classList.add('show'); return; }
         err.classList.remove('show');
+        if (docId && window.updateLead) window.updateLead(docId, { situation: DATA.situation, etape_atteinte: 2 });
       }
       if (step === 4) {
         const err = document.getElementById('eErr3');
         if (!DATA.timeline) { err.classList.add('show'); return; }
         err.classList.remove('show');
+        if (docId && window.updateLead) window.updateLead(docId, { timeline: DATA.timeline, etape_atteinte: 3 });
       }
       if (step === 5) {
         const err = document.getElementById('eErr4');
         if (!DATA.motivation.length) { err.classList.add('show'); return; }
         err.classList.remove('show');
+        if (docId && window.updateLead) window.updateLead(docId, { motivation: DATA.motivation.join(', '), etape_atteinte: 4 });
       }
       if (step === 6) {
         const err = document.getElementById('eErr5');
         if (!DATA.revenus) { err.classList.add('show'); return; }
         err.classList.remove('show');
+        if (docId && window.updateLead) window.updateLead(docId, { revenus: DATA.revenus, etape_atteinte: 5 });
       }
 
-      // Masquer tous, afficher le bon
-      document.querySelectorAll('.e-step').forEach(s => s.classList.remove('active'));
-      const target = document.getElementById('eStep' + step);
-      if (target) target.classList.add('active');
-
-      // Progress (6 étapes)
-      const pct = { 1:17, 2:33, 3:50, 4:67, 5:83, 6:100 }[step] || 100;
-      document.getElementById('eBar').style.width = pct + '%';
-
-      // Scroll top
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      showStep(step);
     }
 
     function selectOpt(btn, group) {
@@ -556,6 +565,20 @@
       }
     }
 
+    function getTemperature(score) {
+      if (!score) return 'froid';
+      if (score.includes('9') || score.includes('10')) return 'bouillant';
+      if (score.includes('7') || score.includes('8')) return 'tiede';
+      return 'froid';
+    }
+
+    function showConfirm() {
+      document.querySelectorAll('.e-step').forEach(s => s.classList.remove('active'));
+      document.getElementById('eStepConfirm').classList.add('active');
+      document.getElementById('eBar').style.width = '100%';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
     function submitForm() {
       const err = document.getElementById('eErr6');
       if (!DATA.score) { err.classList.add('show'); return; }
@@ -565,24 +588,26 @@
       btn.disabled = true;
       btn.textContent = 'Envoi en cours…';
 
-      if (window.saveCandidature) {
-        window.saveCandidature(DATA).then(() => {
-          document.getElementById('eConfirmPrenom').textContent = DATA.prenom;
-          document.querySelectorAll('.e-step').forEach(s => s.classList.remove('active'));
-          document.getElementById('eStepConfirm').classList.add('active');
-          document.getElementById('eBar').style.width = '100%';
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        }).catch(() => {
+      document.getElementById('eConfirmPrenom').textContent = DATA.prenom;
+
+      if (docId && window.finalizeLead) {
+        // Mise à jour du doc existant
+        window.finalizeLead(docId, DATA).then(() => showConfirm()).catch(() => {
+          btn.disabled = false;
+          btn.textContent = 'Envoyer ma candidature →';
+          alert('Une erreur est survenue, réessaie dans quelques secondes.');
+        });
+      } else if (window.createLead) {
+        // Fallback : création directe si docId manquant
+        window.createLead(DATA).then(id => {
+          return window.finalizeLead(id, DATA);
+        }).then(() => showConfirm()).catch(() => {
           btn.disabled = false;
           btn.textContent = 'Envoyer ma candidature →';
           alert('Une erreur est survenue, réessaie dans quelques secondes.');
         });
       } else {
-        // Fallback si Firebase non chargé
-        document.getElementById('eConfirmPrenom').textContent = DATA.prenom;
-        document.querySelectorAll('.e-step').forEach(s => s.classList.remove('active'));
-        document.getElementById('eStepConfirm').classList.add('active');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        showConfirm();
       }
     }
   </script>
@@ -590,7 +615,8 @@
   <!-- Firebase -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
-    import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
+    import { getFirestore, collection, addDoc, doc, updateDoc, serverTimestamp }
+      from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
 
     const app = initializeApp({
       apiKey: "AIzaSyBdNN-iiK5KoBqkX4FX1PJ5CmlWUma8NaU",
@@ -604,18 +630,48 @@
 
     const db = getFirestore(app);
 
-    window.saveCandidature = async function(data) {
-      await addDoc(collection(db, "candidatures"), {
-        prenom:     data.prenom,
-        email:      data.email,
-        telephone:  data.tel,
-        situation:  data.situation,
-        timeline:   data.timeline,
-        motivation: Array.isArray(data.motivation) ? data.motivation.join(', ') : data.motivation,
-        revenus:    data.revenus,
-        score:      data.score,
-        source:     "landing-page",
-        createdAt:  serverTimestamp()
+    // Créé le lead dès le step 1 — statut froid / incomplet
+    window.createLead = async function(data) {
+      const ref = await addDoc(collection(db, "candidatures"), {
+        prenom:          data.prenom,
+        email:           data.email,
+        telephone:       data.tel,
+        statut:          "incomplet",
+        temperature:     "froid",
+        etape_atteinte:  1,
+        source:          "landing-page",
+        createdAt:       serverTimestamp(),
+        updatedAt:       serverTimestamp()
+      });
+      return ref.id;
+    };
+
+    // Mise à jour progressive à chaque étape
+    window.updateLead = async function(id, fields) {
+      await updateDoc(doc(db, "candidatures", id), {
+        ...fields,
+        updatedAt: serverTimestamp()
+      });
+    };
+
+    // Finalisation avec classification automatique
+    window.finalizeLead = async function(id, data) {
+      const score = data.score || '';
+      let temperature = 'froid';
+      if (score.includes('9') || score.includes('10')) temperature = 'bouillant';
+      else if (score.includes('7') || score.includes('8')) temperature = 'tiede';
+      else if (score.includes('4') || score.includes('5') || score.includes('6')) temperature = 'tiede';
+
+      await updateDoc(doc(db, "candidatures", id), {
+        situation:       data.situation,
+        timeline:        data.timeline,
+        motivation:      Array.isArray(data.motivation) ? data.motivation.join(', ') : data.motivation,
+        revenus:         data.revenus,
+        score:           data.score,
+        temperature:     temperature,
+        statut:          "complet",
+        etape_atteinte:  6,
+        updatedAt:       serverTimestamp()
       });
     };
   </script>
