@@ -3064,9 +3064,8 @@ section { position: relative; z-index: 1; }
 }
 
 
-/* ═══════════════════════════════════════════
-   MODAL TEST D'ÉLIGIBILITÉ
-   ═══════════════════════════════════════════ */
+/* (modal éligibilité supprimée — page dédiée eligibilite.html)
+
 .elig-overlay {
   position: fixed; inset: 0; z-index: 1000;
   background: rgba(8,6,18,0.88);
@@ -3226,6 +3225,7 @@ section { position: relative; z-index: 1; }
   display: none;
 }
 .elig-error.show { display: block; }
+*/
 
 </style>
 </head>
@@ -4776,11 +4776,8 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbo
 
 </script>
 
-<!-- ═══════════════════════════════════════════
-     MODAL TEST D'ÉLIGIBILITÉ
-     ═══════════════════════════════════════════ -->
-<div id="eligOverlay" class="elig-overlay" onclick="closeEligModal()"></div>
-<div id="eligPanel" class="elig-panel" role="dialog" aria-modal="true" aria-label="Test d'éligibilité">
+<!-- modal éligibilité supprimée -->
+<div id="eligPanel" style="display:none">
   <button class="elig-close" onclick="closeEligModal()" aria-label="Fermer">✕</button>
   <div class="elig-progress-wrap"><div class="elig-progress-bar" id="eligBar" style="width:25%"></div></div>
 
@@ -4854,135 +4851,6 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbo
   </div>
 </div>
 
-<script>
-// ── MODAL ÉLIGIBILITÉ ─────────────────────────
-const ELIG_DATA = { prenom:'', email:'', tel:'', situation:'', timeline:'', motivation:'' };
-
-function openEligModal() {
-  document.getElementById('eligOverlay').classList.add('open');
-  document.getElementById('eligPanel').classList.add('open');
-  document.body.style.overflow = 'hidden';
-  eligGoTo(1, true);
-}
-function closeEligModal() {
-  document.getElementById('eligOverlay').classList.remove('open');
-  document.getElementById('eligPanel').classList.remove('open');
-  document.body.style.overflow = '';
-}
-window.openEligModal = openEligModal;
-window.closeEligModal = closeEligModal;
-
-function eligGoTo(step, init) {
-  if (!init) {
-    // Validation avant d'avancer
-    if (step === 2) {
-      const p = document.getElementById('ePrenom').value.trim();
-      const e = document.getElementById('eEmail').value.trim();
-      const t = document.getElementById('eTel').value.trim();
-      const err = document.getElementById('eErr1');
-      if (!p || !e || !t || !/\S+@\S+\.\S+/.test(e)) { err.classList.add('show'); return; }
-      err.classList.remove('show');
-      ELIG_DATA.prenom = p; ELIG_DATA.email = e; ELIG_DATA.tel = t;
-    }
-    if (step === 3) {
-      const err = document.getElementById('eErr2');
-      if (!ELIG_DATA.situation) { err.classList.add('show'); return; }
-      err.classList.remove('show');
-    }
-    if (step === 4) {
-      const err = document.getElementById('eErr3');
-      if (!ELIG_DATA.timeline) { err.classList.add('show'); return; }
-      err.classList.remove('show');
-    }
-  }
-  // Masquer tous les steps
-  [1,2,3,4,'Confirm'].forEach(s => {
-    const el = document.getElementById('eStep' + s);
-    if (el) el.style.display = 'none';
-  });
-  const target = document.getElementById('eStep' + step);
-  if (target) target.style.display = 'block';
-  // Progress bar
-  const pct = {1:25, 2:50, 3:75, 4:100}[step] || 100;
-  document.getElementById('eligBar').style.width = pct + '%';
-  // Scroll to top of panel
-  document.getElementById('eligPanel').scrollTop = 0;
-}
-window.eligGoTo = eligGoTo;
-
-function eligSelect(btn, group) {
-  const parent = btn.closest('.elig-options');
-  parent.querySelectorAll('.elig-option').forEach(b => b.classList.remove('selected'));
-  btn.classList.add('selected');
-  const text = btn.textContent.trim().replace(/^[\p{Emoji}\s]+/u, '').trim();
-  ELIG_DATA[group] = text;
-}
-window.eligSelect = eligSelect;
-
-function eligSubmit() {
-  const m = document.getElementById('eMotivation').value.trim();
-  const err = document.getElementById('eErr4');
-  if (!m) { err.classList.add('show'); return; }
-  err.classList.remove('show');
-  ELIG_DATA.motivation = m;
-  const btn = document.getElementById('eBtnSubmit');
-  btn.disabled = true;
-  btn.textContent = 'Envoi en cours…';
-  // Appel Firebase (défini dans le module ci-dessous)
-  if (window.saveEligLead) {
-    window.saveEligLead(ELIG_DATA).then(() => {
-      document.getElementById('eConfirmPrenom').textContent = ELIG_DATA.prenom;
-      eligGoTo('Confirm');
-    }).catch(() => {
-      btn.disabled = false;
-      btn.textContent = 'Envoyer ma candidature →';
-      alert('Une erreur est survenue, réessaie dans quelques secondes.');
-    });
-  } else {
-    // Fallback si Firebase non chargé
-    document.getElementById('eConfirmPrenom').textContent = ELIG_DATA.prenom;
-    eligGoTo('Confirm');
-  }
-}
-window.eligSubmit = eligSubmit;
-
-// Fermer avec Escape
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') closeEligModal();
-});
-</script>
-
-<!-- Firebase SDK -->
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
-import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyBdNN-iiK5KoBqkX4FX1PJ5CmlWUma8NaU",
-  authDomain: "denem-academy-5de41.firebaseapp.com",
-  projectId: "denem-academy-5de41",
-  storageBucket: "denem-academy-5de41.firebasestorage.app",
-  messagingSenderId: "570632584566",
-  appId: "1:570632584566:web:4305443183280686a7ce57",
-  measurementId: "G-Q1ZXJ4X4F5"
-};
-
-const app = initializeApp(firebaseConfig);
-const db  = getFirestore(app);
-
-window.saveEligLead = async function(data) {
-  await addDoc(collection(db, "candidatures"), {
-    prenom:     data.prenom,
-    email:      data.email,
-    telephone:  data.tel,
-    situation:  data.situation,
-    timeline:   data.timeline,
-    motivation: data.motivation,
-    source:     "landing-page",
-    createdAt:  serverTimestamp()
-  });
-};
-</script>
 
 </body>
 </html>
