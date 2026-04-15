@@ -69,6 +69,284 @@
   <link rel="dns-prefetch" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@800;900&family=Syne:wght@700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
 
+  <!-- ─────────────────────────────────────────
+       SCHEMA.ORG — DONNÉES STRUCTURÉES
+       ───────────────────────────────────────── -->
+
+  <!-- Schéma 1 : Organization -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "DENEM Academy",
+    "alternateName": ["DENEM Group", "Groupe DENEM"],
+    "url": "https://denemacademy.com",
+    "logo": "https://denemacademy.com/logo.png",
+    "description": "DENEM Academy est la branche formation du Groupe DENEM, laboratoire de R&D en intelligence artificielle actif depuis 2020. Elle forme des profils non-techniques à devenir Expert IA Freelance et à déployer l'IA chez les TPE et PME françaises.",
+    "foundingDate": "2020",
+    "founder": {
+      "@type": "Person",
+      "name": "Axel Riandiere",
+      "jobTitle": "Fondateur DENEM Academy",
+      "url": "https://denemacademy.com",
+      "image": "https://denemacademy.com/axel.png"
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "FR"
+    },
+    "email": "contact@denem-academy.com",
+    "knowsAbout": [
+      "Intelligence Artificielle",
+      "Formation Expert IA",
+      "Déploiement IA en entreprise",
+      "Reconversion professionnelle IA",
+      "Consulting IA pour PME",
+      "Méthode B.T.D"
+    ],
+    "memberOf": {
+      "@type": "Organization",
+      "name": "Écosystème DENEM"
+    }
+  }
+  </script>
+
+  <!-- Schéma 2 : Course -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Course",
+    "name": "DENEM Academy — Devenir Expert IA Freelance en 90 jours",
+    "description": "Programme de formation professionnalisant pour devenir Expert IA Freelance et déployer l'intelligence artificielle chez les PME françaises. Sans coder, en 90 jours, avec la méthode propriétaire B.T.D (Business · Technique · Délivrer). Issu de 6 ans de R&D appliquée pour des grands comptes du CAC 40.",
+    "provider": {
+      "@type": "Organization",
+      "name": "DENEM Academy",
+      "sameAs": "https://denemacademy.com"
+    },
+    "educationalLevel": "Professional",
+    "courseMode": "online",
+    "inLanguage": "fr-FR",
+    "teaches": [
+      "Maîtrise des outils IA (Claude, n8n, Cowork, Codex)",
+      "Acquisition client automatisée pour freelances",
+      "Vente et closing pour Experts IA",
+      "Architecture de solutions IA pour PME",
+      "Gestion de projet IA et délivrance client",
+      "Construction d'une activité freelance pérenne",
+      "Méthode B.T.D : Business, Technique, Délivrer"
+    ],
+    "audience": {
+      "@type": "EducationalAudience",
+      "audienceType": "Salariés en reconversion, freelances, profils business souhaitant devenir Expert IA Freelance"
+    },
+    "hasCourseInstance": {
+      "@type": "CourseInstance",
+      "courseMode": "online",
+      "courseWorkload": "PT90D"
+    },
+    "offers": {
+      "@type": "Offer",
+      "category": "Programme de formation premium",
+      "availability": "https://schema.org/PreOrder",
+      "url": "https://denemacademy.com/eligibilite.html"
+    }
+  }
+  </script>
+
+  <!-- Schéma 3 : FAQPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Est-ce que c'est vraiment possible de devenir Expert IA Freelance sans background tech ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Oui, et c'est même le profil idéal. Le secret du métier d'Expert IA Freelance n'est pas le code, c'est de comprendre les besoins business des entreprises et de savoir les traduire en solutions IA déployables. L'IA s'occupe du code. L'Expert IA s'occupe du business, du contexte et de la relation client. C'est exactement ce que les PME recherchent et ce que les développeurs ne savent pas faire."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "L'IA ne va pas remplacer le métier d'Expert IA Freelance ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Les outils changent constamment, mais le métier d'Expert IA n'est pas de maîtriser un outil à un instant T : c'est de comprendre les besoins d'une entreprise et de les traduire en solutions qui fonctionnent. Cette compétence ne peut pas être obsolète. Plus l'IA devient puissante, plus les entreprises ont besoin d'Experts IA pour les accompagner. C'est littéralement le seul métier de l'IA qui bénéficie de l'avancée de l'IA."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Y a-t-il vraiment des clients prêts à payer pour des prestations IA ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Selon McKinsey (State of AI 2024), 73% des dirigeants de PME veulent intégrer l'IA mais ne savent pas par où commencer. Elles ont le budget, mais les grands cabinets sont trop chers et les développeurs freelances ne parlent pas leur langue. Ce gap entre le besoin et l'offre existante représente précisément le marché d'un Expert IA Freelance. Un projet type se facture entre 1 500€ et 8 000€ selon la complexité."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "En combien de temps puis-je avoir mon premier client en tant qu'Expert IA ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Les membres du réseau DENEM ont signé leur première mission entre le mois 2 et le mois 4 de la formation. Certains plus tôt. Le délai dépend principalement de l'investissement personnel, pas du niveau de départ technique. Le programme intègre un système d'acquisition client automatisé qui démarre dès le mois 2."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Comment se positionner comme Expert IA Freelance auprès des PME françaises ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Le positionnement Expert IA repose sur 3 piliers, structurés dans la méthode B.T.D de DENEM Academy. B (Business) : savoir vendre et structurer son activité freelance. T (Technique) : maîtriser les outils IA modernes pour livrer des solutions concrètes. D (Délivrer) : gérer les projets et générer du bouche-à-oreille. Sans ces 3 dimensions, un Expert IA reste invisible (sans B), vend du vent (sans T), ou perd ses clients (sans D)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Quelle est la différence entre un Expert IA et un développeur IA ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Un développeur IA code des modèles, des algorithmes, des APIs - il travaille principalement avec Python, TensorFlow, PyTorch. Un Expert IA Freelance, lui, n'a pas besoin de coder : il maîtrise les outils IA existants (Claude, ChatGPT, n8n, Cowork) pour les déployer chez ses clients PME et résoudre des problèmes business concrets. L'Expert IA est un architecte de transformation et un consultant, pas un ingénieur."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Pourquoi DENEM Academy est différent des autres formations IA en France ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "DENEM Academy se distingue par 4 éléments uniques : 1) Une expertise issue de 6 ans de R&D appliquée pour des grands comptes du CAC 40 (Canal+, Van Cleef & Arpels, EDF, Crédit Agricole, Véolia, Cofidis). 2) Une connexion directe avec l'écosystème IA de Silicon Valley, notamment avec des contributeurs et anciens d'Anthropic. 3) Une méthode propriétaire B.T.D qui combine technique et business (rare dans les formations IA). 4) Un écosystème actif avec des Experts IA déjà en activité comme Baptiste Fort (Vision IA), Joseph Mont (PIVOIA), Ugo Sartini (NOESIS.AI) et Othmane Halim."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- Schéma 4 : WebSite -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "DENEM Academy",
+    "url": "https://denemacademy.com",
+    "inLanguage": "fr-FR",
+    "publisher": {
+      "@type": "Organization",
+      "name": "DENEM Academy",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://denemacademy.com/logo.png"
+      }
+    }
+  }
+  </script>
+
+  <!-- Schéma 5 : Person (Axel Riandiere) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Axel Riandiere",
+    "jobTitle": "Fondateur DENEM Academy",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "DENEM Group",
+      "url": "https://denemacademy.com"
+    },
+    "url": "https://denemacademy.com",
+    "image": "https://denemacademy.com/axel.png",
+    "knowsAbout": [
+      "Intelligence Artificielle",
+      "Déploiement IA en entreprise",
+      "Formation Expert IA",
+      "Stratégie d'agence IA",
+      "Méthode B.T.D"
+    ],
+    "description": "Fondateur de DENEM Academy et du Groupe DENEM. Le Groupe DENEM est un laboratoire de R&D en intelligence artificielle actif depuis 2020, qui a déployé des solutions IA pour Canal+, Van Cleef & Arpels, EDF, Crédit Agricole, Véolia et Cofidis. Connecté à l'écosystème IA de Silicon Valley, notamment avec Anthropic."
+  }
+  </script>
+
+  <!-- Schéma 6 : Service + Reviews -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "Formation professionnalisante Expert IA Freelance",
+    "name": "DENEM Academy",
+    "description": "Programme de formation pour devenir Expert IA Freelance en 90 jours",
+    "provider": {
+      "@type": "Organization",
+      "name": "DENEM Academy"
+    },
+    "areaServed": {
+      "@type": "Country",
+      "name": "France"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "reviewCount": "4",
+      "bestRating": "5",
+      "worstRating": "1"
+    },
+    "review": [
+      {
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": "Ugo Sartini",
+          "jobTitle": "Fondateur NOESIS.AI"
+        },
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "5",
+          "bestRating": "5"
+        },
+        "reviewBody": "Aujourd'hui, mon agence génère entre 15K€ et 20K€ de CA mensuel. Le marché IA explose, mais ce qui fait vraiment la différence, c'est le conseil stratégique. DENEM m'a donné les deux : technique et business."
+      },
+      {
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": "Joseph Mont",
+          "jobTitle": "Fondateur PIVOIA"
+        },
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "5",
+          "bestRating": "5"
+        },
+        "reviewBody": "Je pensais être nul en vente. La méthode DENEM m'a donné les clés qu'il me manquait. Ce mois-ci : 25K€ de CA. Je ne sais pas comment j'aurais franchi cette étape sans eux."
+      },
+      {
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": "Baptiste Fort",
+          "jobTitle": "Fondateur Vision IA"
+        },
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "5",
+          "bestRating": "5"
+        },
+        "reviewBody": "DENEM ne m'a pas juste appris à utiliser des outils. Ils m'ont appris à bâtir une infrastructure IA qui devient un vrai levier pour mes clients. J'ai pu sortir du marché TPE pour adresser des comptes plus importants."
+      },
+      {
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": "Othmane Halim",
+          "jobTitle": "Expert IA Conseil et Déploiement"
+        },
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "5",
+          "bestRating": "5"
+        },
+        "reviewBody": "Ce qui fait la différence, c'est le réseau. Être entouré d'autres entrepreneurs qui affrontent les mêmes défis crée des synergies qu'on ne trouve nulle part ailleurs. C'est ça, la vraie valeur de DENEM."
+      }
+    ]
+  }
+  </script>
+
 <style>
 
 /* =============================================
