@@ -550,13 +550,17 @@ section { padding: 96px 24px; }
 .comp-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 20px;
-  margin-top: 48px;
+  gap: 28px;
+  align-items: stretch;
+  margin-top: 50px;
 }
 .comp-col {
   border: 1px solid rgba(255,255,255,0.1);
   border-radius: 18px;
   padding: 36px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 .comp-col-lime {
   border-color: rgba(45,212,191,0.4);
@@ -576,7 +580,7 @@ section { padding: 96px 24px; }
   font-size: 20px;
   margin-bottom: 24px;
 }
-.comp-list { list-style: none; display: flex; flex-direction: column; gap: 13px; margin-bottom: 28px; }
+.comp-list { list-style: none; display: flex; flex-direction: column; gap: 13px; margin-bottom: 28px; flex-grow: 1; }
 .comp-list li {
   font-size: 15px;
   color: rgba(255,255,255,0.68);
@@ -596,13 +600,51 @@ section { padding: 96px 24px; }
 }
 .comp-badge-dark { background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.48); }
 .comp-badge-lime { background: var(--teal); color: #0D0C14; }
+.comp-hook {
+  text-align: center;
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 28px;
+  color: var(--w);
+  margin: 24px auto 50px;
+  letter-spacing: 0.5px;
+  max-width: 720px;
+  line-height: 1.3;
+}
+.comp-year-sub {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--teal);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-top: 4px;
+  opacity: 0.85;
+}
+.comp-col .comp-year-sub { color: rgba(255,255,255,0.4); }
+.comp-col-lime .comp-year-sub { color: var(--teal); }
 .comp-conclusion {
   text-align: center;
-  margin-top: 56px;
   font-family: 'Syne', sans-serif;
   font-weight: 700;
-  font-size: clamp(22px, 3vw, 34px);
-  color: var(--teal);
+  font-size: 26px;
+  color: var(--w);
+  margin: 60px auto 0;
+  max-width: 780px;
+  line-height: 1.4;
+  letter-spacing: 0.3px;
+}
+.comp-conclusion span {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--teal), var(--violet));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-style: italic;
+}
+@media (max-width: 600px) {
+  .comp-hook { font-size: 22px; }
+  .comp-conclusion { font-size: 20px; }
 }
 
 /* =============================================
@@ -3698,34 +3740,35 @@ section { position: relative; z-index: 1; }
   <div class="container">
     <div style="text-align:center"><div class="sec-ribbon sec-ribbon--violet fade-up" style="transform:rotate(-1.5deg)"><span class="sec-ribbon-text">La fenêtre d'opportunité</span></div></div>
     <h2 class="section-title fade-up" style="text-align:center;">1996 vs 2026. La même fenêtre. Deux époques.</h2>
+    <p class="comp-hook fade-up delay-1">Ils ont raté Internet. Ne rate pas l'IA.</p>
 
     <div class="comp-grid">
       <div class="comp-col fade-up">
-        <p class="comp-year">1996</p>
-        <h3 class="comp-era">L'avènement d'Internet</h3>
+        <p class="comp-year">1996<span class="comp-year-sub">Il y a 30 ans</span></p>
+        <h3 class="comp-era">Internet a créé des fortunes</h3>
         <ul class="comp-list">
           <li>Les entreprises ne comprenaient pas pourquoi elles auraient besoin d'un site web</li>
           <li>Les premiers consultants web facturaient 5 000€ pour une page HTML</li>
-          <li>Tout le monde disait que c'était une bulle, une mode</li>
-          <li>Ceux qui ont agi ont construit Amazon, Google, Salesforce</li>
+          <li>"C'est une bulle, ça va exploser" — disaient les sceptiques</li>
+          <li>Les sceptiques sont restés salariés. Les autres ont construit Amazon, Google, Salesforce.</li>
         </ul>
         <span class="comp-badge comp-badge-dark">Fenêtre d'opportunité : 1993–2003</span>
       </div>
 
       <div class="comp-col comp-col-lime fade-up delay-2">
-        <p class="comp-year">2026</p>
-        <h3 class="comp-era">L'avènement de l'IA</h3>
+        <p class="comp-year">2026<span class="comp-year-sub">Maintenant</span></p>
+        <h3 class="comp-era">L'IA crée les prochaines</h3>
         <ul class="comp-list">
           <li>Les entreprises ne savent pas comment intégrer l'IA dans leur quotidien</li>
           <li>Les premiers Experts IA facturent 3 000€ à 8 000€ par projet</li>
-          <li>Tout le monde parle d'IA mais très peu passent à l'action</li>
-          <li>Ceux qui agissent aujourd'hui vont construire les carrières les plus solides de la décennie</li>
+          <li>"L'IA va remplacer mon métier" — disent les sceptiques aujourd'hui</li>
+          <li>Les sceptiques resteront salariés. Les autres construiront les agences IA de demain.</li>
         </ul>
         <span class="comp-badge comp-badge-lime">Fenêtre d'opportunité : 2024–2030</span>
       </div>
     </div>
 
-    <p class="comp-conclusion fade-up">"Tu es en 1997. Et tu as encore le temps."</p>
+    <p class="comp-conclusion fade-up">Tu es en 1997. La fenêtre se referme dans 5 ans. <span>Tu fais quoi, maintenant ?</span></p>
   </div>
 </section>
 
