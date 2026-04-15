@@ -345,6 +345,22 @@
 
 <style>
 
+
+/* =============================================
+   SEO - Visually hidden (white hat)
+   ============================================= */
+.seo-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+  clip-path: inset(50%) !important;
+}
 /* =============================================
    RESET & ROOT
    ============================================= */
@@ -3785,17 +3801,30 @@ section { position: relative; z-index: 1; }
 <!-- ═══════════════════════════════════════════
      NAV
      ═══════════════════════════════════════════ -->
-<nav id="nav">
+<!-- Breadcrumb sémantique invisible (SEO Schema.org) -->
+<nav aria-label="Fil d'Ariane" class="seo-hidden" itemscope itemtype="https://schema.org/BreadcrumbList">
+  <ol>
+    <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+      <a itemprop="item" href="https://denemacademy.com/"><span itemprop="name">Accueil DENEM Academy</span></a>
+      <meta itemprop="position" content="1">
+    </li>
+    <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+      <a itemprop="item" href="https://denemacademy.com/"><span itemprop="name">Formation Expert IA Freelance</span></a>
+      <meta itemprop="position" content="2">
+    </li>
+  </ol>
+</nav>
+<nav id="nav" role="navigation" aria-label="Navigation principale DENEM Academy">
   <a href="#hero" class="nav-brand">
-    <img src="logo.png" alt="DENEM Academy" class="nav-logo-img">
+    <img src="logo.png" alt="DENEM Academy - Programme Expert IA Freelance" class="nav-logo-img" loading="eager">
   </a>
   <ul class="nav-links">
-    <li><a href="#methode-btd" class="nav-link">La méthode</a></li>
-    <li><a href="#preuves" class="nav-link">Use cases</a></li>
-    <li><a href="#transformation" class="nav-link">Le programme</a></li>
-    <li><a href="#groupe" class="nav-link">Vision</a></li>
+    <li><a href="#methode-btd" class="nav-link" aria-label="Découvrir la méthode B.T.D">La méthode</a></li>
+    <li><a href="#preuves" class="nav-link" aria-label="Témoignages d'Experts IA formés par DENEM">Use cases</a></li>
+    <li><a href="#transformation" class="nav-link" aria-label="Le programme DENEM Academy étape par étape">Le programme</a></li>
+    <li><a href="#ecosysteme-denem" class="nav-link" aria-label="Découvrir l'écosystème DENEM Group">Vision</a></li>
   </ul>
-  <a href="eligibilite.html" class="btn-nav">Faire le test d'éligibilité →</a>
+  <a href="eligibilite.html" class="btn-nav" aria-label="Faire le test d'éligibilité Expert IA Freelance gratuit">Faire le test d'éligibilité →</a>
 </nav>
 
 <!-- ═══════════════════════════════════════════
@@ -3843,6 +3872,8 @@ section { position: relative; z-index: 1; }
     <span class="h1-blink">En 90 jours.</span>
   </h1>
 
+  <p class="seo-hidden">Formation premium pour devenir Expert IA Freelance en France. Programme professionnalisant DENEM Academy en 90 jours sans coder. Méthode B.T.D : Business, Technique, Délivrer. Issu de 6 ans de R&D appliquée du Groupe DENEM pour des grands comptes du CAC 40 (Canal+, EDF, Crédit Agricole, Véolia, Cofidis). Accompagnement freelance pour déployer l'intelligence artificielle chez les TPE et PME françaises. Connecté à l'écosystème IA de Silicon Valley.</p>
+
   <p class="hero-h2 fade-up delay-2">
     Pas dans 2 ans. Pas après une école d'ingénieur.<br>À partir de zéro.
   </p>
@@ -3868,70 +3899,70 @@ section { position: relative; z-index: 1; }
     <div class="ticker-track">
       <!-- Set 1 -->
       <span class="ticker-text">Expert IA</span><span class="ticker-sep">·</span>
-      <span class="ticker-logo"><img src="logos/46.png" alt=""></span><span class="ticker-sep">·</span>
+      <span class="ticker-logo"><img src="logos/46.png" alt="" role="presentation" loading="lazy"></span><span class="ticker-sep">·</span>
       <span class="ticker-text">Formation</span><span class="ticker-sep">·</span>
-      <span class="ticker-logo"><img src="logos/47.png" alt=""></span><span class="ticker-sep">·</span>
+      <span class="ticker-logo"><img src="logos/47.png" alt="" role="presentation" loading="lazy"></span><span class="ticker-sep">·</span>
       <span class="ticker-text">Audit</span><span class="ticker-sep">·</span>
-      <span class="ticker-logo"><img src="logos/48.png" alt=""></span><span class="ticker-sep">·</span>
+      <span class="ticker-logo"><img src="logos/48.png" alt="" role="presentation" loading="lazy"></span><span class="ticker-sep">·</span>
       <span class="ticker-text">Infrastructure IA</span><span class="ticker-sep">·</span>
-      <span class="ticker-logo"><img src="logos/49.png" alt=""></span><span class="ticker-sep">·</span>
+      <span class="ticker-logo"><img src="logos/49.png" alt="" role="presentation" loading="lazy"></span><span class="ticker-sep">·</span>
       <span class="ticker-text">Processus IA</span><span class="ticker-sep">·</span>
-      <span class="ticker-logo"><img src="logos/50.png" alt=""></span><span class="ticker-sep">·</span>
+      <span class="ticker-logo"><img src="logos/50.png" alt="" role="presentation" loading="lazy"></span><span class="ticker-sep">·</span>
       <span class="ticker-text">Implémentation</span><span class="ticker-sep">·</span>
-      <span class="ticker-logo"><img src="logos/51.png" alt=""></span><span class="ticker-sep">·</span>
+      <span class="ticker-logo"><img src="logos/51.png" alt="" role="presentation" loading="lazy"></span><span class="ticker-sep">·</span>
       <span class="ticker-text">Coaching</span><span class="ticker-sep">·</span>
-      <span class="ticker-logo"><img src="logos/46.png" alt=""></span><span class="ticker-sep">·</span>
+      <span class="ticker-logo"><img src="logos/46.png" alt="" role="presentation" loading="lazy"></span><span class="ticker-sep">·</span>
       <span class="ticker-text">Maintenance</span><span class="ticker-sep">·</span>
-      <span class="ticker-logo"><img src="logos/47.png" alt=""></span><span class="ticker-sep">·</span>
+      <span class="ticker-logo"><img src="logos/47.png" alt="" role="presentation" loading="lazy"></span><span class="ticker-sep">·</span>
       <span class="ticker-text">Système IA</span><span class="ticker-sep">·</span>
-      <span class="ticker-logo"><img src="logos/48.png" alt=""></span><span class="ticker-sep">·</span>
+      <span class="ticker-logo"><img src="logos/48.png" alt="" role="presentation" loading="lazy"></span><span class="ticker-sep">·</span>
       <span class="ticker-text">Communication</span><span class="ticker-sep">·</span>
-      <span class="ticker-logo"><img src="logos/49.png" alt=""></span><span class="ticker-sep">·</span>
+      <span class="ticker-logo"><img src="logos/49.png" alt="" role="presentation" loading="lazy"></span><span class="ticker-sep">·</span>
       <span class="ticker-text">Marketing</span><span class="ticker-sep">·</span>
-      <span class="ticker-logo"><img src="logos/50.png" alt=""></span><span class="ticker-sep">·</span>
+      <span class="ticker-logo"><img src="logos/50.png" alt="" role="presentation" loading="lazy"></span><span class="ticker-sep">·</span>
       <span class="ticker-text">Vente</span><span class="ticker-sep">·</span>
-      <span class="ticker-logo"><img src="logos/51.png" alt=""></span><span class="ticker-sep">·</span>
+      <span class="ticker-logo"><img src="logos/51.png" alt="" role="presentation" loading="lazy"></span><span class="ticker-sep">·</span>
       <span class="ticker-text">Produit</span><span class="ticker-sep">·</span>
-      <span class="ticker-logo"><img src="logos/46.png" alt=""></span><span class="ticker-sep">·</span>
+      <span class="ticker-logo"><img src="logos/46.png" alt="" role="presentation" loading="lazy"></span><span class="ticker-sep">·</span>
       <span class="ticker-text">Recrutement</span><span class="ticker-sep">·</span>
-      <span class="ticker-logo"><img src="logos/47.png" alt=""></span><span class="ticker-sep">·</span>
+      <span class="ticker-logo"><img src="logos/47.png" alt="" role="presentation" loading="lazy"></span><span class="ticker-sep">·</span>
       <span class="ticker-text">Création de contenus</span><span class="ticker-sep">·</span>
-      <span class="ticker-logo"><img src="logos/48.png" alt=""></span><span class="ticker-sep">·</span>
+      <span class="ticker-logo"><img src="logos/48.png" alt="" role="presentation" loading="lazy"></span><span class="ticker-sep">·</span>
       <span class="ticker-text">Équipe</span><span class="ticker-sep">·</span>
-      <span class="ticker-logo"><img src="logos/49.png" alt=""></span><span class="ticker-sep">·</span>
+      <span class="ticker-logo"><img src="logos/49.png" alt="" role="presentation" loading="lazy"></span><span class="ticker-sep">·</span>
       <!-- Set 2 — copie pour boucle infinie -->
       <span class="ticker-text">Expert IA</span><span class="ticker-sep">·</span>
-      <span class="ticker-logo"><img src="logos/46.png" alt=""></span><span class="ticker-sep">·</span>
+      <span class="ticker-logo"><img src="logos/46.png" alt="" role="presentation" loading="lazy"></span><span class="ticker-sep">·</span>
       <span class="ticker-text">Formation</span><span class="ticker-sep">·</span>
-      <span class="ticker-logo"><img src="logos/47.png" alt=""></span><span class="ticker-sep">·</span>
+      <span class="ticker-logo"><img src="logos/47.png" alt="" role="presentation" loading="lazy"></span><span class="ticker-sep">·</span>
       <span class="ticker-text">Audit</span><span class="ticker-sep">·</span>
-      <span class="ticker-logo"><img src="logos/48.png" alt=""></span><span class="ticker-sep">·</span>
+      <span class="ticker-logo"><img src="logos/48.png" alt="" role="presentation" loading="lazy"></span><span class="ticker-sep">·</span>
       <span class="ticker-text">Infrastructure IA</span><span class="ticker-sep">·</span>
-      <span class="ticker-logo"><img src="logos/49.png" alt=""></span><span class="ticker-sep">·</span>
+      <span class="ticker-logo"><img src="logos/49.png" alt="" role="presentation" loading="lazy"></span><span class="ticker-sep">·</span>
       <span class="ticker-text">Processus IA</span><span class="ticker-sep">·</span>
-      <span class="ticker-logo"><img src="logos/50.png" alt=""></span><span class="ticker-sep">·</span>
+      <span class="ticker-logo"><img src="logos/50.png" alt="" role="presentation" loading="lazy"></span><span class="ticker-sep">·</span>
       <span class="ticker-text">Implémentation</span><span class="ticker-sep">·</span>
-      <span class="ticker-logo"><img src="logos/51.png" alt=""></span><span class="ticker-sep">·</span>
+      <span class="ticker-logo"><img src="logos/51.png" alt="" role="presentation" loading="lazy"></span><span class="ticker-sep">·</span>
       <span class="ticker-text">Coaching</span><span class="ticker-sep">·</span>
-      <span class="ticker-logo"><img src="logos/46.png" alt=""></span><span class="ticker-sep">·</span>
+      <span class="ticker-logo"><img src="logos/46.png" alt="" role="presentation" loading="lazy"></span><span class="ticker-sep">·</span>
       <span class="ticker-text">Maintenance</span><span class="ticker-sep">·</span>
-      <span class="ticker-logo"><img src="logos/47.png" alt=""></span><span class="ticker-sep">·</span>
+      <span class="ticker-logo"><img src="logos/47.png" alt="" role="presentation" loading="lazy"></span><span class="ticker-sep">·</span>
       <span class="ticker-text">Système IA</span><span class="ticker-sep">·</span>
-      <span class="ticker-logo"><img src="logos/48.png" alt=""></span><span class="ticker-sep">·</span>
+      <span class="ticker-logo"><img src="logos/48.png" alt="" role="presentation" loading="lazy"></span><span class="ticker-sep">·</span>
       <span class="ticker-text">Communication</span><span class="ticker-sep">·</span>
-      <span class="ticker-logo"><img src="logos/49.png" alt=""></span><span class="ticker-sep">·</span>
+      <span class="ticker-logo"><img src="logos/49.png" alt="" role="presentation" loading="lazy"></span><span class="ticker-sep">·</span>
       <span class="ticker-text">Marketing</span><span class="ticker-sep">·</span>
-      <span class="ticker-logo"><img src="logos/50.png" alt=""></span><span class="ticker-sep">·</span>
+      <span class="ticker-logo"><img src="logos/50.png" alt="" role="presentation" loading="lazy"></span><span class="ticker-sep">·</span>
       <span class="ticker-text">Vente</span><span class="ticker-sep">·</span>
-      <span class="ticker-logo"><img src="logos/51.png" alt=""></span><span class="ticker-sep">·</span>
+      <span class="ticker-logo"><img src="logos/51.png" alt="" role="presentation" loading="lazy"></span><span class="ticker-sep">·</span>
       <span class="ticker-text">Produit</span><span class="ticker-sep">·</span>
-      <span class="ticker-logo"><img src="logos/46.png" alt=""></span><span class="ticker-sep">·</span>
+      <span class="ticker-logo"><img src="logos/46.png" alt="" role="presentation" loading="lazy"></span><span class="ticker-sep">·</span>
       <span class="ticker-text">Recrutement</span><span class="ticker-sep">·</span>
-      <span class="ticker-logo"><img src="logos/47.png" alt=""></span><span class="ticker-sep">·</span>
+      <span class="ticker-logo"><img src="logos/47.png" alt="" role="presentation" loading="lazy"></span><span class="ticker-sep">·</span>
       <span class="ticker-text">Création de contenus</span><span class="ticker-sep">·</span>
-      <span class="ticker-logo"><img src="logos/48.png" alt=""></span><span class="ticker-sep">·</span>
+      <span class="ticker-logo"><img src="logos/48.png" alt="" role="presentation" loading="lazy"></span><span class="ticker-sep">·</span>
       <span class="ticker-text">Équipe</span><span class="ticker-sep">·</span>
-      <span class="ticker-logo"><img src="logos/49.png" alt=""></span><span class="ticker-sep">·</span>
+      <span class="ticker-logo"><img src="logos/49.png" alt="" role="presentation" loading="lazy"></span><span class="ticker-sep">·</span>
     </div>
   </div>
 </section>
@@ -3942,7 +3973,7 @@ section { position: relative; z-index: 1; }
 <!-- ═══════════════════════════════════════════
      STAT CARDS — Chiffres clés DENEM
      ═══════════════════════════════════════════ -->
-<section id="stat-cards">
+<section id="stats-experts-ia">
   <div class="container">
     <div class="stat-cards-grid">
 
@@ -3974,7 +4005,7 @@ section { position: relative; z-index: 1; }
 <!-- ═══════════════════════════════════════════
      STATS — COURBE EXPONENTIELLE
      ═══════════════════════════════════════════ -->
-<section id="stats">
+<section id="marche-ia-france">
   <div class="container">
     <div class="sec-ribbon sec-ribbon--teal fade-up" style="transform:rotate(-1deg)"><span class="sec-ribbon-text">Les chiffres qui ne mentent pas</span></div>
     <h2 class="section-title fade-up">Une croissance qui n'a pas de précédent.</h2>
@@ -4011,7 +4042,7 @@ section { position: relative; z-index: 1; }
 <!-- ═══════════════════════════════════════════
      MARCHÉ RÉEL
      ═══════════════════════════════════════════ -->
-<section id="marche">
+<section id="gap-experts-ia">
   <div class="container">
     <div class="sec-ribbon sec-ribbon--teal fade-up" style="transform:rotate(-1.5deg)"><span class="sec-ribbon-text">Le gap de marché</span></div>
     <h2 class="section-title fade-up">Des entreprises qui cherchent. Personne pour répondre.</h2>
@@ -4019,10 +4050,10 @@ section { position: relative; z-index: 1; }
 
     <!-- Cartes offres d'emploi empilées -->
     <div class="offres-stack fade-up delay-2">
-      <div class="offre-card offre-c1"><img src="ex1.png" alt="Expert IA H/F · 100-150K€/an"></div>
-      <div class="offre-card offre-c2"><img src="ex2.png" alt="Expert IA H/F · 12 000€/mois"></div>
-      <div class="offre-card offre-c3"><img src="ex3.png" alt="Expert IA H/F Freelance · 8-15K€/mois"></div>
-      <div class="offre-card offre-c4"><img src="ex4.png" alt="Expert IA H/F · 110-180K€/an"></div>
+      <div class="offre-card offre-c1"><img src="ex1.png" alt="Offre emploi Expert IA H/F France - salaire 100K à 150K euros par an" loading="lazy"></div>
+      <div class="offre-card offre-c2"><img src="ex2.png" alt="Offre emploi Expert IA freelance - rémunération 12 000 euros par mois" loading="lazy"></div>
+      <div class="offre-card offre-c3"><img src="ex3.png" alt="Offre emploi Expert IA Freelance - 8K à 15K euros mensuels" loading="lazy"></div>
+      <div class="offre-card offre-c4"><img src="ex4.png" alt="Offre emploi Expert IA H/F senior - 110K à 180K euros annuels" loading="lazy"></div>
     </div>
     <p class="offres-caption fade-up delay-3">↑ Quelques exemples réels parmi des centaines de nouvelles offres chaque semaine.</p>
 
@@ -4068,7 +4099,7 @@ section { position: relative; z-index: 1; }
 <!-- ═══════════════════════════════════════════
      COMPARAISON HISTORIQUE
      ═══════════════════════════════════════════ -->
-<section id="comparaison">
+<section id="opportunite-ia-2026">
   <div class="container">
     <div style="text-align:center"><div class="sec-ribbon sec-ribbon--violet fade-up" style="transform:rotate(-1.5deg)"><span class="sec-ribbon-text">La fenêtre d'opportunité</span></div></div>
     <h2 class="section-title fade-up" style="text-align:center;">1996 vs 2026. La même fenêtre. Deux époques.</h2>
@@ -4107,7 +4138,7 @@ section { position: relative; z-index: 1; }
 <!-- ═══════════════════════════════════════════
      POURQUOI PERSONNE N'Y ARRIVE — Polarisation
      ═══════════════════════════════════════════ -->
-<section id="pourquoi-echec">
+<section id="erreurs-experts-ia">
   <div class="container">
     <div class="sec-ribbon sec-ribbon--violet fade-up" style="transform:rotate(-1deg)"><span class="sec-ribbon-text">Les 2 erreurs fatales</span></div>
     <h2 class="section-title fade-up">Le marché est là. Alors pourquoi si peu y arrivent ?</h2>
@@ -4342,7 +4373,7 @@ section { position: relative; z-index: 1; }
 <!-- ═══════════════════════════════════════════
      POUR QUI / PAS POUR QUI
      ═══════════════════════════════════════════ -->
-<section id="pour-qui">
+<section id="formation-expert-ia-pour-qui">
   <div class="container">
     <div class="sec-ribbon sec-ribbon--violet fade-up" style="transform:rotate(-1.5deg)"><span class="sec-ribbon-text">C'est pour toi ?</span></div>
     <h2 class="section-title fade-up">Le programme DENEM Academy est fait pour toi si…</h2>
@@ -4390,7 +4421,7 @@ section { position: relative; z-index: 1; }
       <!-- Ugo — 15K€ -->
       <div class="testi-card-v2 fade-up">
         <div class="testi-card-v2-header">
-          <img src="ugo.jpeg" alt="Ugo Sartini" class="testi-card-v2-avatar">
+          <img src="ugo.jpeg" alt="Ugo Sartini - Expert IA Freelance fondateur NOESIS.AI - 15 000 à 20 000 euros par mois" class="testi-card-v2-avatar" loading="lazy">
           <div class="testi-card-v2-identity">
             <div class="testi-card-v2-name">Ugo Sartini</div>
             <div class="testi-card-v2-company">NOESIS.AI</div>
@@ -4407,7 +4438,7 @@ section { position: relative; z-index: 1; }
       <!-- Joseph — 25K€ -->
       <div class="testi-card-v2 fade-up delay-1">
         <div class="testi-card-v2-header">
-          <img src="joseph.jpeg" alt="Joseph Mont" class="testi-card-v2-avatar">
+          <img src="joseph.jpeg" alt="Joseph Mont - Expert IA Freelance fondateur PIVOIA - 25 000 euros par mois" class="testi-card-v2-avatar" loading="lazy">
           <div class="testi-card-v2-identity">
             <div class="testi-card-v2-name">Joseph Mont</div>
             <div class="testi-card-v2-company">PIVOIA</div>
@@ -4424,7 +4455,7 @@ section { position: relative; z-index: 1; }
       <!-- Baptiste — 50K€ -->
       <div class="testi-card-v2 fade-up delay-2">
         <div class="testi-card-v2-header">
-          <img src="baptiste.jpeg" alt="Baptiste Fort" class="testi-card-v2-avatar">
+          <img src="baptiste.jpeg" alt="Baptiste Fort - Expert IA Freelance fondateur Vision IA - 35 000 euros par mois" class="testi-card-v2-avatar" loading="lazy">
           <div class="testi-card-v2-identity">
             <div class="testi-card-v2-name">Baptiste Fort</div>
             <div class="testi-card-v2-company">Vision IA</div>
@@ -4441,7 +4472,7 @@ section { position: relative; z-index: 1; }
       <!-- Othmane — 50K€ -->
       <div class="testi-card-v2 testi-card-v2-featured fade-up delay-3">
         <div class="testi-card-v2-header">
-          <img src="othmane.jpeg" alt="Othmane Halim" class="testi-card-v2-avatar">
+          <img src="othmane.jpeg" alt="Othmane Halim - Expert IA Conseil et Déploiement - plus de 50 000 euros par mois" class="testi-card-v2-avatar" loading="lazy">
           <div class="testi-card-v2-identity">
             <div class="testi-card-v2-name">Othmane Halim</div>
             <div class="testi-card-v2-company">Expert IA · Conseil &amp; Déploiement</div>
@@ -4538,7 +4569,7 @@ section { position: relative; z-index: 1; }
 <!-- ═══════════════════════════════════════════
      GALERIE PREUVES — Factures & Screenshots
      ═══════════════════════════════════════════ -->
-<section id="galerie">
+<section id="preuves-revenus-experts-ia">
   <div class="container">
     <div class="sec-ribbon sec-ribbon--teal fade-up" style="transform:rotate(-1deg)"><span class="sec-ribbon-text">Preuves concrètes</span></div>
     <h2 class="section-title fade-up">Les résultats, pas les promesses.</h2>
@@ -4551,12 +4582,12 @@ section { position: relative; z-index: 1; }
         <span class="proof-row-title">Factures clients</span>
       </div>
       <div class="proof-row-grid">
-        <div class="proof-card" onclick="openLightbox(this)"><img src="factu-denem/1.png" alt="Facture 1"><div class="proof-card-overlay">🔍</div></div>
-        <div class="proof-card" onclick="openLightbox(this)"><img src="factu-denem/2.png" alt="Facture 2"><div class="proof-card-overlay">🔍</div></div>
-        <div class="proof-card" onclick="openLightbox(this)"><img src="factu-denem/3.png" alt="Facture 3"><div class="proof-card-overlay">🔍</div></div>
-        <div class="proof-card" onclick="openLightbox(this)"><img src="factu-denem/4.png" alt="Facture 4"><div class="proof-card-overlay">🔍</div></div>
-        <div class="proof-card" onclick="openLightbox(this)"><img src="factu-denem/5.png" alt="Facture 5"><div class="proof-card-overlay">🔍</div></div>
-        <div class="proof-card" onclick="openLightbox(this)"><img src="factu-denem/6.png" alt="Facture 6"><div class="proof-card-overlay">🔍</div></div>
+        <div class="proof-card" onclick="openLightbox(this)"><img src="factu-denem/1.png" alt="Facture client Expert IA - Membre écosystème DENEM 2026 - Preuve de revenus réels 1" loading="lazy"><div class="proof-card-overlay">🔍</div></div>
+        <div class="proof-card" onclick="openLightbox(this)"><img src="factu-denem/2.png" alt="Facture client Expert IA - Membre écosystème DENEM 2026 - Preuve de revenus réels 2" loading="lazy"><div class="proof-card-overlay">🔍</div></div>
+        <div class="proof-card" onclick="openLightbox(this)"><img src="factu-denem/3.png" alt="Facture client Expert IA - Membre écosystème DENEM 2026 - Preuve de revenus réels 3" loading="lazy"><div class="proof-card-overlay">🔍</div></div>
+        <div class="proof-card" onclick="openLightbox(this)"><img src="factu-denem/4.png" alt="Facture client Expert IA - Membre écosystème DENEM 2026 - Preuve de revenus réels 4" loading="lazy"><div class="proof-card-overlay">🔍</div></div>
+        <div class="proof-card" onclick="openLightbox(this)"><img src="factu-denem/5.png" alt="Facture client Expert IA - Membre écosystème DENEM 2026 - Preuve de revenus réels 5" loading="lazy"><div class="proof-card-overlay">🔍</div></div>
+        <div class="proof-card" onclick="openLightbox(this)"><img src="factu-denem/6.png" alt="Facture client Expert IA - Membre écosystème DENEM 2026 - Preuve de revenus réels 6" loading="lazy"><div class="proof-card-overlay">🔍</div></div>
       </div>
     </div>
 
@@ -4567,12 +4598,12 @@ section { position: relative; z-index: 1; }
         <span class="proof-row-title">Virements reçus</span>
       </div>
       <div class="proof-row-grid">
-        <div class="proof-card" onclick="openLightbox(this)"><img src="cash-denem/1.png" alt="Virement 1"><div class="proof-card-overlay">🔍</div></div>
-        <div class="proof-card" onclick="openLightbox(this)"><img src="cash-denem/2.png" alt="Virement 2"><div class="proof-card-overlay">🔍</div></div>
-        <div class="proof-card" onclick="openLightbox(this)"><img src="cash-denem/3.png" alt="Virement 3"><div class="proof-card-overlay">🔍</div></div>
-        <div class="proof-card" onclick="openLightbox(this)"><img src="cash-denem/4.png" alt="Virement 4"><div class="proof-card-overlay">🔍</div></div>
-        <div class="proof-card" onclick="openLightbox(this)"><img src="cash-denem/5.png" alt="Virement 5"><div class="proof-card-overlay">🔍</div></div>
-        <div class="proof-card" onclick="openLightbox(this)"><img src="cash-denem/6.png" alt="Virement 6"><div class="proof-card-overlay">🔍</div></div>
+        <div class="proof-card" onclick="openLightbox(this)"><img src="cash-denem/1.png" alt="Virement bancaire reçu par un Expert IA freelance du réseau DENEM 1" loading="lazy"><div class="proof-card-overlay">🔍</div></div>
+        <div class="proof-card" onclick="openLightbox(this)"><img src="cash-denem/2.png" alt="Virement bancaire reçu par un Expert IA freelance du réseau DENEM 2" loading="lazy"><div class="proof-card-overlay">🔍</div></div>
+        <div class="proof-card" onclick="openLightbox(this)"><img src="cash-denem/3.png" alt="Virement bancaire reçu par un Expert IA freelance du réseau DENEM 3" loading="lazy"><div class="proof-card-overlay">🔍</div></div>
+        <div class="proof-card" onclick="openLightbox(this)"><img src="cash-denem/4.png" alt="Virement bancaire reçu par un Expert IA freelance du réseau DENEM 4" loading="lazy"><div class="proof-card-overlay">🔍</div></div>
+        <div class="proof-card" onclick="openLightbox(this)"><img src="cash-denem/5.png" alt="Virement bancaire reçu par un Expert IA freelance du réseau DENEM 5" loading="lazy"><div class="proof-card-overlay">🔍</div></div>
+        <div class="proof-card" onclick="openLightbox(this)"><img src="cash-denem/6.png" alt="Virement bancaire reçu par un Expert IA freelance du réseau DENEM 6" loading="lazy"><div class="proof-card-overlay">🔍</div></div>
       </div>
     </div>
 
@@ -4583,11 +4614,11 @@ section { position: relative; z-index: 1; }
         <span class="proof-row-title">Retours clients</span>
       </div>
       <div class="proof-row-grid">
-        <div class="proof-card" onclick="openLightbox(this)"><img src="retours-eleves/retour-1.png" alt="Retour 1"><div class="proof-card-overlay">🔍</div></div>
-        <div class="proof-card" onclick="openLightbox(this)"><img src="retours-eleves/retour-2.png" alt="Retour 2"><div class="proof-card-overlay">🔍</div></div>
-        <div class="proof-card" onclick="openLightbox(this)"><img src="retours-eleves/retour-3.png" alt="Retour 3"><div class="proof-card-overlay">🔍</div></div>
-        <div class="proof-card" onclick="openLightbox(this)"><img src="retours-eleves/retour-4.png" alt="Retour 4"><div class="proof-card-overlay">🔍</div></div>
-        <div class="proof-card" onclick="openLightbox(this)"><img src="retours-eleves/retour-5.png" alt="Retour 5"><div class="proof-card-overlay">🔍</div></div>
+        <div class="proof-card" onclick="openLightbox(this)"><img src="retours-eleves/retour-1.png" alt="Témoignage écrit d'un membre DENEM Academy - Retour authentique sur le programme Expert IA 1" loading="lazy"><div class="proof-card-overlay">🔍</div></div>
+        <div class="proof-card" onclick="openLightbox(this)"><img src="retours-eleves/retour-2.png" alt="Témoignage écrit d'un membre DENEM Academy - Retour authentique sur le programme Expert IA 2" loading="lazy"><div class="proof-card-overlay">🔍</div></div>
+        <div class="proof-card" onclick="openLightbox(this)"><img src="retours-eleves/retour-3.png" alt="Témoignage écrit d'un membre DENEM Academy - Retour authentique sur le programme Expert IA 3" loading="lazy"><div class="proof-card-overlay">🔍</div></div>
+        <div class="proof-card" onclick="openLightbox(this)"><img src="retours-eleves/retour-4.png" alt="Témoignage écrit d'un membre DENEM Academy - Retour authentique sur le programme Expert IA 4" loading="lazy"><div class="proof-card-overlay">🔍</div></div>
+        <div class="proof-card" onclick="openLightbox(this)"><img src="retours-eleves/retour-5.png" alt="Témoignage écrit d'un membre DENEM Academy - Retour authentique sur le programme Expert IA 5" loading="lazy"><div class="proof-card-overlay">🔍</div></div>
         <div class="proof-card proof-card-locked"><div class="proof-locked-inner"><span>🔒</span><p>Visible aux membres</p></div></div>
       </div>
     </div>
@@ -4609,13 +4640,13 @@ section { position: relative; z-index: 1; }
 <!-- Lightbox -->
 <div class="lightbox" id="lightbox" onclick="closeLightbox()">
   <button class="lightbox-close" onclick="closeLightbox()" aria-label="Fermer">&times;</button>
-  <img class="lightbox-img" id="lightboxImg" src="" alt="">
+  <img class="lightbox-img" id="lightboxImg" src="" alt="Preuve de revenus Expert IA DENEM Academy">
 </div>
 
 <!-- ═══════════════════════════════════════════
      ÉCOSYSTÈME DENEM — Fusion groupe + écosystème
      ═══════════════════════════════════════════ -->
-<section id="ecosysteme">
+<section id="ecosysteme-denem">
   <div class="container">
 
     <div class="eco-header">
@@ -4695,10 +4726,10 @@ section { position: relative; z-index: 1; }
 
     <div class="eco-photo-row">
       <div class="lp-photo-frame fade-up delay-3">
-        <img src="11.png" alt="Axel Riandiere — Conférence DENEM">
+        <img src="11.png" alt="Axel Riandiere lors d'une conférence DENEM sur l'intelligence artificielle" loading="lazy">
       </div>
       <div class="lp-photo-frame fade-up delay-4">
-        <img src="10.png" alt="Workshop DENEM Labs — Van Cleef & Arpels">
+        <img src="10.png" alt="Workshop DENEM Labs chez Van Cleef et Arpels - déploiement IA grand compte" loading="lazy">
       </div>
     </div>
 
@@ -4708,7 +4739,7 @@ section { position: relative; z-index: 1; }
 <!-- ═══════════════════════════════════════════
      PHILOSOPHIE
      ═══════════════════════════════════════════ -->
-<section id="philosophie">
+<section id="vision-denem-academy">
   <div class="container">
     <div class="sec-ribbon sec-ribbon--teal fade-up" style="transform:rotate(-1deg)"><span class="sec-ribbon-text">Notre vision</span></div>
     <h2 class="section-title fade-up">Pourquoi DENEM Academy existe.</h2>
@@ -4729,7 +4760,7 @@ section { position: relative; z-index: 1; }
       </div>
 
       <div class="philo-photo-wrapper fade-up delay-2">
-        <img src="axel.png" alt="Axel Riandiere — Fondateur DENEM Academy" class="philo-photo">
+        <img src="axel.png" alt="Axel Riandiere - Fondateur DENEM Academy et Groupe DENEM, expert déploiement IA" class="philo-photo" loading="lazy">
       </div>
 
     </div>
@@ -4739,7 +4770,7 @@ section { position: relative; z-index: 1; }
 <!-- ═══════════════════════════════════════════
      FAQ
      ═══════════════════════════════════════════ -->
-<section id="faq">
+<section id="faq-formation-expert-ia">
   <div class="container">
     <div class="sec-ribbon sec-ribbon--violet fade-up" style="transform:rotate(-1.5deg)"><span class="sec-ribbon-text">On répond à tout</span></div>
     <h2 class="section-title fade-up">Les vraies questions qu'on se pose.</h2>
@@ -4826,7 +4857,7 @@ section { position: relative; z-index: 1; }
 <!-- ═══════════════════════════════════════════
      GARANTIE — Risk reversal
      ═══════════════════════════════════════════ -->
-<section id="garantie">
+<section id="garanties-formation">
   <div class="container">
     <div class="garantie-header">
       <span class="garantie-eyebrow fade-up">Nos engagements</span>
@@ -4867,7 +4898,7 @@ section { position: relative; z-index: 1; }
 <!-- ═══════════════════════════════════════════
      CTA FINAL — Test d'éligibilité
      ═══════════════════════════════════════════ -->
-<section id="cta-final" style="padding: 80px 24px; text-align: center; background: linear-gradient(160deg, var(--bg) 0%, #110d2e 60%, #0e0822 100%); position: relative; overflow: hidden;">
+<section id="test-eligibilite" style="padding: 80px 24px; text-align: center; background: linear-gradient(160deg, var(--bg) 0%, #110d2e 60%, #0e0822 100%); position: relative; overflow: hidden;">
   <div class="cta-glow"></div>
   <h2 class="cta-title fade-up" style="margin-bottom: 48px;">
     Prêt à devenir<br><span>Expert IA Freelance ?</span>
@@ -4890,20 +4921,23 @@ section { position: relative; z-index: 1; }
 <!-- ═══════════════════════════════════════════
      FOOTER
      ═══════════════════════════════════════════ -->
-<footer>
+<footer itemscope itemtype="https://schema.org/Organization">
+  <meta itemprop="name" content="DENEM Academy">
+  <meta itemprop="alternateName" content="DENEM Group">
+  <meta itemprop="foundingDate" content="2020">
   <div>
-    <a href="#" class="footer-brand">
-      <img src="logo.png" alt="DENEM Academy" style="height:36px;width:auto;opacity:0.75;">
+    <a href="#hero" class="footer-brand" aria-label="Retour en haut de page">
+      <img src="logo.png" alt="DENEM Academy" itemprop="logo" style="height:36px;width:auto;opacity:0.75;" loading="lazy">
     </a>
-    <p class="footer-tagline">Former la prochaine génération d'Experts IA</p>
+    <p class="footer-tagline" itemprop="slogan">Former la prochaine génération d'Experts IA</p>
   </div>
-  <div class="footer-links">
-    <a href="/mentions-legales">Mentions légales</a>
-    <a href="/cgv">CGV</a>
-    <a href="/politique-confidentialite">Confidentialité</a>
-    <a href="mailto:contact@denem-academy.com">Contact</a>
-  </div>
-  <span class="footer-copy">© 2026 DENEM Group. Tous droits réservés. DENEM Academy est une marque du Groupe DENEM.</span>
+  <nav aria-label="Liens légaux"><div class="footer-links">
+    <a href="/mentions-legales" rel="nofollow">Mentions légales</a>
+    <a href="/cgv" rel="nofollow">CGV</a>
+    <a href="/politique-confidentialite" rel="nofollow">Confidentialité</a>
+    <a href="mailto:contact@denem-academy.com" itemprop="email">Contact</a>
+  </div></nav>
+  <span class="footer-copy" itemprop="legalName">© 2026 DENEM Group. Tous droits réservés. DENEM Academy est une marque du Groupe DENEM.</span>
 </footer>
 
 <!-- ═══════════════════════════════════════════
