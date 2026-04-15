@@ -5298,43 +5298,72 @@ document.querySelectorAll('.stat-num[data-count]').forEach(el => counterObs.obse
   });
 })();
 
-// ── CAROUSEL VIDÉOS 9:16 ────────────────────
+// ── CAROUSEL VIDÉOS 9:16 — infinite scroll ──
 (function() {
   const track   = document.getElementById('vidTrack');
   if (!track) return;
 
-  const cards   = track.querySelectorAll('.vid-card');
-  const btnPrev = document.getElementById('vidPrev');
-  const btnNext = document.getElementById('vidNext');
-  const dotsWrap= document.getElementById('vidDots');
-  const TOTAL   = cards.length;
+  const btnPrev  = document.getElementById('vidPrev');
+  const btnNext  = document.getElementById('vidNext');
+  const dotsWrap = document.getElementById('vidDots');
+
+  const origCards = Array.from(track.querySelectorAll('.vid-card'));
+  const TOTAL   = origCards.length;
   const VISIBLE = 3;
-  const STEPS   = Math.max(1, TOTAL - VISIBLE + 1); // nombre de positions possibles
-  let cur = 0;
+
+  // Clone sans iframe actif (performances)
+  function cloneCard(card) {
+    const c = card.cloneNode(true);
+    c.querySelectorAll('iframe').forEach(f => f.removeAttribute('src'));
+    return c;
+  }
+
+  // Insérer VISIBLE clones de la fin au début, VISIBLE clones du début à la fin
+  origCards.slice(-VISIBLE).forEach(c => track.insertBefore(cloneCard(c), track.firstChild));
+  origCards.slice(0, VISIBLE).forEach(c => track.appendChild(cloneCard(c)));
+
+  // Position initiale = VISIBLE (on passe les clones de tête)
+  let cur    = VISIBLE;
+  let locked = false;
 
   function stepPx() {
-    if (!cards[0]) return 0;
-    return cards[0].offsetWidth + 14;
+    const first = track.querySelector('.vid-card');
+    return first ? first.offsetWidth + 14 : 0;
+  }
+
+  function setPos(n, animate) {
+    track.style.transition = animate ? 'transform 0.5s cubic-bezier(0.4,0,0.2,1)' : 'none';
+    if (!animate) void track.offsetWidth; // force reflow silencieux
+    track.style.transform = `translateX(-${n * stepPx()}px)`;
   }
 
   function updateDots() {
-    const dots = dotsWrap?.querySelectorAll('.vid-dot') || [];
-    dots.forEach((d, i) => d.classList.toggle('active', i === cur));
+    const STEPS  = TOTAL - VISIBLE + 1;
+    const dots   = dotsWrap?.querySelectorAll('.vid-dot') || [];
+    const dotIdx = ((( cur - VISIBLE) % STEPS) + STEPS) % STEPS;
+    dots.forEach((d, i) => d.classList.toggle('active', i === dotIdx));
   }
 
   function goTo(n) {
-    // boucle infinie
-    cur = ((n % STEPS) + STEPS) % STEPS;
-    track.style.transform = `translateX(-${cur * stepPx()}px)`;
+    if (locked) return;
+    locked = true;
+    cur = n;
+    setPos(cur, true);
     updateDots();
   }
+
+  // Après chaque transition : saut silencieux si on est dans les clones
+  track.addEventListener('transitionend', () => {
+    if (cur >= VISIBLE + TOTAL) { cur -= TOTAL; setPos(cur, false); }
+    else if (cur < VISIBLE)     { cur += TOTAL; setPos(cur, false); }
+    locked = false;
+  });
 
   btnPrev?.addEventListener('click', () => goTo(cur - 1));
   btnNext?.addEventListener('click', () => goTo(cur + 1));
 
-  // Dots cliquables
   dotsWrap?.querySelectorAll('.vid-dot').forEach((d, i) =>
-    d.addEventListener('click', () => goTo(i))
+    d.addEventListener('click', () => goTo(VISIBLE + i))
   );
 
   // Swipe tactile
@@ -5345,9 +5374,9 @@ document.querySelectorAll('.stat-num[data-count]').forEach(el => counterObs.obse
     if (Math.abs(dx) > 50) goTo(dx < 0 ? cur + 1 : cur - 1);
   });
 
-  // Recalculer à la resize
-  window.addEventListener('resize', () => goTo(cur));
-  goTo(0);
+  window.addEventListener('resize', () => setPos(cur, false));
+  setPos(cur, false);
+  updateDots();
 })();
 
 // ── TABS GALERIE ─────────────────────────────
