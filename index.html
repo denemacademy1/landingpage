@@ -437,7 +437,7 @@ body {
 /* =============================================
    NAV
    ============================================= */
-nav {
+nav#nav {
   position: fixed;
   top: 0; left: 0; right: 0;
   height: var(--nav-h);
@@ -449,7 +449,7 @@ nav {
   transition: background .3s, border-color .3s, backdrop-filter .3s;
   border-bottom: 1px solid transparent;
 }
-nav.scrolled {
+nav#nav.scrolled {
   background: rgba(13,12,20,0.95);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
@@ -3801,7 +3801,7 @@ section { position: relative; z-index: 1; }
      NAV
      ═══════════════════════════════════════════ -->
 <!-- Breadcrumb sémantique invisible (SEO Schema.org) -->
-<nav aria-label="Fil d'Ariane" class="seo-hidden" itemscope itemtype="https://schema.org/BreadcrumbList">
+<div aria-label="Fil d'Ariane" class="seo-hidden" itemscope itemtype="https://schema.org/BreadcrumbList">
   <ol>
     <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
       <a itemprop="item" href="https://denemacademy.com/"><span itemprop="name">Accueil DENEM Academy</span></a>
@@ -4930,12 +4930,12 @@ section { position: relative; z-index: 1; }
     </a>
     <p class="footer-tagline" itemprop="slogan">Former la prochaine génération d'Experts IA</p>
   </div>
-  <nav aria-label="Liens légaux"><div class="footer-links">
+  <div aria-label="Liens légaux"><div class="footer-links">
     <a href="/mentions-legales" rel="nofollow">Mentions légales</a>
     <a href="/cgv" rel="nofollow">CGV</a>
     <a href="/politique-confidentialite" rel="nofollow">Confidentialité</a>
     <a href="mailto:contact@denem-academy.com" itemprop="email">Contact</a>
-  </div></nav>
+  </div></div>
   <span class="footer-copy" itemprop="legalName">© 2026 DENEM Group. Tous droits réservés. DENEM Academy est une marque du Groupe DENEM.</span>
 </footer>
 
