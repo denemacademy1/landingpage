@@ -799,19 +799,28 @@ section { padding: 96px 24px; }
 }
 .marche-col-featured .marche-col-title { color: rgba(255,255,255,0.45); }
 .marche-col-right .marche-col-title    { color: var(--teal); }
-.marche-list { list-style: none; padding: 12px 26px 28px; margin: 0; display: flex; flex-direction: column; flex-grow: 1; }
+.marche-list { list-style: none; padding: 10px 22px 24px; margin: 0; display: flex; flex-direction: column; flex-grow: 1; }
 .marche-list li {
   display: flex;
   align-items: flex-start;
-  gap: 12px;
-  font-size: 14.5px;
-  color: rgba(255,255,255,0.73);
-  line-height: 1.6;
+  gap: 11px;
   padding: 11px 0;
   border-bottom: 1px solid rgba(255,255,255,0.05);
 }
 .marche-list li:last-child { border-bottom: none; }
-.ico { font-size: 13px; flex-shrink: 0; margin-top: 3px; font-weight: 700; }
+.marche-li-body { display: flex; flex-direction: column; gap: 3px; }
+.marche-highlight {
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.3;
+}
+.marche-desc {
+  font-size: 12px;
+  color: rgba(255,255,255,0.48);
+  line-height: 1.45;
+}
+.ico { font-size: 12px; flex-shrink: 0; margin-top: 3px; font-weight: 700; }
 .ico-g { color: #22c55e; }
 .ico-r { color: rgba(239,68,68,0.85); }
 .ico-s { color: var(--teal); }
@@ -3647,33 +3656,33 @@ section { position: relative; z-index: 1; }
       <div class="marche-col fade-up">
         <h3 class="marche-col-title">Ce que veulent vraiment les entreprises</h3>
         <ul class="marche-list">
-          <li><span class="ico ico-g">★</span>Arrêter de perdre <strong>15 heures par semaine</strong> sur des tâches répétitives</li>
-          <li><span class="ico ico-g">★</span>Capter chaque appel manqué <strong>sans embaucher un standardiste</strong></li>
-          <li><span class="ico ico-g">★</span>Suivre leurs prospects automatiquement <strong>sans relancer à la main</strong></li>
-          <li><span class="ico ico-g">★</span>Publier du contenu <strong>sans y passer leurs week-ends</strong></li>
-          <li><span class="ico ico-g">★</span>Avoir un assistant <strong>qui ne dort jamais</strong> pour répondre aux clients</li>
+          <li><span class="ico ico-g">★</span><div class="marche-li-body"><strong class="marche-highlight">15 heures/semaine économisées</strong><span class="marche-desc">arrêter de perdre du temps sur des tâches répétitives</span></div></li>
+          <li><span class="ico ico-g">★</span><div class="marche-li-body"><strong class="marche-highlight">Zéro standardiste</strong><span class="marche-desc">capter chaque appel manqué automatiquement</span></div></li>
+          <li><span class="ico ico-g">★</span><div class="marche-li-body"><strong class="marche-highlight">Relances 100% automatiques</strong><span class="marche-desc">suivre les prospects sans jamais relancer à la main</span></div></li>
+          <li><span class="ico ico-g">★</span><div class="marche-li-body"><strong class="marche-highlight">Week-ends libérés</strong><span class="marche-desc">publier du contenu sans y passer ses soirées</span></div></li>
+          <li><span class="ico ico-g">★</span><div class="marche-li-body"><strong class="marche-highlight">Un assistant disponible 24/7</strong><span class="marche-desc">qui répond aux clients à leur place</span></div></li>
         </ul>
       </div>
 
       <div class="marche-col marche-col-featured fade-up delay-1">
         <h3 class="marche-col-title" style="color:rgba(255,255,255,0.5);">Ce qu'elles trouvent aujourd'hui</h3>
         <ul class="marche-list">
-          <li><span class="ico ico-r">✗</span>Des agences qui demandent <strong>50K€ pour ce qui mérite 5K€</strong></li>
-          <li><span class="ico ico-r">✗</span>Des freelances qui <strong>parlent code</strong> quand le dirigeant veut <strong>parler ROI</strong></li>
-          <li><span class="ico ico-r">✗</span>Des formations internes qui produisent <strong>des slides, jamais des résultats</strong></li>
-          <li><span class="ico ico-r">✗</span>Des cabinets qui facturent <strong>1 500€/jour</strong> sans rien déployer</li>
-          <li><span class="ico ico-r">✗</span>Des outils SaaS qu'ils achètent <strong>et n'utilisent jamais</strong></li>
+          <li><span class="ico ico-r">✗</span><div class="marche-li-body"><strong class="marche-highlight">50K€ pour ce qui mérite 5K€</strong><span class="marche-desc">des agences qui surfacturent sans résultats concrets</span></div></li>
+          <li><span class="ico ico-r">✗</span><div class="marche-li-body"><strong class="marche-highlight">Du code, pas du ROI</strong><span class="marche-desc">les freelances ne parlent pas la langue du dirigeant</span></div></li>
+          <li><span class="ico ico-r">✗</span><div class="marche-li-body"><strong class="marche-highlight">Des slides, jamais des résultats</strong><span class="marche-desc">les formations internes ne produisent rien d'actionnable</span></div></li>
+          <li><span class="ico ico-r">✗</span><div class="marche-li-body"><strong class="marche-highlight">1 500€/jour</strong><span class="marche-desc">des cabinets qui facturent sans rien déployer</span></div></li>
+          <li><span class="ico ico-r">✗</span><div class="marche-li-body"><strong class="marche-highlight">Achetés, jamais utilisés</strong><span class="marche-desc">des outils SaaS qui coûtent cher et ne changent rien</span></div></li>
         </ul>
       </div>
 
       <div class="marche-col marche-col-right fade-up delay-2">
         <h3 class="marche-col-title" style="color:var(--teal);">Ce que tu deviens en tant qu'Expert IA DENEM</h3>
         <ul class="marche-list">
-          <li><span class="ico ico-s">★</span>Tu parles <strong>le langage du dirigeant</strong>, pas celui de l'ingénieur</li>
-          <li><span class="ico ico-s">★</span>Tu déploies en <strong>2 semaines</strong> ce qu'une agence livre en 6 mois</li>
-          <li><span class="ico ico-s">★</span>Tu factures entre <strong>1 500€ et 8 000€ par mission</strong>, sans baratin</li>
-          <li><span class="ico ico-s">★</span>Tu deviens <strong>le réflexe</strong> quand une PME pense à l'IA dans ta région</li>
-          <li><span class="ico ico-s">★</span>Tu construis un <strong>revenu récurrent</strong> avec des retainers mensuels</li>
+          <li><span class="ico ico-s">★</span><div class="marche-li-body"><strong class="marche-highlight">Le langage du dirigeant</strong><span class="marche-desc">pas celui de l'ingénieur — tu parles ROI, impact, résultats</span></div></li>
+          <li><span class="ico ico-s">★</span><div class="marche-li-body"><strong class="marche-highlight">2 semaines pour livrer</strong><span class="marche-desc">ce qu'une agence met 6 mois à produire</span></div></li>
+          <li><span class="ico ico-s">★</span><div class="marche-li-body"><strong class="marche-highlight">1 500€ à 8 000€ par mission</strong><span class="marche-desc">facturés sans baratin ni justification technique</span></div></li>
+          <li><span class="ico ico-s">★</span><div class="marche-li-body"><strong class="marche-highlight">Le réflexe IA de ta région</strong><span class="marche-desc">la PME pense à toi dès qu'elle entend "IA"</span></div></li>
+          <li><span class="ico ico-s">★</span><div class="marche-li-body"><strong class="marche-highlight">Revenu récurrent</strong><span class="marche-desc">construit avec des retainers mensuels stables</span></div></li>
         </ul>
       </div>
     </div>
