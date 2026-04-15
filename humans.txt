@@ -1,0 +1,13 @@
+/* TEAM */
+Founder: Axel Riandiere
+Site: https://denemacademy.com
+Location: France
+
+/* THANKS */
+Built by: DENEM Group
+Tools: Claude, Claude Code, HTML, CSS, JavaScript
+
+/* SITE */
+Last update: 2026/04
+Standards: HTML5, CSS3, ES6
+Components: Vanilla JS
