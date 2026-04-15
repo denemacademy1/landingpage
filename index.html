@@ -2084,6 +2084,89 @@ section { position: relative; z-index: 1; }
   color: #fff;
   border-color: var(--violet);
 }
+/* ── Galerie restructurée 3 lignes × 6 ── */
+.proof-row {
+  margin-bottom: 40px;
+}
+.proof-row-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+.proof-row-icon { font-size: 1.1rem; }
+.proof-row-title {
+  font-family: 'Syne', sans-serif;
+  font-size: .8rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.5);
+}
+.proof-row-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 12px;
+}
+@media (max-width: 900px) { .proof-row-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 520px) { .proof-row-grid { grid-template-columns: repeat(2, 1fr); } }
+
+.proof-card-locked {
+  background: rgba(255,255,255,0.03);
+  border: 1px dashed rgba(255,255,255,0.15);
+  border-radius: 14px;
+  aspect-ratio: 4/3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.proof-locked-inner {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+.proof-locked-inner span { font-size: 1.4rem; opacity: .5; }
+.proof-locked-inner p { font-size: .65rem; color: rgba(255,255,255,.3); margin: 0; }
+
+.proof-more {
+  margin-top: 16px;
+  padding: 24px 32px;
+  border-radius: 16px;
+  border: 1px solid rgba(45,212,191,0.2);
+  background: rgba(45,212,191,0.04);
+}
+.proof-more-inner {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+.proof-more-count {
+  font-family: 'Syne', sans-serif;
+  font-size: 3rem;
+  font-weight: 900;
+  color: var(--teal);
+  line-height: 1;
+  flex-shrink: 0;
+}
+.proof-more-title {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  color: #fff;
+  margin: 0 0 4px;
+}
+.proof-more-sub {
+  font-size: .8rem;
+  color: rgba(255,255,255,.45);
+  margin: 0;
+  font-style: italic;
+}
+@media (max-width: 520px) {
+  .proof-more-inner { flex-direction: column; gap: 12px; text-align: center; }
+}
+
 .galerie-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -4075,86 +4158,67 @@ section { position: relative; z-index: 1; }
   <div class="container">
     <div class="sec-ribbon sec-ribbon--teal fade-up" style="transform:rotate(-1deg)"><span class="sec-ribbon-text">Preuves concrètes</span></div>
     <h2 class="section-title fade-up">Les résultats, pas les promesses.</h2>
-    <p class="section-sub fade-up delay-1">Factures anonymisées, screenshots de virements, retours clients. La preuve que ça marche pour de vraies personnes.</p>
+    <p class="section-sub fade-up delay-1">Factures anonymisées, virements reçus, retours clients. Trois types de preuves. Une seule conclusion.</p>
 
-    <div class="galerie-tabs fade-up delay-1">
-      <button class="galerie-tab active" onclick="switchTab(this,'factures')">Factures &amp; revenus</button>
-      <button class="galerie-tab" onclick="switchTab(this,'temoignages')">Retours élèves</button>
-    </div>
-
-    <div class="galerie-grid" id="tab-factures">
-      <div class="proof-card" onclick="openLightbox(this)">
-        <img src="factu-denem/1.png" alt="Facture DENEM 1">
-        <div class="proof-card-overlay">🔍 Agrandir</div>
+    <!-- Ligne 1 : Factures clients -->
+    <div class="proof-row fade-up delay-1">
+      <div class="proof-row-label">
+        <span class="proof-row-icon">🧾</span>
+        <span class="proof-row-title">Factures clients</span>
       </div>
-      <div class="proof-card" onclick="openLightbox(this)">
-        <img src="factu-denem/2.png" alt="Facture DENEM 2">
-        <div class="proof-card-overlay">🔍 Agrandir</div>
-      </div>
-      <div class="proof-card" onclick="openLightbox(this)">
-        <img src="factu-denem/3.png" alt="Facture DENEM 3">
-        <div class="proof-card-overlay">🔍 Agrandir</div>
-      </div>
-      <div class="proof-card" onclick="openLightbox(this)">
-        <img src="factu-denem/4.png" alt="Facture DENEM 4">
-        <div class="proof-card-overlay">🔍 Agrandir</div>
-      </div>
-      <div class="proof-card" onclick="openLightbox(this)">
-        <img src="factu-denem/5.png" alt="Facture DENEM 5">
-        <div class="proof-card-overlay">🔍 Agrandir</div>
-      </div>
-      <div class="proof-card" onclick="openLightbox(this)">
-        <img src="factu-denem/6.png" alt="Facture DENEM 6">
-        <div class="proof-card-overlay">🔍 Agrandir</div>
-      </div>
-      <div class="proof-card" onclick="openLightbox(this)">
-        <img src="cash-denem/1.png" alt="Cash DENEM 1">
-        <div class="proof-card-overlay">🔍 Agrandir</div>
-      </div>
-      <div class="proof-card" onclick="openLightbox(this)">
-        <img src="cash-denem/2.png" alt="Cash DENEM 2">
-        <div class="proof-card-overlay">🔍 Agrandir</div>
-      </div>
-      <div class="proof-card" onclick="openLightbox(this)">
-        <img src="cash-denem/3.png" alt="Cash DENEM 3">
-        <div class="proof-card-overlay">🔍 Agrandir</div>
-      </div>
-      <div class="proof-card" onclick="openLightbox(this)">
-        <img src="cash-denem/4.png" alt="Cash DENEM 4">
-        <div class="proof-card-overlay">🔍 Agrandir</div>
-      </div>
-      <div class="proof-card" onclick="openLightbox(this)">
-        <img src="cash-denem/5.png" alt="Cash DENEM 5">
-        <div class="proof-card-overlay">🔍 Agrandir</div>
-      </div>
-      <div class="proof-card" onclick="openLightbox(this)">
-        <img src="cash-denem/6.png" alt="Cash DENEM 6">
-        <div class="proof-card-overlay">🔍 Agrandir</div>
+      <div class="proof-row-grid">
+        <div class="proof-card" onclick="openLightbox(this)"><img src="factu-denem/1.png" alt="Facture 1"><div class="proof-card-overlay">🔍</div></div>
+        <div class="proof-card" onclick="openLightbox(this)"><img src="factu-denem/2.png" alt="Facture 2"><div class="proof-card-overlay">🔍</div></div>
+        <div class="proof-card" onclick="openLightbox(this)"><img src="factu-denem/3.png" alt="Facture 3"><div class="proof-card-overlay">🔍</div></div>
+        <div class="proof-card" onclick="openLightbox(this)"><img src="factu-denem/4.png" alt="Facture 4"><div class="proof-card-overlay">🔍</div></div>
+        <div class="proof-card" onclick="openLightbox(this)"><img src="factu-denem/5.png" alt="Facture 5"><div class="proof-card-overlay">🔍</div></div>
+        <div class="proof-card" onclick="openLightbox(this)"><img src="factu-denem/6.png" alt="Facture 6"><div class="proof-card-overlay">🔍</div></div>
       </div>
     </div>
 
-    <div class="galerie-grid" id="tab-temoignages" style="display:none;">
-      <div class="proof-card" onclick="openLightbox(this)">
-        <img src="retours-eleves/retour-1.png" alt="Retour élève 1">
-        <div class="proof-card-overlay">🔍 Agrandir</div>
+    <!-- Ligne 2 : Virements reçus -->
+    <div class="proof-row fade-up delay-1">
+      <div class="proof-row-label">
+        <span class="proof-row-icon">💸</span>
+        <span class="proof-row-title">Virements reçus</span>
       </div>
-      <div class="proof-card" onclick="openLightbox(this)">
-        <img src="retours-eleves/retour-2.png" alt="Retour élève 2">
-        <div class="proof-card-overlay">🔍 Agrandir</div>
-      </div>
-      <div class="proof-card" onclick="openLightbox(this)">
-        <img src="retours-eleves/retour-3.png" alt="Retour élève 3">
-        <div class="proof-card-overlay">🔍 Agrandir</div>
-      </div>
-      <div class="proof-card" onclick="openLightbox(this)">
-        <img src="retours-eleves/retour-4.png" alt="Retour élève 4">
-        <div class="proof-card-overlay">🔍 Agrandir</div>
-      </div>
-      <div class="proof-card" onclick="openLightbox(this)">
-        <img src="retours-eleves/retour-5.png" alt="Retour élève 5">
-        <div class="proof-card-overlay">🔍 Agrandir</div>
+      <div class="proof-row-grid">
+        <div class="proof-card" onclick="openLightbox(this)"><img src="cash-denem/1.png" alt="Virement 1"><div class="proof-card-overlay">🔍</div></div>
+        <div class="proof-card" onclick="openLightbox(this)"><img src="cash-denem/2.png" alt="Virement 2"><div class="proof-card-overlay">🔍</div></div>
+        <div class="proof-card" onclick="openLightbox(this)"><img src="cash-denem/3.png" alt="Virement 3"><div class="proof-card-overlay">🔍</div></div>
+        <div class="proof-card" onclick="openLightbox(this)"><img src="cash-denem/4.png" alt="Virement 4"><div class="proof-card-overlay">🔍</div></div>
+        <div class="proof-card" onclick="openLightbox(this)"><img src="cash-denem/5.png" alt="Virement 5"><div class="proof-card-overlay">🔍</div></div>
+        <div class="proof-card" onclick="openLightbox(this)"><img src="cash-denem/6.png" alt="Virement 6"><div class="proof-card-overlay">🔍</div></div>
       </div>
     </div>
+
+    <!-- Ligne 3 : Retours clients -->
+    <div class="proof-row fade-up delay-2">
+      <div class="proof-row-label">
+        <span class="proof-row-icon">💬</span>
+        <span class="proof-row-title">Retours clients</span>
+      </div>
+      <div class="proof-row-grid">
+        <div class="proof-card" onclick="openLightbox(this)"><img src="retours-eleves/retour-1.png" alt="Retour 1"><div class="proof-card-overlay">🔍</div></div>
+        <div class="proof-card" onclick="openLightbox(this)"><img src="retours-eleves/retour-2.png" alt="Retour 2"><div class="proof-card-overlay">🔍</div></div>
+        <div class="proof-card" onclick="openLightbox(this)"><img src="retours-eleves/retour-3.png" alt="Retour 3"><div class="proof-card-overlay">🔍</div></div>
+        <div class="proof-card" onclick="openLightbox(this)"><img src="retours-eleves/retour-4.png" alt="Retour 4"><div class="proof-card-overlay">🔍</div></div>
+        <div class="proof-card" onclick="openLightbox(this)"><img src="retours-eleves/retour-5.png" alt="Retour 5"><div class="proof-card-overlay">🔍</div></div>
+        <div class="proof-card proof-card-locked"><div class="proof-locked-inner"><span>🔒</span><p>Visible aux membres</p></div></div>
+      </div>
+    </div>
+
+    <!-- Footer "+30 preuves" -->
+    <div class="proof-more fade-up delay-3">
+      <div class="proof-more-inner">
+        <span class="proof-more-count">+30</span>
+        <div>
+          <p class="proof-more-title">autres preuves accessibles aux membres du réseau DENEM.</p>
+          <p class="proof-more-sub">Pour préserver la confidentialité de nos élèves, on n'affiche publiquement qu'un échantillon.</p>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 
