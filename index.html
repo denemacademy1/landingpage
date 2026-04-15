@@ -120,19 +120,20 @@
   }
   </script>
 
-  <!-- Schéma 2 : Course -->
+  <!-- Schéma 2 : Course enrichi avec les 3 voies -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Course",
-    "name": "DENEM Academy — Devenir Expert IA Freelance en 90 jours",
-    "description": "Programme de formation professionnalisant pour devenir Expert IA Freelance et déployer l'intelligence artificielle chez les PME françaises. Sans coder, en 90 jours, avec la méthode propriétaire B.T.D (Business · Technique · Délivrer). Issu de 6 ans de R&D appliquée pour des grands comptes du CAC 40.",
+    "name": "DENEM Academy — Devenir Expert IA Freelance, Consultant IA Senior ou Fondateur d'Agence IA",
+    "description": "Programme de formation premium qui ouvre 3 voies évolutives. Voie 1 : Expert IA Freelance (5-15K€/mois) à partir de 3 mois. Voie 2 : Consultant IA Senior (10-25K€/mois) à partir de 6 mois. Voie 3 : Fondateur d'Agence IA (20-50K€+/mois) à partir de 6 mois. Méthode B.T.D propriétaire issue de 6 ans de R&D pour Canal+, EDF, Crédit Agricole.",
     "provider": {
       "@type": "Organization",
       "name": "DENEM Academy",
       "sameAs": "https://denemacademy.com"
     },
-    "educationalLevel": "Professional",
+    "educationalLevel": "Professional Premium",
+    "courseMode": "online",
     "inLanguage": "fr-FR",
     "teaches": [
       "Maîtrise des outils IA (Claude, n8n, Cowork, Codex)",
@@ -141,22 +142,37 @@
       "Architecture de solutions IA pour PME",
       "Gestion de projet IA et délivrance client",
       "Construction d'une activité freelance pérenne",
+      "Évolution vers le statut de Consultant IA Senior",
+      "Création et structuration d'une agence IA",
       "Méthode B.T.D : Business, Technique, Délivrer"
     ],
     "audience": {
       "@type": "EducationalAudience",
-      "audienceType": "Salariés en reconversion, freelances, profils business souhaitant devenir Expert IA Freelance"
+      "audienceType": "Salariés en reconversion, freelances confirmés, profils business souhaitant devenir Expert IA, Consultant IA Senior ou Fondateur d'Agence IA"
     },
-    "hasCourseInstance": {
-      "@type": "CourseInstance",
-      "courseMode": "online",
-      "courseWorkload": "PT90D",
-      "instructor": {
-        "@type": "Person",
-        "name": "Axel Riandiere",
-        "description": "Fondateur DENEM Academy et Groupe DENEM, 6 ans de R&D IA appliquée"
+    "hasCourseInstance": [
+      {
+        "@type": "CourseInstance",
+        "name": "Voie 1 — Expert IA Freelance",
+        "description": "Démarrer comme Expert IA Freelance et atteindre 5K€ – 15K€/mois en 3 mois",
+        "courseMode": "online",
+        "courseWorkload": "PT90D"
+      },
+      {
+        "@type": "CourseInstance",
+        "name": "Voie 2 — Consultant IA Senior",
+        "description": "Évoluer vers le statut de Consultant IA Senior et atteindre 10K€ – 25K€/mois à partir de 6 mois",
+        "courseMode": "online",
+        "courseWorkload": "PT180D"
+      },
+      {
+        "@type": "CourseInstance",
+        "name": "Voie 3 — Fondateur d'Agence IA",
+        "description": "Lancer sa propre agence IA et atteindre 20K€ – 50K€+/mois à partir de 6 mois",
+        "courseMode": "online",
+        "courseWorkload": "PT180D"
       }
-    },
+    ],
     "offers": {
       "@type": "Offer",
       "category": "Programme de formation premium",
@@ -259,6 +275,30 @@
         "acceptedAnswer": {
           "@type": "Answer",
           "text": "DENEM Academy se distingue par 4 éléments uniques : 1) Une expertise issue de 6 ans de R&D appliquée pour des grands comptes du CAC 40 (Canal+, Van Cleef & Arpels, EDF, Crédit Agricole, Véolia, Cofidis). 2) Une connexion directe avec l'écosystème IA de Silicon Valley, notamment avec des contributeurs et anciens d'Anthropic. 3) Une méthode propriétaire B.T.D qui combine technique et business (rare dans les formations IA). 4) Un écosystème actif avec des Experts IA déjà en activité comme Baptiste Fort (Vision IA), Joseph Mont (PIVOIA), Ugo Sartini (NOESIS.AI) et Othmane Halim."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Je veux créer une agence IA, c'est possible avec DENEM Academy ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Oui, et c'est même la Voie 3 du programme. Plusieurs alumni ont lancé leur agence IA après 6 à 12 mois — Joseph (PIVOIA), Ugo (NOESIS.AI), Baptiste (Vision IA). Le programme couvre les 3 voies (Freelance · Consultant Senior · Agence). Tu peux démarrer en freelance pour valider le marché, puis structurer ton agence quand tu as suffisamment de clients récurrents et de revenus pour recruter."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Quelle voie choisir entre freelance, consultant senior ou agence ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Tu n'as pas à choisir tout de suite. La Voie 1 (Expert IA Freelance, 5-15K€/mois) est le point de départ naturel. À partir du mois 3-6, tu sauras intuitivement vers quoi tu veux aller : Voie 2 (Consultant Senior, 10-25K€/mois) si tu veux la stabilité premium en solo, ou Voie 3 (Agence IA, 20-50K€+/mois) si tu veux bâtir une vraie entreprise avec une équipe. Le programme couvre les 3 voies."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Est-ce que je peux changer de voie en cours de route ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Absolument. La plupart des alumni démarrent en Voie 1 (Freelance), atteignent leurs premiers retainers récurrents au mois 3-6, puis basculent vers Voie 2 (Consultant Senior premium) ou Voie 3 (Agence IA) selon leur ambition. Tu n'es pas figé. Le programme te donne les compétences pour les 3 voies — tu actives celle qui te correspond au moment où tu es prêt."
         }
       }
     ]
@@ -3814,6 +3854,347 @@ section { position: relative; z-index: 1; }
   color: transparent;
 }
 
+/* =============================================
+   SECTION : LES 3 VOIES
+   ============================================= */
+.trois-voies-section {
+  padding: 100px 24px;
+  background: linear-gradient(180deg, transparent, rgba(107,91,255,0.02), transparent);
+}
+.trois-voies-container {
+  max-width: 1300px;
+  margin: 0 auto;
+}
+.trois-voies-eyebrow {
+  display: inline-block;
+  padding: 6px 16px;
+  background: rgba(45,212,191,0.12);
+  color: var(--teal);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  border-radius: 99px;
+  margin-bottom: 20px;
+}
+.trois-voies-h2 {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(32px, 5vw, 52px);
+  font-weight: 800;
+  line-height: 1.15;
+  margin-bottom: 20px;
+  background: linear-gradient(135deg, var(--w), var(--teal));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  max-width: 900px;
+}
+.trois-voies-intro {
+  font-size: 18px;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.7);
+  max-width: 800px;
+  margin-bottom: 60px;
+}
+.trois-voies-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-bottom: 40px;
+}
+.voie-card {
+  background: rgba(255,255,255,0.02);
+  border: 1.5px solid rgba(255,255,255,0.08);
+  border-radius: 20px;
+  padding: 32px 28px;
+  transition: transform .3s, border-color .3s;
+  display: flex;
+  flex-direction: column;
+}
+.voie-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(45,212,191,0.4);
+}
+.voie-featured {
+  background: linear-gradient(135deg, rgba(107,91,255,0.08), rgba(45,212,191,0.04));
+  border: 1.5px solid rgba(107,91,255,0.4);
+  position: relative;
+}
+.voie-featured::before {
+  content: '⭐ Le plus choisi';
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 6px 16px;
+  background: linear-gradient(135deg, var(--violet), var(--teal));
+  color: var(--bg);
+  font-family: 'Poppins', sans-serif;
+  font-size: 12px;
+  font-weight: 800;
+  border-radius: 99px;
+  white-space: nowrap;
+}
+.voie-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+.voie-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  background: rgba(255,255,255,0.06);
+  color: rgba(255,255,255,0.7);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-radius: 99px;
+}
+.voie-badge-featured {
+  background: rgba(107,91,255,0.2);
+  color: #B58CFF;
+}
+.voie-icon { font-size: 32px; line-height: 1; }
+.voie-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 24px;
+  font-weight: 800;
+  margin: 0 0 16px 0;
+  color: var(--w);
+}
+.voie-revenue {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.voie-amount {
+  font-family: 'Poppins', sans-serif;
+  font-size: 32px;
+  font-weight: 900;
+  background: linear-gradient(135deg, var(--teal), #6FE6D5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -0.5px;
+}
+.voie-featured .voie-amount {
+  background: linear-gradient(135deg, #B58CFF, var(--teal));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.voie-period {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.5);
+}
+.voie-description {
+  font-size: 14px;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.75);
+  margin-bottom: 20px;
+}
+.voie-features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 24px 0;
+  flex: 1;
+}
+.voie-features li {
+  position: relative;
+  padding-left: 22px;
+  margin-bottom: 10px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: rgba(255,255,255,0.85);
+}
+.voie-features li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--teal);
+  font-weight: 700;
+}
+.voie-tag {
+  padding: 12px 16px;
+  background: rgba(45,212,191,0.06);
+  border-left: 3px solid var(--teal);
+  border-radius: 4px;
+  font-size: 13px;
+  font-style: italic;
+  color: rgba(255,255,255,0.7);
+}
+.voie-featured .voie-tag {
+  background: rgba(107,91,255,0.08);
+  border-left-color: #B58CFF;
+}
+.trois-voies-footer {
+  text-align: center;
+  font-size: 18px;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.7);
+  max-width: 800px;
+  margin: 0 auto;
+  padding-top: 20px;
+}
+.trois-voies-footer strong { color: var(--w); font-weight: 700; }
+@media (max-width: 980px) {
+  .trois-voies-grid { grid-template-columns: 1fr; }
+  .voie-featured::before { top: -16px; }
+}
+
+/* =============================================
+   SECTION : TIMELINE D'ÉVOLUTION ACCÉLÉRÉE
+   ============================================= */
+.timeline-evolution-section {
+  padding: 100px 24px;
+  background: linear-gradient(180deg, transparent, rgba(45,212,191,0.02));
+}
+.timeline-evolution-container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.timeline-eyebrow {
+  display: inline-block;
+  padding: 6px 16px;
+  background: rgba(107,91,255,0.12);
+  color: #B58CFF;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  border-radius: 99px;
+  margin-bottom: 20px;
+}
+.timeline-h2 {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(32px, 5vw, 52px);
+  font-weight: 800;
+  line-height: 1.15;
+  margin-bottom: 20px;
+  background: linear-gradient(135deg, var(--w), #B58CFF);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.timeline-intro {
+  font-size: 18px;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.7);
+  max-width: 800px;
+  margin-bottom: 60px;
+}
+.timeline-evolution-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  position: relative;
+}
+.timeline-evolution-grid::before {
+  content: '';
+  position: absolute;
+  left: 80px;
+  top: 30px;
+  bottom: 30px;
+  width: 2px;
+  background: linear-gradient(180deg,
+    rgba(45,212,191,0.4) 0%,
+    rgba(107,91,255,0.4) 50%,
+    rgba(45,212,191,0.4) 100%);
+}
+.timeline-evol-step {
+  display: flex;
+  gap: 32px;
+  align-items: flex-start;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+  padding: 24px 28px;
+  transition: border-color .3s, transform .3s;
+}
+.timeline-evol-step:hover {
+  border-color: rgba(45,212,191,0.3);
+  transform: translateX(4px);
+}
+.timeline-evol-pivot {
+  background: linear-gradient(135deg, rgba(107,91,255,0.06), rgba(45,212,191,0.04));
+  border: 1.5px solid rgba(107,91,255,0.3);
+}
+.timeline-evol-marker {
+  flex-shrink: 0;
+  width: 130px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.timeline-evol-month {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 16px;
+  background: linear-gradient(135deg, var(--violet), var(--teal));
+  color: var(--bg);
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  font-weight: 800;
+  border-radius: 99px;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+  position: relative;
+  z-index: 2;
+}
+.timeline-evol-content { flex: 1; }
+.timeline-evol-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 20px;
+  font-weight: 800;
+  margin: 0 0 10px 0;
+  color: var(--w);
+}
+.timeline-evol-content p {
+  font-size: 15px;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.78);
+  margin-bottom: 8px;
+}
+.timeline-evol-content p:last-child { margin-bottom: 0; }
+.timeline-evol-content p strong { color: var(--teal); font-weight: 700; }
+.timeline-evol-pivot .timeline-evol-content p strong { color: #B58CFF; }
+.timeline-evol-tag {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 4px 12px;
+  background: rgba(45,212,191,0.1);
+  color: var(--teal);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  border-radius: 99px;
+}
+.timeline-evolution-note {
+  margin-top: 50px;
+  padding: 24px 28px;
+  background: rgba(255,255,255,0.02);
+  border: 1px dashed rgba(45,212,191,0.3);
+  border-radius: 12px;
+}
+.timeline-evolution-note p {
+  font-size: 15px;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.75);
+  margin: 0;
+}
+.timeline-evolution-note strong { color: var(--w); font-weight: 700; }
+@media (max-width: 720px) {
+  .timeline-evolution-grid::before { display: none; }
+  .timeline-evol-step { flex-direction: column; gap: 16px; padding: 20px; }
+  .timeline-evol-marker { width: auto; }
+}
 
 
 </style>
@@ -3936,6 +4317,7 @@ section { position: relative; z-index: 1; }
   <ul class="nav-links">
     <li><a href="#methode-btd" class="nav-link" aria-label="Découvrir la méthode B.T.D">La méthode</a></li>
     <li><a href="#preuves" class="nav-link" aria-label="Témoignages d'Experts IA formés par DENEM">Use cases</a></li>
+    <li><a href="#trois-voies" class="nav-link" aria-label="Découvrir les 3 voies de l'Expert IA">Les 3 voies</a></li>
     <li><a href="#transformation" class="nav-link" aria-label="Le programme DENEM Academy étape par étape">Le programme</a></li>
     <li><a href="#ecosysteme-denem" class="nav-link" aria-label="Découvrir l'écosystème DENEM Group">Vision</a></li>
   </ul>
@@ -3991,6 +4373,15 @@ section { position: relative; z-index: 1; }
 
   <p class="hero-h2 fade-up delay-2">
     Pas dans 2 ans. Pas après une école d'ingénieur.<br>À partir de zéro.
+  </p>
+
+  <p class="hero-evolution-mention fade-up delay-2" style="
+    font-size: 14px;
+    color: rgba(255,255,255,0.55);
+    margin-top: 12px;
+    font-style: italic;
+  ">
+    Puis évolue vers Consultant IA Senior ou Fondateur d'Agence IA, à ton rythme.
   </p>
 
   <!-- CTA Test d'éligibilité -->
@@ -4661,6 +5052,208 @@ section { position: relative; z-index: 1; }
   </div>
 </section>
 
+<!-- ═══════════════════════════════════════════
+     SECTION : LES 3 VOIES DE L'EXPERT IA
+     ═══════════════════════════════════════════ -->
+<section id="trois-voies" class="trois-voies-section">
+  <div class="trois-voies-container">
+
+    <span class="trois-voies-eyebrow">Tu choisis TA voie</span>
+
+    <h2 class="trois-voies-h2">3 voies. 3 niveaux. Tu décides où tu veux aller.</h2>
+
+    <p class="trois-voies-intro">
+      DENEM Academy ne forme pas des "freelances IA". Elle ouvre 3 chemins évolutifs —
+      tu démarres par celui qui te correspond, et tu peux passer au suivant quand tu es prêt.
+    </p>
+
+    <div class="trois-voies-grid">
+
+      <!-- VOIE 1 — Expert IA Freelance -->
+      <article class="voie-card voie-1">
+        <div class="voie-header">
+          <span class="voie-badge">Voie 1 · Démarrage</span>
+          <div class="voie-icon">🚀</div>
+        </div>
+
+        <h3 class="voie-title">Expert IA Freelance</h3>
+
+        <div class="voie-revenue">
+          <span class="voie-amount">5K€ → 15K€</span>
+          <span class="voie-period">/ mois</span>
+        </div>
+
+        <p class="voie-description">
+          Le point de départ. Tu signes des missions ponctuelles à 1 500€ – 8 000€ chez les TPE/PME,
+          tu construis ta crédibilité, tu génères tes premiers retainers récurrents.
+        </p>
+
+        <ul class="voie-features">
+          <li>Missions à 3 000€ – 8 000€</li>
+          <li>2 à 4 clients actifs en parallèle</li>
+          <li>TJM 500€ – 1 000€</li>
+          <li>Démarrage à partir de 90 jours</li>
+        </ul>
+
+        <div class="voie-tag">Pour qui veut sortir du salariat rapidement</div>
+      </article>
+
+      <!-- VOIE 2 — Consultant IA Senior -->
+      <article class="voie-card voie-2 voie-featured">
+        <div class="voie-header">
+          <span class="voie-badge voie-badge-featured">Voie 2 · Évolution</span>
+          <div class="voie-icon">📈</div>
+        </div>
+
+        <h3 class="voie-title">Consultant IA Senior</h3>
+
+        <div class="voie-revenue">
+          <span class="voie-amount">10K€ → 25K€</span>
+          <span class="voie-period">/ mois</span>
+        </div>
+
+        <p class="voie-description">
+          Le palier premium. Tu vends des missions stratégiques à 10 000€ – 25 000€ aux PME
+          et grands comptes. Tu deviens "le" Expert IA reconnu sur ta niche.
+        </p>
+
+        <ul class="voie-features">
+          <li>Missions à 10 000€ – 25 000€</li>
+          <li>Spécialisation sectorielle (juridique, santé, e-commerce…)</li>
+          <li>TJM 1 200€ – 2 000€</li>
+          <li>Atteignable à partir de 6 mois</li>
+        </ul>
+
+        <div class="voie-tag">Pour qui veut une activité premium et stable</div>
+      </article>
+
+      <!-- VOIE 3 — Fondateur d'Agence IA -->
+      <article class="voie-card voie-3">
+        <div class="voie-header">
+          <span class="voie-badge">Voie 3 · Scale</span>
+          <div class="voie-icon">🏢</div>
+        </div>
+
+        <h3 class="voie-title">Fondateur d'Agence IA</h3>
+
+        <div class="voie-revenue">
+          <span class="voie-amount">20K€ → 50K€+</span>
+          <span class="voie-period">/ mois</span>
+        </div>
+
+        <p class="voie-description">
+          Le palier ambitieux. Tu structures ta propre agence avec une équipe, des retainers
+          récurrents et des contrats annuels. Comme Joseph (PIVOIA), Ugo (NOESIS.AI), Baptiste (Vision IA).
+        </p>
+
+        <ul class="voie-features">
+          <li>Retainers récurrents 3K€ – 10K€/mois/client</li>
+          <li>Équipe de 2-5 personnes</li>
+          <li>Contrats annuels avec PME</li>
+          <li>Lançable à partir de 6 mois</li>
+        </ul>
+
+        <div class="voie-tag">Pour qui veut bâtir une vraie entreprise IA</div>
+      </article>
+
+    </div>
+
+    <p class="trois-voies-footer">
+      <strong>Tu n'as pas à choisir maintenant.</strong> Le programme couvre les 3 voies — tu décideras
+      où tu veux aller selon ton ambition, ton énergie et tes opportunités.
+    </p>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SECTION : TIMELINE D'ÉVOLUTION ACCÉLÉRÉE
+     ═══════════════════════════════════════════ -->
+<section id="timeline-evolution" class="timeline-evolution-section">
+  <div class="timeline-evolution-container">
+
+    <span class="timeline-eyebrow">L'évolution accélérée</span>
+
+    <h2 class="timeline-h2">De zéro à fondateur d'agence IA en 6 mois.</h2>
+
+    <p class="timeline-intro">
+      Ce parcours est rapide pour une raison simple : la fenêtre d'opportunité IA est ouverte maintenant.
+      Pas dans 2 ans. Voici comment tu progresses concrètement.
+    </p>
+
+    <div class="timeline-evolution-grid">
+
+      <!-- Étape 1 -->
+      <div class="timeline-evol-step">
+        <div class="timeline-evol-marker">
+          <span class="timeline-evol-month">Mois 1</span>
+        </div>
+        <div class="timeline-evol-content">
+          <h3 class="timeline-evol-title">Maîtrise + Positionnement</h3>
+          <p>Tu maîtrises les 4 outils des Experts IA (Claude, n8n, Cowork, Codex) et tu construis ton positionnement de marché. Ton offre est claire, ton site est en ligne.</p>
+        </div>
+      </div>
+
+      <!-- Étape 2 -->
+      <div class="timeline-evol-step">
+        <div class="timeline-evol-marker">
+          <span class="timeline-evol-month">Mois 2-3</span>
+        </div>
+        <div class="timeline-evol-content">
+          <h3 class="timeline-evol-title">Premiers clients · Voie 1 activée</h3>
+          <p>Tu signes tes 1ères missions à 3 000€ – 8 000€. Tu génères 5K€ à 15K€/mois en revenus freelance. Tu prouves que la méthode B.T.D fonctionne sur ton marché.</p>
+          <span class="timeline-evol-tag">→ Voie 1 : Expert IA Freelance</span>
+        </div>
+      </div>
+
+      <!-- Étape 3 -->
+      <div class="timeline-evol-step">
+        <div class="timeline-evol-marker">
+          <span class="timeline-evol-month">Mois 3-6</span>
+        </div>
+        <div class="timeline-evol-content">
+          <h3 class="timeline-evol-title">Premiers retainers + montée en gamme</h3>
+          <p>Tu transformes tes meilleurs clients en retainers mensuels (3K€ – 10K€/mois récurrents). Tu commences à monter tes tarifs. Tu te spécialises sur ta niche.</p>
+        </div>
+      </div>
+
+      <!-- Étape 4 -->
+      <div class="timeline-evol-step timeline-evol-pivot">
+        <div class="timeline-evol-marker">
+          <span class="timeline-evol-month">Mois 6</span>
+        </div>
+        <div class="timeline-evol-content">
+          <h3 class="timeline-evol-title">Le grand pivot — Tu choisis TA voie</h3>
+          <p><strong>Voie 2 — Consultant Senior :</strong> Tu vends des missions à 10K€ – 25K€ aux grands comptes. Activité premium et stable.</p>
+          <p><strong>Voie 3 — Agence IA :</strong> Tu recrutes ton 1er collaborateur, tu structures ton offre agence, tu signes tes premiers contrats annuels.</p>
+          <span class="timeline-evol-tag">→ Voie 2 ou Voie 3</span>
+        </div>
+      </div>
+
+      <!-- Étape 5 -->
+      <div class="timeline-evol-step">
+        <div class="timeline-evol-marker">
+          <span class="timeline-evol-month">Mois 6-12</span>
+        </div>
+        <div class="timeline-evol-content">
+          <h3 class="timeline-evol-title">Scale et indépendance</h3>
+          <p>Tu atteins 20K€ – 50K€/mois selon la voie choisie. Activité prévisible, équipe en place (si Voie 3), réputation établie. Liberté géographique et financière réelle.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="timeline-evolution-note">
+      <p>
+        ⏱ <strong>Pourquoi cette accélération est possible :</strong> Le marché IA explose, les entreprises ont
+        besoin maintenant, l'AI Act 2026 oblige toutes les boîtes à se former d'ici août 2026. Plus tu démarres tôt,
+        plus tu prends de l'avance sur des concurrents qui ne sont pas encore arrivés.
+      </p>
+    </div>
+
+  </div>
+</section>
+
 <div class="eligibilite-section">
   <div class="eligibilite-cta fade-up">
     <div class="eligibilite-inner">
@@ -5002,6 +5595,36 @@ section { position: relative; z-index: 1; }
         </div>
         <div class="faq-body">
           <p class="faq-body-inner">Dans 6 mois il y aura deux fois plus de personnes qui auront eu cette idée. La courbe de l'IA est exponentielle. Chaque mois d'attente est un mois de retard sur ceux qui ont agi. La fenêtre se referme — lentement, mais sûrement.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" role="button" tabindex="0" aria-expanded="false">
+          <span class="faq-q-text">Je veux créer une agence IA, c'est possible avec DENEM Academy ?</span>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </div>
+        <div class="faq-body">
+          <p class="faq-body-inner">Oui, et c'est même la Voie 3 du programme. Plusieurs alumni ont lancé leur agence IA après 6 à 12 mois — Joseph (PIVOIA), Ugo (NOESIS.AI), Baptiste (Vision IA). Le programme couvre les 3 voies (Freelance · Consultant Senior · Agence). Tu peux démarrer en freelance pour valider le marché, puis structurer ton agence quand tu as suffisamment de clients récurrents et de revenus pour recruter.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" role="button" tabindex="0" aria-expanded="false">
+          <span class="faq-q-text">Quelle voie choisir entre freelance, consultant senior ou agence ?</span>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </div>
+        <div class="faq-body">
+          <p class="faq-body-inner">Tu n'as pas à choisir tout de suite. La Voie 1 (Expert IA Freelance, 5-15K€/mois) est le point de départ naturel — tu démarres rapidement, tu valides ton marché, tu génères tes premiers revenus. À partir du mois 3-6, tu sauras intuitivement vers quoi tu veux aller : Voie 2 (Consultant Senior, 10-25K€/mois) si tu veux la stabilité premium en solo, ou Voie 3 (Agence IA, 20-50K€+/mois) si tu veux bâtir une vraie entreprise avec une équipe. Le programme couvre les 3 voies.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" role="button" tabindex="0" aria-expanded="false">
+          <span class="faq-q-text">Est-ce que je peux changer de voie en cours de route ?</span>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </div>
+        <div class="faq-body">
+          <p class="faq-body-inner">Absolument, et c'est même recommandé. La plupart des alumni démarrent en Voie 1 (Freelance), atteignent leurs premiers retainers récurrents au mois 3-6, puis basculent vers Voie 2 (Consultant Senior premium) ou Voie 3 (Agence IA) selon leur ambition. Tu n'es pas figé. Le programme te donne les compétences pour les 3 voies — tu actives celle qui te correspond au moment où tu es prêt. Et si tu changes d'avis 12 mois plus tard, tu reviens piocher dans les modules concernés.</p>
         </div>
       </div>
 
