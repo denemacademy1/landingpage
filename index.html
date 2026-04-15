@@ -2636,6 +2636,56 @@ section { position: relative; z-index: 1; }
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+/* ── Entités groupe (Labs / Academy / Réseau) ── */
+.eco-entities {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin: 48px 0 64px;
+}
+@media (max-width: 768px) { .eco-entities { grid-template-columns: 1fr; } }
+
+.eco-entity {
+  padding: 28px 24px;
+  border-radius: 18px;
+  border: 1.5px solid rgba(255,255,255,0.07);
+  background: rgba(255,255,255,0.02);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: border-color .25s, transform .25s;
+}
+.eco-entity:hover { border-color: rgba(45,212,191,0.35); transform: translateY(-4px); }
+.eco-entity-featured {
+  border-color: rgba(107,91,255,0.35);
+  background: radial-gradient(ellipse at top, rgba(107,91,255,0.07) 0%, transparent 65%), rgba(255,255,255,0.02);
+}
+.eco-entity-featured:hover { border-color: rgba(107,91,255,0.6); }
+
+.eco-entity-badge {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--teal);
+  opacity: .75;
+}
+.eco-entity-featured .eco-entity-badge { color: #9B8FFF; }
+
+.eco-entity-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #fff;
+  margin: 0;
+}
+.eco-entity-text {
+  font-size: .85rem;
+  color: rgba(255,255,255,.6);
+  line-height: 1.6;
+  margin: 0;
+}
+
 .eco-pillars {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -4115,49 +4165,7 @@ section { position: relative; z-index: 1; }
 </div>
 
 <!-- ═══════════════════════════════════════════
-     GROUPE DENEM — déplacé ici : après preuves, avant transformation
-     ═══════════════════════════════════════════ -->
-<section id="groupe">
-  <div class="container">
-    <div class="sec-ribbon sec-ribbon--violet fade-up" style="transform:rotate(-1deg)"><span class="sec-ribbon-text">Plus qu'une formation</span></div>
-    <h2 class="section-title fade-up">DENEM Academy n'est pas juste une formation.</h2>
-    <p class="section-sub fade-up delay-1">C'est l'accès à un groupe, un réseau, et 6 ans d'expertise IA déployée au plus haut niveau.</p>
-
-    <div class="groupe-grid">
-      <div class="groupe-left">
-        <p class="groupe-p fade-up">Le Groupe DENEM existe depuis 2020. À travers DENEM Labs, notre laboratoire de R&amp;D IA, nous avons conçu et déployé des solutions d'intelligence artificielle pour des entreprises du CAC 40 et des groupes internationaux — Canal+, Van Cleef &amp; Arpels, EDF, Crédit Agricole, Véolia, Cofidis.</p>
-        <p class="groupe-p fade-up delay-1">DENEM Academy est la branche formation du groupe. Notre mission : redescendre toute cette expertise — technique, business, entrepreneuriale — dans un seul programme structuré. Pour que toi, tu puisses partir avec ce qui a pris des années à construire.</p>
-        <p class="groupe-p-lime fade-up delay-2">Rejoindre DENEM Academy, c'est rejoindre le réseau DENEM. Pas juste une formation — un groupe qui continue d'avancer à tes côtés.</p>
-
-        <div class="groupe-photo-inline fade-up delay-3">
-          <img src="9.png" alt="L'équipe DENEM">
-          <span class="groupe-photo-caption">L'équipe DENEM</span>
-        </div>
-      </div>
-      <div class="groupe-cards">
-        <div class="groupe-card fade-up delay-1">
-          <span class="groupe-card-badge">R&amp;D IA · Actif depuis 2020</span>
-          <h3 class="groupe-card-title">DENEM Labs</h3>
-          <p class="groupe-card-text">Laboratoire de recherche et développement IA. Projets pour grands comptes. Technologie de pointe.</p>
-        </div>
-        <div class="groupe-card fade-up delay-2">
-          <span class="groupe-card-badge">Formation · Lancement 2026</span>
-          <h3 class="groupe-card-title">DENEM Academy</h3>
-          <p class="groupe-card-text">Le programme qui redescend 6 ans d'expertise en 90 jours. Pour devenir top 1% des Experts IA freelance.</p>
-        </div>
-        <div class="groupe-card fade-up delay-3">
-          <span class="groupe-card-badge">Communauté · Alumni</span>
-          <h3 class="groupe-card-title">Réseau DENEM</h3>
-          <p class="groupe-card-text">Experts IA formés. Mises en relation. Opportunités de missions. Un réseau qui grandit avec toi.</p>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════
-     ÉCOSYSTÈME DENEM — Force du réseau
+     ÉCOSYSTÈME DENEM — Fusion groupe + écosystème
      ═══════════════════════════════════════════ -->
 <section id="ecosysteme">
   <div class="container">
@@ -4165,9 +4173,29 @@ section { position: relative; z-index: 1; }
     <div class="eco-header">
       <div class="sec-ribbon sec-ribbon--violet fade-up" style="transform:rotate(-2deg)"><span class="sec-ribbon-text">L'écosystème DENEM</span></div>
       <h2 class="section-title fade-up delay-1">Tu ne rejoins pas une formation.<br><span class="eco-h2-accent">Tu rejoins une aventure.</span></h2>
-      <p class="section-sub fade-up delay-2" style="margin: 0 auto; text-align: center;">Depuis 2020, DENEM rassemble des ingénieurs IA, des chercheurs et des CTO qui livrent de vrais projets — pour des grands comptes et des PME. Ce réseau, on l'a tenu fermé pendant 6 ans. On a décidé de l'ouvrir.</p>
+      <p class="section-sub fade-up delay-2" style="margin: 0 auto; text-align: center;">Le Groupe DENEM existe depuis 2020. Des ingénieurs IA, des chercheurs et des CTO qui livrent de vrais projets pour des grands comptes et des PME. Ce réseau, on l'a tenu fermé pendant 6 ans. On a décidé de l'ouvrir.</p>
     </div>
 
+    <!-- 3 entités du groupe -->
+    <div class="eco-entities fade-up delay-2">
+      <div class="eco-entity">
+        <span class="eco-entity-badge">R&amp;D IA · Actif depuis 2020</span>
+        <h3 class="eco-entity-title">DENEM Labs</h3>
+        <p class="eco-entity-text">Laboratoire de R&amp;D IA. Projets déployés chez Canal+, Van Cleef &amp; Arpels, EDF, Crédit Agricole, Véolia, Cofidis. Technologie de pointe, en production.</p>
+      </div>
+      <div class="eco-entity eco-entity-featured">
+        <span class="eco-entity-badge">Formation · Lancement 2026</span>
+        <h3 class="eco-entity-title">DENEM Academy</h3>
+        <p class="eco-entity-text">Le programme qui redescend 6 ans d'expertise en 90 jours. Pour devenir top 1% des Experts IA freelance — technique, business et délivrance.</p>
+      </div>
+      <div class="eco-entity">
+        <span class="eco-entity-badge">Communauté · Alumni</span>
+        <h3 class="eco-entity-title">Réseau DENEM</h3>
+        <p class="eco-entity-text">Experts IA formés. Mises en relation. Opportunités de missions. Un réseau actif qui grandit avec toi après la formation.</p>
+      </div>
+    </div>
+
+    <!-- 4 piliers -->
     <div class="eco-pillars">
 
       <div class="eco-pillar fade-up">
@@ -4178,8 +4206,8 @@ section { position: relative; z-index: 1; }
 
       <div class="eco-pillar fade-up delay-1">
         <div class="eco-pillar-num">02</div>
-        <h3 class="eco-pillar-title">Des projets pour grands comptes ET PME</h3>
-        <p class="eco-pillar-text">6 ans de R&D appliquée chez Canal+, Van Cleef &amp; Arpels, EDF, Crédit Agricole, Véolia, Cofidis. Et en parallèle, des dizaines de TPE et PME accompagnées avec la même rigueur.</p>
+        <h3 class="eco-pillar-title">Grands comptes ET PME</h3>
+        <p class="eco-pillar-text">6 ans de R&amp;D appliquée chez des entreprises du CAC 40 et des groupes internationaux. Et en parallèle, des dizaines de TPE et PME accompagnées avec la même rigueur.</p>
       </div>
 
       <div class="eco-pillar fade-up delay-2">
@@ -4190,7 +4218,7 @@ section { position: relative; z-index: 1; }
 
       <div class="eco-pillar fade-up delay-3">
         <div class="eco-pillar-num">04</div>
-        <h3 class="eco-pillar-title">Une connexion directe avec la Silicon Valley</h3>
+        <h3 class="eco-pillar-title">Connexion directe Silicon Valley</h3>
         <p class="eco-pillar-text">DENEM est en lien régulier avec l'écosystème IA de San Francisco, et notamment avec des personnes ayant contribué à Anthropic — l'entreprise derrière Claude. Tu apprends de gens connectés à la source.</p>
       </div>
 
@@ -4212,7 +4240,6 @@ section { position: relative; z-index: 1; }
         </p>
       </div>
     </div>
-
 
     <p class="eco-conclusion fade-up delay-4">
       Ce niveau d'écosystème, <strong>personne d'autre ne le propose en francophone</strong>. C'est notre vraie différence — et celle que tu emportes avec toi.
