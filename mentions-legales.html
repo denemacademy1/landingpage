@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Mentions Légales | DENEM Academy</title>
+  <meta name="description" content="Mentions légales de DENEM Academy – Informations éditeur, hébergeur, propriété intellectuelle et données personnelles.">
+  <meta name="robots" content="noindex, follow">
+  <link rel="canonical" href="https://denemacademy.com/mentions-legales">
+  <meta property="og:title" content="Mentions Légales | DENEM Academy">
+  <meta property="og:url" content="https://denemacademy.com/mentions-legales">
+  <meta property="og:site_name" content="DENEM Academy">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <meta name="theme-color" content="#0D0C14">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@800;900&family=Syne:wght@700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0D0C14;
+      --violet: #6B5BFF;
+      --teal: #2DD4BF;
+      --nav-h: 72px;
+      --text: #E8E6F0;
+      --muted: #9B97B0;
+      --card-bg: #16141F;
+      --border: rgba(107,91,255,.18);
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; font-weight: 300; line-height: 1.7; min-height: 100vh; }
+
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      height: var(--nav-h);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5vw;
+      background: rgba(13,12,20,.92);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.3rem; color: #fff; text-decoration: none; letter-spacing: -.02em; }
+    .nav-logo span { color: var(--teal); }
+    .btn-nav {
+      background: var(--violet); color: #fff; border: none; border-radius: 10px;
+      padding: .55rem 1.3rem; font-family: 'DM Sans', sans-serif; font-size: .9rem; font-weight: 500;
+      cursor: pointer; text-decoration: none; transition: opacity .2s;
+    }
+    .btn-nav:hover { opacity: .85; }
+
+    /* BREADCRUMB */
+    .breadcrumb {
+      padding: 1.2rem 5vw .4rem;
+      font-size: .82rem; color: var(--muted);
+    }
+    .breadcrumb a { color: var(--teal); text-decoration: none; }
+    .breadcrumb a:hover { text-decoration: underline; }
+    .breadcrumb span { margin: 0 .4rem; }
+
+    /* HERO */
+    .page-hero {
+      padding: 3.5rem 5vw 2.5rem;
+      max-width: 860px; margin: 0 auto;
+    }
+    .page-hero h1 {
+      font-family: 'Poppins', sans-serif; font-weight: 900;
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      line-height: 1.1; letter-spacing: -.03em;
+      background: linear-gradient(135deg, #fff 30%, var(--teal) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .page-hero .last-update {
+      display: inline-block; margin-top: .9rem;
+      font-size: .8rem; color: var(--muted);
+      background: rgba(45,212,191,.08); border: 1px solid rgba(45,212,191,.2);
+      border-radius: 6px; padding: .25rem .7rem;
+    }
+
+    /* CONTENT */
+    .legal-content {
+      max-width: 860px; margin: 0 auto;
+      padding: 0 5vw 5rem;
+    }
+    .legal-section {
+      margin-bottom: 2.8rem;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem 2.2rem;
+    }
+    .legal-section h2 {
+      font-family: 'Poppins', sans-serif; font-weight: 900;
+      font-size: 1.1rem; text-transform: uppercase; letter-spacing: .08em;
+      color: var(--teal); margin-bottom: 1rem;
+    }
+    .legal-section p, .legal-section li {
+      font-size: .95rem; color: var(--text); line-height: 1.75;
+      margin-bottom: .55rem;
+    }
+    .legal-section ul { padding-left: 1.4rem; }
+    .legal-section li { list-style: disc; }
+    .legal-section strong { color: #fff; font-weight: 500; }
+    .legal-section a { color: var(--teal); text-decoration: none; }
+    .legal-section a:hover { text-decoration: underline; }
+
+    .info-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+    }
+    @media (max-width: 580px) { .info-grid { grid-template-columns: 1fr; } }
+    .info-item {
+      background: rgba(107,91,255,.07);
+      border: 1px solid var(--border);
+      border-radius: 10px; padding: .9rem 1.1rem;
+    }
+    .info-item .label { font-size: .72rem; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); margin-bottom: .25rem; }
+    .info-item .value { font-size: .95rem; color: #fff; font-weight: 400; }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2.5rem 5vw;
+      text-align: center;
+      font-size: .82rem; color: var(--muted);
+    }
+    .footer-links { display: flex; justify-content: center; flex-wrap: wrap; gap: .4rem 1.4rem; margin-bottom: 1rem; }
+    .footer-links a { color: var(--muted); text-decoration: none; transition: color .2s; }
+    .footer-links a:hover { color: var(--teal); }
+    .footer-links a.active { color: var(--teal); }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="/">DENEM <span>Academy</span></a>
+  <a class="btn-nav" href="/eligibilite">Tester mon éligibilité</a>
+</nav>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb">
+  <a href="/">Accueil</a><span>›</span> Mentions légales
+</div>
+
+<!-- HERO -->
+<div class="page-hero">
+  <h1>Mentions Légales</h1>
+  <span class="last-update">Mise à jour : 15 avril 2026</span>
+</div>
+
+<!-- CONTENT -->
+<div class="legal-content">
+
+  <!-- 1. ÉDITEUR -->
+  <div class="legal-section">
+    <h2>1. Éditeur du site</h2>
+    <p>Le site <strong>denemacademy.com</strong> est édité par :</p>
+    <div class="info-grid" style="margin-top:1rem;">
+      <div class="info-item"><div class="label">Raison sociale</div><div class="value">DENEM Group</div></div>
+      <div class="info-item"><div class="label">Forme juridique</div><div class="value">SAS (Société par Actions Simplifiée)</div></div>
+      <div class="info-item"><div class="label">SIREN</div><div class="value">994 763 712</div></div>
+      <div class="info-item"><div class="label">SIRET</div><div class="value">994 763 712 00019</div></div>
+      <div class="info-item"><div class="label">Code APE</div><div class="value">8559A – Autres enseignements</div></div>
+      <div class="info-item"><div class="label">Capital social</div><div class="value">1 000 €</div></div>
+      <div class="info-item"><div class="label">Directeur de publication</div><div class="value">Axel RIANDIERE</div></div>
+      <div class="info-item"><div class="label">Contact</div><div class="value"><a href="mailto:contact@denemacademy.com">contact@denemacademy.com</a></div></div>
+    </div>
+  </div>
+
+  <!-- 2. HÉBERGEMENT -->
+  <div class="legal-section">
+    <h2>2. Hébergement</h2>
+    <p>Le site est hébergé par :</p>
+    <div class="info-grid" style="margin-top:1rem;">
+      <div class="info-item"><div class="label">Société</div><div class="value">GitHub, Inc.</div></div>
+      <div class="info-item"><div class="label">Service</div><div class="value">GitHub Pages</div></div>
+      <div class="info-item"><div class="label">Adresse</div><div class="value">88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis</div></div>
+      <div class="info-item"><div class="label">Site</div><div class="value"><a href="https://pages.github.com" target="_blank" rel="noopener">pages.github.com</a></div></div>
+    </div>
+  </div>
+
+  <!-- 3. PROPRIÉTÉ INTELLECTUELLE -->
+  <div class="legal-section">
+    <h2>3. Propriété intellectuelle</h2>
+    <p>L'ensemble des contenus présents sur le site <strong>denemacademy.com</strong> (textes, images, vidéos, logos, graphismes, structure, code source) est la propriété exclusive de <strong>DENEM Group</strong> ou de ses partenaires, et est protégé par les lois françaises et internationales relatives à la propriété intellectuelle.</p>
+    <p>Toute reproduction, représentation, modification, publication, transmission ou dénaturation, totale ou partielle, du site ou de son contenu, par quelque procédé que ce soit, est interdite sans l'autorisation écrite préalable de DENEM Group.</p>
+    <p>Les marques et logos figurant sur le site sont des marques déposées. Toute reproduction sans autorisation constitue une contrefaçon susceptible d'engager la responsabilité civile et pénale du contrefacteur.</p>
+  </div>
+
+  <!-- 4. DONNÉES PERSONNELLES -->
+  <div class="legal-section">
+    <h2>4. Données personnelles</h2>
+    <p>DENEM Group collecte et traite des données personnelles dans le cadre de ses activités conformément au <strong>Règlement Général sur la Protection des Données (RGPD)</strong> et à la loi Informatique et Libertés.</p>
+    <p>Pour toute information relative au traitement de vos données personnelles, veuillez consulter notre <a href="/politique-confidentialite">Politique de Confidentialité</a>.</p>
+    <p>Vous pouvez exercer vos droits (accès, rectification, suppression, portabilité, opposition) en nous contactant à : <a href="mailto:contact@denemacademy.com">contact@denemacademy.com</a></p>
+  </div>
+
+  <!-- 5. COOKIES -->
+  <div class="legal-section">
+    <h2>5. Cookies</h2>
+    <p>Le site <strong>denemacademy.com</strong> peut utiliser des cookies techniques nécessaires à son bon fonctionnement. Ces cookies ne collectent pas de données personnelles à des fins de profilage ou de publicité ciblée.</p>
+    <p>Conformément à la réglementation en vigueur, vous avez la possibilité de paramétrer votre navigateur pour refuser ou supprimer les cookies. Toutefois, certaines fonctionnalités du site pourraient être altérées.</p>
+  </div>
+
+  <!-- 6. LIENS HYPERTEXTES -->
+  <div class="legal-section">
+    <h2>6. Liens hypertextes</h2>
+    <p>Le site peut contenir des liens vers des sites tiers. DENEM Group n'exerce aucun contrôle sur ces sites et décline toute responsabilité quant à leur contenu ou leurs pratiques en matière de confidentialité.</p>
+    <p>Tout lien hypertexte renvoyant vers le site <strong>denemacademy.com</strong> doit faire l'objet d'une autorisation préalable de DENEM Group.</p>
+  </div>
+
+  <!-- 7. LIMITATION DE RESPONSABILITÉ -->
+  <div class="legal-section">
+    <h2>7. Limitation de responsabilité</h2>
+    <p>DENEM Group met tout en œuvre pour assurer l'exactitude des informations diffusées sur le site. Toutefois, DENEM Group ne saurait être tenu responsable :</p>
+    <ul>
+      <li>des erreurs ou omissions dans les contenus publiés ;</li>
+      <li>des dommages directs ou indirects résultant de l'utilisation du site ;</li>
+      <li>des interruptions ou indisponibilités du site liées à des opérations de maintenance, des pannes ou des causes extérieures.</li>
+    </ul>
+    <p>Les résultats présentés sur le site (témoignages, chiffres) sont le fruit du travail et de l'engagement individuels des apprenants et ne constituent pas une garantie de revenus.</p>
+  </div>
+
+  <!-- 8. DROIT APPLICABLE -->
+  <div class="legal-section">
+    <h2>8. Droit applicable et juridiction</h2>
+    <p>Les présentes mentions légales sont régies par le <strong>droit français</strong>. En cas de litige, et à défaut de résolution amiable, les tribunaux français seront seuls compétents.</p>
+  </div>
+
+  <!-- 9. CONTACT -->
+  <div class="legal-section">
+    <h2>9. Contact</h2>
+    <p>Pour toute question ou réclamation relative au site, vous pouvez nous contacter :</p>
+    <ul>
+      <li>Par e-mail : <a href="mailto:contact@denemacademy.com">contact@denemacademy.com</a></li>
+      <li>Via le formulaire disponible sur <a href="/">denemacademy.com</a></li>
+    </ul>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-links">
+    <a href="/mentions-legales" class="active">Mentions légales</a>
+    <a href="/cgv">CGV</a>
+    <a href="/politique-confidentialite">Politique de confidentialité</a>
+    <a href="/">Accueil</a>
+  </div>
+  <p>© 2026 DENEM Group – SAS au capital de 1 000 € – SIREN 994 763 712</p>
+</footer>
+
+</body>
+</html>

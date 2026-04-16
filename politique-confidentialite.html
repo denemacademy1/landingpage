@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Politique de Confidentialité | DENEM Academy</title>
+  <meta name="description" content="Politique de confidentialité et protection des données personnelles de DENEM Academy – RGPD, droits des utilisateurs, cookies.">
+  <meta name="robots" content="noindex, follow">
+  <link rel="canonical" href="https://denemacademy.com/politique-confidentialite">
+  <meta property="og:title" content="Politique de Confidentialité | DENEM Academy">
+  <meta property="og:url" content="https://denemacademy.com/politique-confidentialite">
+  <meta property="og:site_name" content="DENEM Academy">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <meta name="theme-color" content="#0D0C14">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@800;900&family=Syne:wght@700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0D0C14;
+      --violet: #6B5BFF;
+      --teal: #2DD4BF;
+      --nav-h: 72px;
+      --text: #E8E6F0;
+      --muted: #9B97B0;
+      --card-bg: #16141F;
+      --border: rgba(107,91,255,.18);
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; font-weight: 300; line-height: 1.7; min-height: 100vh; }
+
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      height: var(--nav-h);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5vw;
+      background: rgba(13,12,20,.92);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.3rem; color: #fff; text-decoration: none; letter-spacing: -.02em; }
+    .nav-logo span { color: var(--teal); }
+    .btn-nav {
+      background: var(--violet); color: #fff; border: none; border-radius: 10px;
+      padding: .55rem 1.3rem; font-family: 'DM Sans', sans-serif; font-size: .9rem; font-weight: 500;
+      cursor: pointer; text-decoration: none; transition: opacity .2s;
+    }
+    .btn-nav:hover { opacity: .85; }
+
+    .breadcrumb { padding: 1.2rem 5vw .4rem; font-size: .82rem; color: var(--muted); }
+    .breadcrumb a { color: var(--teal); text-decoration: none; }
+    .breadcrumb a:hover { text-decoration: underline; }
+    .breadcrumb span { margin: 0 .4rem; }
+
+    .page-hero { padding: 3.5rem 5vw 2.5rem; max-width: 900px; margin: 0 auto; }
+    .page-hero h1 {
+      font-family: 'Poppins', sans-serif; font-weight: 900;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      line-height: 1.1; letter-spacing: -.03em;
+      background: linear-gradient(135deg, #fff 30%, var(--teal) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .page-hero .last-update {
+      display: inline-block; margin-top: .9rem;
+      font-size: .8rem; color: var(--muted);
+      background: rgba(45,212,191,.08); border: 1px solid rgba(45,212,191,.2);
+      border-radius: 6px; padding: .25rem .7rem;
+    }
+
+    .legal-content { max-width: 900px; margin: 0 auto; padding: 0 5vw 5rem; }
+
+    .legal-section {
+      margin-bottom: 2.4rem;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem 2.2rem;
+    }
+    .legal-section h2 {
+      font-family: 'Poppins', sans-serif; font-weight: 900;
+      font-size: 1.05rem; text-transform: uppercase; letter-spacing: .08em;
+      color: var(--teal); margin-bottom: 1rem;
+    }
+    .legal-section p, .legal-section li { font-size: .95rem; color: var(--text); line-height: 1.75; margin-bottom: .55rem; }
+    .legal-section ul { padding-left: 1.4rem; }
+    .legal-section li { list-style: disc; }
+    .legal-section strong { color: #fff; font-weight: 500; }
+    .legal-section a { color: var(--teal); text-decoration: none; }
+    .legal-section a:hover { text-decoration: underline; }
+
+    /* TABLE */
+    .legal-table { width: 100%; border-collapse: collapse; margin-top: 1rem; font-size: .88rem; overflow-x: auto; display: block; }
+    .legal-table th {
+      background: rgba(107,91,255,.15); color: var(--teal);
+      font-family: 'Poppins', sans-serif; font-weight: 900; font-size: .77rem;
+      text-transform: uppercase; letter-spacing: .07em;
+      padding: .65rem .9rem; text-align: left; border-bottom: 1px solid var(--border);
+      white-space: nowrap;
+    }
+    .legal-table td { padding: .65rem .9rem; border-bottom: 1px solid rgba(107,91,255,.08); color: var(--text); vertical-align: top; }
+    .legal-table tr:last-child td { border-bottom: none; }
+    .legal-table tr:nth-child(even) td { background: rgba(107,91,255,.04); }
+
+    /* RIGHTS GRID */
+    .rights-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1rem; margin-top: 1rem;
+    }
+    .right-card {
+      background: rgba(107,91,255,.07);
+      border: 1px solid var(--border);
+      border-radius: 12px; padding: 1.1rem 1.2rem;
+    }
+    .right-card h3 {
+      font-family: 'Poppins', sans-serif; font-weight: 900;
+      font-size: .85rem; color: var(--teal);
+      text-transform: uppercase; letter-spacing: .06em;
+      margin-bottom: .4rem; display: flex; align-items: center; gap: .4rem;
+    }
+    .right-card p { font-size: .87rem; color: var(--muted); margin: 0; }
+
+    /* CALLOUT */
+    .callout {
+      display: flex; gap: .8rem; align-items: flex-start;
+      background: rgba(45,212,191,.07);
+      border: 1px solid rgba(45,212,191,.25);
+      border-radius: 10px; padding: 1rem 1.2rem; margin-top: 1rem;
+    }
+    .callout-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: .15rem; }
+    .callout p { font-size: .9rem; color: var(--text); margin: 0; }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2.5rem 5vw; text-align: center;
+      font-size: .82rem; color: var(--muted);
+    }
+    .footer-links { display: flex; justify-content: center; flex-wrap: wrap; gap: .4rem 1.4rem; margin-bottom: 1rem; }
+    .footer-links a { color: var(--muted); text-decoration: none; transition: color .2s; }
+    .footer-links a:hover, .footer-links a.active { color: var(--teal); }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="/">DENEM <span>Academy</span></a>
+  <a class="btn-nav" href="/eligibilite">Tester mon éligibilité</a>
+</nav>
+
+<div class="breadcrumb">
+  <a href="/">Accueil</a><span>›</span> Politique de confidentialité
+</div>
+
+<div class="page-hero">
+  <h1>Politique de Confidentialité</h1>
+  <span class="last-update">Mise à jour : 15 avril 2026</span>
+</div>
+
+<div class="legal-content">
+
+  <!-- 1. INTRODUCTION -->
+  <div class="legal-section">
+    <h2>1. Introduction et engagements</h2>
+    <p>La protection de vos données personnelles est une priorité pour <strong>DENEM Group</strong> (SAS, SIREN 994 763 712, ci-après « DENEM Academy »). La présente politique de confidentialité décrit comment nous collectons, utilisons, stockons et protégeons vos données personnelles conformément au <strong>Règlement Général sur la Protection des Données (RGPD, UE 2016/679)</strong> et à la loi française Informatique et Libertés.</p>
+    <p>En utilisant le site <strong>denemacademy.com</strong> ou en souscrivant à nos formations, vous reconnaissez avoir pris connaissance de cette politique.</p>
+  </div>
+
+  <!-- 2. RESPONSABLE DU TRAITEMENT -->
+  <div class="legal-section">
+    <h2>2. Responsable du traitement</h2>
+    <p><strong>Dénomination :</strong> DENEM Group</p>
+    <p><strong>Forme juridique :</strong> SAS – SIREN 994 763 712</p>
+    <p><strong>Représentant légal :</strong> Axel RIANDIERE</p>
+    <p><strong>Contact DPO / Responsable données :</strong> <a href="mailto:contact@denemacademy.com">contact@denemacademy.com</a></p>
+  </div>
+
+  <!-- 3. DONNÉES COLLECTÉES -->
+  <div class="legal-section">
+    <h2>3. Données personnelles collectées</h2>
+    <p>Nous collectons les catégories de données suivantes :</p>
+    <table class="legal-table">
+      <thead>
+        <tr>
+          <th>Catégorie</th>
+          <th>Données</th>
+          <th>Finalité</th>
+          <th>Base légale</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Identification</strong></td>
+          <td>Prénom, nom, adresse e-mail</td>
+          <td>Création de compte, accès formation, facturation</td>
+          <td>Exécution du contrat</td>
+        </tr>
+        <tr>
+          <td><strong>Test d'éligibilité</strong></td>
+          <td>Réponses au questionnaire (situation, objectifs, disponibilité)</td>
+          <td>Qualification du profil, personnalisation de l'offre</td>
+          <td>Intérêt légitime / Consentement</td>
+        </tr>
+        <tr>
+          <td><strong>Navigation</strong></td>
+          <td>Adresse IP, pages visitées, durée de session, device</td>
+          <td>Amélioration du site, sécurité, statistiques anonymes</td>
+          <td>Intérêt légitime</td>
+        </tr>
+        <tr>
+          <td><strong>Communication</strong></td>
+          <td>Historique des échanges par e-mail ou chat</td>
+          <td>Support client, suivi pédagogique</td>
+          <td>Exécution du contrat</td>
+        </tr>
+        <tr>
+          <td><strong>Marketing</strong></td>
+          <td>Adresse e-mail, préférences, comportement sur les e-mails</td>
+          <td>Envoi de contenus pédagogiques, promotions, newsletter</td>
+          <td>Consentement</td>
+        </tr>
+        <tr>
+          <td><strong>Paiement</strong></td>
+          <td>Données de facturation (nom, adresse, montant)</td>
+          <td>Traitement des transactions, facturation</td>
+          <td>Exécution du contrat / Obligation légale</td>
+        </tr>
+      </tbody>
+    </table>
+    <p style="margin-top:.9rem;">Nous ne collectons jamais de données dites sensibles (santé, opinions politiques, appartenance syndicale, etc.).</p>
+  </div>
+
+  <!-- 4. SOURCES DES DONNÉES -->
+  <div class="legal-section">
+    <h2>4. Sources des données</h2>
+    <p>Vos données sont collectées directement auprès de vous via :</p>
+    <ul>
+      <li>Le formulaire de test d'éligibilité sur <a href="/eligibilite">denemacademy.com/eligibilite</a> ;</li>
+      <li>Le processus de commande et de création de compte ;</li>
+      <li>Les interactions avec notre équipe (e-mail, chat, appels) ;</li>
+      <li>La navigation sur notre site (cookies et outils d'analyse).</li>
+    </ul>
+  </div>
+
+  <!-- 5. DURÉE DE CONSERVATION -->
+  <div class="legal-section">
+    <h2>5. Durée de conservation</h2>
+    <table class="legal-table">
+      <thead>
+        <tr><th>Type de données</th><th>Durée de conservation</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Données de compte et formation</td><td>Durée de la relation contractuelle + 3 ans</td></tr>
+        <tr><td>Données de facturation</td><td>10 ans (obligation comptable légale)</td></tr>
+        <tr><td>Prospects et leads (test d'éligibilité)</td><td>3 ans à compter du dernier contact</td></tr>
+        <tr><td>Données marketing / newsletter</td><td>Jusqu'au désabonnement ou 3 ans d'inactivité</td></tr>
+        <tr><td>Logs de connexion et sécurité</td><td>12 mois</td></tr>
+        <tr><td>Cookies analytiques</td><td>13 mois maximum</td></tr>
+      </tbody>
+    </table>
+    <p style="margin-top:.9rem;">Au terme de ces durées, vos données sont supprimées ou anonymisées de manière irréversible.</p>
+  </div>
+
+  <!-- 6. DESTINATAIRES -->
+  <div class="legal-section">
+    <h2>6. Destinataires des données</h2>
+    <p>Vos données peuvent être partagées avec les sous-traitants suivants, dans le strict respect du RGPD :</p>
+    <table class="legal-table">
+      <thead>
+        <tr><th>Prestataire</th><th>Rôle</th><th>Localisation</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Firebase (Google LLC)</td><td>Base de données et authentification</td><td>États-Unis (clauses SCCs)</td></tr>
+        <tr><td>n8n / automation</td><td>Automatisation des séquences e-mail</td><td>EU / Cloud</td></tr>
+        <tr><td>Resend / Brevo</td><td>Envoi des e-mails transactionnels et marketing</td><td>UE / États-Unis (DPA)</td></tr>
+        <tr><td>Prestataire paiement</td><td>Traitement sécurisé des paiements</td><td>UE</td></tr>
+        <tr><td>GitHub Pages</td><td>Hébergement du site</td><td>États-Unis (clauses SCCs)</td></tr>
+      </tbody>
+    </table>
+    <p style="margin-top:.9rem;">Nous n'autorisons jamais nos sous-traitants à utiliser vos données à leurs propres fins. Aucune donnée n'est vendue à des tiers.</p>
+  </div>
+
+  <!-- 7. TRANSFERTS INTERNATIONAUX -->
+  <div class="legal-section">
+    <h2>7. Transferts hors UE</h2>
+    <p>Certains de nos prestataires sont établis aux États-Unis. Ces transferts sont encadrés par des <strong>clauses contractuelles types (CCT)</strong> approuvées par la Commission européenne, garantissant un niveau de protection adéquat de vos données.</p>
+    <p>Pour toute information sur les garanties mises en place, contactez-nous à : <a href="mailto:contact@denemacademy.com">contact@denemacademy.com</a></p>
+  </div>
+
+  <!-- 8. DROITS DES PERSONNES -->
+  <div class="legal-section">
+    <h2>8. Vos droits RGPD</h2>
+    <p>Conformément au RGPD, vous disposez des droits suivants sur vos données personnelles :</p>
+    <div class="rights-grid">
+      <div class="right-card">
+        <h3>📋 Droit d'accès</h3>
+        <p>Obtenir une copie de toutes vos données personnelles que nous détenons.</p>
+      </div>
+      <div class="right-card">
+        <h3>✏️ Droit de rectification</h3>
+        <p>Corriger des données inexactes ou incomplètes vous concernant.</p>
+      </div>
+      <div class="right-card">
+        <h3>🗑️ Droit à l'effacement</h3>
+        <p>Demander la suppression de vos données (« droit à l'oubli »).</p>
+      </div>
+      <div class="right-card">
+        <h3>⏸️ Droit à la limitation</h3>
+        <p>Suspendre temporairement le traitement de vos données.</p>
+      </div>
+      <div class="right-card">
+        <h3>📦 Droit à la portabilité</h3>
+        <p>Recevoir vos données dans un format structuré et lisible par machine.</p>
+      </div>
+      <div class="right-card">
+        <h3>🚫 Droit d'opposition</h3>
+        <p>Vous opposer au traitement de vos données, notamment à des fins marketing.</p>
+      </div>
+      <div class="right-card">
+        <h3>🤖 Profil automatisé</h3>
+        <p>Ne pas faire l'objet d'une décision uniquement basée sur un traitement automatisé.</p>
+      </div>
+      <div class="right-card">
+        <h3>↩️ Retrait du consentement</h3>
+        <p>Retirer à tout moment un consentement préalablement donné.</p>
+      </div>
+    </div>
+    <div class="callout" style="margin-top:1.2rem;">
+      <div class="callout-icon">📩</div>
+      <p>Pour exercer l'un de ces droits, envoyez votre demande (avec justificatif d'identité si nécessaire) à : <a href="mailto:contact@denemacademy.com">contact@denemacademy.com</a>. Nous répondrons dans un délai maximum de <strong>30 jours</strong>.</p>
+    </div>
+  </div>
+
+  <!-- 9. MARKETING ET DÉSINSCRIPTION -->
+  <div class="legal-section">
+    <h2>9. Communications marketing et désinscription</h2>
+    <p>Si vous avez consenti à recevoir nos communications marketing (newsletter, séquences e-mail pédagogiques, offres de formation), vous pouvez vous désinscrire à tout moment :</p>
+    <ul>
+      <li>En cliquant sur le lien de désinscription présent dans chaque e-mail ;</li>
+      <li>En envoyant un e-mail à <a href="mailto:contact@denemacademy.com">contact@denemacademy.com</a> avec l'objet « Désinscription » ;</li>
+      <li>En modifiant vos préférences de communication depuis votre espace personnel.</li>
+    </ul>
+    <p>La désinscription est effective immédiatement et ne vaut que pour les communications marketing. Elle n'affecte pas les communications transactionnelles liées à votre commande ou accès à la formation.</p>
+  </div>
+
+  <!-- 10. COOKIES -->
+  <div class="legal-section">
+    <h2>10. Cookies et traceurs</h2>
+    <p>Notre site utilise des cookies pour améliorer votre expérience. Voici les types de cookies utilisés :</p>
+    <table class="legal-table">
+      <thead>
+        <tr><th>Type</th><th>Nom / Service</th><th>Finalité</th><th>Durée</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Essentiels</strong></td><td>Session, préférences</td><td>Fonctionnement du site</td><td>Session</td></tr>
+        <tr><td><strong>Analytiques</strong></td><td>Google Analytics (optionnel)</td><td>Statistiques de navigation anonymes</td><td>13 mois</td></tr>
+        <tr><td><strong>Fonctionnels</strong></td><td>Firebase Auth</td><td>Maintien de la session authentifiée</td><td>30 jours</td></tr>
+      </tbody>
+    </table>
+    <p style="margin-top:.9rem;">Vous pouvez paramétrer votre navigateur pour refuser les cookies non essentiels. Cela peut affecter certaines fonctionnalités du site. Pour en savoir plus : <a href="https://www.cnil.fr/fr/cookies-et-autres-traceurs" target="_blank" rel="noopener">cnil.fr – Cookies et traceurs</a>.</p>
+  </div>
+
+  <!-- 11. SÉCURITÉ -->
+  <div class="legal-section">
+    <h2>11. Sécurité des données</h2>
+    <p>DENEM Group met en œuvre des mesures techniques et organisationnelles appropriées pour protéger vos données contre tout accès non autorisé, modification, divulgation ou destruction :</p>
+    <ul>
+      <li>Chiffrement des données en transit (TLS/SSL) et au repos ;</li>
+      <li>Accès aux données restreint au personnel habilité ;</li>
+      <li>Authentification renforcée pour les accès administrateurs ;</li>
+      <li>Sauvegardes régulières des données ;</li>
+      <li>Surveillance des accès et logs de sécurité.</li>
+    </ul>
+    <p>En cas de violation de données susceptible d'engendrer un risque élevé pour vos droits et libertés, DENEM Group s'engage à vous notifier dans les <strong>72 heures</strong> conformément à l'article 33 du RGPD.</p>
+  </div>
+
+  <!-- 12. MINEURS -->
+  <div class="legal-section">
+    <h2>12. Mineurs</h2>
+    <p>Nos services sont destinés aux personnes âgées de <strong>18 ans et plus</strong>. Nous ne collectons pas sciemment de données personnelles concernant des mineurs. Si vous êtes parent ou tuteur légal et pensez que votre enfant nous a fourni des données personnelles, contactez-nous à <a href="mailto:contact@denemacademy.com">contact@denemacademy.com</a> afin que nous puissions les supprimer.</p>
+  </div>
+
+  <!-- 13. RÉCLAMATION CNIL -->
+  <div class="legal-section">
+    <h2>13. Réclamation auprès de la CNIL</h2>
+    <p>Si vous estimez, après nous avoir contactés, que vos droits sur vos données ne sont pas respectés, vous avez le droit d'introduire une réclamation auprès de l'autorité de contrôle compétente :</p>
+    <div class="callout">
+      <div class="callout-icon">🏛️</div>
+      <p>
+        <strong>Commission Nationale de l'Informatique et des Libertés (CNIL)</strong><br>
+        3 Place de Fontenoy – TSA 80715 – 75334 Paris Cedex 07<br>
+        Tél. : 01 53 73 22 22<br>
+        Site : <a href="https://www.cnil.fr" target="_blank" rel="noopener">www.cnil.fr</a>
+      </p>
+    </div>
+    <p style="margin-top:.9rem;">Nous vous encourageons à nous contacter en premier lieu afin que nous puissions résoudre votre préoccupation directement.</p>
+  </div>
+
+  <!-- MISE À JOUR -->
+  <div class="legal-section">
+    <h2>Modifications de cette politique</h2>
+    <p>DENEM Group se réserve le droit de modifier la présente politique de confidentialité à tout moment pour l'adapter aux évolutions légales ou à nos pratiques. La date de dernière mise à jour est indiquée en haut de cette page.</p>
+    <p>En cas de modification substantielle, vous en serez informé par e-mail ou par une notification sur le site. Votre utilisation continue du site après modification vaut acceptation de la nouvelle politique.</p>
+    <p>Pour toute question : <a href="mailto:contact@denemacademy.com">contact@denemacademy.com</a></p>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-links">
+    <a href="/mentions-legales">Mentions légales</a>
+    <a href="/cgv">CGV</a>
+    <a href="/politique-confidentialite" class="active">Politique de confidentialité</a>
+    <a href="/">Accueil</a>
+  </div>
+  <p>© 2026 DENEM Group – SAS au capital de 1 000 € – SIREN 994 763 712</p>
+</footer>
+
+</body>
+</html>
