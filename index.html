@@ -1172,7 +1172,7 @@ section { padding: 96px 24px; }
    ============================================= */
 #marche { background: var(--bg-alt); }
 
-/* ── Mur de demande : deux rangées défilantes ── */
+/* ── Mur de demande : trois rangées défilantes ── */
 .demand-wall {
   margin: 44px 0 12px;
   overflow: hidden;
@@ -1188,20 +1188,21 @@ section { padding: 96px 24px; }
   gap: 14px;
   width: max-content;
 }
-.demand-row--left  { animation: demand-scroll-left  38s linear infinite; }
-.demand-row--right { animation: demand-scroll-right 42s linear infinite; }
-.demand-row:hover  { animation-play-state: paused; }
+.demand-row--left   { animation: demand-scroll-left  40s linear infinite; }
+.demand-row--right  { animation: demand-scroll-right 48s linear infinite; }
+.demand-row--left2  { animation: demand-scroll-left  32s linear infinite; }
+.demand-row:hover   { animation-play-state: paused; }
 @keyframes demand-scroll-left  { 0% { transform: translateX(0); }    100% { transform: translateX(-50%); } }
 @keyframes demand-scroll-right { 0% { transform: translateX(-50%); } 100% { transform: translateX(0); } }
 
+/* Carte de base */
 .demand-card {
   flex-shrink: 0;
-  width: 220px;
-  border-radius: 14px;
+  border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.45);
   border: 1px solid rgba(255,255,255,0.09);
-  background: rgba(255,255,255,0.04);
+  background: #fff;
   transition: transform .25s, box-shadow .25s;
   cursor: default;
 }
@@ -1211,7 +1212,19 @@ section { padding: 96px 24px; }
   border-color: rgba(45,212,191,0.35);
   z-index: 5;
 }
-.demand-card img { width: 100%; display: block; }
+.demand-card img { display: block; }
+
+/* Rangée portraits (offres formelles, ratio ~0.85) — hauteur fixe, largeur auto */
+.demand-row--portrait .demand-card      { height: 260px; }
+.demand-row--portrait .demand-card img  { height: 100%; width: auto; }
+
+/* Rangée posts (posts LinkedIn paysage modéré, ratio 1.4-2.2) — hauteur fixe */
+.demand-row--posts .demand-card     { height: 210px; }
+.demand-row--posts .demand-card img { height: 100%; width: auto; }
+
+/* Rangée bannières (offres compactes ultra-larges, ratio 3-5) — hauteur fine */
+.demand-row--banners .demand-card     { height: 74px; }
+.demand-row--banners .demand-card img { height: 100%; width: auto; }
 
 .demand-label {
   display: flex;
@@ -1259,7 +1272,9 @@ section { padding: 96px 24px; }
 }
 .gap-reason-text strong { color: #fff; }
 @media(max-width:600px) {
-  .demand-card { width: 165px; }
+  .demand-row--portrait .demand-card  { height: 180px; }
+  .demand-row--posts .demand-card     { height: 148px; }
+  .demand-row--banners .demand-card   { height: 56px; }
   .gap-reason  { padding: 24px 20px; }
 }
 
@@ -4776,15 +4791,49 @@ section { position: relative; z-index: 1; }
     <h2 class="section-title fade-up">Des entreprises qui cherchent. Personne pour répondre.</h2>
     <p class="marche-intro fade-up delay-1">Chaque semaine, des centaines d'offres d'emploi et de posts LinkedIn cherchent un Expert IA sans jamais trouver personne. La demande est si forte — et si récente — qu'il n'existe pas encore assez de profils formés pour y répondre. C'est précisément pour ça que DENEM existe. Et c'est une fenêtre d'opportunité historique pour construire une véritable carrière dans l'IA.</p>
 
-    <!-- Mur de demande : deux rangées défilantes -->
+    <!-- Mur de demande : trois rangées défilantes par type d'image -->
     <div class="demand-wall fade-up delay-2" aria-label="Exemples réels de demandes d'experts IA">
 
-      <!-- Rangée 1 (→ gauche) : offres formelles LinkedIn -->
-      <div class="demand-row demand-row--left">
+      <!-- Rangée 1 (→ gauche) : offres portrait LinkedIn (ratio ~0.85) -->
+      <div class="demand-row demand-row--left demand-row--portrait">
         <div class="demand-card"><img src="ee1.png" alt="Offre Expert en Intelligence Artificielle H/F 100K-150K €/an" loading="lazy" decoding="async"></div>
         <div class="demand-card"><img src="ee2.png" alt="Offre Expert IA H/F 12 000 €/mois" loading="lazy" decoding="async"></div>
         <div class="demand-card"><img src="ee3.png" alt="Offre Expert IA Freelance 8K-15K €/mois" loading="lazy" decoding="async"></div>
         <div class="demand-card"><img src="ee4.png" alt="Offre Expert IA H/F 110K-180K €/an" loading="lazy" decoding="async"></div>
+        <div class="demand-card"><img src="ee6.png" alt="Post LinkedIn - Colin Dargent cherche experts IA automation no-code" loading="lazy" decoding="async"></div>
+        <div class="demand-card"><img src="ee7.png" alt="Post LinkedIn - CEO Agence Short cherche expert IA" loading="lazy" decoding="async"></div>
+        <div class="demand-card"><img src="ee21.jpg" alt="Offre recrutement 2 consultants coachs IA 5000-8000 euros par mois" loading="lazy" decoding="async"></div>
+        <!-- duplicate pour scroll infini -->
+        <div class="demand-card"><img src="ee1.png" alt="" loading="lazy" decoding="async"></div>
+        <div class="demand-card"><img src="ee2.png" alt="" loading="lazy" decoding="async"></div>
+        <div class="demand-card"><img src="ee3.png" alt="" loading="lazy" decoding="async"></div>
+        <div class="demand-card"><img src="ee4.png" alt="" loading="lazy" decoding="async"></div>
+        <div class="demand-card"><img src="ee6.png" alt="" loading="lazy" decoding="async"></div>
+        <div class="demand-card"><img src="ee7.png" alt="" loading="lazy" decoding="async"></div>
+        <div class="demand-card"><img src="ee21.jpg" alt="" loading="lazy" decoding="async"></div>
+      </div>
+
+      <!-- Rangée 2 (→ droite) : posts paysage de dirigeants (ratio 1.4-2.2) -->
+      <div class="demand-row demand-row--right demand-row--posts">
+        <div class="demand-card"><img src="ee5.png" alt="Post LinkedIn - dirigeant offre 500€ pour trouver un expert IA" loading="lazy" decoding="async"></div>
+        <div class="demand-card"><img src="ee9.png" alt="Post LinkedIn - CEO WheelOfWork cherche expert agents IA" loading="lazy" decoding="async"></div>
+        <div class="demand-card"><img src="ee10.png" alt="Post LinkedIn - recrutement expert garde-fous IA freelance" loading="lazy" decoding="async"></div>
+        <div class="demand-card"><img src="ee12.png" alt="Post LinkedIn - recherche expert IA image vidéo webinaire" loading="lazy" decoding="async"></div>
+        <div class="demand-card"><img src="ee13.png" alt="Post LinkedIn - Alpha Marketing cherche expert IA automatisation" loading="lazy" decoding="async"></div>
+        <div class="demand-card"><img src="ee14.png" alt="Post LinkedIn - startup low-code cherche expert IA" loading="lazy" decoding="async"></div>
+        <!-- duplicate pour scroll infini -->
+        <div class="demand-card"><img src="ee5.png" alt="" loading="lazy" decoding="async"></div>
+        <div class="demand-card"><img src="ee9.png" alt="" loading="lazy" decoding="async"></div>
+        <div class="demand-card"><img src="ee10.png" alt="" loading="lazy" decoding="async"></div>
+        <div class="demand-card"><img src="ee12.png" alt="" loading="lazy" decoding="async"></div>
+        <div class="demand-card"><img src="ee13.png" alt="" loading="lazy" decoding="async"></div>
+        <div class="demand-card"><img src="ee14.png" alt="" loading="lazy" decoding="async"></div>
+      </div>
+
+      <!-- Rangée 3 (→ gauche) : bannières ultra-larges (ratio 2.6-4.9) -->
+      <div class="demand-row demand-row--left2 demand-row--banners">
+        <div class="demand-card"><img src="ee8.png" alt="Post LinkedIn - CEO Prizm cherche expert IA en entreprise" loading="lazy" decoding="async"></div>
+        <div class="demand-card"><img src="ee11.png" alt="Post LinkedIn - recherche intervenant IA secteur bancaire" loading="lazy" decoding="async"></div>
         <div class="demand-card"><img src="ee15.png" alt="Offre Consultant IA ATECNA - Soyez l'un des premiers candidats" loading="lazy" decoding="async"></div>
         <div class="demand-card"><img src="ee16.png" alt="Offre Expert(e) IA Klint Paris" loading="lazy" decoding="async"></div>
         <div class="demand-card"><img src="ee17.png" alt="Offre Expert Lead IA générative Objectware Lille" loading="lazy" decoding="async"></div>
@@ -4792,10 +4841,8 @@ section { position: relative; z-index: 1; }
         <div class="demand-card"><img src="ee19.png" alt="Offre Expert IA Générative Inetum Bordeaux" loading="lazy" decoding="async"></div>
         <div class="demand-card"><img src="ee20.png" alt="Offre Expert IA Assurance Vallée Lyon" loading="lazy" decoding="async"></div>
         <!-- duplicate pour scroll infini -->
-        <div class="demand-card"><img src="ee1.png" alt="" loading="lazy" decoding="async"></div>
-        <div class="demand-card"><img src="ee2.png" alt="" loading="lazy" decoding="async"></div>
-        <div class="demand-card"><img src="ee3.png" alt="" loading="lazy" decoding="async"></div>
-        <div class="demand-card"><img src="ee4.png" alt="" loading="lazy" decoding="async"></div>
+        <div class="demand-card"><img src="ee8.png" alt="" loading="lazy" decoding="async"></div>
+        <div class="demand-card"><img src="ee11.png" alt="" loading="lazy" decoding="async"></div>
         <div class="demand-card"><img src="ee15.png" alt="" loading="lazy" decoding="async"></div>
         <div class="demand-card"><img src="ee16.png" alt="" loading="lazy" decoding="async"></div>
         <div class="demand-card"><img src="ee17.png" alt="" loading="lazy" decoding="async"></div>
@@ -4803,39 +4850,13 @@ section { position: relative; z-index: 1; }
         <div class="demand-card"><img src="ee19.png" alt="" loading="lazy" decoding="async"></div>
         <div class="demand-card"><img src="ee20.png" alt="" loading="lazy" decoding="async"></div>
       </div>
-
-      <!-- Rangée 2 (→ droite) : posts organiques de dirigeants -->
-      <div class="demand-row demand-row--right">
-        <div class="demand-card"><img src="ee5.png" alt="Post LinkedIn - dirigeant offre 500€ pour trouver un expert IA" loading="lazy" decoding="async"></div>
-        <div class="demand-card"><img src="ee6.png" alt="Post LinkedIn - Colin Dargent cherche experts IA automation no-code" loading="lazy" decoding="async"></div>
-        <div class="demand-card"><img src="ee7.png" alt="Post LinkedIn - CEO Agence Short cherche expert IA" loading="lazy" decoding="async"></div>
-        <div class="demand-card"><img src="ee8.png" alt="Post LinkedIn - CEO Prizm cherche expert IA en entreprise" loading="lazy" decoding="async"></div>
-        <div class="demand-card"><img src="ee9.png" alt="Post LinkedIn - CEO WheelOfWork cherche expert agents IA" loading="lazy" decoding="async"></div>
-        <div class="demand-card"><img src="ee10.png" alt="Post LinkedIn - recrutement expert garde-fous IA freelance" loading="lazy" decoding="async"></div>
-        <div class="demand-card"><img src="ee11.png" alt="Post LinkedIn - recherche intervenant IA secteur bancaire" loading="lazy" decoding="async"></div>
-        <div class="demand-card"><img src="ee12.png" alt="Post LinkedIn - recherche expert IA image vidéo webinaire" loading="lazy" decoding="async"></div>
-        <div class="demand-card"><img src="ee13.png" alt="Post LinkedIn - Alpha Marketing cherche expert IA automatisation" loading="lazy" decoding="async"></div>
-        <div class="demand-card"><img src="ee14.png" alt="Post LinkedIn - startup low-code cherche expert IA" loading="lazy" decoding="async"></div>
-        <div class="demand-card"><img src="ee21.jpg" alt="Offre recrutement 2 consultants coachs IA 5000-8000 euros par mois" loading="lazy" decoding="async"></div>
-        <!-- duplicate pour scroll infini -->
-        <div class="demand-card"><img src="ee5.png" alt="" loading="lazy" decoding="async"></div>
-        <div class="demand-card"><img src="ee6.png" alt="" loading="lazy" decoding="async"></div>
-        <div class="demand-card"><img src="ee7.png" alt="" loading="lazy" decoding="async"></div>
-        <div class="demand-card"><img src="ee8.png" alt="" loading="lazy" decoding="async"></div>
-        <div class="demand-card"><img src="ee9.png" alt="" loading="lazy" decoding="async"></div>
-        <div class="demand-card"><img src="ee10.png" alt="" loading="lazy" decoding="async"></div>
-        <div class="demand-card"><img src="ee11.png" alt="" loading="lazy" decoding="async"></div>
-        <div class="demand-card"><img src="ee12.png" alt="" loading="lazy" decoding="async"></div>
-        <div class="demand-card"><img src="ee13.png" alt="" loading="lazy" decoding="async"></div>
-        <div class="demand-card"><img src="ee14.png" alt="" loading="lazy" decoding="async"></div>
-        <div class="demand-card"><img src="ee21.jpg" alt="" loading="lazy" decoding="async"></div>
-      </div>
     </div>
 
-    <!-- Légende + explication -->
+    <!-- Légende -->
     <div class="demand-label fade-up delay-3">
-      <span class="demand-label-item"><span class="demand-label-dot demand-label-dot--blue"></span>Offres formelles LinkedIn (100K–180K €/an)</span>
+      <span class="demand-label-item"><span class="demand-label-dot demand-label-dot--blue"></span>Offres formelles (100K–180K €/an · 8K–15K €/mois)</span>
       <span class="demand-label-item"><span class="demand-label-dot demand-label-dot--teal"></span>Dirigeants qui cherchent sur leur réseau</span>
+      <span class="demand-label-item"><span class="demand-label-dot" style="background:#a78bfa"></span>Postes hybrides et missions (toutes villes)</span>
     </div>
 
     <!-- Bloc "pourquoi on existe" -->
