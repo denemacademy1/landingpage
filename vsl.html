@@ -351,6 +351,41 @@
     }
     .capture-img:hover { transform: scale(1.02); box-shadow: 0 8px 32px rgba(0,0,0,.5); }
 
+    /* TICKER */
+    @keyframes scroll-left {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .ticker {
+      background: linear-gradient(90deg, #1a0840 0%, #2a1060 40%, #1e0a50 70%, #1a0840 100%);
+      border-top: 1px solid rgba(192,132,252,.25);
+      border-bottom: 1px solid rgba(192,132,252,.25);
+      height: 100px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+    }
+    .ticker-track {
+      display: flex; align-items: center;
+      white-space: nowrap;
+      animation: scroll-left 110s linear infinite;
+      will-change: transform;
+    }
+    .ticker-text {
+      font-family: 'Syne', sans-serif; font-weight: 700; font-size: 20px;
+      padding: 0 52px; white-space: nowrap;
+      background: linear-gradient(90deg, #e879f9, #c084fc, #f0abfc);
+      background-clip: text; -webkit-background-clip: text; color: transparent;
+      letter-spacing: .5px;
+    }
+    .ticker-logo { display: inline-flex; align-items: center; padding: 0 44px; flex-shrink: 0; }
+    .ticker-logo img {
+      height: 130px; width: auto; max-width: 300px;
+      object-fit: contain; display: block;
+      filter: brightness(0) invert(1); opacity: .92;
+    }
+    .ticker-sep { color: rgba(192,132,252,.4); font-size: 10px; padding: 0 2px; }
+
     @media (max-width: 768px) {
       .hero { grid-template-columns: 1fr; gap: 32px; padding: 40px 20px 48px; }
       .badge { align-self: center; }
@@ -445,15 +480,58 @@
 
 </main>
 
-<!-- RUBAN LOGOS -->
-<div style="border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:rgba(255,255,255,.02);padding:20px 5vw">
-  <div style="max-width:1120px;margin:0 auto;display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap">
-    <span style="font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px;white-space:nowrap;margin-right:8px">Méthode testée chez</span>
-    <img src="logos/canal.png" alt="Canal+" style="height:24px;filter:brightness(0) invert(1);opacity:.6" onerror="this.style.display='none'">
-    <img src="logos/edf.png" alt="EDF" style="height:24px;filter:brightness(0) invert(1);opacity:.6" onerror="this.style.display='none'">
-    <img src="logos/ca.png" alt="Crédit Agricole" style="height:24px;filter:brightness(0) invert(1);opacity:.6" onerror="this.style.display='none'">
-    <img src="logos/veolia.png" alt="Véolia" style="height:24px;filter:brightness(0) invert(1);opacity:.6" onerror="this.style.display='none'">
-    <span style="font-size:.78rem;color:var(--muted);margin-left:4px">+ 250 projets livrés</span>
+<!-- TICKER DÉFILANT -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span class="ticker-text">Expert IA Freelance</span><span class="ticker-sep">·</span>
+    <span class="ticker-logo"><img src="logos/46.png" alt="" width="40" height="40" loading="lazy"></span><span class="ticker-sep">·</span>
+    <span class="ticker-text">Formation IA Premium</span><span class="ticker-sep">·</span>
+    <span class="ticker-logo"><img src="logos/47.png" alt="" width="40" height="40" loading="lazy"></span><span class="ticker-sep">·</span>
+    <span class="ticker-text">Reconversion IA</span><span class="ticker-sep">·</span>
+    <span class="ticker-logo"><img src="logos/48.png" alt="" width="40" height="40" loading="lazy"></span><span class="ticker-sep">·</span>
+    <span class="ticker-text">Consultant IA PME</span><span class="ticker-sep">·</span>
+    <span class="ticker-logo"><img src="logos/49.png" alt="" width="40" height="40" loading="lazy"></span><span class="ticker-sep">·</span>
+    <span class="ticker-text">Méthode B.T.D</span><span class="ticker-sep">·</span>
+    <span class="ticker-logo"><img src="logos/50.png" alt="" width="40" height="40" loading="lazy"></span><span class="ticker-sep">·</span>
+    <span class="ticker-text">Audit IA</span><span class="ticker-sep">·</span>
+    <span class="ticker-logo"><img src="logos/51.png" alt="" width="40" height="40" loading="lazy"></span><span class="ticker-sep">·</span>
+    <span class="ticker-text">Automatisation IA</span><span class="ticker-sep">·</span>
+    <span class="ticker-logo"><img src="logos/46.png" alt="" width="40" height="40" loading="lazy"></span><span class="ticker-sep">·</span>
+    <span class="ticker-text">Implémentation IA</span><span class="ticker-sep">·</span>
+    <span class="ticker-logo"><img src="logos/47.png" alt="" width="40" height="40" loading="lazy"></span><span class="ticker-sep">·</span>
+    <span class="ticker-text">Coaching Expert IA</span><span class="ticker-sep">·</span>
+    <span class="ticker-logo"><img src="logos/48.png" alt="" width="40" height="40" loading="lazy"></span><span class="ticker-sep">·</span>
+    <span class="ticker-text">Système IA pour PME</span><span class="ticker-sep">·</span>
+    <span class="ticker-logo"><img src="logos/49.png" alt="" width="40" height="40" loading="lazy"></span><span class="ticker-sep">·</span>
+    <span class="ticker-text">Architecte IA</span><span class="ticker-sep">·</span>
+    <span class="ticker-logo"><img src="logos/50.png" alt="" width="40" height="40" loading="lazy"></span><span class="ticker-sep">·</span>
+    <span class="ticker-text">Anthropic Claude</span><span class="ticker-sep">·</span>
+    <span class="ticker-logo"><img src="logos/51.png" alt="" width="40" height="40" loading="lazy"></span><span class="ticker-sep">·</span>
+    <!-- duplicate pour boucle continue -->
+    <span class="ticker-text">Expert IA Freelance</span><span class="ticker-sep">·</span>
+    <span class="ticker-logo"><img src="logos/46.png" alt="" width="40" height="40" loading="lazy"></span><span class="ticker-sep">·</span>
+    <span class="ticker-text">Formation IA Premium</span><span class="ticker-sep">·</span>
+    <span class="ticker-logo"><img src="logos/47.png" alt="" width="40" height="40" loading="lazy"></span><span class="ticker-sep">·</span>
+    <span class="ticker-text">Reconversion IA</span><span class="ticker-sep">·</span>
+    <span class="ticker-logo"><img src="logos/48.png" alt="" width="40" height="40" loading="lazy"></span><span class="ticker-sep">·</span>
+    <span class="ticker-text">Consultant IA PME</span><span class="ticker-sep">·</span>
+    <span class="ticker-logo"><img src="logos/49.png" alt="" width="40" height="40" loading="lazy"></span><span class="ticker-sep">·</span>
+    <span class="ticker-text">Méthode B.T.D</span><span class="ticker-sep">·</span>
+    <span class="ticker-logo"><img src="logos/50.png" alt="" width="40" height="40" loading="lazy"></span><span class="ticker-sep">·</span>
+    <span class="ticker-text">Audit IA</span><span class="ticker-sep">·</span>
+    <span class="ticker-logo"><img src="logos/51.png" alt="" width="40" height="40" loading="lazy"></span><span class="ticker-sep">·</span>
+    <span class="ticker-text">Automatisation IA</span><span class="ticker-sep">·</span>
+    <span class="ticker-logo"><img src="logos/46.png" alt="" width="40" height="40" loading="lazy"></span><span class="ticker-sep">·</span>
+    <span class="ticker-text">Implémentation IA</span><span class="ticker-sep">·</span>
+    <span class="ticker-logo"><img src="logos/47.png" alt="" width="40" height="40" loading="lazy"></span><span class="ticker-sep">·</span>
+    <span class="ticker-text">Coaching Expert IA</span><span class="ticker-sep">·</span>
+    <span class="ticker-logo"><img src="logos/48.png" alt="" width="40" height="40" loading="lazy"></span><span class="ticker-sep">·</span>
+    <span class="ticker-text">Système IA pour PME</span><span class="ticker-sep">·</span>
+    <span class="ticker-logo"><img src="logos/49.png" alt="" width="40" height="40" loading="lazy"></span><span class="ticker-sep">·</span>
+    <span class="ticker-text">Architecte IA</span><span class="ticker-sep">·</span>
+    <span class="ticker-logo"><img src="logos/50.png" alt="" width="40" height="40" loading="lazy"></span><span class="ticker-sep">·</span>
+    <span class="ticker-text">Anthropic Claude</span><span class="ticker-sep">·</span>
+    <span class="ticker-logo"><img src="logos/51.png" alt="" width="40" height="40" loading="lazy"></span><span class="ticker-sep">·</span>
   </div>
 </div>
 
