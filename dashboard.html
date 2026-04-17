@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard — DENEM Academy</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0D0C14;
+      --violet: #6B5BFF;
+      --teal: #2DD4BF;
+      --text: #E8E6F0;
+      --muted: #9B97B0;
+      --card-bg: #16141F;
+      --border: rgba(107,91,255,.18);
+      --success: #22c55e;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg); color: var(--text);
+      font-family: 'DM Sans', sans-serif; font-weight: 300;
+      min-height: 100vh;
+    }
+    body.locked { overflow: hidden; }
+
+    /* ── LOGIN GATE ── */
+    .login-gate {
+      position: fixed; inset: 0; z-index: 9999;
+      background: var(--bg);
+      display: flex; align-items: center; justify-content: center;
+      padding: 20px;
+    }
+    .login-gate.hidden { display: none; }
+    .login-box {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 20px; padding: 40px 36px;
+      width: 100%; max-width: 380px;
+      text-align: center;
+    }
+    .login-logo { font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 1.4rem; color: #fff; margin-bottom: 8px; }
+    .login-logo span { color: var(--teal); }
+    .login-sub { font-size: .85rem; color: var(--muted); margin-bottom: 28px; }
+    .login-input {
+      width: 100%;
+      background: rgba(255,255,255,.05); border: 1.5px solid var(--border);
+      border-radius: 10px; padding: 13px 16px;
+      color: #fff; font-family: 'DM Sans', sans-serif; font-size: 1rem;
+      outline: none; transition: border-color .2s; margin-bottom: 12px; text-align: center;
+      letter-spacing: 2px;
+    }
+    .login-input:focus { border-color: var(--violet); }
+    .login-btn {
+      width: 100%; background: var(--violet); color: #fff;
+      font-family: 'DM Sans', sans-serif; font-size: .95rem; font-weight: 500;
+      border: none; border-radius: 10px; padding: 13px;
+      cursor: pointer; transition: opacity .2s;
+    }
+    .login-btn:hover { opacity: .88; }
+    .login-err { font-size: .82rem; color: #fca5a5; margin-top: 10px; display: none; }
+    .login-err.show { display: block; }
+
+    /* ── HEADER ── */
+    .dash-header {
+      background: linear-gradient(135deg, #1a1630 0%, #0f1020 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 18px 28px;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 12px;
+      position: sticky; top: 0; z-index: 100;
+    }
+    .dash-logo { font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 1.1rem; color: #fff; }
+    .dash-logo span { color: var(--teal); }
+    .dash-meta { font-size: .8rem; color: var(--muted); }
+    .dash-logout {
+      background: none; border: 1px solid var(--border); color: var(--muted);
+      border-radius: 8px; padding: 5px 14px; font-size: .8rem;
+      cursor: pointer; transition: color .2s, border-color .2s;
+    }
+    .dash-logout:hover { color: var(--text); border-color: rgba(255,255,255,.3); }
+
+    /* ── TABS ── */
+    .dash-tabs {
+      display: flex; gap: 4px;
+      padding: 16px 28px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .tab-btn {
+      background: none; border: none; border-bottom: 2px solid transparent;
+      color: var(--muted); font-family: 'DM Sans', sans-serif; font-size: .9rem;
+      padding: 10px 18px 12px; cursor: pointer;
+      transition: color .2s, border-color .2s;
+      display: flex; align-items: center; gap: 7px;
+    }
+    .tab-btn:hover { color: var(--text); }
+    .tab-btn.active { color: var(--teal); border-bottom-color: var(--teal); font-weight: 500; }
+    .tab-count {
+      background: rgba(107,91,255,.2); color: #a78bfa;
+      border-radius: 99px; padding: 1px 8px; font-size: .72rem; font-weight: 500;
+    }
+
+    /* ── CONTAINER ── */
+    .dash-body {
+      max-width: 1300px; margin: 0 auto;
+      padding: 24px 28px 60px;
+    }
+
+    /* ── KPI ROW ── */
+    .kpi-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 14px; margin-bottom: 24px;
+    }
+    .kpi-card {
+      background: var(--card-bg); border: 1px solid var(--border);
+      border-radius: 14px; padding: 18px 20px;
+      display: flex; align-items: flex-start; gap: 14px;
+    }
+    .kpi-icon {
+      width: 42px; height: 42px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+    .kpi-label { font-size: .7rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); font-weight: 500; margin-bottom: 3px; }
+    .kpi-value { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.7rem; line-height: 1; margin-bottom: 2px; }
+    .kpi-sub { font-size: .75rem; color: var(--muted); }
+
+    /* ── PANEL ── */
+    .panel { display: none; }
+    .panel.active { display: block; }
+
+    /* ── TABLE CARD ── */
+    .table-card {
+      background: var(--card-bg); border: 1px solid var(--border);
+      border-radius: 16px; overflow: hidden;
+    }
+    .table-head {
+      padding: 18px 22px;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+    .table-title {
+      font-family: 'Poppins', sans-serif; font-weight: 700; font-size: .95rem;
+    }
+    .table-search {
+      background: rgba(255,255,255,.05); border: 1px solid var(--border);
+      border-radius: 8px; padding: 7px 14px; color: #fff;
+      font-family: 'DM Sans', sans-serif; font-size: .85rem; outline: none;
+      width: 220px; transition: border-color .2s;
+    }
+    .table-search:focus { border-color: var(--violet); }
+    .table-wrap { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; min-width: 600px; }
+    thead tr { border-bottom: 1px solid var(--border); }
+    thead th {
+      padding: 11px 18px; text-align: left;
+      font-size: .72rem; text-transform: uppercase; letter-spacing: .08em;
+      color: var(--muted); font-weight: 500; white-space: nowrap;
+    }
+    tbody tr { border-bottom: 1px solid rgba(107,91,255,.08); transition: background .15s; }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:hover { background: rgba(107,91,255,.06); }
+    td { padding: 13px 18px; font-size: .88rem; color: var(--text); vertical-align: middle; }
+    td.muted { color: var(--muted); }
+
+    /* BADGES */
+    .badge {
+      display: inline-block; border-radius: 99px;
+      padding: 3px 10px; font-size: .72rem; font-weight: 500;
+      white-space: nowrap;
+    }
+    .badge-bouillant { background: rgba(239,68,68,.15); color: #fca5a5; }
+    .badge-tiede     { background: rgba(245,158,11,.15); color: #fcd34d; }
+    .badge-froid     { background: rgba(107,91,255,.15); color: #a78bfa; }
+    .badge-complet   { background: rgba(34,197,94,.15);  color: #86efac; }
+    .badge-incomplet { background: rgba(107,91,255,.12); color: #a78bfa; }
+    .badge-lead      { background: rgba(45,212,191,.12); color: var(--teal); }
+
+    /* PROGRESS BAR */
+    .prog-bar { height: 4px; background: rgba(107,91,255,.15); border-radius: 2px; width: 80px; overflow: hidden; }
+    .prog-fill { height: 100%; background: var(--violet); border-radius: 2px; }
+
+    /* LOADING / EMPTY */
+    .state-box {
+      padding: 56px 20px; text-align: center;
+      color: var(--muted); font-size: .9rem;
+    }
+    .state-box .state-icon { font-size: 2.2rem; margin-bottom: 12px; }
+    .spinner {
+      width: 28px; height: 28px; border: 3px solid rgba(107,91,255,.2);
+      border-top-color: var(--violet); border-radius: 50%;
+      animation: spin .7s linear infinite; margin: 0 auto 12px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* EXPORT BTN */
+    .export-btn {
+      background: rgba(107,91,255,.12); border: 1px solid rgba(107,91,255,.3);
+      color: #a78bfa; border-radius: 8px; padding: 7px 14px;
+      font-size: .82rem; font-family: 'DM Sans', sans-serif;
+      cursor: pointer; transition: background .2s;
+    }
+    .export-btn:hover { background: rgba(107,91,255,.22); }
+
+    @media (max-width: 640px) {
+      .dash-body { padding: 16px 14px 60px; }
+      .dash-header { padding: 14px 16px; }
+      .dash-tabs { padding: 12px 16px 0; }
+      .table-search { width: 100%; }
+    }
+  </style>
+</head>
+<body class="locked">
+
+<!-- ── LOGIN GATE ── -->
+<div class="login-gate" id="loginGate">
+  <div class="login-box">
+    <div class="login-logo">DENEM <span>Academy</span></div>
+    <p class="login-sub">Accès réservé à l'équipe DENEM</p>
+    <input type="password" class="login-input" id="loginInput" placeholder="Mot de passe" autocomplete="current-password">
+    <button class="login-btn" id="loginBtn">Accéder au dashboard</button>
+    <p class="login-err" id="loginErr">Mot de passe incorrect.</p>
+  </div>
+</div>
+
+<!-- ── HEADER ── -->
+<header class="dash-header">
+  <div>
+    <div class="dash-logo">DENEM <span>Dashboard</span></div>
+    <div class="dash-meta" id="dashMeta">Chargement…</div>
+  </div>
+  <button class="dash-logout" id="logoutBtn">Se déconnecter</button>
+</header>
+
+<!-- ── TABS ── -->
+<div class="dash-tabs">
+  <button class="tab-btn active" data-panel="panel-candidatures">
+    Test d'éligibilité
+    <span class="tab-count" id="countCandidatures">–</span>
+  </button>
+  <button class="tab-btn" data-panel="panel-vsl">
+    Captures VSL
+    <span class="tab-count" id="countVsl">–</span>
+  </button>
+</div>
+
+<!-- ── BODY ── -->
+<div class="dash-body">
+
+  <!-- ── PANEL : CANDIDATURES ── -->
+  <div class="panel active" id="panel-candidatures">
+
+    <!-- KPIs -->
+    <div class="kpi-row" id="kpiCandidatures">
+      <div class="kpi-card">
+        <div class="kpi-icon" style="background:rgba(107,91,255,.15)">🔥</div>
+        <div><div class="kpi-label">Total leads</div><div class="kpi-value" id="kc-total">–</div><div class="kpi-sub">test d'éligibilité</div></div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-icon" style="background:rgba(239,68,68,.12)">🌡️</div>
+        <div><div class="kpi-label">Bouillants</div><div class="kpi-value" id="kc-bouillant" style="color:#fca5a5">–</div><div class="kpi-sub">score 9-10</div></div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-icon" style="background:rgba(245,158,11,.12)">✅</div>
+        <div><div class="kpi-label">Complets</div><div class="kpi-value" id="kc-complet" style="color:#fcd34d">–</div><div class="kpi-sub">questionnaire fini</div></div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-icon" style="background:rgba(34,197,94,.12)">📊</div>
+        <div><div class="kpi-label">Taux complétion</div><div class="kpi-value" id="kc-taux" style="color:#86efac">–</div><div class="kpi-sub">complets / total</div></div>
+      </div>
+    </div>
+
+    <div class="table-card">
+      <div class="table-head">
+        <div class="table-title">Candidatures — Test d'éligibilité</div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <input type="text" class="table-search" id="searchCandidatures" placeholder="Rechercher…">
+          <button class="export-btn" id="exportCandidatures">↓ CSV</button>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table id="tableCandidatures">
+          <thead>
+            <tr>
+              <th>Prénom</th>
+              <th>Email</th>
+              <th>Téléphone</th>
+              <th>Statut</th>
+              <th>Température</th>
+              <th>Étape</th>
+              <th>Situation</th>
+              <th>Revenus cibles</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody id="bodyCandidatures">
+            <tr><td colspan="9"><div class="state-box"><div class="spinner"></div>Chargement…</div></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── PANEL : LEADS VSL ── -->
+  <div class="panel" id="panel-vsl">
+
+    <!-- KPIs -->
+    <div class="kpi-row">
+      <div class="kpi-card">
+        <div class="kpi-icon" style="background:rgba(45,212,191,.12)">🎬</div>
+        <div><div class="kpi-label">Total leads VSL</div><div class="kpi-value" id="kv-total">–</div><div class="kpi-sub">page capture VSL</div></div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-icon" style="background:rgba(107,91,255,.15)">📧</div>
+        <div><div class="kpi-label">Avec téléphone</div><div class="kpi-value" id="kv-phone">–</div><div class="kpi-sub">coord. complètes</div></div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-icon" style="background:rgba(34,197,94,.12)">📅</div>
+        <div><div class="kpi-label">Aujourd'hui</div><div class="kpi-value" id="kv-today">–</div><div class="kpi-sub">nouveaux leads</div></div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-icon" style="background:rgba(245,158,11,.12)">📆</div>
+        <div><div class="kpi-label">Cette semaine</div><div class="kpi-value" id="kv-week">–</div><div class="kpi-sub">nouveaux leads</div></div>
+      </div>
+    </div>
+
+    <div class="table-card">
+      <div class="table-head">
+        <div class="table-title">Leads — Page capture VSL</div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <input type="text" class="table-search" id="searchVsl" placeholder="Rechercher…">
+          <button class="export-btn" id="exportVsl">↓ CSV</button>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table id="tableVsl">
+          <thead>
+            <tr>
+              <th>Prénom</th>
+              <th>Email</th>
+              <th>Téléphone</th>
+              <th>Source</th>
+              <th>Statut</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody id="bodyVsl">
+            <tr><td colspan="6"><div class="state-box"><div class="spinner"></div>Chargement…</div></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ── SCRIPTS ── -->
+<script>
+  // ── MOT DE PASSE (modifiable ici) ──
+  const DASHBOARD_PWD = 'denem2026';
+
+  // Auth
+  const loginGate = document.getElementById('loginGate');
+  const loginInput = document.getElementById('loginInput');
+  const loginBtn   = document.getElementById('loginBtn');
+  const loginErr   = document.getElementById('loginErr');
+  const logoutBtn  = document.getElementById('logoutBtn');
+
+  function checkAuth() {
+    if (sessionStorage.getItem('dash_auth') === '1') {
+      loginGate.classList.add('hidden');
+      document.body.classList.remove('locked');
+      return true;
+    }
+    return false;
+  }
+
+  if (!checkAuth()) {
+    loginInput.addEventListener('keydown', e => { if (e.key === 'Enter') tryLogin(); });
+    loginBtn.addEventListener('click', tryLogin);
+  }
+
+  function tryLogin() {
+    if (loginInput.value === DASHBOARD_PWD) {
+      sessionStorage.setItem('dash_auth', '1');
+      loginGate.classList.add('hidden');
+      document.body.classList.remove('locked');
+      loginErr.classList.remove('show');
+    } else {
+      loginErr.classList.add('show');
+      loginInput.value = '';
+      loginInput.focus();
+    }
+  }
+
+  logoutBtn.addEventListener('click', () => {
+    sessionStorage.removeItem('dash_auth');
+    location.reload();
+  });
+
+  // Date header
+  document.getElementById('dashMeta').textContent =
+    new Date().toLocaleDateString('fr-FR', { weekday:'long', year:'numeric', month:'long', day:'numeric' });
+
+  // Tabs
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById(btn.dataset.panel).classList.add('active');
+    });
+  });
+
+  // ── UTILS ──
+  function fmtDate(ts) {
+    if (!ts) return '–';
+    const d = ts.toDate ? ts.toDate() : new Date(ts);
+    return d.toLocaleDateString('fr-FR', { day:'2-digit', month:'2-digit', year:'numeric' })
+      + ' ' + d.toLocaleTimeString('fr-FR', { hour:'2-digit', minute:'2-digit' });
+  }
+
+  function isToday(ts) {
+    if (!ts) return false;
+    const d = ts.toDate ? ts.toDate() : new Date(ts);
+    const now = new Date();
+    return d.getDate()===now.getDate() && d.getMonth()===now.getMonth() && d.getFullYear()===now.getFullYear();
+  }
+
+  function isThisWeek(ts) {
+    if (!ts) return false;
+    const d = ts.toDate ? ts.toDate() : new Date(ts);
+    const now = new Date();
+    const startOfWeek = new Date(now); startOfWeek.setDate(now.getDate() - now.getDay() + 1); startOfWeek.setHours(0,0,0,0);
+    return d >= startOfWeek;
+  }
+
+  function tempBadge(t) {
+    const map = { bouillant:'badge-bouillant', tiede:'badge-tiede', froid:'badge-froid' };
+    return `<span class="badge ${map[t]||'badge-froid'}">${t||'froid'}</span>`;
+  }
+
+  function statusBadge(s) {
+    if (s==='complet') return `<span class="badge badge-complet">complet</span>`;
+    if (s==='lead_vsl') return `<span class="badge badge-lead">vsl</span>`;
+    return `<span class="badge badge-incomplet">${s||'incomplet'}</span>`;
+  }
+
+  function progressBar(step) {
+    const pct = Math.round((parseInt(step)||1) / 6 * 100);
+    return `<div class="prog-bar"><div class="prog-fill" style="width:${pct}%"></div></div>`;
+  }
+
+  // Search filter
+  function filterTable(inputId, tbodyId, data, renderFn) {
+    document.getElementById(inputId).addEventListener('input', function() {
+      const q = this.value.toLowerCase();
+      const filtered = data.filter(d =>
+        (d.prenom||'').toLowerCase().includes(q) ||
+        (d.email||'').toLowerCase().includes(q) ||
+        (d.telephone||'').toLowerCase().includes(q)
+      );
+      renderFn(filtered);
+    });
+  }
+
+  // CSV export
+  function exportCSV(data, filename, cols) {
+    const header = cols.map(c => c.label).join(';');
+    const rows = data.map(d => cols.map(c => `"${(d[c.key]||'').toString().replace(/"/g,'""')}"`).join(';'));
+    const csv = '\uFEFF' + [header, ...rows].join('\n');
+    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a'); a.href=url; a.download=filename; a.click();
+    URL.revokeObjectURL(url);
+  }
+
+  // ── RENDER CANDIDATURES ──
+  let candidaturesData = [];
+  function renderCandidatures(data) {
+    const tbody = document.getElementById('bodyCandidatures');
+    if (!data.length) {
+      tbody.innerHTML = '<tr><td colspan="9"><div class="state-box"><div class="state-icon">📭</div>Aucun résultat</div></td></tr>';
+      return;
+    }
+    tbody.innerHTML = data.map(d => `
+      <tr>
+        <td><strong>${d.prenom||'–'}</strong></td>
+        <td class="muted">${d.email||'–'}</td>
+        <td class="muted">${d.telephone||'–'}</td>
+        <td>${statusBadge(d.statut)}</td>
+        <td>${tempBadge(d.temperature)}</td>
+        <td>${progressBar(d.etape_atteinte)} <span style="font-size:.72rem;color:var(--muted)">${d.etape_atteinte||1}/6</span></td>
+        <td class="muted" style="font-size:.82rem">${d.situation||'–'}</td>
+        <td class="muted" style="font-size:.82rem">${d.revenus||'–'}</td>
+        <td class="muted" style="font-size:.78rem;white-space:nowrap">${fmtDate(d.createdAt)}</td>
+      </tr>
+    `).join('');
+  }
+
+  // ── RENDER VSL LEADS ──
+  let vslData = [];
+  function renderVsl(data) {
+    const tbody = document.getElementById('bodyVsl');
+    if (!data.length) {
+      tbody.innerHTML = '<tr><td colspan="6"><div class="state-box"><div class="state-icon">📭</div>Aucun lead VSL pour l\'instant</div></td></tr>';
+      return;
+    }
+    tbody.innerHTML = data.map(d => `
+      <tr>
+        <td><strong>${d.prenom||'–'}</strong></td>
+        <td class="muted">${d.email||'–'}</td>
+        <td class="muted">${d.telephone||'–'}</td>
+        <td class="muted" style="font-size:.82rem">${d.source||'–'}</td>
+        <td>${statusBadge(d.statut)}</td>
+        <td class="muted" style="font-size:.78rem;white-space:nowrap">${fmtDate(d.createdAt)}</td>
+      </tr>
+    `).join('');
+  }
+</script>
+
+<!-- Firebase -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
+  import { getFirestore, collection, getDocs, orderBy, query }
+    from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
+
+  const app = initializeApp({
+    apiKey:            "AIzaSyBdNN-iiK5KoBqkX4FX1PJ5CmlWUma8NaU",
+    authDomain:        "denem-academy-5de41.firebaseapp.com",
+    projectId:         "denem-academy-5de41",
+    storageBucket:     "denem-academy-5de41.firebasestorage.app",
+    messagingSenderId: "570632584566",
+    appId:             "1:570632584566:web:4305443183280686a7ce57"
+  });
+
+  const db = getFirestore(app);
+
+  async function loadAll() {
+    // ── CANDIDATURES ──
+    try {
+      const q = query(collection(db, "candidatures"), orderBy("createdAt", "desc"));
+      const snap = await getDocs(q);
+      candidaturesData = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+
+      // KPIs
+      const total     = candidaturesData.length;
+      const bouillants = candidaturesData.filter(d => d.temperature === 'bouillant').length;
+      const complets   = candidaturesData.filter(d => d.statut === 'complet').length;
+      const taux       = total ? Math.round(complets/total*100) : 0;
+
+      document.getElementById('kc-total').textContent    = total;
+      document.getElementById('kc-bouillant').textContent = bouillants;
+      document.getElementById('kc-complet').textContent   = complets;
+      document.getElementById('kc-taux').textContent      = taux + '%';
+      document.getElementById('countCandidatures').textContent = total;
+
+      renderCandidatures(candidaturesData);
+      filterTable('searchCandidatures', 'bodyCandidatures', candidaturesData, renderCandidatures);
+
+      document.getElementById('exportCandidatures').addEventListener('click', () => {
+        exportCSV(candidaturesData, 'candidatures-denem.csv', [
+          { label:'Prénom', key:'prenom' },
+          { label:'Email',  key:'email' },
+          { label:'Téléphone', key:'telephone' },
+          { label:'Statut', key:'statut' },
+          { label:'Température', key:'temperature' },
+          { label:'Situation', key:'situation' },
+          { label:'Revenus', key:'revenus' },
+          { label:'Score', key:'score' },
+          { label:'Étape', key:'etape_atteinte' }
+        ]);
+      });
+
+    } catch(err) {
+      console.error('candidatures:', err);
+      document.getElementById('bodyCandidatures').innerHTML =
+        '<tr><td colspan="9"><div class="state-box"><div class="state-icon">⚠️</div>Erreur de chargement : ' + err.message + '</div></td></tr>';
+    }
+
+    // ── LEADS VSL ──
+    try {
+      const q = query(collection(db, "leads_vsl"), orderBy("createdAt", "desc"));
+      const snap = await getDocs(q);
+      vslData = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+
+      const total   = vslData.length;
+      const withTel = vslData.filter(d => d.telephone).length;
+      const today   = vslData.filter(d => isToday(d.createdAt)).length;
+      const week    = vslData.filter(d => isThisWeek(d.createdAt)).length;
+
+      document.getElementById('kv-total').textContent = total;
+      document.getElementById('kv-phone').textContent = withTel;
+      document.getElementById('kv-today').textContent = today;
+      document.getElementById('kv-week').textContent  = week;
+      document.getElementById('countVsl').textContent = total;
+
+      renderVsl(vslData);
+      filterTable('searchVsl', 'bodyVsl', vslData, renderVsl);
+
+      document.getElementById('exportVsl').addEventListener('click', () => {
+        exportCSV(vslData, 'leads-vsl-denem.csv', [
+          { label:'Prénom',     key:'prenom' },
+          { label:'Email',      key:'email' },
+          { label:'Téléphone',  key:'telephone' },
+          { label:'Source',     key:'source' },
+          { label:'Statut',     key:'statut' }
+        ]);
+      });
+
+    } catch(err) {
+      console.error('leads_vsl:', err);
+      document.getElementById('bodyVsl').innerHTML =
+        '<tr><td colspan="6"><div class="state-box"><div class="state-icon">⚠️</div>Erreur de chargement : ' + err.message + '</div></td></tr>';
+    }
+  }
+
+  // Charge les données seulement si l'auth est ok (poll simple)
+  function waitForAuthThenLoad() {
+    if (sessionStorage.getItem('dash_auth') === '1') {
+      loadAll();
+    } else {
+      document.getElementById('loginBtn').addEventListener('click', () => {
+        setTimeout(() => { if (sessionStorage.getItem('dash_auth') === '1') loadAll(); }, 100);
+      });
+      document.getElementById('loginInput').addEventListener('keydown', e => {
+        if (e.key === 'Enter') setTimeout(() => { if (sessionStorage.getItem('dash_auth') === '1') loadAll(); }, 100);
+      });
+    }
+  }
+  waitForAuthThenLoad();
+</script>
+
+</body>
+</html>
