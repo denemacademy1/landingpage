@@ -98,13 +98,33 @@
 
     /* NAV */
     nav {
-      padding: 10px 5vw;
+      padding: 8px 5vw;
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start;
+      gap: 14px;
       border-bottom: 1px solid var(--border);
       background: rgba(13,12,20,.96);
     }
+
+    /* ORB + FLOATS */
+    .hero-orb {
+      position: absolute; right: -60px; top: 50%; transform: translateY(-50%);
+      width: 380px; height: 380px; pointer-events: none; z-index: 0; opacity: 0.45;
+      animation: orb-spin 40s linear infinite;
+    }
+    @keyframes orb-spin {
+      0%   { transform: translateY(-50%) rotate(0deg); }
+      100% { transform: translateY(-50%) rotate(360deg); }
+    }
+    .hero-floats { position: absolute; left: 3%; top: 50%; transform: translateY(-55%); pointer-events: none; z-index: 0; width: 80px; height: 220px; }
+    .hero-float { position: absolute; border-radius: 5px; background: linear-gradient(160deg, #2DD4BF 0%, rgba(107,91,255,0.6) 100%); box-shadow: 0 0 18px rgba(45,212,191,0.35); }
+    .hero-float-1 { width: 11px; height: 80px;  top: 0px;   left: 10px; transform: rotate(-16deg); opacity: 0.55; }
+    .hero-float-2 { width: 11px; height: 105px; top: 30px;  left: 38px; transform: rotate(-11deg); opacity: 0.40; }
+    .hero-float-3 { width: 11px; height: 65px;  top: 120px; left: 4px;  transform: rotate(-20deg); opacity: 0.35; }
+
+    /* CANVAS STARS */
+    #starsCanvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; mix-blend-mode: screen; }
     .nav-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.35rem; color: #fff; text-decoration: none; letter-spacing: -.02em; }
     .nav-logo span { color: var(--teal); }
 
@@ -602,9 +622,12 @@
 </head>
 <body class="grid-bg">
 
+<!-- CANVAS ÉTOILES FILANTES (fixed, behind everything) -->
+<canvas id="starsCanvas" aria-hidden="true"></canvas>
+
 <!-- NAV -->
-<nav style="flex-direction:column;gap:4px">
-  <a href="/"><img src="logo.png" alt="DENEM Academy" style="height:52px;display:block"></a>
+<nav>
+  <a href="/"><img src="logo.png" alt="DENEM Academy" style="height:44px;display:block"></a>
   <p class="nav-tagline">Pour les actifs 28–50 ans qui veulent prendre leur place dans l'écosystème IA français</p>
 </nav>
 
@@ -616,6 +639,32 @@
   <div class="hero-glow hero-glow-2" aria-hidden="true"></div>
   <div class="hero-glow-teal" aria-hidden="true"></div>
   <div id="particles" aria-hidden="true"></div>
+
+  <!-- ORB wireframe (droite) -->
+  <div class="hero-orb" aria-hidden="true">
+    <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" fill="none">
+      <circle cx="150" cy="150" r="138" stroke="rgba(107,91,255,0.3)" stroke-width="0.8"/>
+      <circle cx="150" cy="150" r="100" stroke="rgba(107,91,255,0.18)" stroke-width="0.6"/>
+      <circle cx="150" cy="150" r="60"  stroke="rgba(107,91,255,0.14)" stroke-width="0.6"/>
+      <ellipse cx="150" cy="150" rx="138" ry="46"  stroke="rgba(107,91,255,0.22)" stroke-width="0.7"/>
+      <ellipse cx="150" cy="150" rx="138" ry="90"  stroke="rgba(107,91,255,0.17)" stroke-width="0.6"/>
+      <ellipse cx="150" cy="150" rx="46"  ry="138" stroke="rgba(107,91,255,0.22)" stroke-width="0.7"/>
+      <ellipse cx="150" cy="150" rx="90"  ry="138" stroke="rgba(107,91,255,0.17)" stroke-width="0.6"/>
+      <line x1="12" y1="150" x2="288" y2="150" stroke="rgba(107,91,255,0.15)" stroke-width="0.5"/>
+      <line x1="150" y1="12"  x2="150" y2="288" stroke="rgba(107,91,255,0.15)" stroke-width="0.5"/>
+      <line x1="51"  y1="51"  x2="249" y2="249" stroke="rgba(45,212,191,0.12)" stroke-width="0.5"/>
+      <line x1="249" y1="51"  x2="51"  y2="249" stroke="rgba(45,212,191,0.12)" stroke-width="0.5"/>
+      <circle cx="150" cy="150" r="5" fill="rgba(107,91,255,0.7)"/>
+      <circle cx="150" cy="150" r="2" fill="rgba(45,212,191,0.9)"/>
+    </svg>
+  </div>
+
+  <!-- BARRES FLOTTANTES (gauche) -->
+  <div class="hero-floats" aria-hidden="true">
+    <div class="hero-float hero-float-1"></div>
+    <div class="hero-float hero-float-2"></div>
+    <div class="hero-float hero-float-3"></div>
+  </div>
 
   <!-- GAUCHE : texte -->
   <div class="hero-left" style="position:relative;z-index:1">
@@ -968,6 +1017,75 @@
 
 <!-- PARTICLES + FADE-UP -->
 <script>
+  // Stars canvas
+  (function() {
+    const cvs = document.getElementById('starsCanvas');
+    const ctx = cvs.getContext('2d');
+    function resize() { cvs.width = window.innerWidth; cvs.height = window.innerHeight; }
+    resize();
+    window.addEventListener('resize', resize, { passive: true });
+
+    const BG = Array.from({ length: 200 }, () => ({
+      x: Math.random(), y: Math.random(),
+      r: Math.random() * 1.0 + 0.2,
+      a: Math.random() * 0.3 + 0.05,
+      tw: Math.random() * Math.PI * 2,
+      ts: Math.random() * 0.012 + 0.004
+    }));
+
+    function makeMeteor(staggered) {
+      const m = {};
+      function reset() {
+        m.x = -cvs.width * 0.1 + Math.random() * cvs.width * 0.3;
+        m.y = cvs.height * (0.15 + Math.random() * 0.75);
+        m.len = Math.random() * 120 + 60;
+        m.spd = Math.random() * 0.6 + 0.35;
+        m.ang = -Math.PI / 9 + (Math.random() - 0.5) * 0.2;
+        m.max = Math.random() * 550 + 280;
+        m.dist = staggered ? Math.random() * m.max : 0;
+        m.w = Math.random() * 1.8 + 0.4;
+        m.col = Math.random() > 0.4 ? '45,212,191' : '107,91,255';
+        m.pause = 0; m.pauseMax = Math.floor(Math.random() * 200 + 60);
+      }
+      reset(); m.reset = reset; return m;
+    }
+    const METEORS = Array.from({ length: 4 }, (_, i) => makeMeteor(i > 0));
+
+    function updateMeteor(m) {
+      if (m.pause > 0) { m.pause--; return false; }
+      m.x += Math.cos(m.ang) * m.spd; m.y += Math.sin(m.ang) * m.spd; m.dist += m.spd;
+      if (m.dist >= m.max) { m.pause = m.pauseMax; m.reset(); return false; }
+      return true;
+    }
+    function drawMeteor(m) {
+      const p = m.dist / m.max;
+      const o = p < 0.12 ? p / 0.12 : p > 0.72 ? (1 - p) / 0.28 : 1;
+      const tx = m.x - Math.cos(m.ang) * m.len, ty = m.y - Math.sin(m.ang) * m.len;
+      const g = ctx.createLinearGradient(tx, ty, m.x, m.y);
+      g.addColorStop(0, `rgba(${m.col},0)`);
+      g.addColorStop(0.55, `rgba(${m.col},${o * 0.12})`);
+      g.addColorStop(1, `rgba(${m.col},${o * 0.35})`);
+      ctx.beginPath(); ctx.moveTo(tx, ty); ctx.lineTo(m.x, m.y);
+      ctx.strokeStyle = g; ctx.lineWidth = m.w; ctx.stroke();
+      const gh = ctx.createRadialGradient(m.x, m.y, 0, m.x, m.y, m.w * 4);
+      gh.addColorStop(0, `rgba(${m.col},${o * 0.35})`);
+      gh.addColorStop(1, `rgba(${m.col},0)`);
+      ctx.beginPath(); ctx.arc(m.x, m.y, m.w * 5, 0, Math.PI * 2);
+      ctx.fillStyle = gh; ctx.fill();
+    }
+    (function loop() {
+      requestAnimationFrame(loop);
+      ctx.clearRect(0, 0, cvs.width, cvs.height);
+      BG.forEach(s => {
+        s.tw += s.ts;
+        const a = s.a * (0.55 + 0.45 * Math.sin(s.tw));
+        ctx.beginPath(); ctx.arc(s.x * cvs.width, s.y * cvs.height, s.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(210,230,255,${a})`; ctx.fill();
+      });
+      METEORS.forEach(m => { if (updateMeteor(m)) drawMeteor(m); });
+    })();
+  })();
+
   // Particles
   (function() {
     const container = document.getElementById('particles');
