@@ -618,6 +618,42 @@
       .captures-grid { grid-template-columns: 1fr 1fr !important; }
       .stat-cards-grid { grid-template-columns: 1fr 1fr !important; }
     }
+
+    /* ── MODAL OPTIN ── */
+    #optinOverlay {
+      position: fixed; inset: 0; z-index: 9000;
+      background: rgba(7,6,14,.78);
+      backdrop-filter: blur(10px);
+      display: none; align-items: center; justify-content: center;
+      padding: 16px;
+    }
+    #optinOverlay.open { display: flex; }
+    #optinCard {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      width: 100%; max-width: 460px;
+      padding: 32px 32px 28px;
+      position: relative;
+      box-shadow: 0 40px 100px rgba(0,0,0,.7), 0 0 0 1px rgba(107,91,255,.15);
+      animation: modalIn .28s ease forwards;
+    }
+    @keyframes modalIn {
+      from { opacity: 0; transform: translateY(18px) scale(.97); }
+      to   { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    .modal-close {
+      position: absolute; top: 16px; right: 16px;
+      width: 32px; height: 32px;
+      background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      cursor: pointer; color: var(--muted); font-size: 16px; line-height: 1;
+      transition: background .2s, color .2s;
+    }
+    .modal-close:hover { background: rgba(255,255,255,.12); color: #fff; }
+    @media (max-width: 480px) {
+      #optinCard { padding: 28px 20px 24px; border-radius: 18px; }
+    }
   </style>
 </head>
 <body class="grid-bg">
@@ -674,89 +710,59 @@
 
     <h1 class="fade-up delay-1">
       Le nouveau métier <span class="shine-text">IRREMPLAÇABLE</span><br>
-      <span class="h1-underline">qui va lancer ta carrière dans l'IA</span><br>
-      <span style="font-size:.72em;font-weight:400;color:rgba(255,255,255,.75);display:block;margin-top:26px;line-height:1.6">
-        Facture entre <strong style="color:#fff">5 000 et <span class="shine-text">10 000€</span> par mission</strong><br>
-        aux entreprises françaises.<br>
-        <span style="color:var(--muted)">Sans coder · Sans école d'ingénieur · <span class="h1-blink" style="color:var(--teal)">En 90 jours</span></span>
-      </span>
+      <span class="h1-underline">qui va lancer ta carrière dans l'IA</span>
     </h1>
 
-    <div class="fade-up delay-2" style="text-align:center;max-width:640px;margin:24px auto 0;line-height:1.75">
-      <p style="font-size:1rem;font-weight:700;color:#fff;margin-bottom:14px">
-        Tu sens qu'il se passe quelque chose de majeur avec l'IA. Et que tu es en train de le rater, coincé entre deux tâches.
+    <div class="fade-up delay-2" style="text-align:center;max-width:620px;margin:32px auto 0;line-height:1.75">
+      <p style="font-size:1rem;font-weight:700;color:#fff;margin-bottom:16px">
+        Tu vois tes collègues angoisser à l'idée d'être remplacés par l'IA.<br>
+        <span style="color:rgba(255,255,255,.65);font-weight:400">Et au fond, tu n'es pas sûr non plus d'être à l'abri.</span>
       </p>
-      <p style="font-size:.9rem;color:rgba(255,255,255,.7);margin-bottom:14px">
-        Pendant que tu scrolles en te demandant si tu devrais te former, des gens comme toi de <strong style="color:#fff">32, 41, 47 ans</strong>, sans formation tech, partis de zéro, facturent <strong style="color:#fff">5 000€ à 10 000€</strong> par mission pour installer l'IA dans des PME françaises qui ne savent pas par où commencer.
+      <p style="font-size:.9rem;color:rgba(255,255,255,.68);margin-bottom:16px;line-height:1.8">
+        Pendant que la plupart subissent cette transition, des gens comme toi —&nbsp;<strong style="color:#fff">32, 41, 47 ans</strong>, sans formation tech, partis de zéro — ont pris le problème à l'envers.
+        Ils facturent aujourd'hui <strong style="color:#fff">5 000€ à <span class="shine-text">10 000€</span></strong> par mission
+        pour installer l'IA dans des entreprises françaises qui ne savent pas par où commencer.
       </p>
-      <p style="font-size:.88rem;color:var(--muted);font-style:italic">
-        Cette vidéo t'explique leur méthode. Et pourquoi les PME ont réellement besoin de ce nouveau profil dans leur boîte.
+      <p style="font-size:.85rem;color:var(--muted);font-style:italic;line-height:1.7">
+        Cette vidéo t'explique leur méthode. Et pourquoi les entreprises ont réellement besoin de ce nouveau profil dans leur boîte.
       </p>
     </div>
   </div>
 
-  <!-- FORM CARD -->
+  <!-- VSL PLAYER THUMBNAIL -->
   <div class="hero-right fade-up delay-3" style="position:relative;z-index:1">
-    <div class="form-card">
-
-      <!-- En-tête visible -->
-      <div class="form-card-top">
-        <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:0">
-          <div class="form-card-badge" style="margin-bottom:0">Accès immédiat</div>
-          <div style="display:inline-flex;align-items:center;gap:6px;background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.3);border-radius:99px;padding:4px 12px;font-size:11px;font-weight:600;color:#fca5a5;letter-spacing:.4px">
-            <span style="width:6px;height:6px;background:#ef4444;border-radius:50%;display:inline-block;animation:pulse-dot 2s ease-in-out infinite;flex-shrink:0"></span>
-            LIMITÉ
-          </div>
-        </div>
-        <h2 style="margin-top:10px;margin-bottom:2px">Tu vas comprendre le métier le plus recherché en 2026 par les entreprises françaises, et ce pour les 10 prochaines années <span style="font-size:.75em;font-weight:400;color:var(--muted)">(97% des 3,8 millions d'entreprises en France)</span></h2>
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
+      <div class="form-card-badge" style="margin-bottom:0">Accès immédiat</div>
+      <div style="display:inline-flex;align-items:center;gap:6px;background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.3);border-radius:99px;padding:4px 12px;font-size:11px;font-weight:600;color:#fca5a5;letter-spacing:.4px">
+        <span style="width:6px;height:6px;background:#ef4444;border-radius:50%;display:inline-block;animation:pulse-dot 2s ease-in-out infinite;flex-shrink:0"></span>
+        LIMITÉ
       </div>
-
-      <!-- Champs sur fond VSL -->
-      <div class="form-card-body">
-        <!-- Fond VSL flouté -->
-        <div class="form-card-vsl-bg">
-          <!-- ↓ Remplace VSL_VIDEO_URL par l'URL YouTube embed (ex: https://www.youtube.com/embed/TON_ID?autoplay=1&mute=1&loop=1&playlist=TON_ID&controls=0) -->
-          <iframe id="vslBgFrame"
-            data-src="VSL_VIDEO_URL"
-            allow="autoplay; fullscreen"
-            tabindex="-1"
-            aria-hidden="true"
-            style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) scale(1.15);width:100%;height:100%;border:none;pointer-events:none;filter:blur(6px);opacity:.28;object-fit:cover"
-          ></iframe>
-          <div class="form-card-vsl-grid"></div>
-        </div>
-        <div class="form-card-vsl-overlay"></div>
-
-        <!-- Champs par-dessus -->
-        <div class="form-card-fields">
-          <div class="form-error" id="formError"></div>
-          <form id="vslForm" novalidate>
-            <div class="form-field">
-              <label for="inputPrenom">Prénom</label>
-              <input type="text" id="inputPrenom" name="prenom" placeholder="Ton prénom" required autocomplete="given-name">
-            </div>
-            <div class="form-field">
-              <label for="inputEmail">Email <span style="color:var(--muted);font-weight:300;text-transform:none;letter-spacing:0">(adresse principale pour bien recevoir ton contenu)</span></label>
-              <input type="email" id="inputEmail" name="email" placeholder="ton@email.com" required autocomplete="email">
-            </div>
-            <p style="font-size:.78rem;color:var(--muted);margin-bottom:10px;line-height:1.5">
-              ⏱️ Vidéo de 13 min · <em>Les 2 dernières minutes valent de l'or.</em>
-            </p>
-            <button type="submit" class="submit-btn" id="submitBtn" style="flex-direction:column;gap:4px;padding:14px 16px">
-              <span id="submitLabel">▶ Lancer la vidéo maintenant (13 min)</span>
-              <span style="font-size:.75rem;font-weight:400;opacity:.85">🎁 <strong style="color:#a5f3fc">Ton plan pour te lancer</strong> offert gratuitement à la fin</span>
-            </button>
-          </form>
-          <p class="form-legal" style="margin-top:6px">
-            En t'inscrivant, tu acceptes de recevoir mes communications. Tu pourras te désinscrire en un clic à tout moment.
-          </p>
-          <p style="font-size:.8rem;color:var(--muted);text-align:center;margin-top:6px">
-            Accès instantané, <strong style="color:var(--text)">100% gratuit</strong> et sans spam.
-          </p>
-        </div>
-      </div>
-
     </div>
+
+    <div id="vslThumb" onclick="openOptin()" style="width:100%;aspect-ratio:16/9;position:relative;border-radius:18px;overflow:hidden;border:1px solid var(--border);box-shadow:0 30px 80px rgba(0,0,0,.6);cursor:pointer;background:linear-gradient(135deg,#1a1830,#0f1520,#12101e)">
+      <!-- Fond VSL flouté — remplace VSL_VIDEO_URL quand prête -->
+      <iframe id="vslBgFrame" data-src="VSL_VIDEO_URL" allow="autoplay; fullscreen" tabindex="-1" aria-hidden="true"
+        style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) scale(1.2);width:100%;height:100%;border:none;pointer-events:none;filter:blur(8px);opacity:.35"></iframe>
+      <!-- Grid overlay -->
+      <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(107,91,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(107,91,255,.06) 1px,transparent 1px);background-size:32px 32px"></div>
+      <!-- Dark gradient -->
+      <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 40% 50%,rgba(107,91,255,.22) 0%,transparent 65%),linear-gradient(to bottom,rgba(13,12,20,.3),rgba(13,12,20,.55))"></div>
+      <!-- Play button -->
+      <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;z-index:2">
+        <div style="width:72px;height:72px;background:var(--violet);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 14px rgba(107,91,255,.18),0 0 0 28px rgba(107,91,255,.08);transition:transform .2s">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="#fff" style="margin-left:4px"><path d="M5 3l14 9-14 9V3z"/></svg>
+        </div>
+        <p style="font-size:.82rem;color:rgba(255,255,255,.7);letter-spacing:.5px;text-transform:uppercase;font-weight:500">Clique pour regarder</p>
+      </div>
+      <!-- Duration badge -->
+      <div style="position:absolute;bottom:14px;right:14px;background:rgba(0,0,0,.7);backdrop-filter:blur(6px);border-radius:6px;padding:4px 10px;font-size:12px;font-weight:500;color:#fff;z-index:2">13 min</div>
+      <!-- Top label -->
+      <div style="position:absolute;top:14px;left:14px;background:rgba(107,91,255,.9);border-radius:6px;padding:4px 12px;font-size:11px;font-weight:600;color:#fff;letter-spacing:.5px;text-transform:uppercase;z-index:2">Méthode BTD</div>
+    </div>
+
+    <p style="font-size:.78rem;color:var(--muted);text-align:center;margin-top:10px;line-height:1.5">
+      ⏱️ 13 min · <em>Les 2 dernières minutes valent de l'or.</em> · <strong style="color:var(--teal)">100% gratuit</strong>
+    </p>
   </div>
 
 </main>
@@ -914,6 +920,57 @@
 
 </section>
 
+<!-- MODAL OPTIN -->
+<div id="optinOverlay" role="dialog" aria-modal="true" aria-labelledby="optinTitle">
+  <div id="optinCard">
+    <button class="modal-close" onclick="closeOptin()" aria-label="Fermer">✕</button>
+
+    <!-- Badge -->
+    <div class="form-card-badge" style="margin-bottom:12px">Accès immédiat</div>
+
+    <!-- Title -->
+    <h2 id="optinTitle" style="font-family:'Poppins',sans-serif;font-weight:900;font-size:1.15rem;line-height:1.3;letter-spacing:-.02em;margin-bottom:6px">
+      À 3 infos de comprendre<br>le métier recherché par <span style="color:var(--teal)">97% des entreprises</span>
+    </h2>
+    <p style="font-size:.8rem;color:var(--muted);line-height:1.55;margin-bottom:20px">
+      97% des 3,8 millions d'entreprises en France ne savent pas encore<br>comment intégrer l'IA. Ce profil, c'est toi.
+    </p>
+
+    <!-- Error box -->
+    <div class="form-error" id="modalError"></div>
+
+    <!-- Form -->
+    <form id="vslForm" novalidate>
+      <div class="form-field">
+        <label for="inputPrenom">Prénom</label>
+        <input type="text" id="inputPrenom" name="prenom" placeholder="Ton prénom" autocomplete="given-name">
+      </div>
+      <div class="form-field">
+        <label for="inputEmail">Email</label>
+        <input type="email" id="inputEmail" name="email" placeholder="ton@email.com" autocomplete="email">
+      </div>
+
+      <button type="submit" class="submit-btn" id="submitBtn" style="margin-top:14px">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="#fff" style="flex-shrink:0"><path d="M5 3l14 9-14 9V3z"/></svg>
+        <span id="submitLabel">Lancer la vidéo maintenant (13 min)</span>
+      </button>
+
+      <!-- Gift note -->
+      <div style="display:flex;align-items:flex-start;gap:8px;margin-top:12px;padding:10px 12px;background:rgba(45,212,191,.06);border:1px solid rgba(45,212,191,.18);border-radius:10px">
+        <span style="font-size:1.1rem;line-height:1;flex-shrink:0">🎁</span>
+        <p style="font-size:.75rem;color:rgba(255,255,255,.65);line-height:1.55">
+          <strong style="color:var(--teal)">En bonus :</strong> reçois immédiatement le plan complet pour démarrer — sans coder, sans réseau, en 90 jours.
+        </p>
+      </div>
+
+      <p class="form-legal" style="margin-top:14px">
+        <strong style="color:var(--teal)">Accès instantané · 100% gratuit · Sans spam</strong><br>
+        En t'inscrivant tu acceptes notre <a href="/politique-confidentialite">politique de confidentialité</a>.
+      </p>
+    </form>
+  </div>
+</div>
+
 <!-- FOOTER -->
 <footer>
   <p>© 2026 DENEM Academy – SAS – SIREN 994 763 712</p>
@@ -921,10 +978,29 @@
 
 <!-- ── SCRIPTS ── -->
 <script>
-  const form     = document.getElementById('vslForm');
-  const submitBtn= document.getElementById('submitBtn');
-  const submitLbl= document.getElementById('submitLabel');
-  const errBox   = document.getElementById('formError');
+  // Modal open / close
+  function openOptin() {
+    const overlay = document.getElementById('optinOverlay');
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    setTimeout(() => document.getElementById('inputPrenom').focus(), 320);
+  }
+  function closeOptin() {
+    document.getElementById('optinOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.getElementById('optinOverlay').addEventListener('click', function(e) {
+    if (e.target === this) closeOptin();
+  });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeOptin();
+  });
+
+  // Form submit
+  const form      = document.getElementById('vslForm');
+  const submitBtn = document.getElementById('submitBtn');
+  const submitLbl = document.getElementById('submitLabel');
+  const errBox    = document.getElementById('modalError');
 
   function setLoading(on) {
     submitBtn.disabled = on;
@@ -933,7 +1009,6 @@
     if (on && !sp) { sp = document.createElement('div'); sp.className = 'spinner'; submitBtn.appendChild(sp); }
     if (!on && sp) sp.remove();
   }
-
   function showError(msg) { errBox.textContent = msg; errBox.classList.add('show'); }
   function clearError()   { errBox.classList.remove('show'); }
 
