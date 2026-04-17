@@ -1089,33 +1089,8 @@
     }
   })();
 
-  // Live counter
-  (function() {
-    const el = document.getElementById('liveCount');
-    function fmt(n) { return n.toLocaleString('fr-FR'); }
-    // Base aléatoire entre 1 620 et 1 680 à chaque chargement
-    let count = 257 + Math.floor(Math.random() * 20);
-    el.textContent = fmt(count);
-    setInterval(() => {
-      const up = Math.random() < 0.65;
-      const delta = Math.floor(Math.random() * 3) + 1;
-      count = up ? count + delta : Math.max(240, count - delta);
-      el.textContent = fmt(count);
-    }, 6000);
-  })();
-
   // Fade-up observer
-  const fadeObs = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); fadeObs.unobserve(e.target); } });
-  }, { threshold: 0.05, rootMargin: '60px 0px 60px 0px' });
-  document.querySelectorAll('.fade-up').forEach(el => {
-    const r = el.getBoundingClientRect();
-    if (r.top < window.innerHeight && r.bottom > 0) {
-      el.classList.add('visible');
-    } else {
-      fadeObs.observe(el);
-    }
-  });
+  document.querySelectorAll('.fade-up').forEach(el => el.classList.add('visible'));
 </script>
 
 </body>
