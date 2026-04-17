@@ -38,7 +38,7 @@
 
     /* NAV */
     nav {
-      padding: 18px 5vw;
+      padding: 10px 5vw;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -53,12 +53,12 @@
       flex: 1;
       display: flex;
       flex-direction: column;
-      padding: 48px 5vw 72px;
+      padding: 28px 5vw 28px;
       max-width: 680px;
       margin: 0 auto;
       width: 100%;
     }
-    .hero-left { display: flex; flex-direction: column; margin-bottom: 36px; }
+    .hero-left { display: flex; flex-direction: column; align-items: center; text-align: center; margin-bottom: 20px; }
     .hero-right { display: flex; flex-direction: column; }
 
     .badge {
@@ -68,17 +68,17 @@
       border-radius: 99px; padding: 5px 16px;
       font-size: 11px; font-weight: 500; color: var(--teal);
       text-transform: uppercase; letter-spacing: 1.5px;
-      margin-bottom: 22px; align-self: flex-start;
+      margin-bottom: 14px; align-self: center;
     }
 
     .hero-left h1 {
       font-family: 'Poppins', sans-serif;
       font-weight: 900;
-      font-size: clamp(1.7rem, 3.5vw, 2.6rem);
+      font-size: clamp(1.4rem, 2.8vw, 2rem);
       line-height: 1.2;
       letter-spacing: -.03em;
-      margin-bottom: 20px;
-      text-align: left;
+      margin-bottom: 12px;
+      text-align: center;
     }
     .hero-left h1 .grad {
       background: linear-gradient(135deg, #fff 20%, var(--teal) 100%);
@@ -87,11 +87,11 @@
     }
 
     .hero-sub {
-      font-size: .95rem;
+      font-size: .88rem;
       color: var(--muted);
-      line-height: 1.8;
-      margin-bottom: 32px;
-      text-align: left;
+      line-height: 1.7;
+      margin-bottom: 0;
+      text-align: center;
     }
     .hero-sub strong { color: var(--text); font-weight: 500; }
     .hero-sub em { color: var(--muted); }
@@ -542,7 +542,7 @@
 
 <!-- NAV -->
 <nav style="flex-direction:column;gap:4px">
-  <a href="/"><img src="logo.png" alt="DENEM Academy" style="height:72px;display:block"></a>
+  <a href="/"><img src="logo.png" alt="DENEM Academy" style="height:52px;display:block"></a>
   <p class="nav-tagline">Pour les actifs 28–50 ans qui veulent prendre leur place dans l'écosystème IA français</p>
 </nav>
 
@@ -575,9 +575,9 @@
     <div class="form-card">
 
       <!-- En-tête visible -->
-      <div class="form-card-top">
+      <div class="form-card-top" style="padding-top:20px;padding-bottom:14px">
         <div class="form-card-badge">Accès immédiat</div>
-        <p style="font-size:.88rem;color:var(--muted);margin-bottom:14px;line-height:1.6">
+        <p style="font-size:.85rem;color:var(--muted);margin-bottom:10px;line-height:1.5">
           ⏱️ Découvre tout dans cette vidéo de 13 minutes.<br>
           <em style="font-size:.82rem">(Reste jusqu'à la fin. Les 2 dernières minutes valent de l'or.)</em>
         </p>
