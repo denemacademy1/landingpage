@@ -631,7 +631,7 @@
 </nav>
 
 <!-- HERO 2 COLONNES -->
-<main class="hero" style="position:relative;overflow:hidden">
+<main class="hero" style="position:relative">
 
   <!-- BACKGROUND LAYERS -->
   <div class="hero-glow hero-glow-1" aria-hidden="true"></div>
@@ -1106,9 +1106,16 @@
 
   // Fade-up observer
   const fadeObs = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
-  document.querySelectorAll('.fade-up').forEach(el => fadeObs.observe(el));
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); fadeObs.unobserve(e.target); } });
+  }, { threshold: 0.05, rootMargin: '60px 0px 60px 0px' });
+  document.querySelectorAll('.fade-up').forEach(el => {
+    const r = el.getBoundingClientRect();
+    if (r.top < window.innerHeight && r.bottom > 0) {
+      el.classList.add('visible');
+    } else {
+      fadeObs.observe(el);
+    }
+  });
 </script>
 
 </body>
