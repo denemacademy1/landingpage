@@ -632,7 +632,7 @@
       background: var(--card-bg);
       border: 1px solid var(--border);
       border-radius: 24px;
-      width: 100%; max-width: 460px;
+      width: 100%; max-width: 540px;
       padding: 32px 32px 28px;
       position: relative;
       box-shadow: 0 40px 100px rgba(0,0,0,.7), 0 0 0 1px rgba(107,91,255,.15);
@@ -925,16 +925,20 @@
   <div id="optinCard">
     <button class="modal-close" onclick="closeOptin()" aria-label="Fermer">✕</button>
 
-    <!-- Badge -->
-    <div class="form-card-badge" style="margin-bottom:12px">Accès immédiat</div>
+    <!-- Badges -->
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px">
+      <div class="form-card-badge" style="margin-bottom:0">Accès immédiat</div>
+      <div style="display:inline-flex;align-items:center;gap:6px;background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.3);border-radius:99px;padding:4px 12px;font-size:11px;font-weight:600;color:#fca5a5;letter-spacing:.4px">
+        <span style="width:6px;height:6px;background:#ef4444;border-radius:50%;display:inline-block;animation:pulse-dot 2s ease-in-out infinite;flex-shrink:0"></span>
+        LIMITÉ
+      </div>
+    </div>
 
     <!-- Title -->
-    <h2 id="optinTitle" style="font-family:'Poppins',sans-serif;font-weight:900;font-size:1.15rem;line-height:1.3;letter-spacing:-.02em;margin-bottom:6px">
-      À 3 infos de comprendre<br>le métier recherché par <span style="color:var(--teal)">97% des entreprises</span>
+    <h2 id="optinTitle" style="font-family:'Poppins',sans-serif;font-weight:900;font-size:1.1rem;line-height:1.35;letter-spacing:-.02em;margin-bottom:18px">
+      Tu vas comprendre le métier le plus recherché en 2026 par les entreprises françaises, et ce pour les 10 prochaines années
+      <span style="font-size:.78em;font-weight:500;color:var(--muted)">(97% des 3,8 millions de PME en France)</span>
     </h2>
-    <p style="font-size:.8rem;color:var(--muted);line-height:1.55;margin-bottom:20px">
-      97% des 3,8 millions d'entreprises en France ne savent pas encore<br>comment intégrer l'IA. Ce profil, c'est toi.
-    </p>
 
     <!-- Error box -->
     <div class="form-error" id="modalError"></div>
@@ -945,27 +949,31 @@
         <label for="inputPrenom">Prénom</label>
         <input type="text" id="inputPrenom" name="prenom" placeholder="Ton prénom" autocomplete="given-name">
       </div>
-      <div class="form-field">
-        <label for="inputEmail">Email</label>
+      <div class="form-field" style="margin-bottom:14px">
+        <label for="inputEmail" style="display:flex;align-items:baseline;gap:6px">
+          EMAIL
+          <span style="font-size:.75rem;color:var(--muted);text-transform:none;letter-spacing:0;font-weight:400">(adresse principale pour bien recevoir ton contenu)</span>
+        </label>
         <input type="email" id="inputEmail" name="email" placeholder="ton@email.com" autocomplete="email">
       </div>
 
-      <button type="submit" class="submit-btn" id="submitBtn" style="margin-top:14px">
-        <svg viewBox="0 0 24 24" width="18" height="18" fill="#fff" style="flex-shrink:0"><path d="M5 3l14 9-14 9V3z"/></svg>
-        <span id="submitLabel">Lancer la vidéo maintenant (13 min)</span>
+      <!-- Hint -->
+      <p style="font-size:.78rem;color:var(--muted);margin-bottom:12px;display:flex;align-items:center;gap:6px">
+        <span>⏱️</span> Vidéo de 13 min · <em>Les 2 dernières minutes valent de l'or.</em>
+      </p>
+
+      <!-- Submit button -->
+      <button type="submit" class="submit-btn" id="submitBtn" style="flex-direction:column;gap:4px;padding:14px 16px">
+        <span id="submitLabel" style="display:flex;align-items:center;gap:8px">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="#fff"><path d="M5 3l14 9-14 9V3z"/></svg>
+          Lancer la vidéo maintenant (13 min)
+        </span>
+        <span style="font-size:.78rem;color:var(--teal);font-weight:400">🎁 Ton plan pour te lancer offert gratuitement à la fin</span>
       </button>
 
-      <!-- Gift note -->
-      <div style="display:flex;align-items:flex-start;gap:8px;margin-top:12px;padding:10px 12px;background:rgba(45,212,191,.06);border:1px solid rgba(45,212,191,.18);border-radius:10px">
-        <span style="font-size:1.1rem;line-height:1;flex-shrink:0">🎁</span>
-        <p style="font-size:.75rem;color:rgba(255,255,255,.65);line-height:1.55">
-          <strong style="color:var(--teal)">En bonus :</strong> reçois immédiatement le plan complet pour démarrer — sans coder, sans réseau, en 90 jours.
-        </p>
-      </div>
-
       <p class="form-legal" style="margin-top:14px">
-        <strong style="color:var(--teal)">Accès instantané · 100% gratuit · Sans spam</strong><br>
-        En t'inscrivant tu acceptes notre <a href="/politique-confidentialite">politique de confidentialité</a>.
+        En t'inscrivant, tu acceptes de recevoir mes communications. Tu pourras te désinscrire en un clic à tout moment.<br>
+        <span style="margin-top:4px;display:inline-block">Accès instantané, <strong style="color:#fff">100% gratuit</strong> et sans spam.</span>
       </p>
     </form>
   </div>
