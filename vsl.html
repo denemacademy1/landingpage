@@ -48,53 +48,98 @@
     .nav-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.35rem; color: #fff; text-decoration: none; letter-spacing: -.02em; }
     .nav-logo span { color: var(--teal); }
 
-    /* HERO */
+    /* HERO 2 COLONNES */
     .hero {
       flex: 1;
-      display: flex;
-      flex-direction: column;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
       align-items: center;
-      text-align: center;
       padding: 56px 5vw 80px;
-      max-width: 860px;
+      max-width: 1120px;
       margin: 0 auto;
       width: 100%;
     }
+    .hero-left { display: flex; flex-direction: column; }
+    .hero-right { display: flex; flex-direction: column; }
 
     .badge {
       display: inline-flex; align-items: center; gap: 6px;
       background: rgba(45,212,191,.1);
       border: 1px solid rgba(45,212,191,.3);
       border-radius: 99px; padding: 5px 16px;
-      font-size: 12px; font-weight: 500; color: var(--teal);
+      font-size: 11px; font-weight: 500; color: var(--teal);
       text-transform: uppercase; letter-spacing: 1.5px;
-      margin-bottom: 24px;
+      margin-bottom: 22px; align-self: flex-start;
     }
 
-    .hero h1 {
-      font-family: 'Syne', sans-serif;
-      font-weight: 800;
-      font-size: clamp(1.4rem, 2.8vw, 2rem);
-      line-height: 1.2;
-      letter-spacing: -.02em;
+    .hero-left h1 {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 900;
+      font-size: clamp(1.5rem, 2.4vw, 2.1rem);
+      line-height: 1.15;
+      letter-spacing: -.03em;
       margin-bottom: 20px;
+      text-align: left;
     }
-    .hero h1 .grad {
+    .hero-left h1 .grad {
       background: linear-gradient(135deg, #fff 20%, var(--teal) 100%);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent;
       background-clip: text;
     }
 
     .hero-sub {
-      font-size: clamp(.92rem, 1.8vw, 1.05rem);
+      font-size: .95rem;
       color: var(--muted);
-      line-height: 1.75;
-      max-width: 580px;
-      margin: 0 auto 40px;
+      line-height: 1.8;
+      margin-bottom: 32px;
+      text-align: left;
     }
     .hero-sub strong { color: var(--text); font-weight: 500; }
+    .hero-sub em { color: var(--muted); }
 
-    /* VSL PLAYER */
+    /* FORM CARD */
+    .form-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 36px 32px;
+      box-shadow: 0 24px 80px rgba(0,0,0,.5);
+    }
+    .form-card-badge {
+      display: inline-flex; align-items: center; gap: 5px;
+      background: rgba(107,91,255,.12); border: 1px solid rgba(107,91,255,.3);
+      border-radius: 99px; padding: 4px 14px;
+      font-size: 11px; font-weight: 600; color: #a78bfa;
+      text-transform: uppercase; letter-spacing: 1px;
+      margin-bottom: 14px;
+    }
+    .form-card h2 {
+      font-family: 'Poppins', sans-serif; font-weight: 900;
+      font-size: 1.25rem; line-height: 1.25; letter-spacing: -.02em;
+      margin-bottom: 6px;
+    }
+    .form-card-sub {
+      font-size: .85rem; color: var(--muted); line-height: 1.6; margin-bottom: 22px;
+    }
+    .form-card-sub strong { color: var(--text); }
+
+    /* SOCIAL PROOF */
+    .proof-row {
+      display: flex; gap: 24px; flex-wrap: wrap;
+      padding-top: 28px;
+      border-top: 1px solid var(--border);
+    }
+    .proof-item { text-align: left; }
+    .proof-value {
+      font-family: 'Poppins', sans-serif; font-weight: 900;
+      font-size: 1.4rem; letter-spacing: -.03em;
+      background: linear-gradient(135deg, #fff 30%, var(--teal));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .proof-label { font-size: .74rem; color: var(--muted); margin-top: 2px; }
+
+    /* VSL PLAYER (conservé pour usage futur) */
     .vsl-wrapper {
       width: 100%;
       max-width: 720px;
@@ -180,71 +225,6 @@
     }
     .cta-note svg { width: 13px; height: 13px; }
 
-    /* SOCIAL PROOF */
-    .proof-row {
-      display: flex; gap: 28px; justify-content: center; flex-wrap: wrap;
-      margin-top: 48px; padding-top: 32px;
-      border-top: 1px solid var(--border);
-      width: 100%;
-    }
-    .proof-item { text-align: center; }
-    .proof-value {
-      font-family: 'Poppins', sans-serif; font-weight: 900;
-      font-size: 1.6rem; letter-spacing: -.03em;
-      background: linear-gradient(135deg, #fff 30%, var(--teal));
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-    }
-    .proof-label { font-size: .78rem; color: var(--muted); margin-top: 2px; }
-
-    /* ── MODALE ── */
-    .modal-overlay {
-      position: fixed; inset: 0; z-index: 1000;
-      background: rgba(0,0,0,.75);
-      backdrop-filter: blur(8px);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-    }
-    .modal-overlay.open { display: flex; }
-
-    .modal {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      padding: 40px 36px;
-      width: 100%; max-width: 460px;
-      box-shadow: 0 40px 100px rgba(0,0,0,.6);
-      position: relative;
-      animation: modal-in .22s ease;
-    }
-    @keyframes modal-in { from { opacity:0; transform:translateY(16px) scale(.97); } to { opacity:1; transform:none; } }
-
-    .modal-close {
-      position: absolute; top: 16px; right: 18px;
-      background: none; border: none; cursor: pointer;
-      color: var(--muted); font-size: 1.4rem; line-height: 1;
-      transition: color .15s;
-    }
-    .modal-close:hover { color: #fff; }
-
-    .modal-badge {
-      display: inline-flex; align-items: center; gap: 5px;
-      background: rgba(107,91,255,.12); border: 1px solid rgba(107,91,255,.3);
-      border-radius: 99px; padding: 4px 14px;
-      font-size: 11px; font-weight: 600; color: #a78bfa;
-      text-transform: uppercase; letter-spacing: 1px;
-      margin-bottom: 14px;
-    }
-    .modal h2 {
-      font-family: 'Poppins', sans-serif; font-weight: 900;
-      font-size: 1.5rem; line-height: 1.2; letter-spacing: -.02em;
-      margin-bottom: 8px;
-    }
-    .modal-sub {
-      font-size: .9rem; color: var(--muted); line-height: 1.6; margin-bottom: 28px;
-    }
-    .modal-sub strong { color: var(--text); }
 
     .form-field { margin-bottom: 16px; }
     .form-field label {
@@ -314,11 +294,13 @@
     .footer-links a { color: var(--muted); text-decoration: none; }
     .footer-links a:hover { color: var(--teal); }
 
-    @media (max-width: 480px) {
-      .hero { padding: 40px 20px 60px; }
-      .modal { padding: 28px 20px; }
-      .play-btn { width: 64px; height: 64px; }
-      .play-btn svg { width: 22px; height: 22px; }
+    @media (max-width: 768px) {
+      .hero { grid-template-columns: 1fr; gap: 32px; padding: 40px 20px 60px; }
+      .badge { align-self: center; }
+      .hero-left h1 { font-size: 1.6rem; text-align: center; }
+      .hero-sub { text-align: center; }
+      .proof-row { justify-content: center; }
+      .proof-item { text-align: center; }
     }
   </style>
 </head>
@@ -329,56 +311,72 @@
   <a class="nav-logo" href="/">DENEM <span>Academy</span></a>
 </nav>
 
-<!-- HERO -->
+<!-- HERO 2 COLONNES -->
 <main class="hero">
 
-  <div class="badge">
-    <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><circle cx="5" cy="5" r="5"/></svg>
-    Accès vidéo exclusif
-  </div>
+  <!-- GAUCHE : texte -->
+  <div class="hero-left">
+    <div class="badge">
+      <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><circle cx="5" cy="5" r="5"/></svg>
+      Accès vidéo exclusif
+    </div>
 
-  <h1>
-    <span class="grad">Réservé aux actifs de 28 à 50 ans</span><br>
-    qui veulent se positionner AVANT<br>l'AI Act européen d'août 2026.
-  </h1>
+    <h1>
+      <span class="grad">Réservé aux actifs de 28 à 50 ans</span><br>
+      qui veulent se positionner AVANT<br>l'AI Act européen d'août 2026.
+    </h1>
 
-  <p class="hero-sub">
-    Le nouveau métier qui permet de facturer <strong>5 000 à 10 000€ par mission</strong> aux entreprises françaises.<br><br>
-    Sans coder. Sans école d'ingénieur. Sans prospection agressive.<br><br>
-    Pas un hack. Pas un dropshipping déguisé.<br><br>
-    La méthode utilisée par notre collectif derrière <strong>250+ projets IA livrés en production</strong> chez Canal+, EDF, Crédit Agricole — et par nos alumni qui facturent aujourd'hui entre <strong>25 000€ et 50 000€/mois.</strong><br><br>
-    ⏱️ Découvre tout dans cette vidéo de 13 minutes.<br>
-    <em>(Reste jusqu'à la fin. Les 2 dernières minutes valent de l'or.)</em>
-  </p>
+    <p class="hero-sub">
+      Le nouveau métier qui permet de facturer <strong>5 000 à 10 000€ par mission</strong> aux entreprises françaises.<br><br>
+      Sans coder. Sans école d'ingénieur. Sans prospection agressive.<br><br>
+      Pas un hack. Pas un dropshipping déguisé.<br><br>
+      La méthode derrière <strong>250+ projets IA livrés</strong> chez Canal+, EDF, Crédit Agricole — et par nos alumni qui facturent entre <strong>25 000€ et 50 000€/mois.</strong><br><br>
+      ⏱️ Découvre tout dans cette vidéo de 13 minutes.<br>
+      <em>(Reste jusqu'à la fin. Les 2 dernières minutes valent de l'or.)</em>
+    </p>
 
-  <!-- VSL Thumbnail -->
-  <div class="vsl-wrapper">
-    <div class="vsl-thumb" id="vslThumb" role="button" aria-label="Voir la vidéo" tabindex="0">
-      <div class="vsl-grid"></div>
-      <span class="vsl-label">Vidéo</span>
-      <div class="play-btn">
-        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-      </div>
-      <span class="vsl-duration">~20 min</span>
+    <div class="proof-row">
+      <div class="proof-item"><div class="proof-value">+500</div><div class="proof-label">élèves formés</div></div>
+      <div class="proof-item"><div class="proof-value">90j</div><div class="proof-label">pour lancer</div></div>
+      <div class="proof-item"><div class="proof-value">50K€</div><div class="proof-label">top alumni/mois</div></div>
     </div>
   </div>
 
-  <!-- CTA -->
-  <button class="cta-btn" id="ctaBtn">
-    <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-    Regarder la vidéo gratuitement
-  </button>
+  <!-- DROITE : formulaire -->
+  <div class="hero-right">
+    <div class="form-card">
+      <div class="form-card-badge">Accès immédiat</div>
+      <h2>Où dois-je t'envoyer l'accès ?</h2>
+      <p class="form-card-sub">
+        Renseigne tes coordonnées pour accéder à la vidéo.<br>
+        <strong>Accès instantané, gratuit et sans spam.</strong>
+      </p>
 
-  <p class="cta-note">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-    Accès immédiat · 100% gratuit · Sans engagement
-  </p>
+      <div class="form-error" id="formError"></div>
 
-  <!-- Social proof -->
-  <div class="proof-row">
-    <div class="proof-item"><div class="proof-value">+500</div><div class="proof-label">élèves formés</div></div>
-    <div class="proof-item"><div class="proof-value">90j</div><div class="proof-label">pour lancer son activité</div></div>
-    <div class="proof-item"><div class="proof-value">50K€</div><div class="proof-label">revenus top élèves/mois</div></div>
+      <form id="vslForm" novalidate>
+        <div class="form-field">
+          <label for="inputPrenom">Prénom</label>
+          <input type="text" id="inputPrenom" name="prenom" placeholder="Ton prénom" required autocomplete="given-name">
+        </div>
+        <div class="form-field">
+          <label for="inputEmail">Email</label>
+          <input type="email" id="inputEmail" name="email" placeholder="ton@email.com" required autocomplete="email">
+        </div>
+        <div class="form-field">
+          <label for="inputTel">Téléphone <span style="color:var(--muted);font-weight:300;text-transform:none;letter-spacing:0">(optionnel)</span></label>
+          <input type="tel" id="inputTel" name="telephone" placeholder="+33 6 12 34 56 78" autocomplete="tel">
+        </div>
+        <button type="submit" class="submit-btn" id="submitBtn">
+          <span id="submitLabel">Accéder à la vidéo →</span>
+        </button>
+      </form>
+
+      <p class="form-legal">
+        En continuant, tu acceptes notre <a href="/politique-confidentialite" target="_blank">politique de confidentialité</a>.
+        Tes données ne seront jamais revendues.
+      </p>
+    </div>
   </div>
 
 </main>
@@ -393,67 +391,12 @@
   <p>© 2026 DENEM Group – SAS – SIREN 994 763 712</p>
 </footer>
 
-<!-- ── MODALE ── -->
-<div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-  <div class="modal">
-    <button class="modal-close" id="modalClose" aria-label="Fermer">×</button>
-
-    <div class="modal-badge">Accès immédiat</div>
-
-    <h2 id="modalTitle">Où dois-je t'envoyer l'accès ?</h2>
-    <p class="modal-sub">
-      Renseigne tes coordonnées pour accéder à la vidéo.<br>
-      <strong>Accès instantané, gratuit et sans spam.</strong>
-    </p>
-
-    <div class="form-error" id="formError"></div>
-
-    <form id="vslForm" novalidate>
-      <div class="form-field">
-        <label for="inputPrenom">Prénom</label>
-        <input type="text" id="inputPrenom" name="prenom" placeholder="Ton prénom" required autocomplete="given-name">
-      </div>
-      <div class="form-field">
-        <label for="inputEmail">Email</label>
-        <input type="email" id="inputEmail" name="email" placeholder="ton@email.com" required autocomplete="email">
-      </div>
-      <div class="form-field">
-        <label for="inputTel">Téléphone <span style="color:var(--muted);font-weight:300;text-transform:none;letter-spacing:0">(optionnel)</span></label>
-        <input type="tel" id="inputTel" name="telephone" placeholder="+33 6 12 34 56 78" autocomplete="tel">
-      </div>
-
-      <button type="submit" class="submit-btn" id="submitBtn">
-        <span id="submitLabel">Accéder à la vidéo</span>
-      </button>
-    </form>
-
-    <p class="form-legal">
-      En continuant, tu acceptes notre <a href="/politique-confidentialite" target="_blank">politique de confidentialité</a>.
-      Tes données ne seront jamais revendues.
-    </p>
-  </div>
-</div>
-
 <!-- ── SCRIPTS ── -->
 <script>
-  const overlay  = document.getElementById('modalOverlay');
-  const ctaBtn   = document.getElementById('ctaBtn');
-  const vslThumb = document.getElementById('vslThumb');
-  const closeBtn = document.getElementById('modalClose');
   const form     = document.getElementById('vslForm');
   const submitBtn= document.getElementById('submitBtn');
   const submitLbl= document.getElementById('submitLabel');
   const errBox   = document.getElementById('formError');
-
-  function openModal() { overlay.classList.add('open'); document.getElementById('inputPrenom').focus(); }
-  function closeModal() { overlay.classList.remove('open'); }
-
-  ctaBtn.addEventListener('click', openModal);
-  vslThumb.addEventListener('click', openModal);
-  vslThumb.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') openModal(); });
-  closeBtn.addEventListener('click', closeModal);
-  overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
   function setLoading(on) {
     submitBtn.disabled = on;
