@@ -283,6 +283,129 @@
     }
     .form-error.show { display: block; }
 
+    /* TEXT SHINE */
+    @keyframes text-shine {
+      0%   { background-position: 200% 50%; }
+      100% { background-position: -200% 50%; }
+    }
+    .shine-text {
+      background: linear-gradient(90deg, #fff 0%, var(--teal) 30%, #fff 50%, #6B5BFF 70%, var(--teal) 85%, #fff 100%);
+      background-size: 300% 100%;
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: text-shine 4s linear infinite;
+    }
+
+    /* H1 UNDERLINE */
+    .h1-underline { position: relative; display: inline; }
+    .h1-underline::after {
+      content: '';
+      position: absolute; left: -2%; bottom: 0px;
+      width: 104%; height: 18px;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 24' preserveAspectRatio='none'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='0%25'%3E%3Cstop offset='0%25' stop-color='%236B5BFF'/%3E%3Cstop offset='50%25' stop-color='%232DD4BF'/%3E%3Cstop offset='100%25' stop-color='%2322d3ee'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M4,6 Q150,22 296,6' stroke='url(%23g)' stroke-width='4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat center / 100% 100%;
+    }
+
+    /* STAT CARDS */
+    .stat-cards-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px;
+      padding: 12px; border-radius: 20px;
+      background: rgba(255,255,255,.025);
+      border: 1px solid rgba(255,255,255,.07);
+    }
+    @media (max-width: 900px) { .stat-cards-grid { grid-template-columns: repeat(2,1fr); } }
+    .stat-card-color {
+      padding: 28px 22px; border-radius: 14px;
+      display: flex; flex-direction: column; justify-content: space-between;
+      border: 1px solid; min-height: 140px;
+      transition: transform .3s; cursor: default;
+    }
+    .stat-card-color:hover { transform: translateY(-4px); }
+    .stat-card-num {
+      font-family: 'Poppins', sans-serif; font-size: clamp(28px,3vw,40px);
+      font-weight: 900; line-height: 1; letter-spacing: -1px; margin-bottom: 10px;
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .stat-card-text { font-size: 13px; line-height: 1.5; color: rgba(255,255,255,.7); }
+    .stat-card-teal {
+      background: radial-gradient(ellipse at top left, rgba(45,212,191,.18) 0%, transparent 60%),
+                  linear-gradient(145deg, rgba(45,212,191,.08) 0%, rgba(13,12,20,.4) 100%);
+      border-color: rgba(45,212,191,.35);
+    }
+    .stat-card-teal .stat-card-num { background: linear-gradient(135deg,#5EEBD4,#2DD4BF); }
+    .stat-card-violet {
+      background: radial-gradient(ellipse at top left, rgba(107,91,255,.18) 0%, transparent 60%),
+                  linear-gradient(145deg, rgba(107,91,255,.08) 0%, rgba(13,12,20,.4) 100%);
+      border-color: rgba(107,91,255,.35);
+    }
+    .stat-card-violet .stat-card-num { background: linear-gradient(135deg,#8B7DFF,#6B5BFF); }
+    .stat-card-dark {
+      background: radial-gradient(ellipse at top left, rgba(255,255,255,.04) 0%, transparent 60%),
+                  linear-gradient(145deg, rgba(19,17,31,.8), rgba(13,12,20,.6));
+      border-color: rgba(255,255,255,.12);
+    }
+    .stat-card-dark .stat-card-num { background: linear-gradient(135deg,#fff,#B8B5D4); }
+    .stat-card-gradient {
+      background: radial-gradient(ellipse at top right, rgba(107,91,255,.15) 0%, transparent 55%),
+                  radial-gradient(ellipse at bottom left, rgba(45,212,191,.15) 0%, transparent 55%),
+                  linear-gradient(145deg, rgba(19,17,31,.8), rgba(13,12,20,.6));
+      border-color: rgba(107,91,255,.3); position: relative; overflow: hidden;
+    }
+    .stat-card-gradient::before {
+      content: ""; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--teal), var(--violet), transparent);
+    }
+    .stat-card-gradient .stat-card-num { background: linear-gradient(135deg,#2DD4BF,#6B5BFF); }
+
+    /* LOCKED CARD */
+    .locked-card {
+      background: rgba(255,255,255,.03);
+      border: 1px dashed rgba(255,255,255,.18);
+      border-radius: 14px;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 8px; padding: 28px 16px; text-align: center;
+      min-height: 160px;
+    }
+    .locked-card .lock-icon { font-size: 1.8rem; opacity: .5; }
+    .locked-card .lock-title { font-size: .82rem; font-weight: 600; color: rgba(255,255,255,.45); }
+    .locked-card .lock-sub { font-size: .72rem; color: rgba(255,255,255,.25); }
+
+    /* VSL THUMB IN FORM */
+    .form-vsl-thumb {
+      width: 100%; aspect-ratio: 16/9;
+      background: linear-gradient(135deg, #1a1830, #0f1520, #12101e);
+      border-radius: 12px; border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
+      margin-bottom: 18px; filter: blur(2px); opacity: .7;
+    }
+    .form-vsl-thumb::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 40% 50%, rgba(107,91,255,.25) 0%, transparent 65%),
+                  radial-gradient(ellipse at 75% 60%, rgba(45,212,191,.1) 0%, transparent 55%);
+    }
+    .form-vsl-grid {
+      position: absolute; inset: 0;
+      background-image: linear-gradient(rgba(107,91,255,.07) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(107,91,255,.07) 1px, transparent 1px);
+      background-size: 32px 32px;
+    }
+    .form-play-btn {
+      position: relative; width: 52px; height: 52px;
+      background: var(--violet); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 0 0 8px rgba(107,91,255,.2);
+      z-index: 1;
+    }
+    .form-play-btn svg { width: 18px; height: 18px; fill: #fff; margin-left: 3px; }
+
+    /* NAV TAGLINE */
+    .nav-tagline {
+      font-size: .62rem; font-weight: 600; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--muted); margin-top: 4px;
+      text-align: center;
+    }
+
     /* FOOTER */
     footer {
       border-top: 1px solid var(--border);
@@ -290,9 +413,6 @@
       text-align: center;
       font-size: .78rem; color: var(--muted);
     }
-    .footer-links { display: flex; justify-content: center; gap: 1.2rem; margin-bottom: .5rem; flex-wrap: wrap; }
-    .footer-links a { color: var(--muted); text-decoration: none; }
-    .footer-links a:hover { color: var(--teal); }
 
     /* SECTION TITLES */
     .section-eyebrow {
@@ -402,8 +522,9 @@
 <body>
 
 <!-- NAV -->
-<nav>
+<nav style="flex-direction:column;gap:4px">
   <a href="/"><img src="logo.png" alt="DENEM Academy" style="height:72px;display:block"></a>
+  <p class="nav-tagline">Pour les actifs 28–50 ans qui veulent transformer leur carrière grâce à l'IA</p>
 </nav>
 
 <!-- HERO 2 COLONNES -->
@@ -418,27 +539,33 @@
 
     <h1>
       Le nouveau métier qui permet de facturer<br>
-      <span class="grad">5 000 à 10 000€ par mission</span><br>
-      aux entreprises françaises.<br>
-      Sans coder. Sans école d'ingénieur.<br>Sans prospection agressive.
+      <span class="shine-text">5 000 à 10 000€ par mission</span><br>
+      aux entreprises françaises —<br>
+      qui va lancer ta carrière dans l'IA.<br>
+      <span style="font-size:.85em"><span class="h1-underline">Sans coder</span>. <span class="h1-underline">Sans école d'ingénieur</span>.</span>
     </h1>
 
     <p class="hero-sub">
       Pas un hack. Pas un dropshipping déguisé.<br>
-      La méthode derrière <strong>250+ projets IA livrés</strong> chez Canal+, EDF, Crédit Agricole — et des alumni qui facturent entre <strong>25 000€ et 50 000€/mois.</strong>
+      La méthode derrière <strong>250+ projets IA livrés</strong> chez Canal+, EDF, Crédit Agricole — et des alumni qui génèrent entre <strong>15 000€ et 50 000€/mois.</strong>
     </p>
-
-    <div class="proof-row">
-      <div class="proof-item"><div class="proof-value">+500</div><div class="proof-label">élèves formés</div></div>
-      <div class="proof-item"><div class="proof-value">90j</div><div class="proof-label">pour lancer</div></div>
-      <div class="proof-item"><div class="proof-value">50K€</div><div class="proof-label">top alumni/mois</div></div>
-    </div>
   </div>
 
   <!-- DROITE : formulaire -->
   <div class="hero-right">
     <div class="form-card">
       <div class="form-card-badge">Accès immédiat</div>
+
+      <!-- VSL aperçu floutée -->
+      <div class="form-vsl-thumb">
+        <div class="form-vsl-grid"></div>
+        <div class="form-play-btn">
+          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        </div>
+        <span style="position:absolute;bottom:10px;right:10px;background:rgba(0,0,0,.7);border-radius:5px;padding:3px 8px;font-size:11px;font-weight:500;color:#fff;z-index:1">13 min</span>
+        <span style="position:absolute;top:10px;left:10px;background:rgba(107,91,255,.9);border-radius:5px;padding:3px 10px;font-size:10px;font-weight:700;color:#fff;letter-spacing:.5px;text-transform:uppercase;z-index:1">Exclusif</span>
+      </div>
+
       <p style="font-size:.88rem;color:var(--muted);margin-bottom:16px;line-height:1.6">
         ⏱️ Découvre tout dans cette vidéo de 13 minutes.<br>
         <em style="font-size:.82rem">(Reste jusqu'à la fin. Les 2 dernières minutes valent de l'or.)</em>
@@ -535,6 +662,28 @@
   </div>
 </div>
 
+<!-- STAT CARDS -->
+<div style="padding:48px 5vw;max-width:1120px;margin:0 auto;width:100%">
+  <div class="stat-cards-grid">
+    <div class="stat-card-color stat-card-teal">
+      <div class="stat-card-num">+1M€</div>
+      <p class="stat-card-text">De CA généré par l'écosystème DENEM sur des projets IA.</p>
+    </div>
+    <div class="stat-card-color stat-card-violet">
+      <div class="stat-card-num">+250</div>
+      <p class="stat-card-text">Projets IA déployés depuis 2020 pour grands comptes et PME.</p>
+    </div>
+    <div class="stat-card-color stat-card-dark">
+      <div class="stat-card-num">15-50K€</div>
+      <p class="stat-card-text">Revenus mensuels générés par nos élèves formés.</p>
+    </div>
+    <div class="stat-card-color stat-card-gradient">
+      <div class="stat-card-num">6 ans</div>
+      <p class="stat-card-text">D'expertise IA au service de grands comptes et de PME.</p>
+    </div>
+  </div>
+</div>
+
 <!-- SOCIAL PROOF SECTION -->
 <section style="padding:56px 5vw 80px;max-width:1120px;margin:0 auto;width:100%">
 
@@ -551,9 +700,9 @@
         <img class="testi-avatar" src="joseph.jpeg" alt="Joseph Mont"
           onerror="this.outerHTML='<div class=\'testi-avatar\' style=\'background:var(--violet);display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:700;color:#fff\'>J</div>'">
         <div>
-          <div class="testi-name">Joseph Mont</div>
+          <div class="testi-name">Joseph</div>
           <div class="testi-result">25 000€ / mois</div>
-          <div class="testi-role">Fondateur PIVOIA · Ex-consultant</div>
+          <div class="testi-role">Fondateur PIVOIA</div>
         </div>
       </div>
       <p class="testi-quote">"La méthode DENEM m'a donné les clés qu'il me manquait. En 90 jours j'ai eu mes premiers clients PME. Aujourd'hui je refuse des missions faute de disponibilité."</p>
@@ -566,9 +715,9 @@
         <img class="testi-avatar" src="baptiste.jpeg" alt="Baptiste Fort"
           onerror="this.outerHTML='<div class=\'testi-avatar\' style=\'background:var(--violet);display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:700;color:#fff\'>B</div>'">
         <div>
-          <div class="testi-name">Baptiste Fort</div>
+          <div class="testi-name">Baptiste</div>
           <div class="testi-result">35 000€ / mois</div>
-          <div class="testi-role">Agence IA · Ancien salarié</div>
+          <div class="testi-role">Agence IA</div>
         </div>
       </div>
       <p class="testi-quote">"J'avais zéro compétence technique. En suivant la méthode pas à pas, j'ai signé ma première mission à 8 000€ au bout de 6 semaines. Aujourd'hui j'ai une équipe de 3 personnes."</p>
@@ -585,8 +734,8 @@
       <img class="alumni-avatar" src="ugo.jpeg" alt="Ugo"
         onerror="this.outerHTML='<div class=\'alumni-avatar\' style=\'background:var(--violet);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;color:#fff\'>U</div>'">
       <div>
-        <div class="alumni-name">Ugo M.</div>
-        <div class="alumni-stat">12 000€ / mois</div>
+        <div class="alumni-name">Ugo</div>
+        <div class="alumni-stat">15 000€ / mois</div>
         <div class="alumni-info">Consultant IA indépendant</div>
       </div>
     </div>
@@ -595,8 +744,8 @@
       <img class="alumni-avatar" src="amir.jpeg" alt="Amir"
         onerror="this.outerHTML='<div class=\'alumni-avatar\' style=\'background:var(--violet);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;color:#fff\'>A</div>'">
       <div>
-        <div class="alumni-name">Amir B.</div>
-        <div class="alumni-stat">8 000€ / mission</div>
+        <div class="alumni-name">Amir</div>
+        <div class="alumni-stat">12 000€ / mois</div>
         <div class="alumni-info">Freelance Expert IA · Paris</div>
       </div>
     </div>
@@ -605,9 +754,9 @@
       <img class="alumni-avatar" src="othmane.jpeg" alt="Othmane"
         onerror="this.outerHTML='<div class=\'alumni-avatar\' style=\'background:var(--violet);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;color:#fff\'>O</div>'">
       <div>
-        <div class="alumni-name">Othmane A.</div>
-        <div class="alumni-stat">18 000€ / mois</div>
-        <div class="alumni-info">Agence automatisation · Lyon</div>
+        <div class="alumni-name">Othmane</div>
+        <div class="alumni-stat">50 000€ / mois</div>
+        <div class="alumni-info">Agence IA · Paris</div>
       </div>
     </div>
 
@@ -616,7 +765,7 @@
   <!-- ═══ RETOURS ÉLÈVES ═══ -->
   <p class="section-eyebrow">Victoires partagées dans la communauté</p>
   <h2 class="section-title">Ce qu'ils vivent <span class="grad">au quotidien</span></h2>
-  <p class="section-sub">Des messages vrais, non retouchés, postés par nos élèves dans notre communauté privée.</p>
+  <p class="section-sub">Des messages vrais postés par nos élèves dans notre communauté privée.</p>
 
   <div class="captures-grid" style="margin-bottom:64px">
     <img class="capture-img" src="retours-eleves/retour-1.png" alt="Retour élève DENEM" loading="lazy">
@@ -624,6 +773,11 @@
     <img class="capture-img" src="retours-eleves/retour-3.png" alt="Retour élève DENEM" loading="lazy">
     <img class="capture-img" src="retours-eleves/retour-4.png" alt="Retour élève DENEM" loading="lazy">
     <img class="capture-img" src="retours-eleves/retour-5.png" alt="Retour élève DENEM" loading="lazy">
+    <div class="locked-card">
+      <div class="lock-icon">🔒</div>
+      <div class="lock-title">La suite après la vidéo</div>
+      <div class="lock-sub">+50 victoires supplémentaires débloquées</div>
+    </div>
   </div>
 
   <!-- ═══ FACTU & CASH ═══ -->
@@ -644,6 +798,11 @@
     <img class="capture-img" src="factu-denem/4.png" alt="Facture DENEM payée" loading="lazy">
     <img class="capture-img" src="factu-denem/5.png" alt="Facture DENEM payée" loading="lazy">
     <img class="capture-img" src="factu-denem/6.png" alt="Facture DENEM payée" loading="lazy">
+    <div class="locked-card">
+      <div class="lock-icon">🔒</div>
+      <div class="lock-title">La suite après la vidéo</div>
+      <div class="lock-sub">Accède aux détails complets après ton inscription</div>
+    </div>
   </div>
 
   <!-- Garanties -->
@@ -654,24 +813,13 @@
     <div style="display:flex;align-items:center;gap:8px;font-size:.83rem;color:var(--muted)">
       <span style="color:var(--teal);font-size:1rem">✓</span> Aucun prérequis technique
     </div>
-    <div style="display:flex;align-items:center;gap:8px;font-size:.83rem;color:var(--muted)">
-      <span style="color:var(--teal);font-size:1rem">✓</span> Sans engagement
-    </div>
-    <div style="display:flex;align-items:center;gap:8px;font-size:.83rem;color:var(--muted)">
-      <span style="color:var(--teal);font-size:1rem">✓</span> +500 actifs formés
-    </div>
   </div>
 
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-links">
-    <a href="/mentions-legales">Mentions légales</a>
-    <a href="/cgv">CGV</a>
-    <a href="/politique-confidentialite">Confidentialité</a>
-  </div>
-  <p>© 2026 DENEM Group – SAS – SIREN 994 763 712</p>
+  <p>© 2026 DENEM Academy – SAS – SIREN 994 763 712</p>
 </footer>
 
 <!-- ── SCRIPTS ── -->
