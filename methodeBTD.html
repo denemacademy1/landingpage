@@ -985,7 +985,7 @@
       await window.saveVslLead({ prenom, email, telephone: tel });
       localStorage.setItem('vsl_access', '1');
       localStorage.setItem('vsl_prenom', prenom);
-      window.location.href = '/vsl-acces';
+      window.location.href = '/methodeBTDaccess';
     } catch(err) {
       console.error(err);
       showError('Une erreur est survenue. Réessaie dans quelques secondes.');
