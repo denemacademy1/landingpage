@@ -294,6 +294,63 @@
     .footer-links a { color: var(--muted); text-decoration: none; }
     .footer-links a:hover { color: var(--teal); }
 
+    /* SECTION TITLES */
+    .section-eyebrow {
+      text-align: center; font-size: .75rem; color: var(--muted);
+      text-transform: uppercase; letter-spacing: 1.8px; margin-bottom: 10px;
+    }
+    .section-title {
+      text-align: center; font-family: 'Poppins', sans-serif; font-weight: 900;
+      font-size: clamp(1.3rem, 2.5vw, 1.75rem); letter-spacing: -.03em; margin-bottom: 8px;
+    }
+    .section-title .grad {
+      background: linear-gradient(135deg, #fff 20%, var(--teal));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .section-sub {
+      text-align: center; font-size: .88rem; color: var(--muted);
+      max-width: 520px; margin: 0 auto 36px; line-height: 1.7;
+    }
+
+    /* TESTIMONIALS */
+    .testi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .testi-card {
+      background: var(--card-bg); border: 1px solid var(--border);
+      border-radius: 16px; padding: 28px;
+    }
+    .testi-header { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
+    .testi-avatar { width: 52px; height: 52px; border-radius: 50%; object-fit: cover; flex-shrink: 0; }
+    .testi-name { font-weight: 700; font-size: .95rem; }
+    .testi-result { font-size: .8rem; color: var(--teal); font-weight: 600; margin-top: 2px; }
+    .testi-role { font-size: .75rem; color: var(--muted); margin-top: 1px; }
+    .testi-quote { font-size: .88rem; color: var(--muted); line-height: 1.65; font-style: italic; }
+
+    /* ALUMNI ROW */
+    .alumni-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .alumni-card {
+      background: var(--card-bg); border: 1px solid var(--border);
+      border-radius: 14px; padding: 20px 18px;
+      display: flex; align-items: center; gap: 14px;
+    }
+    .alumni-avatar { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; flex-shrink: 0; }
+    .alumni-name { font-weight: 600; font-size: .9rem; }
+    .alumni-stat { font-size: .78rem; color: var(--teal); font-weight: 600; margin-top: 2px; }
+    .alumni-info { font-size: .74rem; color: var(--muted); margin-top: 1px; }
+
+    /* CAPTURES GRID */
+    .captures-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 12px;
+    }
+    .capture-img {
+      width: 100%; border-radius: 12px;
+      border: 1px solid var(--border);
+      object-fit: cover; display: block;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .capture-img:hover { transform: scale(1.02); box-shadow: 0 8px 32px rgba(0,0,0,.5); }
+
     @media (max-width: 768px) {
       .hero { grid-template-columns: 1fr; gap: 32px; padding: 40px 20px 48px; }
       .badge { align-self: center; }
@@ -302,8 +359,9 @@
       .proof-row { justify-content: center; }
       .proof-item { text-align: center; }
       .testi-grid { grid-template-columns: 1fr !important; }
+      .alumni-grid { grid-template-columns: 1fr 1fr !important; }
+      .captures-grid { grid-template-columns: 1fr 1fr !important; }
     }
-    .testi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
   </style>
 </head>
 <body>
@@ -385,11 +443,11 @@
 </main>
 
 <!-- SOCIAL PROOF SECTION -->
-<section style="padding:56px 5vw;max-width:1120px;margin:0 auto;width:100%">
+<section style="padding:56px 5vw 80px;max-width:1120px;margin:0 auto;width:100%">
 
   <!-- Logos clients -->
-  <p style="text-align:center;font-size:.78rem;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:24px">Méthode testée en production chez</p>
-  <div style="display:flex;align-items:center;justify-content:center;gap:32px;flex-wrap:wrap;margin-bottom:56px;opacity:.7">
+  <p class="section-eyebrow">Méthode testée en production chez</p>
+  <div style="display:flex;align-items:center;justify-content:center;gap:32px;flex-wrap:wrap;margin-bottom:64px;opacity:.7">
     <img src="logos/canal.png" alt="Canal+" style="height:28px;filter:brightness(0) invert(1)" onerror="this.style.display='none'">
     <img src="logos/edf.png" alt="EDF" style="height:28px;filter:brightness(0) invert(1)" onerror="this.style.display='none'">
     <img src="logos/ca.png" alt="Crédit Agricole" style="height:28px;filter:brightness(0) invert(1)" onerror="this.style.display='none'">
@@ -397,37 +455,95 @@
     <span style="font-size:.88rem;color:var(--muted)">+ 250 projets livrés</span>
   </div>
 
-  <!-- Témoignages -->
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+  <!-- ═══ RETOURS ÉLÈVES ═══ -->
+  <p class="section-eyebrow">Retours d'élèves</p>
+  <h2 class="section-title">Ce qu'ils ont <span class="grad">accompli</span></h2>
+  <p class="section-sub">Des profils comme toi. Sans bagage technique. Qui ont suivi la méthode et facturement aujourd'hui.</p>
 
-    <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:16px;padding:28px">
-      <div style="display:flex;align-items:center;gap:14px;margin-bottom:16px">
-        <img src="joseph.jpeg" alt="Joseph Mont" style="width:52px;height:52px;border-radius:50%;object-fit:cover" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2252%22 height=%2252%22><rect width=%2252%22 height=%2252%22 rx=%2226%22 fill=%22%236B5BFF%22/><text x=%2226%22 y=%2232%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2220%22 font-family=%22sans-serif%22>J</text></svg>'">
+  <!-- 2 témoignages principaux -->
+  <div class="testi-grid" style="margin-bottom:20px">
+
+    <div class="testi-card">
+      <div class="testi-header">
+        <img class="testi-avatar" src="joseph.jpeg" alt="Joseph Mont"
+          onerror="this.outerHTML='<div class=\'testi-avatar\' style=\'background:var(--violet);display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:700;color:#fff\'>J</div>'">
         <div>
-          <div style="font-weight:700;font-size:.95rem">Joseph Mont</div>
-          <div style="font-size:.8rem;color:var(--teal);font-weight:600">25 000€ / mois</div>
-          <div style="font-size:.75rem;color:var(--muted)">Fondateur PIVOIA · Ex-consultant</div>
+          <div class="testi-name">Joseph Mont</div>
+          <div class="testi-result">25 000€ / mois</div>
+          <div class="testi-role">Fondateur PIVOIA · Ex-consultant</div>
         </div>
       </div>
-      <p style="font-size:.88rem;color:var(--muted);line-height:1.65;font-style:italic">"La méthode DENEM m'a donné les clés qu'il me manquait. En 90 jours j'ai eu mes premiers clients PME. Aujourd'hui je refuse des missions faute de disponibilité."</p>
+      <p class="testi-quote">"La méthode DENEM m'a donné les clés qu'il me manquait. En 90 jours j'ai eu mes premiers clients PME. Aujourd'hui je refuse des missions faute de disponibilité."</p>
     </div>
 
-    <div style="background:var(--card-bg);border:1px solid var(--border);border-radius:16px;padding:28px">
-      <div style="display:flex;align-items:center;gap:14px;margin-bottom:16px">
-        <img src="baptiste.jpeg" alt="Baptiste R." style="width:52px;height:52px;border-radius:50%;object-fit:cover;flex-shrink:0" onerror="this.outerHTML='<div style=\'width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#6B5BFF,#2DD4BF);display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:700;color:#fff;flex-shrink:0\'>B</div>'">
+    <div class="testi-card">
+      <div class="testi-header">
+        <img class="testi-avatar" src="baptiste.jpeg" alt="Baptiste R."
+          onerror="this.outerHTML='<div class=\'testi-avatar\' style=\'background:var(--violet);display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:700;color:#fff\'>B</div>'">
         <div>
-          <div style="font-weight:700;font-size:.95rem">Baptiste R.</div>
-          <div style="font-size:.8rem;color:var(--teal);font-weight:600">35 000€ / mois</div>
-          <div style="font-size:.75rem;color:var(--muted)">Agence IA · Ancien salarié</div>
+          <div class="testi-name">Baptiste R.</div>
+          <div class="testi-result">35 000€ / mois</div>
+          <div class="testi-role">Agence IA · Ancien salarié</div>
         </div>
       </div>
-      <p style="font-size:.88rem;color:var(--muted);line-height:1.65;font-style:italic">"J'avais zéro compétence technique. En suivant la méthode pas à pas, j'ai signé ma première mission à 8 000€ au bout de 6 semaines. Aujourd'hui j'ai une équipe de 3 personnes."</p>
+      <p class="testi-quote">"J'avais zéro compétence technique. En suivant la méthode pas à pas, j'ai signé ma première mission à 8 000€ au bout de 6 semaines. Aujourd'hui j'ai une équipe de 3 personnes."</p>
     </div>
 
   </div>
 
+  <!-- 3 alumni secondaires -->
+  <div class="alumni-grid" style="margin-bottom:64px">
+
+    <div class="alumni-card">
+      <img class="alumni-avatar" src="ugo.jpeg" alt="Ugo"
+        onerror="this.outerHTML='<div class=\'alumni-avatar\' style=\'background:var(--violet);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;color:#fff\'>U</div>'">
+      <div>
+        <div class="alumni-name">Ugo M.</div>
+        <div class="alumni-stat">12 000€ / mois</div>
+        <div class="alumni-info">Consultant IA indépendant</div>
+      </div>
+    </div>
+
+    <div class="alumni-card">
+      <img class="alumni-avatar" src="amir.jpeg" alt="Amir"
+        onerror="this.outerHTML='<div class=\'alumni-avatar\' style=\'background:var(--violet);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;color:#fff\'>A</div>'">
+      <div>
+        <div class="alumni-name">Amir B.</div>
+        <div class="alumni-stat">8 000€ / mission</div>
+        <div class="alumni-info">Freelance Expert IA · Paris</div>
+      </div>
+    </div>
+
+    <div class="alumni-card">
+      <img class="alumni-avatar" src="othmane.jpeg" alt="Othmane"
+        onerror="this.outerHTML='<div class=\'alumni-avatar\' style=\'background:var(--violet);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;color:#fff\'>O</div>'">
+      <div>
+        <div class="alumni-name">Othmane A.</div>
+        <div class="alumni-stat">18 000€ / mois</div>
+        <div class="alumni-info">Agence automatisation · Lyon</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ═══ CAPTURES CASH ═══ -->
+  <p class="section-eyebrow">La preuve par le marché</p>
+  <h2 class="section-title">Les entreprises <span class="grad">recrutent et paient</span></h2>
+  <p class="section-sub">Ces captures LinkedIn sont réelles. Des CEOs cherchent activement ce profil. Les salaires parlent d'eux-mêmes.</p>
+
+  <div class="captures-grid" style="margin-bottom:64px">
+    <img class="capture-img" src="ee1.png" alt="Offre Expert IA 100-150K€/an" loading="lazy">
+    <img class="capture-img" src="ee3.png" alt="Offre Expert IA 8-15K€/mois freelance" loading="lazy">
+    <img class="capture-img" src="ee4.png" alt="Offre Expert IA 110-180K€/an" loading="lazy">
+    <img class="capture-img" src="ee21.jpg" alt="ON RECRUTE Consultants IA 5-8K€/mois" loading="lazy">
+    <img class="capture-img" src="ee5.png" alt="LinkedIn — recherche expert IA" loading="lazy">
+    <img class="capture-img" src="ee7.png" alt="LinkedIn — CEO recherche expert IA" loading="lazy">
+    <img class="capture-img" src="ee8.png" alt="LinkedIn — recherche consultant IA" loading="lazy">
+    <img class="capture-img" src="ee6.png" alt="LinkedIn — annonce expert IA" loading="lazy">
+  </div>
+
   <!-- Garanties -->
-  <div style="display:flex;gap:24px;justify-content:center;flex-wrap:wrap;margin-top:40px;padding-top:40px;border-top:1px solid var(--border)">
+  <div style="display:flex;gap:24px;justify-content:center;flex-wrap:wrap;padding-top:40px;border-top:1px solid var(--border)">
     <div style="display:flex;align-items:center;gap:8px;font-size:.83rem;color:var(--muted)">
       <span style="color:var(--teal);font-size:1rem">✓</span> Vidéo 100% gratuite
     </div>
