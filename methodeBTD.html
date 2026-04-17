@@ -696,7 +696,9 @@
           <div class="form-card-badge" style="margin-bottom:0">Accès immédiat</div>
           <div id="liveBadge" style="display:inline-flex;align-items:center;gap:6px;background:rgba(45,212,191,.08);border:1px solid rgba(45,212,191,.25);border-radius:99px;padding:4px 12px;font-size:11px;font-weight:500;color:var(--teal)">
             <span style="width:6px;height:6px;background:#22c55e;border-radius:50%;display:inline-block;animation:pulse-dot 2s ease-in-out infinite;flex-shrink:0"></span>
-            <span id="liveCount">1 648</span> en ce moment
+            <span id="liveCount">1 648</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" style="opacity:.8"><path d="M15 10l4.553-2.277A1 1 0 0121 8.723v6.554a1 1 0 01-1.447.894L15 14M3 8a2 2 0 012-2h10a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V8z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            en ce moment
           </div>
         </div>
         <h2 style="margin-top:10px">Tu vas comprendre le métier le plus recherché par les entreprises françaises <span style="font-size:.75em;font-weight:400;color:var(--muted)">(97% des 3,8 millions de PME en France)</span></h2>
@@ -706,6 +708,14 @@
       <div class="form-card-body">
         <!-- Fond VSL flouté -->
         <div class="form-card-vsl-bg">
+          <!-- ↓ Remplace VSL_VIDEO_URL par l'URL YouTube embed (ex: https://www.youtube.com/embed/TON_ID?autoplay=1&mute=1&loop=1&playlist=TON_ID&controls=0) -->
+          <iframe id="vslBgFrame"
+            data-src="VSL_VIDEO_URL"
+            allow="autoplay; fullscreen"
+            tabindex="-1"
+            aria-hidden="true"
+            style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) scale(1.15);width:100%;height:100%;border:none;pointer-events:none;filter:blur(6px);opacity:.28;object-fit:cover"
+          ></iframe>
           <div class="form-card-vsl-grid"></div>
         </div>
         <div class="form-card-vsl-overlay"></div>
@@ -1017,6 +1027,14 @@
 
 <!-- PARTICLES + FADE-UP -->
 <script>
+  // VSL video background — activate when URL is set
+  (function() {
+    const frame = document.getElementById('vslBgFrame');
+    if (!frame) return;
+    const url = frame.dataset.src;
+    if (url && url !== 'VSL_VIDEO_URL') frame.src = url;
+  })();
+
   // Stars canvas
   (function() {
     const cvs = document.getElementById('starsCanvas');
