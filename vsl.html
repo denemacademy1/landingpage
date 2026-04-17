@@ -37,6 +37,12 @@
       overflow-x: hidden;
     }
 
+    @keyframes pulse-dot {
+      0%   { box-shadow: 0 0 0 0 rgba(34,197,94,0.5); }
+      70%  { box-shadow: 0 0 0 6px rgba(34,197,94,0); }
+      100% { box-shadow: 0 0 0 0 rgba(34,197,94,0); }
+    }
+
     /* GRID BACKGROUND */
     .grid-bg {
       background-image:
@@ -638,7 +644,13 @@
 
       <!-- En-tête visible -->
       <div class="form-card-top">
-        <div class="form-card-badge">Accès immédiat</div>
+        <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:0">
+          <div class="form-card-badge" style="margin-bottom:0">Accès immédiat</div>
+          <div id="liveBadge" style="display:inline-flex;align-items:center;gap:6px;background:rgba(45,212,191,.08);border:1px solid rgba(45,212,191,.25);border-radius:99px;padding:4px 12px;font-size:11px;font-weight:500;color:var(--teal)">
+            <span style="width:6px;height:6px;background:#22c55e;border-radius:50%;display:inline-block;animation:pulse-dot 2s ease-in-out infinite;flex-shrink:0"></span>
+            <span id="liveCount">1 648</span> en ce moment
+          </div>
+        </div>
         <p style="font-size:.8rem;color:var(--muted);margin-bottom:6px;line-height:1.5">
           ⏱️ Vidéo de 13 min · <em>Les 2 dernières minutes valent de l'or.</em>
         </p>
@@ -961,6 +973,18 @@
       ].join(';');
       container.appendChild(el);
     }
+  })();
+
+  // Live counter
+  (function() {
+    let count = 1648;
+    const el = document.getElementById('liveCount');
+    function fmt(n) { return n.toLocaleString('fr-FR'); }
+    el.textContent = fmt(count);
+    setInterval(() => {
+      count += Math.floor(Math.random() * 3) + 1;
+      el.textContent = fmt(count);
+    }, 6000);
   })();
 
   // Fade-up observer
