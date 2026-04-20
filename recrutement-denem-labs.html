@@ -285,7 +285,11 @@
 
     <div class="field">
       <label>Qu'est-ce qui te dérange sincèrement dans ton quotidien et ta situation actuelle ? Qu'est-ce qui te freine et te pousse à vouloir changer de voie ? <span class="req">*</span></label>
-      <textarea id="s3_frein" placeholder="Parle-nous franchement — c'est ici que ça commence vraiment..." style="min-height:140px"></textarea>
+      <textarea id="s3_frein" placeholder="Parle-nous franchement — c'est ici que ça commence vraiment..." style="min-height:130px"></textarea>
+    </div>
+    <div class="field">
+      <label>Quel événement ou déclic t'a poussé à postuler aujourd'hui plutôt qu'il y a 6 mois ? <span class="req">*</span></label>
+      <textarea id="s3_declic" placeholder="Un moment précis, une prise de conscience, quelque chose que tu as vu ou vécu..." style="min-height:110px"></textarea>
     </div>
 
     <div class="step-actions">
@@ -352,6 +356,10 @@
     <div class="field conditional" id="conditionalDetail">
       <label>Si OUI, développez ici</label>
       <textarea id="s5_expDetail" placeholder="Décrivez vos expériences en IA..."></textarea>
+    </div>
+    <div class="field">
+      <label>Quels outils IA utilises-tu actuellement ? À quelle fréquence ? <span class="req">*</span></label>
+      <textarea id="s5_outils" placeholder="Ex : ChatGPT tous les jours, Midjourney occasionnellement, Claude pour le travail..." style="min-height:100px"></textarea>
     </div>
 
     <div class="step-actions">
@@ -531,19 +539,21 @@
       if (!ville) { showError('Merci d\'indiquer ta ville.'); return; }
       data = { pourquoi, ville };
     } else if (from === 3) {
-      const frein = v('s3_frein');
-      if (!frein) { showError('Merci de répondre honnêtement à cette question.'); return; }
-      data = { frein_quotidien: frein };
+      const frein = v('s3_frein'), declic = v('s3_declic');
+      if (!frein) { showError('Merci de répondre à la première question.'); return; }
+      if (!declic) { showError('Merci d\'indiquer le déclic qui t\'a poussé à postuler.'); return; }
+      data = { frein_quotidien: frein, declic };
     } else if (from === 4) {
       const situation = v('s4_situation'), parcours = v('s4_parcours');
       if (!situation) { showError('Merci d\'indiquer ta situation actuelle.'); return; }
       if (!parcours) { showError('Merci de décrire ton parcours.'); return; }
       data = { situation, parcours };
     } else if (from === 5) {
-      const freelance = v('s5_freelance'), expIA = v('s5_expIA');
+      const freelance = v('s5_freelance'), expIA = v('s5_expIA'), outils = v('s5_outils');
       if (!freelance) { showError('Merci de répondre à la question sur le freelance.'); return; }
       if (!expIA) { showError('Merci de répondre à la question sur l\'expérience IA.'); return; }
-      data = { freelance, experience_ia: expIA };
+      if (!outils) { showError('Merci d\'indiquer les outils IA que tu utilises.'); return; }
+      data = { freelance, experience_ia: expIA, outils_ia: outils };
       if (expIA === 'Oui') data.experience_detail = v('s5_expDetail');
     }
 
