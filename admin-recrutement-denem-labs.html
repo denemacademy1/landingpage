@@ -367,18 +367,21 @@
   function buildExpandContent(d) {
     const fields = [
       ['Nom / Prénom', d.nom_prenom],
-      ['Date de naissance', d.date_naissance],
+      ['Âge', d.date_naissance],
       ['Téléphone WhatsApp', d.telephone],
       ['Ville / Pays', d.ville],
+      ['Pourquoi Expert IA', d.pourquoi],
+      ['Ce qui ne convient plus', d.frein_quotidien],
+      ['Vision pro dans 12 mois', d.declic],
       ['Situation actuelle', d.situation],
       ['Parcours professionnel', d.parcours],
       ['Freelance ready', d.freelance],
       ['Expérience IA', d.experience_ia],
       d.experience_detail ? ['Détail expérience IA', d.experience_detail] : null,
+      ['Outils IA utilisés', d.outils_ia],
       ['Revenu souhaité', d.revenu_souhaite],
       ['Formation', d.formation],
       ['Temps / jour', d.temps_dispo],
-      ['Pourquoi Expert IA', d.pourquoi],
     ].filter(Boolean);
 
     return `<div class="expand-grid">${fields.map(([k,v]) => `
