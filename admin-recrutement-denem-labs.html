@@ -210,6 +210,8 @@
   import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
   import { getFirestore, collection, query, orderBy, onSnapshot }
     from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
+  import { getAuth, signInAnonymously }
+    from "https://www.gstatic.com/firebasejs/11.0.0/firebase-auth.js";
 
   const app = initializeApp({
     apiKey: "AIzaSyBdNN-iiK5KoBqkX4FX1PJ5CmlWUma8NaU",
@@ -220,14 +222,19 @@
     appId: "1:570632584566:web:4305443183280686a7ce57"
   });
   const db = getFirestore(app);
+  const auth = getAuth(app);
 
-  window._startListen = function() {
+  window._startListen = async function() {
+    try {
+      await signInAnonymously(auth);
+    } catch(e) { console.warn('Auth anon failed:', e); }
+
     const q = query(collection(db, 'leads_recrutement'), orderBy('createdAt', 'desc'));
     onSnapshot(q, snapshot => {
       const docs = [];
       snapshot.forEach(d => docs.push({ id: d.id, ...d.data() }));
       window._renderDashboard(docs);
-    }, err => console.error(err));
+    }, err => console.error('Snapshot error:', err));
   };
   document.dispatchEvent(new Event('fb-admin-ready'));
 </script>
