@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <title>Rejoindre DENEM Labs — Candidature Expert IA</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <meta name="theme-color" content="#0D0C14">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;800;900&family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0D0C14; --violet: #6B5BFF; --teal: #2DD4BF;
+      --text: #E8E6F0; --muted: #9B97B0; --card-bg: #16141F;
+      --border: rgba(107,91,255,.18);
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg); color: var(--text);
+      font-family: 'DM Sans', sans-serif; font-weight: 300;
+      min-height: 100vh; display: flex; flex-direction: column;
+      overflow-x: hidden;
+    }
+    .grid-bg {
+      background-image:
+        linear-gradient(rgba(255,255,255,0.022) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.022) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    #starsCanvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: -1; }
+    .hero-glow { position: absolute; pointer-events: none; border-radius: 50%; }
+    .hero-glow-1 { top: 50%; left: 50%; transform: translate(-50%,-50%); width: 900px; height: 600px; background: radial-gradient(ellipse, rgba(107,91,255,.14) 0%, transparent 68%); }
+    .hero-glow-teal { position: absolute; right: -5%; top: 30%; width: 500px; height: 400px; background: radial-gradient(ellipse, rgba(45,212,191,.07) 0%, transparent 65%); pointer-events: none; }
+
+    /* NAV */
+    nav {
+      padding: 14px 5vw; display: flex; align-items: center; justify-content: space-between;
+      border-bottom: 1px solid var(--border); background: rgba(13,12,20,.96);
+      position: sticky; top: 0; z-index: 100;
+    }
+    .nav-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.25rem; color: #fff; text-decoration: none; letter-spacing: -.02em; }
+    .nav-logo span { color: var(--teal); }
+    .nav-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(45,212,191,.1); border: 1px solid rgba(45,212,191,.25); border-radius: 99px; padding: 4px 14px; font-size: 11px; font-weight: 500; color: var(--teal); letter-spacing: .5px; }
+    .nav-badge::before { content: ''; width: 6px; height: 6px; background: var(--teal); border-radius: 50%; display: inline-block; animation: pulse-dot 2s ease-in-out infinite; }
+    @keyframes pulse-dot { 0%{box-shadow:0 0 0 0 rgba(45,212,191,.5)} 70%{box-shadow:0 0 0 6px rgba(45,212,191,0)} 100%{box-shadow:0 0 0 0 rgba(45,212,191,0)} }
+
+    /* HERO */
+    .hero-intro {
+      text-align: center; padding: 48px 5vw 40px;
+      max-width: 700px; margin: 0 auto;
+      position: relative;
+    }
+    .hero-eyebrow { font-size: .75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 14px; }
+    .hero-title { font-family: 'Poppins', sans-serif; font-weight: 900; font-size: clamp(1.5rem, 3.5vw, 2.2rem); line-height: 1.2; letter-spacing: -.03em; margin-bottom: 14px; }
+    .hero-title .grad { background: linear-gradient(135deg, #fff 20%, var(--teal)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero-sub { font-size: .9rem; color: var(--muted); line-height: 1.75; max-width: 520px; margin: 0 auto 28px; }
+    .hero-chips { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+    .hero-chip { display: inline-flex; align-items: center; gap: 6px; background: rgba(107,91,255,.1); border: 1px solid rgba(107,91,255,.2); border-radius: 99px; padding: 5px 14px; font-size: .78rem; color: #a78bfa; }
+
+    /* FORM CONTAINER */
+    .form-wrap {
+      max-width: 680px; margin: 0 auto 80px;
+      padding: 0 5vw; width: 100%;
+    }
+
+    /* PROGRESS */
+    .progress-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+    .progress-label { font-size: .78rem; color: var(--muted); }
+    .progress-label strong { color: var(--text); }
+    .progress-bar-track { height: 4px; background: rgba(255,255,255,.07); border-radius: 99px; margin-bottom: 28px; overflow: hidden; }
+    .progress-bar-fill { height: 100%; border-radius: 99px; background: linear-gradient(90deg, var(--violet), var(--teal)); transition: width .4s ease; }
+
+    /* STEP CARD */
+    .step-card {
+      background: var(--card-bg); border: 1px solid var(--border);
+      border-radius: 22px; padding: 32px 36px;
+      box-shadow: 0 24px 80px rgba(0,0,0,.4);
+      display: none;
+    }
+    .step-card.active { display: block; animation: stepIn .3s ease; }
+    @keyframes stepIn { from { opacity:0; transform:translateY(14px); } to { opacity:1; transform:translateY(0); } }
+    .step-eyebrow { font-size: .72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 8px; }
+    .step-title { font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 1.15rem; letter-spacing: -.02em; margin-bottom: 24px; line-height: 1.35; }
+    .step-title span { color: var(--teal); }
+
+    /* FIELDS */
+    .field { margin-bottom: 18px; }
+    .field label { display: block; font-size: .78rem; font-weight: 500; color: var(--muted); text-transform: uppercase; letter-spacing: .07em; margin-bottom: 7px; }
+    .field label .req { color: var(--violet); margin-left: 2px; }
+    .field input, .field textarea, .field select {
+      width: 100%; background: rgba(255,255,255,.04); border: 1.5px solid var(--border);
+      border-radius: 11px; padding: 11px 14px; color: #fff;
+      font-family: 'DM Sans', sans-serif; font-size: .95rem; outline: none;
+      transition: border-color .2s;
+    }
+    .field input:focus, .field textarea:focus, .field select:focus { border-color: var(--violet); }
+    .field input::placeholder, .field textarea::placeholder { color: rgba(255,255,255,.2); }
+    .field textarea { resize: vertical; min-height: 110px; line-height: 1.6; }
+    .field input[type="date"]::-webkit-calendar-picker-indicator { filter: invert(.5); }
+
+    /* RADIO CARDS */
+    .radio-group { display: flex; flex-direction: column; gap: 10px; }
+    .radio-card {
+      display: flex; align-items: center; gap: 12px;
+      background: rgba(255,255,255,.03); border: 1.5px solid var(--border);
+      border-radius: 11px; padding: 13px 16px; cursor: pointer;
+      transition: border-color .2s, background .2s;
+    }
+    .radio-card:hover { background: rgba(107,91,255,.07); border-color: rgba(107,91,255,.35); }
+    .radio-card.selected { background: rgba(107,91,255,.12); border-color: var(--violet); }
+    .radio-card input[type="radio"] { display: none; }
+    .radio-dot { width: 18px; height: 18px; border-radius: 50%; border: 2px solid var(--border); flex-shrink: 0; display: flex; align-items: center; justify-content: center; transition: border-color .2s; }
+    .radio-card.selected .radio-dot { border-color: var(--violet); background: var(--violet); }
+    .radio-card.selected .radio-dot::after { content: ''; width: 6px; height: 6px; background: #fff; border-radius: 50%; }
+    .radio-label { font-size: .9rem; }
+
+    /* CONDITIONAL FIELD */
+    .conditional { display: none; }
+    .conditional.show { display: block; }
+
+    /* ACTIONS */
+    .step-actions { display: flex; align-items: center; justify-content: space-between; margin-top: 28px; gap: 12px; }
+    .btn-back {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: transparent; border: 1.5px solid var(--border); border-radius: 11px;
+      padding: 11px 20px; color: var(--muted); font-family: 'DM Sans', sans-serif;
+      font-size: .9rem; cursor: pointer; transition: border-color .2s, color .2s;
+    }
+    .btn-back:hover { border-color: rgba(255,255,255,.3); color: var(--text); }
+    .btn-next {
+      flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px;
+      background: var(--violet); color: #fff; border: none; border-radius: 11px;
+      padding: 13px 24px; font-family: 'DM Sans', sans-serif; font-size: .95rem; font-weight: 500;
+      cursor: pointer; box-shadow: 0 6px 24px rgba(107,91,255,.4);
+      transition: opacity .2s, transform .2s;
+    }
+    .btn-next:hover:not(:disabled) { opacity: .9; transform: translateY(-1px); }
+    .btn-next:disabled { opacity: .55; cursor: wait; }
+    .spinner { width: 16px; height: 16px; border: 2px solid rgba(255,255,255,.3); border-top-color: #fff; border-radius: 50%; animation: spin .7s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ERROR */
+    .form-error { background: rgba(239,68,68,.1); border: 1px solid rgba(239,68,68,.3); border-radius: 8px; padding: 10px 14px; font-size: .83rem; color: #fca5a5; margin-bottom: 16px; display: none; }
+    .form-error.show { display: block; }
+
+    /* SUCCESS */
+    .success-card {
+      background: var(--card-bg); border: 1px solid rgba(45,212,191,.3);
+      border-radius: 22px; padding: 48px 36px; text-align: center;
+      box-shadow: 0 24px 80px rgba(0,0,0,.4); display: none;
+    }
+    .success-card.show { display: block; animation: stepIn .4s ease; }
+    .success-icon { font-size: 3rem; margin-bottom: 16px; }
+    .success-title { font-family: 'Poppins', sans-serif; font-weight: 900; font-size: 1.4rem; margin-bottom: 10px; }
+    .success-sub { font-size: .9rem; color: var(--muted); line-height: 1.7; }
+
+    /* FOOTER */
+    footer { border-top: 1px solid var(--border); padding: 20px 5vw; text-align: center; font-size: .75rem; color: var(--muted); margin-top: auto; }
+
+    @media (max-width: 600px) {
+      .step-card { padding: 24px 20px; }
+      .hero-intro { padding: 32px 16px 28px; }
+    }
+  </style>
+</head>
+<body class="grid-bg">
+
+<canvas id="starsCanvas" aria-hidden="true"></canvas>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="/">DENEM <span>Labs</span></a>
+  <span class="nav-badge">On recrute</span>
+</nav>
+
+<!-- HERO INTRO -->
+<div class="hero-intro" style="position:relative">
+  <div class="hero-glow hero-glow-1" aria-hidden="true"></div>
+  <div class="hero-glow-teal" aria-hidden="true"></div>
+  <p class="hero-eyebrow">Candidature — Expert IA</p>
+  <h1 class="hero-title">Rejoins l'équipe qui forme<br>les <span class="grad">Experts IA de demain</span></h1>
+  <p class="hero-sub">Nous cherchons des profils motivés, ambitieux, prêts à apprendre et à bâtir quelque chose de concret. Remplis ce formulaire — ça prend 3 minutes.</p>
+  <div class="hero-chips">
+    <span class="hero-chip">🚀 100% remote</span>
+    <span class="hero-chip">💰 5K – 50K€ / mois</span>
+    <span class="hero-chip">🤝 Accompagnement complet</span>
+    <span class="hero-chip">⚡ Démarrage rapide</span>
+  </div>
+</div>
+
+<!-- FORM -->
+<div class="form-wrap">
+
+  <!-- PROGRESS -->
+  <div class="progress-header">
+    <span class="progress-label">Étape <strong id="stepNum">1</strong> / 5</span>
+    <span class="progress-label" id="stepName">Coordonnées</span>
+  </div>
+  <div class="progress-bar-track">
+    <div class="progress-bar-fill" id="progressFill" style="width:20%"></div>
+  </div>
+
+  <!-- ERREUR GLOBALE -->
+  <div class="form-error" id="formError"></div>
+
+  <!-- ══ STEP 1 — Coordonnées ══ -->
+  <div class="step-card active" id="step1">
+    <p class="step-eyebrow">Étape 1 / 5</p>
+    <h2 class="step-title">Dis-nous <span>qui tu es</span></h2>
+
+    <div class="field">
+      <label>Nom + Prénom <span class="req">*</span></label>
+      <input type="text" id="s1_nom" placeholder="Ex : Jean Dupont" autocomplete="name">
+    </div>
+    <div class="field">
+      <label>Date de naissance <span class="req">*</span></label>
+      <input type="date" id="s1_dob">
+    </div>
+    <div class="field">
+      <label>Numéro de téléphone WhatsApp <span class="req">*</span></label>
+      <input type="tel" id="s1_tel" placeholder="Ex : +33 6 12 34 56 78">
+    </div>
+
+    <div class="step-actions">
+      <button class="btn-next" id="btn1" onclick="goStep1()">
+        <span id="lbl1">Continuer</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="#fff"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- ══ STEP 2 — Motivation ══ -->
+  <div class="step-card" id="step2">
+    <p class="step-eyebrow">Étape 2 / 5</p>
+    <h2 class="step-title">Ta <span>motivation</span></h2>
+
+    <div class="field">
+      <label>Pourquoi aimeriez-vous devenir Expert IA pour les entreprises ? <span class="req">*</span></label>
+      <textarea id="s2_pourquoi" placeholder="Explique-nous ce qui t'a amené là, ce que tu recherches vraiment..."></textarea>
+    </div>
+    <div class="field">
+      <label>Où habitez-vous ? (Ville, Pays) <span class="req">*</span></label>
+      <input type="text" id="s2_ville" placeholder="Ex : Lyon, France">
+    </div>
+
+    <div class="step-actions">
+      <button class="btn-back" onclick="prevStep(2)">← Retour</button>
+      <button class="btn-next" onclick="goStep(2)">Continuer →</button>
+    </div>
+  </div>
+
+  <!-- ══ STEP 3 — Parcours ══ -->
+  <div class="step-card" id="step3">
+    <p class="step-eyebrow">Étape 3 / 5</p>
+    <h2 class="step-title">Ton <span>parcours</span></h2>
+
+    <div class="field">
+      <label>Quelle est votre situation actuelle ? <span class="req">*</span></label>
+      <input type="text" id="s3_situation" placeholder="Ex : Salarié, étudiant, en reconversion...">
+    </div>
+    <div class="field">
+      <label>Expliquez votre parcours professionnel <span class="req">*</span></label>
+      <textarea id="s3_parcours" placeholder="Tes expériences, compétences, ce que tu as fait jusqu'ici..."></textarea>
+    </div>
+
+    <div class="step-actions">
+      <button class="btn-back" onclick="prevStep(3)">← Retour</button>
+      <button class="btn-next" onclick="goStep(3)">Continuer →</button>
+    </div>
+  </div>
+
+  <!-- ══ STEP 4 — Mindset ══ -->
+  <div class="step-card" id="step4">
+    <p class="step-eyebrow">Étape 4 / 5</p>
+    <h2 class="step-title">Ton <span>état d'esprit</span></h2>
+
+    <div class="field">
+      <label>Êtes-vous prêt(e) à devenir Freelance et gérer votre activité ? <span class="req">*</span></label>
+      <div class="radio-group" id="rg_freelance">
+        <label class="radio-card" onclick="selectRadio(this,'s4_freelance','Oui')">
+          <input type="radio" name="freelance" value="Oui"> <span class="radio-dot"></span>
+          <span class="radio-label">Oui</span>
+        </label>
+        <label class="radio-card" onclick="selectRadio(this,'s4_freelance','Non')">
+          <input type="radio" name="freelance" value="Non"> <span class="radio-dot"></span>
+          <span class="radio-label">Non</span>
+        </label>
+      </div>
+      <input type="hidden" id="s4_freelance">
+    </div>
+
+    <div class="field">
+      <label>Avez-vous une expérience en tant qu'Expert IA ? <span class="req">*</span></label>
+      <div class="radio-group" id="rg_expIA">
+        <label class="radio-card" onclick="selectRadio(this,'s4_expIA','Oui'); showConditional(true)">
+          <input type="radio" name="expIA" value="Oui"> <span class="radio-dot"></span>
+          <span class="radio-label">Oui</span>
+        </label>
+        <label class="radio-card" onclick="selectRadio(this,'s4_expIA','Non'); showConditional(false)">
+          <input type="radio" name="expIA" value="Non"> <span class="radio-dot"></span>
+          <span class="radio-label">Non</span>
+        </label>
+      </div>
+      <input type="hidden" id="s4_expIA">
+    </div>
+
+    <div class="field conditional" id="conditionalDetail">
+      <label>Si OUI, développez ici</label>
+      <textarea id="s4_expDetail" placeholder="Décrivez vos expériences en IA..."></textarea>
+    </div>
+
+    <div class="step-actions">
+      <button class="btn-back" onclick="prevStep(4)">← Retour</button>
+      <button class="btn-next" onclick="goStep(4)">Continuer →</button>
+    </div>
+  </div>
+
+  <!-- ══ STEP 5 — Objectifs ══ -->
+  <div class="step-card" id="step5">
+    <p class="step-eyebrow">Étape 5 / 5</p>
+    <h2 class="step-title">Tes <span>objectifs</span></h2>
+
+    <div class="field">
+      <label>Combien aimeriez-vous gagner par mois ? <span class="req">*</span></label>
+      <input type="text" id="s5_revenu" placeholder="Ex : 5 000€, 10 000€...">
+    </div>
+    <div class="field">
+      <label>Êtes-vous prêt(e) à vous former aux méthodes Expert IA ? <span class="req">*</span></label>
+      <div class="radio-group" id="rg_formation">
+        <label class="radio-card" onclick="selectRadio(this,'s5_formation','Oui, je veux me former et avancer')">
+          <input type="radio" name="formation" value="Oui"> <span class="radio-dot"></span>
+          <span class="radio-label">Oui, je veux me former et avancer</span>
+        </label>
+        <label class="radio-card" onclick="selectRadio(this,'s5_formation','Non, je connais déjà')">
+          <input type="radio" name="formation" value="Non"> <span class="radio-dot"></span>
+          <span class="radio-label">Non, je connais déjà</span>
+        </label>
+      </div>
+      <input type="hidden" id="s5_formation">
+    </div>
+    <div class="field">
+      <label>Combien de temps êtes-vous prêt(e) à y consacrer par jour ? <span class="req">*</span></label>
+      <input type="text" id="s5_temps" placeholder="Ex : 2h, 4h, journée complète...">
+    </div>
+
+    <div class="step-actions">
+      <button class="btn-back" onclick="prevStep(5)">← Retour</button>
+      <button class="btn-next" id="btn5" onclick="submitForm()">
+        <span id="lbl5">Envoyer ma candidature</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ══ SUCCESS ══ -->
+  <div class="success-card" id="successCard">
+    <div class="success-icon">🎉</div>
+    <h2 class="success-title">Candidature envoyée !</h2>
+    <p class="success-sub">
+      Merci <strong id="successName" style="color:var(--teal)"></strong> — on a bien reçu ta candidature.<br><br>
+      Notre équipe va l'étudier et te contactera sur WhatsApp dans les <strong style="color:#fff">48h</strong> si ton profil correspond.
+    </p>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 DENEM Group – SAS – SIREN 994 763 712 · <a href="/mentions-legales" style="color:var(--muted);text-decoration:none">Mentions légales</a></p>
+</footer>
+
+<!-- FIREBASE -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
+  import { getFirestore, collection, addDoc, doc, updateDoc, serverTimestamp }
+    from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
+
+  const app = initializeApp({
+    apiKey: "AIzaSyBdNN-iiK5KoBqkX4FX1PJ5CmlWUma8NaU",
+    authDomain: "denem-academy-5de41.firebaseapp.com",
+    projectId: "denem-academy-5de41",
+    storageBucket: "denem-academy-5de41.firebasestorage.app",
+    messagingSenderId: "570632584566",
+    appId: "1:570632584566:web:4305443183280686a7ce57"
+  });
+  const db = getFirestore(app);
+
+  window._db = db;
+  window._fbCollection = collection;
+  window._fbAddDoc = addDoc;
+  window._fbDoc = doc;
+  window._fbUpdateDoc = updateDoc;
+  window._fbServerTimestamp = serverTimestamp;
+  window._fbReady = true;
+  document.dispatchEvent(new Event('fb-ready'));
+</script>
+
+<!-- APP LOGIC -->
+<script>
+  let currentStep = 1;
+  let docId = null;
+
+  const STEP_NAMES = ['', 'Coordonnées', 'Motivation', 'Parcours', 'État d\'esprit', 'Objectifs'];
+
+  function v(id) { return document.getElementById(id)?.value?.trim() || ''; }
+
+  function showError(msg) {
+    const el = document.getElementById('formError');
+    el.textContent = msg; el.classList.add('show');
+    el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+  function clearError() { document.getElementById('formError').classList.remove('show'); }
+
+  function updateProgress(step) {
+    document.getElementById('stepNum').textContent = step;
+    document.getElementById('stepName').textContent = STEP_NAMES[step] || '';
+    document.getElementById('progressFill').style.width = (step / 5 * 100) + '%';
+  }
+
+  function showStep(n) {
+    document.querySelectorAll('.step-card').forEach(c => c.classList.remove('active'));
+    document.getElementById('step' + n)?.classList.add('active');
+    updateProgress(n);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    clearError();
+  }
+
+  function prevStep(from) { showStep(from - 1); }
+
+  function selectRadio(el, hiddenId, val) {
+    const group = el.closest('.radio-group');
+    group.querySelectorAll('.radio-card').forEach(c => c.classList.remove('selected'));
+    el.classList.add('selected');
+    document.getElementById(hiddenId).value = val;
+  }
+
+  function showConditional(show) {
+    document.getElementById('conditionalDetail').classList.toggle('show', show);
+  }
+
+  // STEP 1 — Save to Firebase immediately
+  async function goStep1() {
+    clearError();
+    const nom = v('s1_nom'), dob = v('s1_dob'), tel = v('s1_tel');
+    if (!nom) { showError('Merci d\'entrer ton nom et prénom.'); return; }
+    if (!dob) { showError('Merci d\'entrer ta date de naissance.'); return; }
+    if (!tel) { showError('Merci d\'entrer ton numéro WhatsApp.'); return; }
+
+    const btn = document.getElementById('btn1');
+    const lbl = document.getElementById('lbl1');
+    btn.disabled = true;
+    lbl.style.display = 'none';
+    btn.insertAdjacentHTML('beforeend', '<div class="spinner"></div>');
+
+    try {
+      const waitFb = () => new Promise(res => {
+        if (window._fbReady) { res(); return; }
+        document.addEventListener('fb-ready', res, { once: true });
+      });
+      await waitFb();
+
+      const ref = await window._fbAddDoc(
+        window._fbCollection(window._db, 'candidatures_recrutement'), {
+          nom_prenom: nom, date_naissance: dob, telephone: tel,
+          step_reached: 1, complete: false,
+          source: 'recrutement-denem-labs',
+          createdAt: window._fbServerTimestamp(),
+          updatedAt: window._fbServerTimestamp()
+        }
+      );
+      docId = ref.id;
+      showStep(2);
+    } catch(e) {
+      console.error(e);
+      showError('Erreur de connexion — réessaie dans quelques secondes.');
+    } finally {
+      btn.disabled = false;
+      lbl.style.display = 'inline';
+      btn.querySelector('.spinner')?.remove();
+    }
+  }
+
+  // STEPS 2-4 — Validate + update Firebase
+  async function goStep(from) {
+    clearError();
+    let data = {};
+
+    if (from === 2) {
+      const pourquoi = v('s2_pourquoi'), ville = v('s2_ville');
+      if (!pourquoi) { showError('Merci d\'expliquer ta motivation.'); return; }
+      if (!ville) { showError('Merci d\'indiquer ta ville.'); return; }
+      data = { pourquoi, ville };
+    } else if (from === 3) {
+      const situation = v('s3_situation'), parcours = v('s3_parcours');
+      if (!situation) { showError('Merci d\'indiquer ta situation actuelle.'); return; }
+      if (!parcours) { showError('Merci de décrire ton parcours.'); return; }
+      data = { situation, parcours };
+    } else if (from === 4) {
+      const freelance = v('s4_freelance'), expIA = v('s4_expIA');
+      if (!freelance) { showError('Merci de répondre à la question sur le freelance.'); return; }
+      if (!expIA) { showError('Merci de répondre à la question sur l\'expérience IA.'); return; }
+      data = { freelance, experience_ia: expIA };
+      if (expIA === 'Oui') data.experience_detail = v('s4_expDetail');
+    }
+
+    if (docId) {
+      try {
+        await window._fbUpdateDoc(
+          window._fbDoc(window._db, 'candidatures_recrutement', docId),
+          { ...data, step_reached: from, updatedAt: window._fbServerTimestamp() }
+        );
+      } catch(e) { console.error('Update error:', e); }
+    }
+    showStep(from + 1);
+  }
+
+  // STEP 5 — Final submit
+  async function submitForm() {
+    clearError();
+    const revenu = v('s5_revenu'), formation = v('s5_formation'), temps = v('s5_temps');
+    if (!revenu) { showError('Merci d\'indiquer le revenu souhaité.'); return; }
+    if (!formation) { showError('Merci de répondre à la question sur la formation.'); return; }
+    if (!temps) { showError('Merci d\'indiquer le temps disponible par jour.'); return; }
+
+    const btn = document.getElementById('btn5');
+    const lbl = document.getElementById('lbl5');
+    btn.disabled = true; lbl.style.display = 'none';
+    btn.insertAdjacentHTML('beforeend', '<div class="spinner"></div>');
+
+    try {
+      if (docId) {
+        await window._fbUpdateDoc(
+          window._fbDoc(window._db, 'candidatures_recrutement', docId),
+          { revenu_souhaite: revenu, formation, temps_dispo: temps,
+            step_reached: 5, complete: true,
+            updatedAt: window._fbServerTimestamp() }
+        );
+      }
+      document.querySelectorAll('.step-card').forEach(c => c.classList.remove('active'));
+      document.getElementById('progressFill').style.width = '100%';
+      const nom = v('s1_nom').split(' ')[0];
+      document.getElementById('successName').textContent = nom;
+      document.getElementById('successCard').classList.add('show');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } catch(e) {
+      console.error(e);
+      showError('Erreur lors de l\'envoi — réessaie.');
+      btn.disabled = false; lbl.style.display = 'inline';
+      btn.querySelector('.spinner')?.remove();
+    }
+  }
+
+  window.goStep1 = goStep1;
+  window.goStep = goStep;
+  window.prevStep = prevStep;
+  window.selectRadio = selectRadio;
+  window.showConditional = showConditional;
+  window.submitForm = submitForm;
+</script>
+
+<!-- STARS CANVAS -->
+<script>
+(function() {
+  const cvs = document.getElementById('starsCanvas');
+  const ctx = cvs.getContext('2d');
+  function resize() { cvs.width = window.innerWidth; cvs.height = window.innerHeight; }
+  resize(); window.addEventListener('resize', resize, { passive: true });
+  const BG = Array.from({ length: 160 }, () => ({
+    x: Math.random(), y: Math.random(), r: Math.random() * 0.9 + 0.2,
+    a: Math.random() * 0.25 + 0.04, tw: Math.random() * Math.PI * 2, ts: Math.random() * 0.01 + 0.003
+  }));
+  (function loop() {
+    requestAnimationFrame(loop);
+    ctx.clearRect(0, 0, cvs.width, cvs.height);
+    BG.forEach(s => {
+      s.tw += s.ts;
+      ctx.beginPath(); ctx.arc(s.x * cvs.width, s.y * cvs.height, s.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(210,230,255,${s.a * (0.55 + 0.45 * Math.sin(s.tw))})`; ctx.fill();
+    });
+  })();
+})();
+</script>
+
+</body>
+</html>
