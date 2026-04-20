@@ -222,7 +222,7 @@
   const db = getFirestore(app);
 
   window._startListen = function() {
-    const q = query(collection(db, 'candidatures_recrutement'), orderBy('createdAt', 'desc'));
+    const q = query(collection(db, 'leads_recrutement'), orderBy('createdAt', 'desc'));
     onSnapshot(q, snapshot => {
       const docs = [];
       snapshot.forEach(d => docs.push({ id: d.id, ...d.data() }));

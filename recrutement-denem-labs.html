@@ -484,7 +484,7 @@
       await waitFb();
 
       const ref = await window._fbAddDoc(
-        window._fbCollection(window._db, 'candidatures_recrutement'), {
+        window._fbCollection(window._db, 'leads_recrutement'), {
           nom_prenom: nom, date_naissance: dob, telephone: tel,
           step_reached: 1, complete: false,
           source: 'recrutement-denem-labs',
@@ -496,7 +496,7 @@
       showStep(2);
     } catch(e) {
       console.error(e);
-      showError('Erreur de connexion — réessaie dans quelques secondes.');
+      showError('Erreur : ' + (e.code || e.message || 'connexion impossible'));
     } finally {
       btn.disabled = false;
       lbl.style.display = 'inline';
@@ -530,7 +530,7 @@
     if (docId) {
       try {
         await window._fbUpdateDoc(
-          window._fbDoc(window._db, 'candidatures_recrutement', docId),
+          window._fbDoc(window._db, 'leads_recrutement', docId),
           { ...data, step_reached: from, updatedAt: window._fbServerTimestamp() }
         );
       } catch(e) { console.error('Update error:', e); }
@@ -554,7 +554,7 @@
     try {
       if (docId) {
         await window._fbUpdateDoc(
-          window._fbDoc(window._db, 'candidatures_recrutement', docId),
+          window._fbDoc(window._db, 'leads_recrutement', docId),
           { revenu_souhaite: revenu, formation, temps_dispo: temps,
             step_reached: 5, complete: true,
             updatedAt: window._fbServerTimestamp() }
