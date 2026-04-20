@@ -222,7 +222,7 @@
 
   <!-- PROGRESS -->
   <div class="progress-header">
-    <span class="progress-label">Étape <strong id="stepNum">1</strong> / 5</span>
+    <span class="progress-label">Étape <strong id="stepNum">1</strong> / 6</span>
     <span class="progress-label" id="stepName">Coordonnées</span>
   </div>
   <div class="progress-bar-track">
@@ -278,18 +278,14 @@
     </div>
   </div>
 
-  <!-- ══ STEP 3 — Parcours ══ -->
+  <!-- ══ STEP 3 — Sincérité ══ -->
   <div class="step-card" id="step3">
-    <p class="step-eyebrow">Étape 3 / 5</p>
-    <h2 class="step-title">Ton <span>parcours</span></h2>
+    <p class="step-eyebrow">Étape 3 / 6</p>
+    <h2 class="step-title">Sois <span>honnête avec toi</span></h2>
 
     <div class="field">
-      <label>Quelle est votre situation actuelle ? <span class="req">*</span></label>
-      <input type="text" id="s3_situation" placeholder="Ex : Salarié, étudiant, en reconversion...">
-    </div>
-    <div class="field">
-      <label>Expliquez votre parcours professionnel <span class="req">*</span></label>
-      <textarea id="s3_parcours" placeholder="Tes expériences, compétences, ce que tu as fait jusqu'ici..."></textarea>
+      <label>Qu'est-ce qui te dérange sincèrement dans ton quotidien et ta situation actuelle ? Qu'est-ce qui te freine et te pousse à vouloir changer de voie ? <span class="req">*</span></label>
+      <textarea id="s3_frein" placeholder="Parle-nous franchement — c'est ici que ça commence vraiment..." style="min-height:140px"></textarea>
     </div>
 
     <div class="step-actions">
@@ -298,44 +294,18 @@
     </div>
   </div>
 
-  <!-- ══ STEP 4 — Mindset ══ -->
+  <!-- ══ STEP 4 — Parcours ══ -->
   <div class="step-card" id="step4">
-    <p class="step-eyebrow">Étape 4 / 5</p>
-    <h2 class="step-title">Ton <span>état d'esprit</span></h2>
+    <p class="step-eyebrow">Étape 4 / 6</p>
+    <h2 class="step-title">Ton <span>parcours</span></h2>
 
     <div class="field">
-      <label>Êtes-vous prêt(e) à devenir Freelance et gérer votre activité ? <span class="req">*</span></label>
-      <div class="radio-group" id="rg_freelance">
-        <label class="radio-card" onclick="selectRadio(this,'s4_freelance','Oui')">
-          <input type="radio" name="freelance" value="Oui"> <span class="radio-dot"></span>
-          <span class="radio-label">Oui</span>
-        </label>
-        <label class="radio-card" onclick="selectRadio(this,'s4_freelance','Non')">
-          <input type="radio" name="freelance" value="Non"> <span class="radio-dot"></span>
-          <span class="radio-label">Non</span>
-        </label>
-      </div>
-      <input type="hidden" id="s4_freelance">
+      <label>Quelle est votre situation actuelle ? <span class="req">*</span></label>
+      <input type="text" id="s4_situation" placeholder="Ex : Salarié, étudiant, en reconversion...">
     </div>
-
     <div class="field">
-      <label>Avez-vous une expérience en tant qu'Expert IA ? <span class="req">*</span></label>
-      <div class="radio-group" id="rg_expIA">
-        <label class="radio-card" onclick="selectRadio(this,'s4_expIA','Oui'); showConditional(true)">
-          <input type="radio" name="expIA" value="Oui"> <span class="radio-dot"></span>
-          <span class="radio-label">Oui</span>
-        </label>
-        <label class="radio-card" onclick="selectRadio(this,'s4_expIA','Non'); showConditional(false)">
-          <input type="radio" name="expIA" value="Non"> <span class="radio-dot"></span>
-          <span class="radio-label">Non</span>
-        </label>
-      </div>
-      <input type="hidden" id="s4_expIA">
-    </div>
-
-    <div class="field conditional" id="conditionalDetail">
-      <label>Si OUI, développez ici</label>
-      <textarea id="s4_expDetail" placeholder="Décrivez vos expériences en IA..."></textarea>
+      <label>Expliquez votre parcours professionnel <span class="req">*</span></label>
+      <textarea id="s4_parcours" placeholder="Tes expériences, compétences, ce que tu as fait jusqu'ici..."></textarea>
     </div>
 
     <div class="step-actions">
@@ -344,38 +314,84 @@
     </div>
   </div>
 
-  <!-- ══ STEP 5 — Objectifs ══ -->
+  <!-- ══ STEP 5 — Mindset ══ -->
   <div class="step-card" id="step5">
-    <p class="step-eyebrow">Étape 5 / 5</p>
-    <h2 class="step-title">Tes <span>objectifs</span></h2>
+    <p class="step-eyebrow">Étape 5 / 6</p>
+    <h2 class="step-title">Ton <span>état d'esprit</span></h2>
 
     <div class="field">
-      <label>Combien aimeriez-vous gagner par mois ? <span class="req">*</span></label>
-      <input type="text" id="s5_revenu" placeholder="Ex : 5 000€, 10 000€...">
-    </div>
-    <div class="field">
-      <label>Êtes-vous prêt(e) à vous former aux méthodes Expert IA ? <span class="req">*</span></label>
-      <div class="radio-group" id="rg_formation">
-        <label class="radio-card" onclick="selectRadio(this,'s5_formation','Oui, je veux me former et avancer')">
-          <input type="radio" name="formation" value="Oui"> <span class="radio-dot"></span>
-          <span class="radio-label">Oui, je veux me former et avancer</span>
+      <label>Êtes-vous prêt(e) à devenir Freelance et gérer votre activité ? <span class="req">*</span></label>
+      <div class="radio-group" id="rg_freelance">
+        <label class="radio-card" onclick="selectRadio(this,'s5_freelance','Oui')">
+          <input type="radio" name="freelance" value="Oui"> <span class="radio-dot"></span>
+          <span class="radio-label">Oui</span>
         </label>
-        <label class="radio-card" onclick="selectRadio(this,'s5_formation','Non, je connais déjà')">
-          <input type="radio" name="formation" value="Non"> <span class="radio-dot"></span>
-          <span class="radio-label">Non, je connais déjà</span>
+        <label class="radio-card" onclick="selectRadio(this,'s5_freelance','Non')">
+          <input type="radio" name="freelance" value="Non"> <span class="radio-dot"></span>
+          <span class="radio-label">Non</span>
         </label>
       </div>
-      <input type="hidden" id="s5_formation">
+      <input type="hidden" id="s5_freelance">
     </div>
+
     <div class="field">
-      <label>Combien de temps êtes-vous prêt(e) à y consacrer par jour ? <span class="req">*</span></label>
-      <input type="text" id="s5_temps" placeholder="Ex : 2h, 4h, journée complète...">
+      <label>Avez-vous une expérience en tant qu'Expert IA ? <span class="req">*</span></label>
+      <div class="radio-group" id="rg_expIA">
+        <label class="radio-card" onclick="selectRadio(this,'s5_expIA','Oui'); showConditional(true)">
+          <input type="radio" name="expIA" value="Oui"> <span class="radio-dot"></span>
+          <span class="radio-label">Oui</span>
+        </label>
+        <label class="radio-card" onclick="selectRadio(this,'s5_expIA','Non'); showConditional(false)">
+          <input type="radio" name="expIA" value="Non"> <span class="radio-dot"></span>
+          <span class="radio-label">Non</span>
+        </label>
+      </div>
+      <input type="hidden" id="s5_expIA">
+    </div>
+
+    <div class="field conditional" id="conditionalDetail">
+      <label>Si OUI, développez ici</label>
+      <textarea id="s5_expDetail" placeholder="Décrivez vos expériences en IA..."></textarea>
     </div>
 
     <div class="step-actions">
       <button class="btn-back" onclick="prevStep(5)">← Retour</button>
-      <button class="btn-next" id="btn5" onclick="submitForm()">
-        <span id="lbl5">Envoyer ma candidature</span>
+      <button class="btn-next" onclick="goStep(5)">Continuer →</button>
+    </div>
+  </div>
+
+  <!-- ══ STEP 6 — Objectifs ══ -->
+  <div class="step-card" id="step6">
+    <p class="step-eyebrow">Étape 6 / 6</p>
+    <h2 class="step-title">Tes <span>objectifs</span></h2>
+
+    <div class="field">
+      <label>Combien aimeriez-vous gagner par mois ? <span class="req">*</span></label>
+      <input type="text" id="s6_revenu" placeholder="Ex : 5 000€, 10 000€...">
+    </div>
+    <div class="field">
+      <label>Êtes-vous prêt(e) à vous former aux méthodes Expert IA ? <span class="req">*</span></label>
+      <div class="radio-group" id="rg_formation">
+        <label class="radio-card" onclick="selectRadio(this,'s6_formation','Oui, je veux me former et avancer')">
+          <input type="radio" name="formation" value="Oui"> <span class="radio-dot"></span>
+          <span class="radio-label">Oui, je veux me former et avancer</span>
+        </label>
+        <label class="radio-card" onclick="selectRadio(this,'s6_formation','Non, je connais déjà')">
+          <input type="radio" name="formation" value="Non"> <span class="radio-dot"></span>
+          <span class="radio-label">Non, je connais déjà</span>
+        </label>
+      </div>
+      <input type="hidden" id="s6_formation">
+    </div>
+    <div class="field">
+      <label>Combien de temps êtes-vous prêt(e) à y consacrer par jour ? <span class="req">*</span></label>
+      <input type="text" id="s6_temps" placeholder="Ex : 2h, 4h, journée complète...">
+    </div>
+
+    <div class="step-actions">
+      <button class="btn-back" onclick="prevStep(6)">← Retour</button>
+      <button class="btn-next" id="btn6" onclick="submitForm()">
+        <span id="lbl6">Envoyer ma candidature</span>
       </button>
     </div>
   </div>
@@ -424,7 +440,7 @@
   let currentStep = 1;
   let docId = null;
 
-  const STEP_NAMES = ['', 'Coordonnées', 'Motivation', 'Parcours', 'État d\'esprit', 'Objectifs'];
+  const STEP_NAMES = ['', 'Coordonnées', 'Motivation', 'Sincérité', 'Parcours', 'État d\'esprit', 'Objectifs'];
 
   function v(id) { return document.getElementById(id)?.value?.trim() || ''; }
 
@@ -438,7 +454,7 @@
   function updateProgress(step) {
     document.getElementById('stepNum').textContent = step;
     document.getElementById('stepName').textContent = STEP_NAMES[step] || '';
-    document.getElementById('progressFill').style.width = (step / 5 * 100) + '%';
+    document.getElementById('progressFill').style.width = (step / 6 * 100) + '%';
   }
 
   function showStep(n) {
@@ -504,7 +520,7 @@
     }
   }
 
-  // STEPS 2-4 — Validate + update Firebase
+  // STEPS 2-5 — Validate + update Firebase
   async function goStep(from) {
     clearError();
     let data = {};
@@ -515,16 +531,20 @@
       if (!ville) { showError('Merci d\'indiquer ta ville.'); return; }
       data = { pourquoi, ville };
     } else if (from === 3) {
-      const situation = v('s3_situation'), parcours = v('s3_parcours');
+      const frein = v('s3_frein');
+      if (!frein) { showError('Merci de répondre honnêtement à cette question.'); return; }
+      data = { frein_quotidien: frein };
+    } else if (from === 4) {
+      const situation = v('s4_situation'), parcours = v('s4_parcours');
       if (!situation) { showError('Merci d\'indiquer ta situation actuelle.'); return; }
       if (!parcours) { showError('Merci de décrire ton parcours.'); return; }
       data = { situation, parcours };
-    } else if (from === 4) {
-      const freelance = v('s4_freelance'), expIA = v('s4_expIA');
+    } else if (from === 5) {
+      const freelance = v('s5_freelance'), expIA = v('s5_expIA');
       if (!freelance) { showError('Merci de répondre à la question sur le freelance.'); return; }
       if (!expIA) { showError('Merci de répondre à la question sur l\'expérience IA.'); return; }
       data = { freelance, experience_ia: expIA };
-      if (expIA === 'Oui') data.experience_detail = v('s4_expDetail');
+      if (expIA === 'Oui') data.experience_detail = v('s5_expDetail');
     }
 
     if (docId) {
@@ -538,16 +558,16 @@
     showStep(from + 1);
   }
 
-  // STEP 5 — Final submit
+  // STEP 6 — Final submit
   async function submitForm() {
     clearError();
-    const revenu = v('s5_revenu'), formation = v('s5_formation'), temps = v('s5_temps');
+    const revenu = v('s6_revenu'), formation = v('s6_formation'), temps = v('s6_temps');
     if (!revenu) { showError('Merci d\'indiquer le revenu souhaité.'); return; }
     if (!formation) { showError('Merci de répondre à la question sur la formation.'); return; }
     if (!temps) { showError('Merci d\'indiquer le temps disponible par jour.'); return; }
 
-    const btn = document.getElementById('btn5');
-    const lbl = document.getElementById('lbl5');
+    const btn = document.getElementById('btn6');
+    const lbl = document.getElementById('lbl6');
     btn.disabled = true; lbl.style.display = 'none';
     btn.insertAdjacentHTML('beforeend', '<div class="spinner"></div>');
 
@@ -556,7 +576,7 @@
         await window._fbUpdateDoc(
           window._fbDoc(window._db, 'leads_recrutement', docId),
           { revenu_souhaite: revenu, formation, temps_dispo: temps,
-            step_reached: 5, complete: true,
+            step_reached: 6, complete: true,
             updatedAt: window._fbServerTimestamp() }
         );
       }
