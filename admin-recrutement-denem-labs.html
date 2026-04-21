@@ -180,6 +180,14 @@
       <div class="funnel-steps" id="funnelSteps"></div>
     </div>
 
+    <!-- EXPORT CSV -->
+    <div style="display:flex;justify-content:flex-end;margin-bottom:16px">
+      <button onclick="exportCSV()" style="display:inline-flex;align-items:center;gap:8px;background:rgba(45,212,191,.1);border:1px solid rgba(45,212,191,.3);border-radius:10px;padding:10px 20px;color:var(--teal);font-family:'DM Sans',sans-serif;font-size:.88rem;font-weight:500;cursor:pointer;transition:background .2s" onmouseover="this.style.background='rgba(45,212,191,.18)'" onmouseout="this.style.background='rgba(45,212,191,.1)'">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+        Exporter tout en CSV (Google Sheets)
+      </button>
+    </div>
+
     <!-- TABLE RÉPONSES QUALITATIVES -->
     <div class="table-card" style="margin-bottom:28px">
       <div class="table-header-row">
@@ -345,6 +353,56 @@
 
   function filterQual() { renderQual(allDocs); }
   window.filterQual = filterQual;
+
+  function exportCSV() {
+    if (!allDocs.length) { alert('Aucune donnée à exporter.'); return; }
+
+    const headers = [
+      'Nom / Prénom', 'Âge', 'Téléphone WhatsApp', 'Ville / Pays',
+      'Pourquoi Expert IA', 'Ce qui ne convient plus', 'Vision pro 12 mois',
+      'Situation actuelle', 'Parcours professionnel',
+      'Freelance ready', 'Expérience IA', 'Détail expérience IA',
+      'Outils IA utilisés', 'Revenu souhaité', 'Formation', 'Temps / jour',
+      'Étape atteinte', 'Complet', 'Date candidature'
+    ];
+
+    const escape = v => {
+      if (v == null || v === undefined) return '';
+      const s = String(v).replace(/"/g, '""');
+      return `"${s}"`;
+    };
+
+    const rows = allDocs.map(d => [
+      escape(d.nom_prenom),
+      escape(d.date_naissance),
+      escape(d.telephone),
+      escape(d.ville),
+      escape(d.pourquoi),
+      escape(d.frein_quotidien),
+      escape(d.declic),
+      escape(d.situation),
+      escape(d.parcours),
+      escape(d.freelance),
+      escape(d.experience_ia),
+      escape(d.experience_detail),
+      escape(d.outils_ia),
+      escape(d.revenu_souhaite),
+      escape(d.formation),
+      escape(d.temps_dispo),
+      escape(d.step_reached || 1),
+      escape(d.complete ? 'Oui' : 'Non'),
+      escape(d.createdAt ? (d.createdAt.toDate ? d.createdAt.toDate().toLocaleString('fr-FR') : new Date(d.createdAt).toLocaleString('fr-FR')) : '')
+    ].join(','));
+
+    const csv = '\uFEFF' + [headers.map(h => `"${h}"`).join(','), ...rows].join('\n');
+    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    const date = new Date().toISOString().slice(0,10);
+    a.href = url; a.download = `candidatures-denem-labs-${date}.csv`;
+    a.click(); URL.revokeObjectURL(url);
+  }
+  window.exportCSV = exportCSV;
 
   function renderKPIs(docs) {
     const total = docs.length;
