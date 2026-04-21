@@ -110,6 +110,10 @@
     .expand-val { font-size: .82rem; color: var(--text); line-height: 1.5; }
 
     .empty-state { padding: 48px; text-align: center; color: var(--muted); font-size: .88rem; }
+    .qual-cell { font-size: .8rem; color: var(--muted); line-height: 1.55; max-width: 220px; vertical-align: top; padding: 12px 14px !important; }
+    .qual-cell.expand { white-space: normal; color: var(--text); }
+    .qual-more { color: var(--violet); font-size: .72rem; cursor: pointer; display: block; margin-top: 4px; }
+    .qual-name { font-weight: 500; color: var(--text); font-size: .85rem; vertical-align: top; padding: 12px 14px !important; white-space: nowrap; }
 
     /* MOBILE */
     @media (max-width: 768px) {
@@ -176,8 +180,31 @@
       <div class="funnel-steps" id="funnelSteps"></div>
     </div>
 
+    <!-- TABLE RÉPONSES QUALITATIVES -->
+    <div class="table-card" style="margin-bottom:28px">
+      <div class="table-header-row">
+        <span class="table-title">Réponses qualitatives</span>
+        <input class="table-search" type="text" placeholder="Rechercher..." id="searchQual" oninput="filterQual()">
+      </div>
+      <div style="overflow-x:auto">
+        <table>
+          <thead>
+            <tr>
+              <th style="min-width:130px">Nom / Prénom</th>
+              <th style="min-width:200px">Pourquoi Expert IA ?</th>
+              <th style="min-width:200px">Ce qui ne convient plus</th>
+              <th style="min-width:160px">Situation actuelle</th>
+              <th style="min-width:200px">Parcours professionnel</th>
+            </tr>
+          </thead>
+          <tbody id="qualBody">
+            <tr><td colspan="5" class="empty-state">Chargement...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
     <!-- TABLE -->
-    <div class="table-card">
       <div class="table-header-row">
         <span class="table-title">Candidats <span id="tableCount" style="color:var(--muted);font-weight:400;font-size:.85rem"></span></span>
         <input class="table-search" type="text" placeholder="Rechercher..." id="searchInput" oninput="filterTable()">
@@ -266,8 +293,58 @@
     allDocs = docs;
     renderKPIs(docs);
     renderFunnel(docs);
+    renderQual(docs);
     renderTable(docs);
   };
+
+  function qualCell(text, idx, col) {
+    const max = 120;
+    const id = `qc-${idx}-${col}`;
+    if (!text || text === '—') return `<td class="qual-cell">—</td>`;
+    if (text.length <= max) return `<td class="qual-cell expand">${text}</td>`;
+    return `<td class="qual-cell">
+      <span id="${id}-short">${text.slice(0, max)}… <span class="qual-more" onclick="toggleQual('${id}')">Voir plus</span></span>
+      <span id="${id}-full" style="display:none">${text} <span class="qual-more" onclick="toggleQual('${id}')">Réduire</span></span>
+    </td>`;
+  }
+
+  function toggleQual(id) {
+    const short = document.getElementById(id + '-short');
+    const full  = document.getElementById(id + '-full');
+    if (!short || !full) return;
+    const isShown = full.style.display !== 'none';
+    short.style.display = isShown ? '' : 'none';
+    full.style.display  = isShown ? 'none' : '';
+  }
+  window.toggleQual = toggleQual;
+
+  function renderQual(docs) {
+    const search = document.getElementById('searchQual')?.value.toLowerCase() || '';
+    const filtered = docs.filter(d =>
+      !search ||
+      (d.nom_prenom||'').toLowerCase().includes(search) ||
+      (d.situation||'').toLowerCase().includes(search) ||
+      (d.pourquoi||'').toLowerCase().includes(search)
+    );
+    const tbody = document.getElementById('qualBody');
+    if (!tbody) return;
+    if (filtered.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="5" class="empty-state">Aucune réponse pour l\'instant.</td></tr>';
+      return;
+    }
+    tbody.innerHTML = filtered.map((d, i) => `
+      <tr style="border-bottom:1px solid rgba(255,255,255,.05)">
+        <td class="qual-name">${d.nom_prenom || '—'}<br><span style="font-size:.72rem;color:var(--muted)">${fmtDate(d.createdAt)}</span></td>
+        ${qualCell(d.pourquoi, i, 'p')}
+        ${qualCell(d.frein_quotidien, i, 'f')}
+        ${qualCell(d.situation, i, 's')}
+        ${qualCell(d.parcours, i, 'c')}
+      </tr>
+    `).join('');
+  }
+
+  function filterQual() { renderQual(allDocs); }
+  window.filterQual = filterQual;
 
   function renderKPIs(docs) {
     const total = docs.length;
