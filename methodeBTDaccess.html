@@ -285,11 +285,14 @@
       <span style="font-size:1.2rem">🎁</span>
       <span>Une surprise arrive dans <strong id="surpriseCountdown" style="font-family:'Poppins',sans-serif;color:var(--violet)">18:40</strong></span>
     </div>
-    <a id="surpriseUnlocked" href="/eligibilite" style="display:none;align-items:center;gap:12px;background:var(--violet);color:#fff;font-family:'Poppins',sans-serif;font-weight:700;font-size:1rem;padding:18px 36px;border-radius:14px;text-decoration:none;box-shadow:0 0 40px rgba(107,91,255,.55);animation:surprise-pop .5s ease forwards">
-      <span style="font-size:1.2rem">🎁</span>
-      Ta surprise est disponible
-      <svg viewBox="0 0 24 24" width="18" height="18" fill="#fff"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-    </a>
+    <!-- Widget iClosed (caché jusqu'à la fin du chrono) -->
+    <div id="surpriseUnlocked" style="display:none;flex-direction:column;align-items:center;gap:16px;width:100%;max-width:860px;animation:surprise-pop .5s ease forwards">
+      <p style="font-family:'Poppins',sans-serif;font-weight:700;font-size:1.1rem;color:#fff;text-align:center">🎁 Ta surprise est là — réserve ton bilan offert</p>
+      <!-- iClosed inline widget begin -->
+      <div class="iclosed-widget" data-url="https://app.iclosed.io/e/denemacademy/bilan-de-carri-re-ia-denem" title="Bilan de carrière IA - DENEM" style="width:100%;height:620px"></div>
+      <script type="text/javascript" src="https://app.iclosed.io/assets/widget.js" async></script>
+      <!-- iClosed inline widget end -->
+    </div>
     <p id="surpriseNote" style="font-size:.72rem;color:rgba(255,255,255,.2)">Continue de regarder jusqu'à la fin de la vidéo</p>
   </div>
 
@@ -346,7 +349,7 @@
         clearInterval(tick);
         locked.style.display = 'none';
         note.style.display = 'none';
-        unlocked.style.display = 'inline-flex';
+        unlocked.style.display = 'flex';
         unlocked.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }
     }, 1000);
