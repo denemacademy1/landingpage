@@ -1045,6 +1045,7 @@
 <script>
   // Modal open / close
   function openOptin() {
+    if (window._trackCtaClick) window._trackCtaClick();
     const overlay = document.getElementById('optinOverlay');
     overlay.classList.add('open');
     document.body.style.overflow = 'hidden';
@@ -1104,7 +1105,7 @@
 <!-- Firebase -->
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
-  import { getFirestore, collection, addDoc, serverTimestamp }
+  import { getFirestore, collection, addDoc, doc, setDoc, updateDoc, increment, serverTimestamp }
     from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
 
   const app = initializeApp({
@@ -1117,6 +1118,22 @@
   });
 
   const db = getFirestore(app);
+
+  // Tracking helpers
+  async function trackEvent(field) {
+    const ref = doc(db, "analytics", "btd_landing");
+    try {
+      await updateDoc(ref, { [field]: increment(1), updatedAt: serverTimestamp() });
+    } catch {
+      await setDoc(ref, { [field]: 1, updatedAt: serverTimestamp() }, { merge: true });
+    }
+  }
+
+  // Vue page
+  trackEvent("vues");
+
+  // Exposer le tracker de clic CTA pour openOptin
+  window._trackCtaClick = () => trackEvent("clics_cta");
 
   window.saveVslLead = async function({ prenom, email, telephone }) {
     await addDoc(collection(db, "leads_vsl"), {

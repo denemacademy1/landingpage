@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DENEM Academy — Tracking</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #0d0c14;
+      color: #fff;
+      min-height: 100vh;
+      padding: 40px 24px;
+    }
+    h1 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: rgba(255,255,255,.9);
+      margin-bottom: 8px;
+    }
+    .subtitle {
+      font-size: .8rem;
+      color: rgba(255,255,255,.3);
+      margin-bottom: 40px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      max-width: 760px;
+    }
+    .card {
+      background: rgba(38,34,68,.88);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 16px;
+      padding: 24px 28px;
+    }
+    .card.accent {
+      background: linear-gradient(135deg, rgba(6,4,16,.96) 0%, rgba(30,22,60,.92) 60%, rgba(6,4,16,.96) 100%);
+      border-color: rgba(107,91,255,.35);
+      box-shadow: 0 0 28px rgba(107,91,255,.1) inset;
+    }
+    .card-label {
+      font-size: .6rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: rgba(255,255,255,.3);
+      margin-bottom: 10px;
+    }
+    .card-value {
+      font-size: 3rem;
+      font-weight: 900;
+      line-height: 1;
+      color: #fff;
+    }
+    .card-value.teal { color: #2DD4BF; }
+    .card-value.violet { color: rgba(107,91,255,.9); }
+    .card-sub {
+      font-size: .72rem;
+      color: rgba(255,255,255,.3);
+      margin-top: 8px;
+    }
+    .rate-card {
+      background: rgba(45,212,191,.06);
+      border: 1px solid rgba(45,212,191,.2);
+      border-radius: 16px;
+      padding: 24px 28px;
+    }
+    .rate-value {
+      font-size: 3rem;
+      font-weight: 900;
+      color: #2DD4BF;
+      line-height: 1;
+    }
+    .loader {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: rgba(107,91,255,.6);
+      display: inline-block;
+      animation: pulse 1.2s ease-in-out infinite;
+      margin-right: 6px;
+      vertical-align: middle;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: .3; transform: scale(.8); }
+      50% { opacity: 1; transform: scale(1.2); }
+    }
+    .live-badge {
+      font-size: .62rem;
+      color: rgba(107,91,255,.7);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 28px;
+    }
+    .updated {
+      font-size: .68rem;
+      color: rgba(255,255,255,.2);
+      margin-top: 32px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Tableau de bord</h1>
+  <p class="subtitle">DENEM Academy · Landing page VSL</p>
+
+  <p class="live-badge"><span class="loader"></span> Données en temps réel</p>
+
+  <div class="grid">
+    <div class="card">
+      <p class="card-label">Visiteurs page LP</p>
+      <p class="card-value" id="vues">—</p>
+      <p class="card-sub">methodeBTD.html</p>
+    </div>
+    <div class="card accent">
+      <p class="card-label">Clics "Lancer la vidéo"</p>
+      <p class="card-value violet" id="clics">—</p>
+      <p class="card-sub">Ouverture du formulaire optin</p>
+    </div>
+    <div class="rate-card">
+      <p class="card-label">Taux de clic CTA</p>
+      <p class="rate-value" id="taux">—</p>
+      <p class="card-sub">clics / visiteurs</p>
+    </div>
+    <div class="card">
+      <p class="card-label">Leads capturés</p>
+      <p class="card-value teal" id="leads">—</p>
+      <p class="card-sub">leads_vsl (source vsl-capture)</p>
+    </div>
+  </div>
+
+  <p class="updated" id="updatedAt"></p>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
+  import { getFirestore, doc, onSnapshot, collection, query, where, getCountFromServer }
+    from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
+
+  const app = initializeApp({
+    apiKey:            "AIzaSyBdNN-iiK5KoBqkX4FX1PJ5CmlWUma8NaU",
+    authDomain:        "denem-academy-5de41.firebaseapp.com",
+    projectId:         "denem-academy-5de41",
+    storageBucket:     "denem-academy-5de41.firebasestorage.app",
+    messagingSenderId: "570632584566",
+    appId:             "1:570632584566:web:4305443183280686a7ce57"
+  });
+
+  const db = getFirestore(app);
+
+  // Temps réel : vues + clics
+  onSnapshot(doc(db, "analytics", "btd_landing"), (snap) => {
+    const data = snap.data() || {};
+    const vues = data.vues || 0;
+    const clics = data.clics_cta || 0;
+
+    document.getElementById('vues').textContent = vues.toLocaleString('fr-FR');
+    document.getElementById('clics').textContent = clics.toLocaleString('fr-FR');
+
+    const taux = vues > 0 ? Math.round((clics / vues) * 100) : 0;
+    document.getElementById('taux').textContent = taux + '%';
+
+    if (data.updatedAt) {
+      const d = data.updatedAt.toDate();
+      document.getElementById('updatedAt').textContent =
+        'Dernière activité : ' + d.toLocaleDateString('fr-FR') + ' à ' + d.toLocaleTimeString('fr-FR');
+    }
+  });
+
+  // Leads count
+  async function refreshLeads() {
+    const q = query(collection(db, "leads_vsl"), where("source", "==", "vsl-capture"));
+    const snap = await getCountFromServer(q);
+    document.getElementById('leads').textContent = snap.data().count.toLocaleString('fr-FR');
+  }
+  refreshLeads();
+  setInterval(refreshLeads, 30000);
+</script>
+</body>
+</html>
