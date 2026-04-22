@@ -174,6 +174,12 @@
     .footer-links a { color: var(--muted); text-decoration: none; }
     .footer-links a:hover { color: var(--teal); }
 
+    @keyframes surprise-pop {
+      0%   { transform: scale(.85); opacity: 0; }
+      60%  { transform: scale(1.04); }
+      100% { transform: scale(1);   opacity: 1; }
+    }
+
     @media (max-width: 480px) {
       main { padding: 32px 16px 60px; }
     }
@@ -229,6 +235,20 @@
   </div>
   <script src="https://player.vimeo.com/api/player.js"></script>
 
+  <!-- Surprise button -->
+  <div id="surpriseBox" style="width:100%;display:flex;flex-direction:column;align-items:center;gap:10px;margin-bottom:36px">
+    <div id="surpriseLocked" style="display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:16px 28px;color:rgba(255,255,255,.35);font-size:.88rem;cursor:default;user-select:none">
+      <span style="font-size:1.2rem">🎁</span>
+      <span>Une surprise arrive dans <strong id="surpriseCountdown" style="font-family:'Poppins',sans-serif;color:rgba(255,255,255,.5)">13:00</strong></span>
+    </div>
+    <a id="surpriseUnlocked" href="/eligibilite" style="display:none;align-items:center;gap:12px;background:var(--violet);color:#fff;font-family:'Poppins',sans-serif;font-weight:700;font-size:1rem;padding:18px 36px;border-radius:14px;text-decoration:none;box-shadow:0 0 40px rgba(107,91,255,.55);animation:surprise-pop .5s ease forwards">
+      <span style="font-size:1.2rem">🎁</span>
+      Ta surprise est disponible
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="#fff"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+    <p id="surpriseNote" style="font-size:.72rem;color:rgba(255,255,255,.2)">Continue de regarder jusqu'à la fin de la vidéo</p>
+  </div>
+
   <!-- CTA -->
   <div class="below-video">
     <a class="cta-btn" href="/eligibilite">
@@ -264,6 +284,31 @@
     document.getElementById('vslIframe').src =
       'https://player.vimeo.com/video/1185433009?badge=0&autopause=0&autoplay=1&player_id=0&app_id=58479';
     player.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    startSurpriseTimer();
+  }
+
+  function startSurpriseTimer() {
+    const TOTAL = 13 * 60; // 13 minutes en secondes
+    let remaining = TOTAL;
+    const countdown = document.getElementById('surpriseCountdown');
+    const locked    = document.getElementById('surpriseLocked');
+    const unlocked  = document.getElementById('surpriseUnlocked');
+    const note      = document.getElementById('surpriseNote');
+
+    const tick = setInterval(() => {
+      remaining--;
+      const m = Math.floor(remaining / 60);
+      const s = remaining % 60;
+      countdown.textContent = m + ':' + String(s).padStart(2, '0');
+
+      if (remaining <= 0) {
+        clearInterval(tick);
+        locked.style.display = 'none';
+        note.style.display = 'none';
+        unlocked.style.display = 'inline-flex';
+        unlocked.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    }, 1000);
   }
 </script>
 
