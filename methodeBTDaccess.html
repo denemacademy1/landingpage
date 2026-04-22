@@ -180,12 +180,38 @@
       100% { transform: scale(1);   opacity: 1; }
     }
 
+    /* RUBAN URGENCE */
+    #urgencyBanner {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 9999;
+      background: #c0170e;
+      transform: translateY(-100%);
+      transition: transform .5s cubic-bezier(.22,1,.36,1);
+      padding: 11px 20px;
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      box-shadow: 0 4px 24px rgba(192,23,14,.5);
+    }
+    #urgencyBanner.show { transform: translateY(0); }
+    #urgencyBanner .blink {
+      width: 8px; height: 8px; background: #fff; border-radius: 50%; flex-shrink: 0;
+      animation: blink-dot 1s ease-in-out infinite;
+    }
+    @keyframes blink-dot { 0%,100%{opacity:1} 50%{opacity:.2} }
+
     @media (max-width: 480px) {
       main { padding: 32px 16px 60px; }
     }
   </style>
 </head>
 <body class="checking">
+
+<!-- RUBAN URGENCE -->
+<div id="urgencyBanner" role="alert">
+  <span class="blink"></span>
+  <p style="font-size:.82rem;font-weight:600;color:#fff;text-align:center;line-height:1.5;letter-spacing:.1px">
+    ⚠️ Ne quitte surtout pas cette page — au risque de perdre définitivement accès à la vidéo de formation exclusive. <strong>C'est maintenant.</strong>
+  </p>
+  <span class="blink"></span>
+</div>
 
 <!-- ACCESS CHECK — runs immediately -->
 <script>
@@ -268,6 +294,8 @@
     player.scrollIntoView({ behavior: 'smooth', block: 'center' });
     startSurpriseTimer();
   }
+
+  setTimeout(() => document.getElementById('urgencyBanner').classList.add('show'), 5000);
 
   function startSurpriseTimer() {
     const TOTAL = 13 * 60; // 13 minutes en secondes
