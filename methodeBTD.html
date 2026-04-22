@@ -1151,6 +1151,12 @@
       page_url:   window.location.href,
       createdAt:  serverTimestamp()
     });
+    // Webhook Make — séquence email Leads VSL
+    fetch("https://hook.eu1.make.com/3or9zws3mwu9q26s62pd9k9r7urjicro", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ prenom, email, telephone: telephone || "", source: "vsl-capture", type: "leads_vsl" })
+    }).catch(() => {});
   };
 </script>
 
