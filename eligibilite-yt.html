@@ -682,6 +682,23 @@
         etape_atteinte:  6,
         updatedAt:       serverTimestamp()
       });
+
+      fetch("https://hook.eu1.make.com/nq588sc4gvc6wxb3kza2ou91cl40pto5", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          prenom: data.prenom,
+          email: data.email,
+          telephone: data.tel || "",
+          situation: data.situation,
+          timeline: data.timeline,
+          revenus: data.revenus,
+          score: data.score,
+          temperature: temperature,
+          source: "youtube",
+          type: "candidature_lp_yt"
+        })
+      }).catch(() => {});
     };
   </script>
 
