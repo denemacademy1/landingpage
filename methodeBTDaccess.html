@@ -283,7 +283,7 @@
   <div id="surpriseBox" style="width:100%;display:flex;flex-direction:column;align-items:center;gap:10px;margin-bottom:36px">
     <div id="surpriseLocked" style="display:inline-flex;align-items:center;gap:12px;background:rgba(13,12,20,.7);backdrop-filter:blur(10px);border:1px solid rgba(107,91,255,.25);border-radius:14px;padding:16px 28px;color:rgba(255,255,255,.45);font-size:.88rem;cursor:default;user-select:none;box-shadow:0 0 24px rgba(107,91,255,.1)">
       <span style="font-size:1.2rem">🎁</span>
-      <span>Une surprise arrive dans <strong id="surpriseCountdown" style="font-family:'Poppins',sans-serif;color:var(--violet)">13:00</strong></span>
+      <span>Une surprise arrive dans <strong id="surpriseCountdown" style="font-family:'Poppins',sans-serif;color:var(--violet)">18:40</strong></span>
     </div>
     <a id="surpriseUnlocked" href="/eligibilite" style="display:none;align-items:center;gap:12px;background:var(--violet);color:#fff;font-family:'Poppins',sans-serif;font-weight:700;font-size:1rem;padding:18px 36px;border-radius:14px;text-decoration:none;box-shadow:0 0 40px rgba(107,91,255,.55);animation:surprise-pop .5s ease forwards">
       <span style="font-size:1.2rem">🎁</span>
@@ -329,7 +329,7 @@
   })();
 
   function startSurpriseTimer() {
-    const TOTAL = 13 * 60; // 13 minutes en secondes
+    const TOTAL = 18 * 60 + 40; // 18 min 40 sec
     let remaining = TOTAL;
     const countdown = document.getElementById('surpriseCountdown');
     const locked    = document.getElementById('surpriseLocked');
