@@ -17,7 +17,7 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --bg: #0D0C14;
+      --bg: #16142a;
       --violet: #6B5BFF;
       --teal: #2DD4BF;
       --text: #E8E6F0;
@@ -398,12 +398,13 @@
     }
 
     /* H1 UNDERLINE */
-    .h1-underline { position: relative; display: inline; }
+    .h1-underline { position: relative; display: inline-block; }
     .h1-underline::after {
       content: '';
-      position: absolute; left: -2%; bottom: -6px;
-      width: 104%; height: 18px;
-      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 12' preserveAspectRatio='none'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='0%25'%3E%3Cstop offset='0%25' stop-color='%236B5BFF'/%3E%3Cstop offset='50%25' stop-color='%232DD4BF'/%3E%3Cstop offset='100%25' stop-color='%2322d3ee'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cline x1='4' y1='6' x2='296' y2='6' stroke='url(%23g)' stroke-width='3.5' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat center / 100% 100%;
+      position: absolute; left: 0; bottom: -8px;
+      width: 100%; height: 6px;
+      background: linear-gradient(90deg, #6B5BFF 0%, #2DD4BF 55%, #22d3ee 100%);
+      border-radius: 99px;
     }
     @keyframes h1-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.42; } }
     .h1-blink { animation: h1-blink 7s ease-in-out infinite; }
@@ -676,8 +677,8 @@
   <div id="particles" aria-hidden="true"></div>
 
   <!-- CARDS FOND GAUCHE / DROITE -->
-  <img src="2%20cards/1.png" aria-hidden="true" style="position:absolute;left:-60px;top:32%;transform:translateY(-48%) rotate(-10deg);width:320px;opacity:.38;border-radius:16px;pointer-events:none;z-index:1">
-  <img src="2%20cards/2.png" aria-hidden="true" style="position:absolute;right:-60px;top:32%;transform:translateY(-52%) rotate(10deg);width:320px;opacity:.38;border-radius:16px;pointer-events:none;z-index:1">
+  <img src="2%20cards/1.png" aria-hidden="true" style="position:absolute;left:-60px;top:42%;transform:translateY(-48%) rotate(-10deg);width:320px;opacity:.42;border-radius:16px;pointer-events:none;z-index:1">
+  <img src="2%20cards/2.png" aria-hidden="true" style="position:absolute;right:-60px;top:42%;transform:translateY(-52%) rotate(10deg);width:320px;opacity:.42;border-radius:16px;pointer-events:none;z-index:1">
 
   <!-- ORB wireframe (droite) -->
   <div class="hero-orb" aria-hidden="true">
