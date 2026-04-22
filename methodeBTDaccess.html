@@ -296,6 +296,12 @@
     <p id="surpriseNote" style="font-size:.72rem;color:rgba(255,255,255,.2)">Continue de regarder jusqu'à la fin de la vidéo</p>
   </div>
 
+  <!-- iClosed popup trigger caché -->
+  <a id="iClosedPopupTrigger" data-url="https://app.iclosed.io/e/denemacademy/bilan-de-carri-re-ia-denem" style="display:none" aria-hidden="true"></a>
+  <!-- iClosed popup widget begin -->
+  <script type="text/javascript" src="https://app.iclosed.io/assets/widget.js" async></script>
+  <!-- iClosed popup widget end -->
+
 
 </main>
 
@@ -351,6 +357,11 @@
         note.style.display = 'none';
         unlocked.style.display = 'flex';
         unlocked.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        // Déclenche aussi la popup iClosed
+        setTimeout(() => {
+          const trigger = document.getElementById('iClosedPopupTrigger');
+          if (trigger) trigger.click();
+        }, 800);
       }
     }, 1000);
   }
