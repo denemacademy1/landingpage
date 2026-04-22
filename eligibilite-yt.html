@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test d'éligibilité — DENEM Academy</title>
+  <meta name="description" content="Fais le test d'éligibilité Expert IA et découvre si cette opportunité est faite pour toi.">
+  <meta name="robots" content="noindex">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0D0C14;
+      --violet: #6B5BFF;
+      --teal: #2DD4BF;
+      --card: rgba(255,255,255,0.04);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── HEADER ── */
+    .e-header {
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .e-logo { height: 36px; }
+    .e-back {
+      font-size: 13px; color: rgba(255,255,255,0.45);
+      text-decoration: none; display: flex; align-items: center; gap: 6px;
+      transition: color .2s;
+    }
+    .e-back:hover { color: rgba(255,255,255,0.8); }
+
+    /* ── MAIN ── */
+    .e-main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 48px 20px 80px;
+    }
+
+    .e-intro {
+      text-align: center;
+      max-width: 520px;
+      margin-bottom: 40px;
+    }
+    .e-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(107,91,255,0.15);
+      border: 1px solid rgba(107,91,255,0.35);
+      border-radius: 99px; padding: 5px 14px;
+      font-size: 12px; font-weight: 600; color: #a78bfa;
+      text-transform: uppercase; letter-spacing: 1px;
+      margin-bottom: 16px;
+    }
+    .e-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(26px, 5vw, 36px);
+      font-weight: 800; line-height: 1.2;
+      margin-bottom: 12px;
+    }
+    .e-title span {
+      background: linear-gradient(90deg, #e879f9, #c084fc, #a78bfa);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .e-subtitle {
+      font-size: 15px; color: rgba(255,255,255,0.5); line-height: 1.6;
+      margin-bottom: 14px;
+    }
+    .e-gift {
+      display: inline-block;
+      background: rgba(45,212,191,0.08);
+      border: 1px solid rgba(45,212,191,0.3);
+      border-radius: 12px;
+      padding: 10px 18px;
+      font-size: 14px;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.5;
+    }
+    .e-gift strong { color: #2DD4BF; font-weight: 700; }
+
+    /* ── CARD FORMULAIRE ── */
+    .e-card {
+      width: 100%; max-width: 540px;
+      background: rgba(255,255,255,0.03);
+      border: 1.5px solid rgba(192,132,252,0.2);
+      border-radius: 24px;
+      padding: 36px 32px;
+      position: relative;
+    }
+    @media (max-width: 600px) {
+      .e-card { padding: 28px 20px; border-radius: 20px; }
+    }
+
+    /* ── PROGRESS ── */
+    .e-progress-wrap {
+      height: 5px; background: rgba(255,255,255,0.08);
+      border-radius: 99px; margin-bottom: 32px; overflow: hidden;
+    }
+    .e-progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, #6B5BFF, #c084fc, #e879f9);
+      border-radius: 99px;
+      transition: width .5s cubic-bezier(.22,1,.36,1);
+    }
+    .e-step-counter {
+      font-size: 12px; font-weight: 600; color: #a78bfa;
+      text-transform: uppercase; letter-spacing: 1.2px;
+      margin-bottom: 8px;
+    }
+    .e-step-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: 20px; font-weight: 800; color: #fff;
+      margin-bottom: 6px; line-height: 1.3;
+    }
+    .e-step-sub {
+      font-size: 13px; color: rgba(255,255,255,0.4);
+      margin-bottom: 28px; line-height: 1.5;
+    }
+
+    /* ── INPUTS ── */
+    .e-field { margin-bottom: 14px; }
+    .e-label {
+      display: block; font-size: 12px; font-weight: 600;
+      color: rgba(255,255,255,0.5); text-transform: uppercase;
+      letter-spacing: .8px; margin-bottom: 6px;
+    }
+    .e-input {
+      width: 100%; padding: 14px 16px;
+      background: rgba(255,255,255,0.05);
+      border: 1.5px solid rgba(192,132,252,0.18);
+      border-radius: 12px; color: #fff; font-size: 15px;
+      font-family: 'Inter', sans-serif;
+      transition: border-color .2s, background .2s;
+    }
+    .e-input:focus { outline: none; border-color: #a78bfa; background: rgba(107,91,255,0.08); }
+    .e-input::placeholder { color: rgba(255,255,255,0.25); }
+    .e-input-hint {
+      font-size: 12px; color: rgba(255,255,255,0.3);
+      margin-top: 6px; padding-left: 2px;
+    }
+
+    /* ── OPTIONS RADIO ── */
+    .e-options { display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+    .e-option {
+      width: 100%; padding: 15px 18px; text-align: left;
+      background: rgba(255,255,255,0.03);
+      border: 1.5px solid rgba(192,132,252,0.15);
+      border-radius: 14px; color: rgba(255,255,255,0.65);
+      font-size: 14px; font-family: 'Inter', sans-serif;
+      cursor: pointer; transition: all .2s; line-height: 1.4;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .e-option:hover {
+      border-color: rgba(192,132,252,0.45);
+      color: #fff; background: rgba(107,91,255,0.08);
+    }
+    .e-option.selected {
+      border-color: #a78bfa;
+      background: rgba(107,91,255,0.15);
+      color: #fff; font-weight: 600;
+    }
+    .e-option .e-opt-check {
+      width: 20px; height: 20px; border-radius: 50%; flex-shrink: 0;
+      border: 2px solid rgba(192,132,252,0.3);
+      display: flex; align-items: center; justify-content: center;
+      transition: all .2s;
+    }
+    .e-option.selected .e-opt-check {
+      border-color: #a78bfa;
+      background: #a78bfa;
+    }
+    .e-option.selected .e-opt-check::after {
+      content: ''; width: 8px; height: 8px;
+      background: #fff; border-radius: 50%;
+    }
+
+    /* ── TEXTAREA ── */
+    .e-textarea {
+      width: 100%; min-height: 120px; padding: 14px 16px;
+      background: rgba(255,255,255,0.05);
+      border: 1.5px solid rgba(192,132,252,0.18);
+      border-radius: 12px; color: #fff; font-size: 15px;
+      font-family: 'Inter', sans-serif; resize: vertical;
+      transition: border-color .2s, background .2s;
+      margin-bottom: 6px;
+    }
+    .e-textarea:focus { outline: none; border-color: #a78bfa; background: rgba(107,91,255,0.08); }
+    .e-textarea::placeholder { color: rgba(255,255,255,0.25); }
+
+    /* ── BOUTONS ── */
+    .e-btn-next {
+      width: 100%; padding: 17px;
+      background: linear-gradient(135deg, #e879f9, #c084fc, #a855f7);
+      border: none; border-radius: 50px;
+      color: #fff; font-size: 16px; font-weight: 700;
+      font-family: 'Poppins', sans-serif; cursor: pointer;
+      transition: transform .2s, box-shadow .2s;
+      margin-top: 8px;
+    }
+    .e-btn-next:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 36px rgba(192,132,252,0.45);
+    }
+    .e-btn-next:disabled { opacity: 0.5; cursor: default; }
+
+    .e-btn-back {
+      display: flex; align-items: center; gap: 6px;
+      background: none; border: none;
+      color: rgba(255,255,255,0.35); font-size: 13px;
+      font-family: 'Inter', sans-serif; cursor: pointer;
+      margin-bottom: 20px; padding: 0;
+      transition: color .2s;
+    }
+    .e-btn-back:hover { color: rgba(255,255,255,0.65); }
+
+    /* ── ERREUR ── */
+    .e-error {
+      font-size: 12px; color: #f87171;
+      margin-top: 4px; margin-bottom: 10px;
+      padding-left: 2px; display: none;
+    }
+    .e-error.show { display: block; }
+
+    /* ── CONFIRMATION ── */
+    .e-confirm {
+      text-align: center; padding: 16px 0;
+    }
+    .e-confirm-anim {
+      width: 80px; height: 80px;
+      background: linear-gradient(135deg, rgba(107,91,255,0.2), rgba(192,132,252,0.2));
+      border: 2px solid rgba(192,132,252,0.4);
+      border-radius: 50%; margin: 0 auto 24px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 36px;
+    }
+    .e-confirm-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: 26px; font-weight: 800; color: #fff;
+      margin-bottom: 16px; line-height: 1.2;
+    }
+    .e-confirm-title span {
+      background: linear-gradient(90deg, #e879f9, #c084fc);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .e-confirm-text {
+      font-size: 15px; color: rgba(255,255,255,0.6);
+      line-height: 1.8; margin-bottom: 32px; max-width: 400px; margin-left: auto; margin-right: auto;
+    }
+    .e-confirm-text strong { color: #c084fc; font-weight: 600; }
+    .e-btn-home {
+      display: inline-block; padding: 14px 36px;
+      background: rgba(255,255,255,0.06);
+      border: 1.5px solid rgba(192,132,252,0.25);
+      border-radius: 50px; color: rgba(255,255,255,0.7);
+      font-size: 14px; font-family: 'Inter', sans-serif;
+      text-decoration: none; transition: all .2s;
+    }
+    .e-btn-home:hover { background: rgba(255,255,255,0.1); color: #fff; }
+
+    /* ── FOOTER ── */
+    .e-footer {
+      text-align: center; padding: 24px;
+      font-size: 12px; color: rgba(255,255,255,0.2);
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+
+    /* ── STEPS HIDDEN ── */
+    .e-step { display: none; }
+    .e-step.active { display: block; }
+  </style>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q1ZXJ4X4F5"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-Q1ZXJ4X4F5');
+  </script>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="e-header">
+    <img src="logo.png" alt="DENEM Academy" class="e-logo">
+    <a href="index.html" class="e-back">← Retour à l'accueil</a>
+  </header>
+
+  <!-- MAIN -->
+  <main class="e-main">
+
+    <div class="e-intro">
+      <div class="e-badge">🎯 Test d'éligibilité</div>
+      <h1 class="e-title">Es-tu prêt à devenir<br><span>Expert IA Freelance ?</span></h1>
+      <p class="e-subtitle">6 questions · 2 minutes · Découvre si tu es prêt à te lancer</p>
+      <div class="e-gift">
+        🎁 <strong>Cadeau offert</strong> : ta roadmap pour te lancer de A à Z — envoyée si tu es éligible.
+      </div>
+    </div>
+
+    <div class="e-card">
+      <div class="e-progress-wrap">
+        <div class="e-progress-bar" id="eBar" style="width: 25%"></div>
+      </div>
+
+      <!-- STEP 1 : Contact -->
+      <div class="e-step active" id="eStep1">
+        <div class="e-step-counter">Étape 1 sur 6</div>
+        <div class="e-step-title">Commençons par te connaître</div>
+        <div class="e-step-sub">Pour accéder à tes résultats et à ta roadmap si tu es éligible.</div>
+
+        <div class="e-field">
+          <label class="e-label" for="ePrenom">Prénom</label>
+          <input class="e-input" id="ePrenom" type="text" placeholder="Ton prénom" autocomplete="given-name">
+        </div>
+        <div class="e-field">
+          <label class="e-label" for="eEmail">Email</label>
+          <input class="e-input" id="eEmail" type="email" placeholder="ton@email.com" autocomplete="email">
+        </div>
+        <div class="e-field">
+          <label class="e-label" for="eTel">Téléphone</label>
+          <input class="e-input" id="eTel" type="tel" placeholder="06 12 34 56 78" autocomplete="tel">
+          <div class="e-input-hint">🔒 Tes informations restent confidentielles.</div>
+        </div>
+
+        <div class="e-error" id="eErr1">Merci de remplir tous les champs correctement.</div>
+        <button class="e-btn-next" onclick="goTo(2)">Continuer →</button>
+      </div>
+
+      <!-- STEP 2 : Situation -->
+      <div class="e-step" id="eStep2">
+        <button class="e-btn-back" onclick="goTo(1)">← Retour</button>
+        <div class="e-step-counter">Étape 2 sur 6</div>
+        <div class="e-step-title">Où tu en es aujourd'hui ?</div>
+        <div class="e-step-sub">Coche la case qui te correspond le mieux.</div>
+
+        <div class="e-options" id="eSituationOpts">
+          <button class="e-option" onclick="selectOpt(this,'situation')">
+            <span class="e-opt-check"></span>💼 Salarié et je veux me reconvertir
+          </button>
+          <button class="e-option" onclick="selectOpt(this,'situation')">
+            <span class="e-opt-check"></span>🔄 En reconversion / recherche d'emploi
+          </button>
+          <button class="e-option" onclick="selectOpt(this,'situation')">
+            <span class="e-opt-check"></span>🚀 Déjà freelance dans un autre domaine
+          </button>
+          <button class="e-option" onclick="selectOpt(this,'situation')">
+            <span class="e-opt-check"></span>🏢 Entrepreneur / dirigeant
+          </button>
+        </div>
+
+        <div class="e-error" id="eErr2">Merci de choisir une option.</div>
+        <button class="e-btn-next" onclick="goTo(3)">Continuer →</button>
+      </div>
+
+      <!-- STEP 3 : Timeline -->
+      <div class="e-step" id="eStep3">
+        <button class="e-btn-back" onclick="goTo(2)">← Retour</button>
+        <div class="e-step-counter">Étape 3 sur 6</div>
+        <div class="e-step-title">Quand veux-tu te lancer ?</div>
+        <div class="e-step-sub">Sois honnête — il n'y a pas de mauvaise réponse.</div>
+
+        <div class="e-options" id="eTimelineOpts">
+          <button class="e-option" onclick="selectOpt(this,'timeline')">
+            <span class="e-opt-check"></span>⚡ Le plus vite possible
+          </button>
+          <button class="e-option" onclick="selectOpt(this,'timeline')">
+            <span class="e-opt-check"></span>📅 Dans les 3 prochains mois
+          </button>
+          <button class="e-option" onclick="selectOpt(this,'timeline')">
+            <span class="e-opt-check"></span>🗓️ Dans les 6 prochains mois
+          </button>
+          <button class="e-option" onclick="selectOpt(this,'timeline')">
+            <span class="e-opt-check"></span>🔍 Je me renseigne pour plus tard
+          </button>
+        </div>
+
+        <div class="e-error" id="eErr3">Merci de choisir une option.</div>
+        <button class="e-btn-next" onclick="goTo(4)">Continuer →</button>
+      </div>
+
+      <!-- STEP 4 : Motivation -->
+      <div class="e-step" id="eStep4">
+        <button class="e-btn-back" onclick="goTo(3)">← Retour</button>
+        <div class="e-step-counter">Étape 4 sur 6</div>
+        <div class="e-step-title">Pourquoi tu veux devenir Expert IA ?</div>
+        <div class="e-step-sub">Plusieurs choix possibles — coche tout ce qui te correspond.</div>
+
+        <div class="e-options" id="eMotivationOpts">
+          <button class="e-option" onclick="toggleOpt(this,'motivation')">
+            <span class="e-opt-check"></span>🌊 Prendre la vague IA avant tout le monde
+          </button>
+          <button class="e-option" onclick="toggleOpt(this,'motivation')">
+            <span class="e-opt-check"></span>💎 Saisir l'opportunité de la décennie
+          </button>
+          <button class="e-option" onclick="toggleOpt(this,'motivation')">
+            <span class="e-opt-check"></span>🏖️ Obtenir un meilleur lifestyle
+          </button>
+          <button class="e-option" onclick="toggleOpt(this,'motivation')">
+            <span class="e-opt-check"></span>💰 Augmenter mes revenus
+          </button>
+          <button class="e-option" onclick="toggleOpt(this,'motivation')">
+            <span class="e-opt-check"></span>💻 Me lancer dans la tech
+          </button>
+          <button class="e-option" onclick="toggleOpt(this,'motivation')">
+            <span class="e-opt-check"></span>🤖 Intérêt pour ce domaine
+          </button>
+        </div>
+        <div class="e-error" id="eErr4">Merci de choisir au moins une option.</div>
+        <button class="e-btn-next" onclick="goTo(5)">Continuer →</button>
+      </div>
+
+      <!-- STEP 5 : Revenus souhaités -->
+      <div class="e-step" id="eStep5">
+        <button class="e-btn-back" onclick="goTo(4)">← Retour</button>
+        <div class="e-step-counter">Étape 5 sur 6</div>
+        <div class="e-step-title">Quels revenus veux-tu générer par mois ?</div>
+        <div class="e-step-sub">Sois ambitieux — c'est pour ça que tu es là.</div>
+
+        <div class="e-options" id="eRevenusOpts">
+          <button class="e-option" onclick="selectOpt(this,'revenus')">
+            <span class="e-opt-check"></span>💶 2 000 – 5 000 € / mois
+          </button>
+          <button class="e-option" onclick="selectOpt(this,'revenus')">
+            <span class="e-opt-check"></span>💶 5 000 – 8 000 € / mois
+          </button>
+          <button class="e-option" onclick="selectOpt(this,'revenus')">
+            <span class="e-opt-check"></span>💶 8 000 – 15 000 € / mois
+          </button>
+          <button class="e-option" onclick="selectOpt(this,'revenus')">
+            <span class="e-opt-check"></span>🚀 +15 000 € / mois
+          </button>
+        </div>
+        <div class="e-error" id="eErr5">Merci de choisir une option.</div>
+        <button class="e-btn-next" onclick="goTo(6)">Continuer →</button>
+      </div>
+
+      <!-- STEP 6 : Motivation sur 10 -->
+      <div class="e-step" id="eStep6">
+        <button class="e-btn-back" onclick="goTo(5)">← Retour</button>
+        <div class="e-step-counter">Étape 6 sur 6</div>
+        <div class="e-step-title">Ta motivation pour te lancer, sur 10 ?</div>
+        <div class="e-step-sub">Honnêteté totale — aucune mauvaise réponse.</div>
+
+        <div class="e-options" id="eScoreOpts">
+          <button class="e-option" onclick="selectOpt(this,'score')">
+            <span class="e-opt-check"></span>😐 1 à 3 — Je découvre, pas encore décidé
+          </button>
+          <button class="e-option" onclick="selectOpt(this,'score')">
+            <span class="e-opt-check"></span>🙂 4 à 6 — Motivé mais j'ai encore des doutes
+          </button>
+          <button class="e-option" onclick="selectOpt(this,'score')">
+            <span class="e-opt-check"></span>💪 7 à 8 — Très motivé, je veux avancer vite
+          </button>
+          <button class="e-option" onclick="selectOpt(this,'score')">
+            <span class="e-opt-check"></span>🔥 9 à 10 — Je suis prêt, j'attends le feu vert
+          </button>
+        </div>
+        <div class="e-error" id="eErr6">Merci de choisir une option.</div>
+        <button class="e-btn-next" id="eBtnSubmit" onclick="submitForm()">Envoyer ma candidature →</button>
+      </div>
+
+      <!-- CONFIRMATION -->
+      <div class="e-step" id="eStepConfirm">
+        <div class="e-confirm">
+          <div class="e-confirm-anim">✅</div>
+          <div class="e-confirm-title">C'est bien reçu, <span id="eConfirmPrenom"></span> !</div>
+          <div class="e-confirm-text">
+            Un chargé DENEM va revenir vers toi pour échanger et <strong>avancer sur ce projet ensemble</strong>.<br><br>
+            On définira avec toi le plan à mettre en place pour te lancer comme Expert IA Freelance.<br><br>
+            Tu vas aussi recevoir une <strong>vidéo de formation exclusive, rien que pour toi</strong>, pour t'expliquer la méthode et le plan à mettre en place.<br><br>
+            À très vite. 🙌
+          </div>
+          <a href="index.html" class="e-btn-home">← Retour à l'accueil</a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="e-footer">
+    © 2025 DENEM Academy · Tous droits réservés
+  </footer>
+
+  <script>
+    const DATA = { prenom:'', email:'', tel:'', situation:'', timeline:'', motivation:[], revenus:'', score:'' };
+    let docId = null; // ID du document Firestore créé au step 1
+
+    function showStep(step) {
+      document.querySelectorAll('.e-step').forEach(s => s.classList.remove('active'));
+      const target = document.getElementById('eStep' + step);
+      if (target) target.classList.add('active');
+      const pct = { 1:17, 2:33, 3:50, 4:67, 5:83, 6:100 }[step] || 100;
+      document.getElementById('eBar').style.width = pct + '%';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function goTo(step) {
+      // ── Validation ──
+      if (step === 2) {
+        const p = document.getElementById('ePrenom').value.trim();
+        const e = document.getElementById('eEmail').value.trim();
+        const t = document.getElementById('eTel').value.trim();
+        const err = document.getElementById('eErr1');
+        if (!p || !e || !t || !/\S+@\S+\.\S+/.test(e)) { err.classList.add('show'); return; }
+        err.classList.remove('show');
+        DATA.prenom = p; DATA.email = e; DATA.tel = t;
+
+        // ── Sauvegarde immédiate dès le step 1 ──
+        if (window.createLead) {
+          window.createLead(DATA).then(id => { docId = id; });
+        }
+      }
+      if (step === 3) {
+        const err = document.getElementById('eErr2');
+        if (!DATA.situation) { err.classList.add('show'); return; }
+        err.classList.remove('show');
+        if (docId && window.updateLead) window.updateLead(docId, { situation: DATA.situation, etape_atteinte: 2 });
+      }
+      if (step === 4) {
+        const err = document.getElementById('eErr3');
+        if (!DATA.timeline) { err.classList.add('show'); return; }
+        err.classList.remove('show');
+        if (docId && window.updateLead) window.updateLead(docId, { timeline: DATA.timeline, etape_atteinte: 3 });
+      }
+      if (step === 5) {
+        const err = document.getElementById('eErr4');
+        if (!DATA.motivation.length) { err.classList.add('show'); return; }
+        err.classList.remove('show');
+        if (docId && window.updateLead) window.updateLead(docId, { motivation: DATA.motivation.join(', '), etape_atteinte: 4 });
+      }
+      if (step === 6) {
+        const err = document.getElementById('eErr5');
+        if (!DATA.revenus) { err.classList.add('show'); return; }
+        err.classList.remove('show');
+        if (docId && window.updateLead) window.updateLead(docId, { revenus: DATA.revenus, etape_atteinte: 5 });
+      }
+
+      showStep(step);
+    }
+
+    function selectOpt(btn, group) {
+      btn.closest('.e-options').querySelectorAll('.e-option').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      const text = btn.textContent.trim().replace(/^[\p{Emoji}\s]+/u, '').trim();
+      DATA[group] = text;
+    }
+
+    function toggleOpt(btn, group) {
+      btn.classList.toggle('selected');
+      const text = btn.textContent.trim().replace(/^[\p{Emoji}\s]+/u, '').trim();
+      if (btn.classList.contains('selected')) {
+        if (!DATA[group].includes(text)) DATA[group].push(text);
+      } else {
+        DATA[group] = DATA[group].filter(v => v !== text);
+      }
+    }
+
+    function getTemperature(score) {
+      if (!score) return 'froid';
+      if (score.includes('9') || score.includes('10')) return 'bouillant';
+      if (score.includes('7') || score.includes('8')) return 'tiede';
+      return 'froid';
+    }
+
+    function showConfirm() {
+      document.querySelectorAll('.e-step').forEach(s => s.classList.remove('active'));
+      document.getElementById('eStepConfirm').classList.add('active');
+      document.getElementById('eBar').style.width = '100%';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function submitForm() {
+      const err = document.getElementById('eErr6');
+      if (!DATA.score) { err.classList.add('show'); return; }
+      err.classList.remove('show');
+
+      const btn = document.getElementById('eBtnSubmit');
+      btn.disabled = true;
+      btn.textContent = 'Envoi en cours…';
+
+      document.getElementById('eConfirmPrenom').textContent = DATA.prenom;
+
+      if (docId && window.finalizeLead) {
+        // Mise à jour du doc existant
+        window.finalizeLead(docId, DATA).then(() => showConfirm()).catch(() => {
+          btn.disabled = false;
+          btn.textContent = 'Envoyer ma candidature →';
+          alert('Une erreur est survenue, réessaie dans quelques secondes.');
+        });
+      } else if (window.createLead) {
+        // Fallback : création directe si docId manquant
+        window.createLead(DATA).then(id => {
+          return window.finalizeLead(id, DATA);
+        }).then(() => showConfirm()).catch(() => {
+          btn.disabled = false;
+          btn.textContent = 'Envoyer ma candidature →';
+          alert('Une erreur est survenue, réessaie dans quelques secondes.');
+        });
+      } else {
+        showConfirm();
+      }
+    }
+  </script>
+
+  <!-- Firebase -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
+    import { getFirestore, collection, addDoc, doc, updateDoc, serverTimestamp }
+      from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
+
+    const app = initializeApp({
+      apiKey: "AIzaSyBdNN-iiK5KoBqkX4FX1PJ5CmlWUma8NaU",
+      authDomain: "denem-academy-5de41.firebaseapp.com",
+      projectId: "denem-academy-5de41",
+      storageBucket: "denem-academy-5de41.firebasestorage.app",
+      messagingSenderId: "570632584566",
+      appId: "1:570632584566:web:4305443183280686a7ce57",
+      measurementId: "G-Q1ZXJ4X4F5"
+    });
+
+    const db = getFirestore(app);
+
+    // Créé le lead dès le step 1 — statut froid / incomplet
+    window.createLead = async function(data) {
+      const ref = await addDoc(collection(db, "candidatures"), {
+        prenom:          data.prenom,
+        email:           data.email,
+        telephone:       data.tel,
+        statut:          "incomplet",
+        temperature:     "froid",
+        etape_atteinte:  1,
+        source:          "youtube",
+        createdAt:       serverTimestamp(),
+        updatedAt:       serverTimestamp()
+      });
+      return ref.id;
+    };
+
+    // Mise à jour progressive à chaque étape
+    window.updateLead = async function(id, fields) {
+      await updateDoc(doc(db, "candidatures", id), {
+        ...fields,
+        updatedAt: serverTimestamp()
+      });
+    };
+
+    // Finalisation avec classification automatique
+    window.finalizeLead = async function(id, data) {
+      const score = data.score || '';
+      let temperature = 'froid';
+      if (score.includes('9') || score.includes('10')) temperature = 'bouillant';
+      else if (score.includes('7') || score.includes('8')) temperature = 'tiede';
+      else if (score.includes('4') || score.includes('5') || score.includes('6')) temperature = 'tiede';
+
+      await updateDoc(doc(db, "candidatures", id), {
+        situation:       data.situation,
+        timeline:        data.timeline,
+        motivation:      Array.isArray(data.motivation) ? data.motivation.join(', ') : data.motivation,
+        revenus:         data.revenus,
+        score:           data.score,
+        temperature:     temperature,
+        statut:          "complet",
+        etape_atteinte:  6,
+        updatedAt:       serverTimestamp()
+      });
+    };
+  </script>
+
+</body>
+</html>
