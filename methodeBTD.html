@@ -1119,13 +1119,19 @@
 
   const db = getFirestore(app);
 
-  // Tracking helpers
+  // Tracking helpers — écrit dans 3 documents : total, mois, jour
   async function trackEvent(field) {
-    const ref = doc(db, "analytics", "btd_landing");
-    try {
-      await updateDoc(ref, { [field]: increment(1), updatedAt: serverTimestamp() });
-    } catch {
-      await setDoc(ref, { [field]: 1, updatedAt: serverTimestamp() }, { merge: true });
+    const now   = new Date();
+    const day   = now.toISOString().slice(0, 10);   // 2026-04-22
+    const month = now.toISOString().slice(0, 7);    // 2026-04
+    const ids   = ["btd_landing", `btd_${month}`, `btd_${day}`];
+    for (const id of ids) {
+      const ref = doc(db, "analytics", id);
+      try {
+        await updateDoc(ref, { [field]: increment(1), updatedAt: serverTimestamp(), period: id });
+      } catch {
+        await setDoc(ref, { [field]: 1, updatedAt: serverTimestamp(), period: id }, { merge: true });
+      }
     }
   }
 
