@@ -194,8 +194,7 @@
 
 <!-- NAV -->
 <nav>
-  <a class="nav-logo" href="/">DENEM <span>Academy</span></a>
-  <span class="nav-badge">Accès privé</span>
+  <p style="font-size:.68rem;font-weight:500;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:1.8px;text-align:center;width:100%">Pour les freelances, salariés et reconversions qui veulent transformer leur compétence IA en revenus concrets</p>
 </nav>
 
 <!-- MAIN -->
@@ -203,19 +202,30 @@
 
   <p class="welcome-tag" id="welcomeTag">Ta vidéo est prête</p>
 
-  <h1 class="page-title">
-    <span class="grad">Regarde maintenant</span><br>
-    comment ça marche vraiment
-  </h1>
+  <!-- Miniature cliquable -->
+  <div id="vslWrapper" style="width:100%;position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--border);box-shadow:0 24px 64px rgba(0,0,0,.6);aspect-ratio:16/9;cursor:pointer;margin-bottom:32px" onclick="launchVideo()">
 
-  <p class="page-sub">
-    Cette vidéo te montre exactement le parcours, les résultats concrets
-    et ce qui t'attend si tu rejoins DENEM Academy.
-  </p>
+    <!-- Fond flouté Vimeo -->
+    <iframe id="vslBg" src="https://player.vimeo.com/video/1185433009?background=1&autoplay=1&loop=1&muted=1" frameborder="0" allow="autoplay" tabindex="-1" aria-hidden="true"
+      style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) scale(1.25);width:100%;height:100%;border:none;pointer-events:none;filter:blur(10px);opacity:.4"></iframe>
 
-  <!-- VSL Vimeo -->
-  <div class="video-container">
-    <iframe src="https://player.vimeo.com/video/1185433009?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="La méthode DENEM"></iframe>
+    <!-- Overlay sombre -->
+    <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 40% 50%,rgba(107,91,255,.25) 0%,transparent 65%),linear-gradient(to bottom,rgba(13,12,20,.3),rgba(13,12,20,.6))"></div>
+
+    <!-- Bouton play -->
+    <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;z-index:2">
+      <div style="width:80px;height:80px;background:var(--violet);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 16px rgba(107,91,255,.18),0 0 0 32px rgba(107,91,255,.08);transition:transform .2s" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform=''">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="#fff" style="margin-left:5px"><path d="M5 3l14 9-14 9V3z"/></svg>
+      </div>
+      <p style="font-size:.82rem;color:rgba(255,255,255,.7);letter-spacing:.5px;text-transform:uppercase;font-weight:500">Clique pour regarder</p>
+    </div>
+
+    <div style="position:absolute;bottom:14px;right:14px;background:rgba(0,0,0,.7);backdrop-filter:blur(6px);border-radius:6px;padding:4px 10px;font-size:12px;font-weight:500;color:#fff;z-index:3">13 min</div>
+  </div>
+
+  <!-- Player Vimeo réel (caché au départ) -->
+  <div id="vslPlayer" style="display:none;width:100%;aspect-ratio:16/9;position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--border);box-shadow:0 24px 64px rgba(0,0,0,.6);margin-bottom:32px">
+    <iframe id="vslIframe" src="" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;inset:0;width:100%;height:100%;border:none" title="La méthode DENEM"></iframe>
   </div>
   <script src="https://player.vimeo.com/api/player.js"></script>
 
@@ -225,26 +235,7 @@
       <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
       Tester mon éligibilité maintenant
     </a>
-    <p class="cta-note">Réponds à 5 questions — Résultat immédiat et gratuit</p>
-  </div>
-
-  <!-- Points forts -->
-  <div class="points-grid">
-    <div class="point-card">
-      <div class="point-icon">🚀</div>
-      <div class="point-title">90 jours pour lancer</div>
-      <div class="point-text">De zéro à ta première mission ou ton agence IA en 90 jours, sans coder.</div>
-    </div>
-    <div class="point-card">
-      <div class="point-icon">💰</div>
-      <div class="point-title">5K à 50K€ / mois</div>
-      <div class="point-text">Selon la voie choisie — freelance, consulting senior ou agence IA.</div>
-    </div>
-    <div class="point-card">
-      <div class="point-icon">🤝</div>
-      <div class="point-title">Communauté & suivi</div>
-      <div class="point-text">Tu n'es pas seul. Accès à la communauté + suivi personnalisé tout au long du parcours.</div>
-    </div>
+    <p class="cta-note">Réponds à 5 questions · Résultat immédiat et gratuit</p>
   </div>
 
 </main>
@@ -260,11 +251,19 @@
 </footer>
 
 <script>
-  // Personnalise le message de bienvenue avec le prénom stocké
   const prenom = localStorage.getItem('vsl_prenom');
   if (prenom) {
     document.getElementById('welcomeTag').innerHTML =
       'Bienvenue <strong style="color:var(--teal)">' + prenom + '</strong> — ta vidéo est prête 👇';
+  }
+
+  function launchVideo() {
+    document.getElementById('vslWrapper').style.display = 'none';
+    const player = document.getElementById('vslPlayer');
+    player.style.display = 'block';
+    document.getElementById('vslIframe').src =
+      'https://player.vimeo.com/video/1185433009?badge=0&autopause=0&autoplay=1&player_id=0&app_id=58479';
+    player.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
 </script>
 
