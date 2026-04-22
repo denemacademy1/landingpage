@@ -232,6 +232,21 @@
 
   <p class="welcome-tag" id="welcomeTag">Ta vidéo est prête</p>
 
+  <!-- Copy au-dessus de la vidéo -->
+  <h2 style="font-family:'Poppins',sans-serif;font-weight:800;font-size:clamp(1.2rem,3vw,1.65rem);line-height:1.35;letter-spacing:-.02em;text-align:center;color:#fff;max-width:620px;margin:0 auto 18px">
+    La méthode secrète pour gagner entre <span style="color:var(--teal)">5.000€ et 10.000€</span><br>par entreprise facturé grâce à tes services IA
+  </h2>
+
+  <!-- Compteur live -->
+  <div style="display:inline-flex;align-items:center;gap:10px;background:#fff;border-radius:99px;padding:7px 18px 7px 10px;margin-bottom:20px;box-shadow:0 4px 20px rgba(0,0,0,.25)">
+    <span style="background:#d93025;border-radius:99px;padding:4px 10px;font-size:.72rem;font-weight:700;color:#fff;display:inline-flex;align-items:center;gap:5px;letter-spacing:.3px">
+      <span style="width:7px;height:7px;background:#fff;border-radius:50%;opacity:.9;animation:blink-dot 1s ease-in-out infinite;flex-shrink:0"></span>
+      LIVE
+    </span>
+    <span style="font-size:.95rem;color:#1a1a2e;font-weight:700" id="liveCount">220</span>
+    <span style="font-size:.9rem;color:#555;font-weight:400">personnes regardent cette vidéo</span>
+  </div>
+
   <!-- Miniature cliquable -->
   <div id="vslWrapper" style="width:100%;position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--border);box-shadow:0 24px 64px rgba(0,0,0,.6);aspect-ratio:16/9;cursor:pointer;margin-bottom:32px" onclick="launchVideo()">
 
@@ -294,6 +309,18 @@
   }
 
   setTimeout(() => document.getElementById('urgencyBanner').classList.add('show'), 5000);
+
+  // Compteur live fluctuant
+  (function() {
+    const el = document.getElementById('liveCount');
+    let count = 198 + Math.floor(Math.random() * 40);
+    el.textContent = count;
+    setInterval(() => {
+      const delta = Math.random() < 0.5 ? -1 : 1;
+      count = Math.min(268, Math.max(185, count + delta));
+      el.textContent = count;
+    }, 3800);
+  })();
 
   function startSurpriseTimer() {
     const TOTAL = 13 * 60; // 13 minutes en secondes
