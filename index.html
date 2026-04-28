@@ -1986,16 +1986,20 @@ footer {
    RESPONSIVE
    ============================================= */
 @media (max-width: 768px) {
-  nav { padding: 0 20px; }
+  nav { padding: 0 16px; height: 70px; }
+  nav#nav { height: 70px; }
+  :root { --nav-h: 70px; }
+  .nav-logo-img { height: 64px; }
   .nav-links { display: none; }
-  section { padding: 72px 20px; }
+  .btn-nav { display: none; }
+  .hero-floats { display: none !important; }
+  section { padding: 52px 20px; }
   .groupe-grid   { grid-template-columns: 1fr; gap: 36px; }
   .comp-grid     { grid-template-columns: 1fr; }
   .stats-grid    { grid-template-columns: 1fr; }
   .metier-grid   { grid-template-columns: 1fr; }
   .marche-grid   { grid-template-columns: 1fr; }
   .testi-grid    { grid-template-columns: 1fr; }
-
   .quote-block   { padding: 28px 24px; }
   footer         { flex-direction: column; align-items: flex-start; padding: 32px 20px; }
 }
