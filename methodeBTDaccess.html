@@ -291,7 +291,7 @@
   <div id="surpriseBox" style="width:100%;display:flex;flex-direction:column;align-items:center;gap:10px;margin-bottom:36px">
     <div id="surpriseLocked" style="display:inline-flex;align-items:center;gap:12px;background:rgba(13,12,20,.7);backdrop-filter:blur(10px);border:1px solid rgba(107,91,255,.25);border-radius:14px;padding:16px 28px;color:rgba(255,255,255,.45);font-size:.88rem;cursor:default;user-select:none;box-shadow:0 0 24px rgba(107,91,255,.1)">
       <span style="font-size:1.2rem">🎁</span>
-      <span>Une surprise arrive dans <strong id="surpriseCountdown" style="font-family:'Poppins',sans-serif;color:var(--violet)">18:40</strong></span>
+      <span>Une surprise arrive dans <strong id="surpriseCountdown" style="font-family:'Poppins',sans-serif;color:var(--violet)">06:00</strong></span>
     </div>
     <!-- Widget iClosed (caché jusqu'à la fin du chrono) -->
     <div id="surpriseUnlocked" style="display:none;flex-direction:column;align-items:center;gap:16px;width:100%;max-width:860px;animation:surprise-pop .5s ease forwards">
@@ -346,7 +346,7 @@
   })();
 
   function startSurpriseTimer() {
-    const TOTAL = 18 * 60 + 40; // 18 min 40 sec
+    const TOTAL = 6 * 60; // 6 min
     let remaining = TOTAL;
     const countdown = document.getElementById('surpriseCountdown');
     const locked    = document.getElementById('surpriseLocked');
