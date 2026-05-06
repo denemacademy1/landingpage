@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <title>Ta vidéo DENEM Academy</title>
+  <meta name="robots" content="noindex, nofollow">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q1ZXJ4X4F5"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-Q1ZXJ4X4F5');
+  </script>
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <meta name="theme-color" content="#0D0C14">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;800;900&family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0D0C14;
+      --violet: #6B5BFF;
+      --teal: #2DD4BF;
+      --text: #E8E6F0;
+      --muted: #9B97B0;
+      --card-bg: #16141F;
+      --border: rgba(107,91,255,.18);
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ACCESS GUARD — hidden until JS confirms access */
+    body.checking { visibility: hidden; }
+
+    /* NAV */
+    nav {
+      padding: 18px 5vw;
+      display: flex; align-items: center; justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+      background: rgba(13,12,20,.96);
+    }
+    .nav-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.3rem; color: #fff; text-decoration: none; letter-spacing: -.02em; }
+    .nav-logo span { color: var(--teal); }
+    .nav-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(45,212,191,.1); border: 1px solid rgba(45,212,191,.25);
+      border-radius: 99px; padding: 4px 14px;
+      font-size: 11px; font-weight: 500; color: var(--teal);
+      letter-spacing: .5px;
+    }
+    .nav-badge::before { content: ''; width: 6px; height: 6px; background: var(--teal); border-radius: 50%; display: inline-block; }
+
+    /* MAIN */
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 2vw 80px;
+      max-width: 1400px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    /* VIDEO LARGE */
+    #vslWrapper, #vslPlayer {
+      max-width: 1200px;
+      width: 100%;
+    }
+
+    .welcome-tag {
+      font-size: .88rem; color: var(--muted); margin-bottom: 10px;
+    }
+    .welcome-tag strong { color: var(--teal); }
+
+    .page-title {
+      font-family: 'Poppins', sans-serif; font-weight: 900;
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      line-height: 1.15; letter-spacing: -.03em; text-align: center;
+      margin-bottom: 10px;
+    }
+    .page-title .grad {
+      background: linear-gradient(135deg, #fff 20%, var(--teal));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+
+    .page-sub {
+      font-size: .95rem; color: var(--muted); text-align: center;
+      max-width: 540px; line-height: 1.7; margin-bottom: 36px;
+    }
+
+    /* VIDEO PLAYER */
+    .video-container {
+      width: 100%;
+      background: #000;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: 0 30px 80px rgba(0,0,0,.6);
+      aspect-ratio: 16/9;
+      position: relative;
+      margin-bottom: 32px;
+    }
+    .video-container iframe {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      border: none;
+    }
+
+    /* PLACEHOLDER (affiché si pas d'URL configurée) */
+    .video-placeholder {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      background: linear-gradient(135deg, #1a1830 0%, #0f1520 50%, #12101e 100%);
+      gap: 16px;
+    }
+    .video-placeholder .ph-icon { font-size: 3rem; }
+    .video-placeholder p {
+      font-size: .9rem; color: var(--muted); text-align: center;
+      max-width: 320px; line-height: 1.6;
+    }
+    .video-placeholder code {
+      background: rgba(107,91,255,.15); border: 1px solid rgba(107,91,255,.3);
+      border-radius: 6px; padding: 2px 8px;
+      font-size: .82rem; color: #a78bfa;
+    }
+
+    /* CTA BELOW VIDEO */
+    .below-video {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+    .cta-btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--violet); color: #fff;
+      font-family: 'DM Sans', sans-serif; font-size: 1rem; font-weight: 500;
+      border: none; border-radius: 14px;
+      padding: 15px 32px;
+      cursor: pointer; text-decoration: none;
+      box-shadow: 0 8px 32px rgba(107,91,255,.4);
+      transition: opacity .2s, transform .2s;
+    }
+    .cta-btn:hover { opacity: .9; transform: translateY(-2px); }
+    .cta-btn svg { width: 18px; height: 18px; fill: #fff; }
+
+    .cta-note { font-size: .8rem; color: var(--muted); }
+
+    /* POINTS FORTS */
+    .points-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      width: 100%;
+      margin-top: 48px;
+    }
+    .point-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 14px; padding: 20px 22px;
+    }
+    .point-icon { font-size: 1.5rem; margin-bottom: 10px; }
+    .point-title { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: .95rem; margin-bottom: 6px; }
+    .point-text { font-size: .85rem; color: var(--muted); line-height: 1.6; }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 20px 5vw; text-align: center;
+      font-size: .78rem; color: var(--muted);
+    }
+    .footer-links { display: flex; justify-content: center; gap: 1.2rem; margin-bottom: .5rem; flex-wrap: wrap; }
+    .footer-links a { color: var(--muted); text-decoration: none; }
+    .footer-links a:hover { color: var(--teal); }
+
+    @keyframes surprise-pop {
+      0%   { transform: scale(.85); opacity: 0; }
+      60%  { transform: scale(1.04); }
+      100% { transform: scale(1);   opacity: 1; }
+    }
+
+    /* RUBAN URGENCE */
+    #urgencyBanner {
+      background: #c0170e;
+      max-height: 0; overflow: hidden; padding: 0 20px;
+      transition: max-height .5s cubic-bezier(.22,1,.36,1), padding .5s cubic-bezier(.22,1,.36,1);
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      box-shadow: 0 4px 24px rgba(192,23,14,.4);
+    }
+    #urgencyBanner.show { max-height: 80px; padding: 11px 20px; }
+    #urgencyBanner .blink {
+      width: 8px; height: 8px; background: #fff; border-radius: 50%; flex-shrink: 0;
+      animation: blink-dot 1s ease-in-out infinite;
+    }
+    @keyframes blink-dot { 0%,100%{opacity:1} 50%{opacity:.2} }
+
+    @media (max-width: 480px) {
+      main { padding: 32px 16px 60px; }
+    }
+  </style>
+</head>
+<body class="checking">
+
+<!-- RUBAN URGENCE -->
+<div id="urgencyBanner" role="alert">
+  <span class="blink"></span>
+  <p style="font-size:.82rem;font-weight:600;color:#fff;text-align:center;line-height:1.5;letter-spacing:.1px">
+    ⚠️ Ne quitte surtout pas cette page — au risque de perdre définitivement accès à la vidéo de formation exclusive. <strong>C'est maintenant.</strong>
+  </p>
+  <span class="blink"></span>
+</div>
+
+<!-- ACCESS CHECK — runs immediately -->
+<script>
+  (function() {
+    if (!localStorage.getItem('vsl_access')) {
+      window.location.replace('/methodeBTD');
+    } else {
+      document.body.classList.remove('checking');
+    }
+  })();
+</script>
+
+<!-- NAV -->
+<nav>
+  <p style="font-size:.68rem;font-weight:500;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:1.8px;text-align:center;width:100%">Pour les freelances, salariés et reconversions qui veulent transformer leur compétence IA en revenus concrets</p>
+</nav>
+
+<!-- MAIN -->
+<main>
+
+  <p class="welcome-tag" id="welcomeTag">Ta vidéo est prête</p>
+
+  <!-- Copy au-dessus de la vidéo -->
+  <h2 style="font-family:'Poppins',sans-serif;font-weight:800;font-size:clamp(1.2rem,3vw,1.65rem);line-height:1.35;letter-spacing:-.02em;text-align:center;color:#fff;max-width:620px;margin:0 auto 18px">
+    La méthode secrète pour gagner<br>entre <span style="color:var(--teal)">5.000€ et 10.000€</span><br>par entreprise facturé grâce à ce métier IA
+  </h2>
+
+  <!-- Compteur live -->
+  <div style="display:inline-flex;align-items:center;gap:10px;background:#fff;border-radius:99px;padding:7px 18px 7px 10px;margin-bottom:20px;box-shadow:0 4px 20px rgba(0,0,0,.25)">
+    <span style="background:#d93025;border-radius:99px;padding:4px 10px;font-size:.72rem;font-weight:700;color:#fff;display:inline-flex;align-items:center;gap:5px;letter-spacing:.3px">
+      <span style="width:7px;height:7px;background:#fff;border-radius:50%;opacity:.9;animation:blink-dot 1s ease-in-out infinite;flex-shrink:0"></span>
+      LIVE
+    </span>
+    <span style="font-size:.95rem;color:#1a1a2e;font-weight:700" id="liveCount">220</span>
+    <span style="font-size:.9rem;color:#555;font-weight:400">personnes regardent cette vidéo</span>
+  </div>
+
+  <!-- Miniature cliquable -->
+  <div id="vslWrapper" style="width:100%;position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--border);box-shadow:0 24px 64px rgba(0,0,0,.6);aspect-ratio:16/9;cursor:pointer;margin-bottom:32px" onclick="launchVideo()">
+
+    <!-- Fond flouté Vimeo -->
+    <iframe id="vslBg" src="https://player.vimeo.com/video/1185433009?h=256a22e697&background=1&autoplay=1&loop=1&muted=1" frameborder="0" allow="autoplay" tabindex="-1" aria-hidden="true"
+      style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) scale(1.25);width:100%;height:100%;border:none;pointer-events:none;filter:blur(10px);opacity:.4"></iframe>
+
+    <!-- Overlay sombre -->
+    <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 40% 50%,rgba(107,91,255,.25) 0%,transparent 65%),linear-gradient(to bottom,rgba(13,12,20,.3),rgba(13,12,20,.6))"></div>
+
+    <!-- Bouton play -->
+    <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;z-index:2">
+      <div style="width:80px;height:80px;background:var(--violet);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 16px rgba(107,91,255,.18),0 0 0 32px rgba(107,91,255,.08);transition:transform .2s" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform=''">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="#fff" style="margin-left:5px"><path d="M5 3l14 9-14 9V3z"/></svg>
+      </div>
+      <p style="font-size:.82rem;color:rgba(255,255,255,.7);letter-spacing:.5px;text-transform:uppercase;font-weight:500">Clique pour regarder</p>
+    </div>
+
+  </div>
+
+  <!-- Player Vimeo réel (caché au départ) -->
+  <div id="vslPlayer" style="display:none;width:100%;aspect-ratio:16/9;position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--border);box-shadow:0 24px 64px rgba(0,0,0,.6);margin-bottom:32px">
+    <iframe id="vslIframe" src="" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;inset:0;width:100%;height:100%;border:none" title="La méthode DENEM"></iframe>
+  </div>
+  <script src="https://player.vimeo.com/api/player.js"></script>
+
+  <!-- Surprise button -->
+  <div id="surpriseBox" style="width:100%;display:flex;flex-direction:column;align-items:center;gap:10px;margin-bottom:36px">
+    <div id="surpriseLocked" style="display:inline-flex;align-items:center;gap:12px;background:rgba(13,12,20,.7);backdrop-filter:blur(10px);border:1px solid rgba(107,91,255,.25);border-radius:14px;padding:16px 28px;color:rgba(255,255,255,.45);font-size:.88rem;cursor:default;user-select:none;box-shadow:0 0 24px rgba(107,91,255,.1)">
+      <span style="font-size:1.2rem">🎁</span>
+      <span>Une surprise arrive dans <strong id="surpriseCountdown" style="font-family:'Poppins',sans-serif;color:var(--violet)">18:40</strong></span>
+    </div>
+    <!-- Widget iClosed (caché jusqu'à la fin du chrono) -->
+    <div id="surpriseUnlocked" style="display:none;flex-direction:column;align-items:center;gap:16px;width:100%;max-width:860px;animation:surprise-pop .5s ease forwards">
+      <p style="font-family:'Poppins',sans-serif;font-weight:700;font-size:1.1rem;color:#fff;text-align:center">🎁 Ta surprise est là — réserve ton bilan offert</p>
+      <!-- iClosed inline widget begin -->
+      <div class="iclosed-widget" data-url="https://app.iclosed.io/e/denemacademy/bilan-de-carri-re-ia-denem" title="Bilan de carrière IA - DENEM" style="width:100%;height:620px"></div>
+      <script type="text/javascript" src="https://app.iclosed.io/assets/widget.js" async></script>
+      <!-- iClosed inline widget end -->
+    </div>
+    <p id="surpriseNote" style="font-size:.72rem;color:rgba(255,255,255,.2)">Continue de regarder jusqu'à la fin de la vidéo</p>
+  </div>
+
+  <!-- iClosed popup trigger caché -->
+  <a id="iClosedPopupTrigger" data-url="https://app.iclosed.io/e/denemacademy/bilan-de-carri-re-ia-denem" style="display:none" aria-hidden="true"></a>
+  <!-- iClosed popup widget begin -->
+  <script type="text/javascript" src="https://app.iclosed.io/assets/widget.js" async></script>
+  <!-- iClosed popup widget end -->
+
+
+</main>
+
+
+<script>
+  const prenom = localStorage.getItem('vsl_prenom');
+  if (prenom) {
+    document.getElementById('welcomeTag').innerHTML =
+      'Bienvenue <strong style="color:var(--teal)">' + prenom + '</strong> — ta vidéo est prête 👇';
+  }
+
+  function launchVideo() {
+    document.getElementById('vslWrapper').style.display = 'none';
+    const player = document.getElementById('vslPlayer');
+    player.style.display = 'block';
+    document.getElementById('vslIframe').src =
+      'https://player.vimeo.com/video/1185433009?h=256a22e697&badge=0&autopause=0&autoplay=1&player_id=0&app_id=58479';
+    player.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    startSurpriseTimer();
+  }
+
+  setTimeout(() => document.getElementById('urgencyBanner').classList.add('show'), 5000);
+
+  // Compteur live fluctuant
+  (function() {
+    const el = document.getElementById('liveCount');
+    let count = 198 + Math.floor(Math.random() * 40);
+    el.textContent = count;
+    setInterval(() => {
+      const delta = Math.random() < 0.5 ? -1 : 1;
+      count = Math.min(268, Math.max(185, count + delta));
+      el.textContent = count;
+    }, 3800);
+  })();
+
+  function startSurpriseTimer() {
+    const TOTAL = 18 * 60 + 40; // 18 min 40 sec
+    let remaining = TOTAL;
+    const countdown = document.getElementById('surpriseCountdown');
+    const locked    = document.getElementById('surpriseLocked');
+    const unlocked  = document.getElementById('surpriseUnlocked');
+    const note      = document.getElementById('surpriseNote');
+
+    const tick = setInterval(() => {
+      remaining--;
+      const m = Math.floor(remaining / 60);
+      const s = remaining % 60;
+      countdown.textContent = m + ':' + String(s).padStart(2, '0');
+
+      if (remaining <= 0) {
+        clearInterval(tick);
+        locked.style.display = 'none';
+        note.style.display = 'none';
+        unlocked.style.display = 'flex';
+        unlocked.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        // Déclenche aussi la popup iClosed
+        setTimeout(() => {
+          const trigger = document.getElementById('iClosedPopupTrigger');
+          if (trigger) trigger.click();
+        }, 800);
+      }
+    }, 1000);
+  }
+</script>
+
+</body>
+</html>
