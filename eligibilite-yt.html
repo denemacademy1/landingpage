@@ -9,6 +9,27 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- intl-tel-input -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@23.0.12/build/css/intlTelInput.css">
+  <style>
+    .iti{display:block;width:100%}
+    .iti__tel-input{width:100%}
+    .iti--inline-dropdown .iti__dropdown-content{background:#1a1830;border:1px solid rgba(107,91,255,.28);border-radius:12px;color:#fff;box-shadow:0 18px 48px rgba(0,0,0,.5)}
+    .iti--inline-dropdown .iti__search-input{background:rgba(255,255,255,.06);color:#fff;border-color:rgba(255,255,255,.1)}
+    .iti--inline-dropdown .iti__country-list{background:transparent;color:#fff}
+    .iti__country-list li{color:#fff}
+    .iti__country.iti__highlight{background:rgba(107,91,255,.25)}
+    .iti__country-name,.iti__dial-code{color:#fff !important}
+    .iti__dial-code{opacity:.65}
+    .iti__selected-country-primary{padding:0 6px 0 12px}
+    .e-input.iti__tel-input{padding-left:90px !important}
+    .e-checkbox-row{display:flex;align-items:flex-start;gap:10px;margin-top:14px;padding:14px;background:rgba(255,255,255,.04);border:1px solid rgba(107,91,255,.2);border-radius:12px;cursor:pointer;transition:.15s}
+    .e-checkbox-row:hover{background:rgba(255,255,255,.07);border-color:rgba(107,91,255,.4)}
+    .e-checkbox-row input[type="checkbox"]{width:20px;height:20px;flex-shrink:0;margin-top:2px;accent-color:#6B5BFF;cursor:pointer}
+    .e-checkbox-label{font-size:.85rem;color:rgba(255,255,255,.78);line-height:1.45}
+    .e-checkbox-label strong{color:#fff;font-weight:600}
+  </style>
   <style>
     :root {
       --bg: #0D0C14;
@@ -352,11 +373,16 @@ src="https://www.facebook.com/tr?id=1648575453142677&ev=PageView&noscript=1"
         </div>
         <div class="e-field">
           <label class="e-label" for="eTel">Téléphone</label>
-          <input class="e-input" id="eTel" type="tel" placeholder="06 12 34 56 78" autocomplete="tel">
+          <input class="e-input" id="eTel" type="tel" placeholder="6 12 34 56 78" autocomplete="tel">
           <div class="e-input-hint">🔒 Tes informations restent confidentielles.</div>
         </div>
 
-        <div class="e-error" id="eErr1">Merci de remplir tous les champs correctement.</div>
+        <label class="e-checkbox-row" for="eOptinWa">
+          <input type="checkbox" id="eOptinWa">
+          <span class="e-checkbox-label">J'accepte de recevoir des <strong>messages WhatsApp de DENEM Academy</strong> concernant ma candidature.</span>
+        </label>
+
+        <div class="e-error" id="eErr1">Merci de remplir tous les champs correctement, dont un numéro de téléphone valide et la case WhatsApp.</div>
         <button class="e-btn-next" onclick="goTo(2)">Continuer →</button>
       </div>
 
@@ -534,8 +560,25 @@ src="https://www.facebook.com/tr?id=1648575453142677&ev=PageView&noscript=1"
   </footer>
 
   <script>
-    const DATA = { prenom:'', email:'', tel:'', situation:'', timeline:'', motivation:[], revenus:'', score:'' };
+    const DATA = { prenom:'', email:'', tel:'', optin_whatsapp:false, situation:'', timeline:'', motivation:[], revenus:'', score:'' };
     let docId = null; // ID du document Firestore créé au step 1
+    let _iti = null;
+
+    // Init intl-tel-input
+    (function initPhone(){
+      const script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/intl-tel-input@23.0.12/build/js/intlTelInput.min.js';
+      script.onload = () => {
+        const input = document.getElementById('eTel');
+        _iti = window.intlTelInput(input, {
+          initialCountry: 'fr',
+          preferredCountries: ['fr','be','ch','ci','sn','ml','cm','ma'],
+          separateDialCode: true,
+          utilsScript: 'https://cdn.jsdelivr.net/npm/intl-tel-input@23.0.12/build/js/utils.js'
+        });
+      };
+      document.head.appendChild(script);
+    })();
 
     function showStep(step) {
       document.querySelectorAll('.e-step').forEach(s => s.classList.remove('active'));
@@ -551,11 +594,13 @@ src="https://www.facebook.com/tr?id=1648575453142677&ev=PageView&noscript=1"
       if (step === 2) {
         const p = document.getElementById('ePrenom').value.trim();
         const e = document.getElementById('eEmail').value.trim();
-        const t = document.getElementById('eTel').value.trim();
+        const optin = document.getElementById('eOptinWa').checked;
         const err = document.getElementById('eErr1');
-        if (!p || !e || !t || !/\S+@\S+\.\S+/.test(e)) { err.classList.add('show'); return; }
+        const phoneValid = _iti && _iti.isValidNumber && _iti.isValidNumber();
+        const phoneE164 = phoneValid ? _iti.getNumber() : '';
+        if (!p || !e || !phoneValid || !optin || !/\S+@\S+\.\S+/.test(e)) { err.classList.add('show'); return; }
         err.classList.remove('show');
-        DATA.prenom = p; DATA.email = e; DATA.tel = t;
+        DATA.prenom = p; DATA.email = e; DATA.tel = phoneE164; DATA.optin_whatsapp = optin;
 
         // ── Sauvegarde immédiate dès le step 1 ──
         if (window.createLead) {
@@ -678,6 +723,7 @@ src="https://www.facebook.com/tr?id=1648575453142677&ev=PageView&noscript=1"
         prenom:          data.prenom,
         email:           data.email,
         telephone:       data.tel,
+        optin_whatsapp:  !!data.optin_whatsapp,
         statut:          "incomplet",
         temperature:     "froid",
         etape_atteinte:  1,
@@ -723,6 +769,7 @@ src="https://www.facebook.com/tr?id=1648575453142677&ev=PageView&noscript=1"
           prenom: data.prenom,
           email: data.email,
           telephone: data.tel || "",
+          optin_whatsapp: !!data.optin_whatsapp,
           situation: data.situation,
           timeline: data.timeline,
           revenus: data.revenus,
