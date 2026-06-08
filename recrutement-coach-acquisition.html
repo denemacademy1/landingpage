@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <title>Rejoindre DENEM Academy — Coach Acquisition, Prospection & Vente</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <meta name="theme-color" content="#0D0C14">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;800;900&family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0D0C14; --violet: #6B5BFF; --teal: #2DD4BF;
+      --text: #E8E6F0; --muted: #9B97B0; --card-bg: #16141F;
+      --border: rgba(107,91,255,.18);
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg); color: var(--text);
+      font-family: 'DM Sans', sans-serif; font-weight: 300;
+      min-height: 100vh; display: flex; flex-direction: column;
+      overflow-x: hidden;
+    }
+    .grid-bg {
+      background-image:
+        linear-gradient(rgba(255,255,255,0.022) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.022) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    #starsCanvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: -1; }
+    .hero-glow { position: absolute; pointer-events: none; border-radius: 50%; }
+    .hero-glow-1 { top: 50%; left: 50%; transform: translate(-50%,-50%); width: 900px; height: 600px; background: radial-gradient(ellipse, rgba(107,91,255,.14) 0%, transparent 68%); }
+    .hero-glow-teal { position: absolute; right: -5%; top: 30%; width: 500px; height: 400px; background: radial-gradient(ellipse, rgba(45,212,191,.07) 0%, transparent 65%); pointer-events: none; }
+
+    /* NAV */
+    nav {
+      padding: 14px 5vw; display: flex; align-items: center; justify-content: space-between;
+      border-bottom: 1px solid var(--border); background: rgba(13,12,20,.96);
+      position: sticky; top: 0; z-index: 100;
+    }
+    .nav-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.25rem; color: #fff; text-decoration: none; letter-spacing: -.02em; }
+    .nav-logo span { color: var(--teal); }
+    .nav-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(45,212,191,.1); border: 1px solid rgba(45,212,191,.25); border-radius: 99px; padding: 4px 14px; font-size: 11px; font-weight: 500; color: var(--teal); letter-spacing: .5px; }
+    .nav-badge::before { content: ''; width: 6px; height: 6px; background: var(--teal); border-radius: 50%; display: inline-block; animation: pulse-dot 2s ease-in-out infinite; }
+    @keyframes text-shine {
+      0%   { background-position: 200% 50%; }
+      100% { background-position: -200% 50%; }
+    }
+    .shine-text {
+      background: linear-gradient(90deg, #fff 0%, var(--teal) 30%, #fff 50%, #6B5BFF 70%, var(--teal) 85%, #fff 100%);
+      background-size: 300% 100%;
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: text-shine 14s linear infinite;
+    }
+    @keyframes pulse-dot { 0%{box-shadow:0 0 0 0 rgba(45,212,191,.5)} 70%{box-shadow:0 0 0 6px rgba(45,212,191,0)} 100%{box-shadow:0 0 0 0 rgba(45,212,191,0)} }
+
+    /* HERO */
+    .hero-intro {
+      text-align: center; padding: 48px 5vw 40px;
+      max-width: 760px; margin: 0 auto;
+      position: relative;
+    }
+    .hero-eyebrow { font-size: .75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 14px; }
+    .hero-title { font-family: 'Poppins', sans-serif; font-weight: 900; font-size: clamp(1.5rem, 3.5vw, 2.2rem); line-height: 1.2; letter-spacing: -.03em; margin-bottom: 14px; }
+    .hero-title .grad { background: linear-gradient(135deg, #fff 20%, var(--teal)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero-sub { font-size: .9rem; color: var(--muted); line-height: 1.75; max-width: 540px; margin: 0 auto 28px; }
+    .hero-chips { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+    .hero-chip { display: inline-flex; align-items: center; gap: 6px; background: rgba(107,91,255,.1); border: 1px solid rgba(107,91,255,.2); border-radius: 99px; padding: 5px 14px; font-size: .78rem; color: #a78bfa; }
+
+    /* JOB DESC CARDS */
+    .job-card {
+      max-width: 620px; margin: 20px auto 0;
+      padding: 22px 26px; background: rgba(255,255,255,.03);
+      border: 1px solid var(--border); border-radius: 16px;
+      text-align: left;
+    }
+    .job-card h3 {
+      font-family: 'Poppins', sans-serif; font-weight: 800;
+      font-size: 1rem; color: #fff; margin-bottom: 10px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .job-card p {
+      font-size: .86rem; color: rgba(255,255,255,.72);
+      line-height: 1.75; margin-bottom: 10px;
+    }
+    .job-card ul {
+      list-style: none; padding: 0; margin: 6px 0 0;
+    }
+    .job-card ul li {
+      font-size: .82rem; color: rgba(255,255,255,.66);
+      line-height: 1.7; padding: 3px 0;
+      padding-left: 22px; position: relative;
+    }
+    .job-card ul li::before {
+      content: '✓'; position: absolute; left: 0;
+      color: var(--teal); font-weight: 700;
+    }
+
+    /* FORM CONTAINER */
+    .form-wrap {
+      max-width: 680px; margin: 0 auto 80px;
+      padding: 0 5vw; width: 100%;
+    }
+
+    /* PROGRESS */
+    .progress-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+    .progress-label { font-size: .78rem; color: var(--muted); }
+    .progress-label strong { color: var(--text); }
+    .progress-bar-track { height: 4px; background: rgba(255,255,255,.07); border-radius: 99px; margin-bottom: 28px; overflow: hidden; }
+    .progress-bar-fill { height: 100%; border-radius: 99px; background: linear-gradient(90deg, var(--violet), var(--teal)); transition: width .4s ease; }
+
+    /* STEP CARD */
+    .step-card {
+      background: var(--card-bg); border: 1px solid var(--border);
+      border-radius: 22px; padding: 32px 36px;
+      box-shadow: 0 24px 80px rgba(0,0,0,.4);
+      display: none;
+    }
+    .step-card.active { display: block; animation: stepIn .3s ease; }
+    @keyframes stepIn { from { opacity:0; transform:translateY(14px); } to { opacity:1; transform:translateY(0); } }
+    .step-eyebrow { font-size: .72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 8px; }
+    .step-title { font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 1.15rem; letter-spacing: -.02em; margin-bottom: 24px; line-height: 1.35; }
+    .step-title span { color: var(--teal); }
+
+    /* FIELDS */
+    .field { margin-bottom: 18px; }
+    .field label { display: block; font-size: .78rem; font-weight: 500; color: var(--muted); text-transform: uppercase; letter-spacing: .07em; margin-bottom: 7px; }
+    .field label .req { color: var(--violet); margin-left: 2px; }
+    .field input, .field textarea, .field select {
+      width: 100%; background: rgba(255,255,255,.04); border: 1.5px solid var(--border);
+      border-radius: 11px; padding: 11px 14px; color: #fff;
+      font-family: 'DM Sans', sans-serif; font-size: .95rem; outline: none;
+      transition: border-color .2s;
+    }
+    .field input:focus, .field textarea:focus, .field select:focus { border-color: var(--violet); }
+    .field input::placeholder, .field textarea::placeholder { color: rgba(255,255,255,.2); }
+    .field textarea { resize: vertical; min-height: 110px; line-height: 1.6; }
+    .field input[type="date"]::-webkit-calendar-picker-indicator { filter: invert(.5); }
+    .field-hint { font-size: .76rem; color: var(--muted); margin-top: -2px; margin-bottom: 8px; font-style: italic; line-height: 1.5; }
+
+    /* RADIO CARDS */
+    .radio-group { display: flex; flex-direction: column; gap: 10px; }
+    .radio-card {
+      display: flex; align-items: center; gap: 12px;
+      background: rgba(255,255,255,.03); border: 1.5px solid var(--border);
+      border-radius: 11px; padding: 13px 16px; cursor: pointer;
+      transition: .2s;
+    }
+    .radio-card:hover { background: rgba(107,91,255,.06); border-color: rgba(107,91,255,.35); }
+    .radio-card.selected { background: rgba(107,91,255,.12); border-color: var(--violet); }
+    .radio-card input[type="radio"] { display: none; }
+    .radio-dot {
+      width: 18px; height: 18px; border-radius: 50%;
+      border: 2px solid var(--border); flex-shrink: 0;
+      position: relative; transition: .2s;
+    }
+    .radio-card.selected .radio-dot { border-color: var(--violet); }
+    .radio-card.selected .radio-dot::after {
+      content: ''; position: absolute; inset: 3px;
+      background: var(--violet); border-radius: 50%;
+    }
+    .radio-label { font-size: .9rem; color: #fff; font-weight: 500; }
+
+    /* CONDITIONAL */
+    .conditional { display: none; margin-top: 14px; }
+    .conditional.show { display: block; animation: stepIn .25s ease; }
+
+    /* STEP ACTIONS */
+    .step-actions {
+      display: flex; gap: 12px; margin-top: 28px;
+      padding-top: 22px; border-top: 1px solid var(--border);
+    }
+    .btn-back, .btn-next {
+      flex: 1; padding: 13px 22px;
+      border-radius: 12px; font-family: 'DM Sans', sans-serif;
+      font-size: .95rem; font-weight: 600; cursor: pointer; transition: .2s;
+      border: 1.5px solid var(--border);
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    }
+    .btn-back { background: rgba(255,255,255,.03); color: var(--muted); }
+    .btn-back:hover { background: rgba(255,255,255,.06); color: #fff; }
+    .btn-next { background: var(--violet); color: #fff; border-color: var(--violet); }
+    .btn-next:hover { background: #7c6dff; transform: translateY(-1px); }
+    .btn-next:disabled { opacity: .55; cursor: wait; }
+    .btn-next svg { width: 16px; height: 16px; fill: #fff; stroke: #fff; stroke-width: 2; fill: none; }
+    .spinner {
+      width: 18px; height: 18px; border: 2px solid rgba(255,255,255,.25);
+      border-top-color: #fff; border-radius: 50%; animation: spin .7s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ERROR */
+    .form-error {
+      background: rgba(239,68,68,.1); border: 1px solid rgba(239,68,68,.3);
+      border-radius: 10px; padding: 10px 14px; color: #fca5a5;
+      font-size: .85rem; margin-bottom: 14px; display: none;
+    }
+    .form-error.show { display: block; }
+
+    /* SUCCESS */
+    .success-card {
+      background: var(--card-bg); border: 1px solid var(--border);
+      border-radius: 22px; padding: 44px 36px;
+      box-shadow: 0 24px 80px rgba(0,0,0,.4);
+      text-align: center; display: none;
+    }
+    .success-card.show { display: block; animation: stepIn .4s ease; }
+    .success-icon { font-size: 3.4rem; margin-bottom: 14px; }
+    .success-title { font-family: 'Poppins', sans-serif; font-weight: 900; font-size: 1.5rem; margin-bottom: 14px; }
+    .success-sub { font-size: .92rem; color: var(--muted); line-height: 1.75; max-width: 480px; margin: 0 auto; }
+
+    @media (max-width: 600px) {
+      .step-card { padding: 24px 20px; }
+      .hero-intro { padding: 32px 16px 28px; }
+      .job-card { padding: 18px 20px; }
+    }
+  </style>
+</head>
+<body class="grid-bg">
+
+<canvas id="starsCanvas" aria-hidden="true"></canvas>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="/recrutement-coach-acquisition">DENEM <span>ACADEMY</span></a>
+  <span class="nav-badge">On recrute</span>
+</nav>
+
+<!-- HERO INTRO -->
+<div class="hero-intro" style="position:relative">
+  <div class="hero-glow hero-glow-1" aria-hidden="true"></div>
+  <div class="hero-glow-teal" aria-hidden="true"></div>
+  <p class="hero-eyebrow">Offre d'emploi · Coaching · Mission longue durée</p>
+  <h1 class="hero-title">
+    <span style="font-size:.65em;font-weight:700;color:var(--muted);display:block;margin-bottom:8px;letter-spacing:.01em">DENEM Academy recrute</span>
+    Coach <span class="grad">Acquisition</span><br>
+    <span style="font-size:.72em;font-weight:700;color:rgba(255,255,255,.85)">Prospection & <span class="shine-text">Vente</span></span>
+  </h1>
+
+  <div class="job-card">
+    <p style="font-size:.88rem;color:rgba(255,255,255,.78);line-height:1.85;margin-bottom:14px">
+      <strong style="color:#fff">DENEM Academy</strong> forme des profils ambitieux à devenir <strong style="color:var(--teal)">consultants / agences IA</strong> au service des PME françaises. On les accompagne de A à Z — et on cherche notre <strong style="color:#fff">prochain Coach Acquisition</strong> pour gérer la partie "trouver et signer les premiers clients".
+    </p>
+    <p style="font-size:.82rem;color:var(--teal);font-weight:500">
+      ✓ On accélère — ton impact sera maximal dès le 1er jour.
+    </p>
+  </div>
+
+  <div class="job-card">
+    <h3>🎯 Ta mission</h3>
+    <p>Animer des sessions de coaching <strong style="color:#fff">en live</strong> et donner à nos élèves un système d'acquisition <strong style="color:#fff">simple, efficace, éprouvé</strong> pour décrocher leurs premiers clients.</p>
+    <ul>
+      <li><strong style="color:#fff">Prospection :</strong> LinkedIn, cold outreach, scripts, pipeline</li>
+      <li><strong style="color:#fff">Vente & closing :</strong> entretien commercial, objections, pricing, signature</li>
+      <li><strong style="color:#fff">Suivi des élèves :</strong> débrief des calls + itérations jusqu'à la 1ère signature</li>
+    </ul>
+  </div>
+
+  <div class="job-card">
+    <h3>👤 Le profil qu'on cherche</h3>
+    <p style="font-size:.86rem;color:rgba(255,255,255,.7)">Un profil qui a <strong style="color:#fff">déjà fait</strong>, pas seulement enseigné.</p>
+    <ul>
+      <li>Résultats probants en acquisition client (tes propres clients ou ceux des autres)</li>
+      <li>Maîtrise de la <strong>prospection ET du marketing</strong> (outreach + inbound)</li>
+      <li>Solide en <strong>vente / closing</strong></li>
+      <li>Expérience en coaching avec des résultats concrets</li>
+      <li>Connaissance & maîtrise de l'IA (un vrai plus)</li>
+    </ul>
+  </div>
+
+  <div class="hero-chips" style="margin-top:24px">
+    <span class="hero-chip">🌍 100% Télétravail</span>
+    <span class="hero-chip">⚡ Démarrage rapide</span>
+    <span class="hero-chip">🎯 Impact mesurable</span>
+  </div>
+</div>
+
+<!-- FORM -->
+<div class="form-wrap">
+
+  <!-- PROGRESS -->
+  <div class="progress-header">
+    <span class="progress-label">Étape <strong id="stepNum">1</strong> / 6</span>
+    <span class="progress-label" id="stepName">Coordonnées</span>
+  </div>
+  <div class="progress-bar-track">
+    <div class="progress-bar-fill" id="progressFill" style="width:17%"></div>
+  </div>
+  <p style="font-size:.75rem;color:var(--muted);font-style:italic;margin-bottom:16px;text-align:center">
+    ✍️ Sois précis et concret — c'est ici qu'on voit si ton profil colle.
+  </p>
+
+  <!-- ERREUR GLOBALE -->
+  <div class="form-error" id="formError"></div>
+
+  <!-- ══ STEP 1 — Coordonnées ══ -->
+  <div class="step-card active" id="step1">
+    <p class="step-eyebrow">Étape 1 / 6</p>
+    <h2 class="step-title">Dites-nous <span>qui vous êtes</span></h2>
+
+    <div class="field">
+      <label>Nom + Prénom <span class="req">*</span></label>
+      <input type="text" id="s1_nom" placeholder="Ex : Jean Dupont" autocomplete="name">
+    </div>
+    <div class="field">
+      <label>Âge <span class="req">*</span></label>
+      <input type="number" id="s1_dob" placeholder="Ex : 34" min="18" max="70">
+    </div>
+    <div class="field">
+      <label>Numéro de téléphone WhatsApp <span class="req">*</span></label>
+      <input type="tel" id="s1_tel" placeholder="Ex : +33 6 12 34 56 78">
+    </div>
+    <div class="field">
+      <label>Votre profil LinkedIn <span class="req">*</span></label>
+      <input type="url" id="s1_linkedin" placeholder="https://www.linkedin.com/in/...">
+    </div>
+
+    <div class="step-actions">
+      <button class="btn-next" id="btn1" onclick="goStep1()">
+        <span id="lbl1">Continuer</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- ══ STEP 2 — Motivation ══ -->
+  <div class="step-card" id="step2">
+    <p class="step-eyebrow">Étape 2 / 6</p>
+    <h2 class="step-title">Votre <span>motivation</span></h2>
+
+    <div class="field">
+      <label>Pourquoi ce poste de Coach Acquisition chez DENEM Academy vous attire ? <span class="req">*</span></label>
+      <p class="field-hint">Soyez concret sur ce qui résonne avec votre parcours — pas de phrase générique.</p>
+      <textarea id="s2_pourquoi" placeholder="Ex : J'ai aidé X agences à décrocher leurs 1ers clients en 2025, et l'IA appliquée aux PME est le sujet sur lequel je veux maximiser mon impact..."></textarea>
+    </div>
+    <div class="field">
+      <label>Où habitez-vous ? (Ville, Pays) <span class="req">*</span></label>
+      <input type="text" id="s2_ville" placeholder="Ex : Lyon, France">
+    </div>
+
+    <div class="step-actions">
+      <button class="btn-back" onclick="prevStep(2)">← Retour</button>
+      <button class="btn-next" onclick="goStep(2)">Continuer →</button>
+    </div>
+  </div>
+
+  <!-- ══ STEP 3 — Résultats Acquisition ══ -->
+  <div class="step-card" id="step3">
+    <p class="step-eyebrow">Étape 3 / 6</p>
+    <h2 class="step-title">Vos <span>résultats en acquisition</span></h2>
+
+    <div class="field">
+      <label>Quels résultats concrets avez-vous générés en acquisition client ? <span class="req">*</span></label>
+      <p class="field-hint">Chiffres : nombre de clients signés, CA généré, taux de transformation, secteurs… (pour vous ou pour les autres).</p>
+      <textarea id="s3_resultats" placeholder="Ex : J'ai signé X clients à €X TJM via outreach LinkedIn en 2025 / J'ai aidé Y agences à atteindre 10K€/mois en 90j..." style="min-height:130px"></textarea>
+    </div>
+    <div class="field">
+      <label>Avez-vous déjà vendu vous-même (vos propres services / produits) ? <span class="req">*</span></label>
+      <div class="radio-group" id="rg_venduPerso">
+        <label class="radio-card" onclick="selectRadio(this,'s3_venduPerso','Oui')">
+          <input type="radio" name="venduPerso" value="Oui"> <span class="radio-dot"></span>
+          <span class="radio-label">Oui — j'ai vendu mes propres services</span>
+        </label>
+        <label class="radio-card" onclick="selectRadio(this,'s3_venduPerso','Non')">
+          <input type="radio" name="venduPerso" value="Non"> <span class="radio-dot"></span>
+          <span class="radio-label">Non — j'ai surtout vendu pour d'autres</span>
+        </label>
+      </div>
+      <input type="hidden" id="s3_venduPerso">
+    </div>
+
+    <div class="step-actions">
+      <button class="btn-back" onclick="prevStep(3)">← Retour</button>
+      <button class="btn-next" onclick="goStep(3)">Continuer →</button>
+    </div>
+  </div>
+
+  <!-- ══ STEP 4 — Méthodes & Maîtrise ══ -->
+  <div class="step-card" id="step4">
+    <p class="step-eyebrow">Étape 4 / 6</p>
+    <h2 class="step-title">Vos <span>méthodes</span> en prospection, marketing & closing</h2>
+
+    <div class="field">
+      <label>Quelles méthodes de prospection maîtrisez-vous ? <span class="req">*</span></label>
+      <p class="field-hint">LinkedIn, cold email, cold call, content marketing, partenariats… Décrivez votre stack.</p>
+      <textarea id="s4_prospection" placeholder="Ex : Outreach LinkedIn (séquences SalesLoft), cold email (Lemlist), content + DM funnel..." style="min-height:100px"></textarea>
+    </div>
+    <div class="field">
+      <label>Comment faites-vous venir des prospects à vous (inbound / marketing) ? <span class="req">*</span></label>
+      <p class="field-hint">Contenu, SEO, ads, communauté, recommandations…</p>
+      <textarea id="s4_inbound" placeholder="Ex : Je poste 3x/sem sur LinkedIn pour générer des DM entrants, j'ai un audit gratuit qui convertit à X%..." style="min-height:100px"></textarea>
+    </div>
+    <div class="field">
+      <label>Votre approche du closing : comment transformez-vous un RDV en signature ? <span class="req">*</span></label>
+      <p class="field-hint">Décrivez votre framework, votre gestion des objections, votre taux de transfo type.</p>
+      <textarea id="s4_closing" placeholder="Ex : J'utilise le framework SPIN / NEPQ. Mon taux de closing en B2B est de X% sur RDV qualifiés..." style="min-height:100px"></textarea>
+    </div>
+
+    <div class="step-actions">
+      <button class="btn-back" onclick="prevStep(4)">← Retour</button>
+      <button class="btn-next" onclick="goStep(4)">Continuer →</button>
+    </div>
+  </div>
+
+  <!-- ══ STEP 5 — Coaching + IA ══ -->
+  <div class="step-card" id="step5">
+    <p class="step-eyebrow">Étape 5 / 6</p>
+    <h2 class="step-title">Coaching & <span>maîtrise de l'IA</span></h2>
+
+    <div class="field">
+      <label>Avez-vous déjà coaché / formé des personnes sur l'acquisition ? <span class="req">*</span></label>
+      <div class="radio-group" id="rg_coach">
+        <label class="radio-card" onclick="selectRadio(this,'s5_coach','Oui'); showConditional('coachDetail', true)">
+          <input type="radio" name="coach" value="Oui"> <span class="radio-dot"></span>
+          <span class="radio-label">Oui</span>
+        </label>
+        <label class="radio-card" onclick="selectRadio(this,'s5_coach','Non'); showConditional('coachDetail', false)">
+          <input type="radio" name="coach" value="Non"> <span class="radio-dot"></span>
+          <span class="radio-label">Non</span>
+        </label>
+      </div>
+      <input type="hidden" id="s5_coach">
+    </div>
+
+    <div class="field conditional" id="coachDetail">
+      <label>Si OUI : donnez 2-3 résultats concrets obtenus par vos coachés</label>
+      <p class="field-hint">Premiers clients signés, montants, délais, témoignages…</p>
+      <textarea id="s5_coachDetail" placeholder="Ex : Marie a signé son 1er client à 7K€ en 6 semaines après nos coachings..."></textarea>
+    </div>
+
+    <div class="field">
+      <label>Votre niveau de connaissance de l'IA et de ses usages business ? <span class="req">*</span></label>
+      <div class="radio-group" id="rg_niveauIA">
+        <label class="radio-card" onclick="selectRadio(this,'s5_niveauIA','Maîtrise avancée + expérience directe')">
+          <input type="radio" name="niveauIA" value="Avancée"> <span class="radio-dot"></span>
+          <span class="radio-label">Maîtrise avancée + expérience directe dans l'IA</span>
+        </label>
+        <label class="radio-card" onclick="selectRadio(this,'s5_niveauIA','Bon niveau, utilisateur régulier')">
+          <input type="radio" name="niveauIA" value="Bon"> <span class="radio-dot"></span>
+          <span class="radio-label">Bon niveau, utilisateur régulier (ChatGPT, Claude…)</span>
+        </label>
+        <label class="radio-card" onclick="selectRadio(this,'s5_niveauIA','En apprentissage')">
+          <input type="radio" name="niveauIA" value="En apprentissage"> <span class="radio-dot"></span>
+          <span class="radio-label">En apprentissage, je me forme actuellement</span>
+        </label>
+      </div>
+      <input type="hidden" id="s5_niveauIA">
+    </div>
+
+    <div class="field">
+      <label>Concrètement, qu'est-ce qu'une agence IA peut vendre à une PME ? <span class="req">*</span></label>
+      <p class="field-hint">Donnez 2-3 offres concrètes avec ordre de grandeur de prix.</p>
+      <textarea id="s5_offresPME" placeholder="Ex : Audit + roadmap IA (3K€), automatisation processus (5-10K€), agent IA support client (8-15K€/mois)..." style="min-height:100px"></textarea>
+    </div>
+
+    <div class="step-actions">
+      <button class="btn-back" onclick="prevStep(5)">← Retour</button>
+      <button class="btn-next" onclick="goStep(5)">Continuer →</button>
+    </div>
+  </div>
+
+  <!-- ══ STEP 6 — Modalités ══ -->
+  <div class="step-card" id="step6">
+    <p class="step-eyebrow">Étape 6 / 6</p>
+    <h2 class="step-title">Modalités <span>& dispo</span></h2>
+
+    <div class="field">
+      <label>Êtes-vous freelance ou prêt(e) à l'être ? <span class="req">*</span></label>
+      <div class="radio-group" id="rg_freelance">
+        <label class="radio-card" onclick="selectRadio(this,'s6_freelance','Déjà freelance')">
+          <input type="radio" name="freelance" value="Deja"> <span class="radio-dot"></span>
+          <span class="radio-label">Oui, déjà freelance / indépendant</span>
+        </label>
+        <label class="radio-card" onclick="selectRadio(this,'s6_freelance','Prêt à le devenir')">
+          <input type="radio" name="freelance" value="Pret"> <span class="radio-dot"></span>
+          <span class="radio-label">Pas encore, mais prêt à le devenir</span>
+        </label>
+        <label class="radio-card" onclick="selectRadio(this,'s6_freelance','Non, je cherche du salariat')">
+          <input type="radio" name="freelance" value="Non"> <span class="radio-dot"></span>
+          <span class="radio-label">Non, je cherche du salariat</span>
+        </label>
+      </div>
+      <input type="hidden" id="s6_freelance">
+    </div>
+
+    <div class="field">
+      <label>Vos prétentions de rémunération <span class="req">*</span></label>
+      <p class="field-hint">TJM si freelance, ou fourchette mensuelle. Sois transparent.</p>
+      <input type="text" id="s6_remuneration" placeholder="Ex : TJM 800€, ou 6-8K€/mois selon engagement">
+    </div>
+
+    <div class="field">
+      <label>Combien d'heures / semaine pouvez-vous y consacrer ? <span class="req">*</span></label>
+      <input type="text" id="s6_temps" placeholder="Ex : 15h/sem, mi-temps, temps plein...">
+    </div>
+
+    <div class="field">
+      <label>Quand pouvez-vous démarrer ? <span class="req">*</span></label>
+      <input type="text" id="s6_demarrage" placeholder="Ex : tout de suite, sous 1 semaine, sous 1 mois...">
+    </div>
+
+    <div class="field">
+      <label>Un message libre pour notre équipe (optionnel)</label>
+      <textarea id="s6_message" placeholder="Tout ce que tu veux qu'on sache..." style="min-height:90px"></textarea>
+    </div>
+
+    <div class="step-actions">
+      <button class="btn-back" onclick="prevStep(6)">← Retour</button>
+      <button class="btn-next" id="btn6" onclick="submitForm()">
+        <span id="lbl6">Envoyer ma candidature</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ══ SUCCESS ══ -->
+  <div class="success-card" id="successCard">
+    <div class="success-icon">🎉</div>
+    <h2 class="success-title">Candidature envoyée !</h2>
+    <p class="success-sub">
+      Merci <strong id="successName" style="color:var(--teal)"></strong> — on a bien reçu ta candidature.<br><br>
+      Notre équipe étudie ton profil et te contactera sur WhatsApp dans les <strong style="color:#fff">48h</strong> s'il correspond.
+    </p>
+  </div>
+
+</div>
+
+
+<!-- FIREBASE -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
+  import { getFirestore, collection, addDoc, doc, updateDoc, serverTimestamp }
+    from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
+
+  const app = initializeApp({
+    apiKey: "AIzaSyBdNN-iiK5KoBqkX4FX1PJ5CmlWUma8NaU",
+    authDomain: "denem-academy-5de41.firebaseapp.com",
+    projectId: "denem-academy-5de41",
+    storageBucket: "denem-academy-5de41.firebasestorage.app",
+    messagingSenderId: "570632584566",
+    appId: "1:570632584566:web:4305443183280686a7ce57"
+  });
+  const db = getFirestore(app);
+
+  window._db = db;
+  window._fbCollection = collection;
+  window._fbAddDoc = addDoc;
+  window._fbDoc = doc;
+  window._fbUpdateDoc = updateDoc;
+  window._fbServerTimestamp = serverTimestamp;
+  window._fbReady = true;
+  document.dispatchEvent(new Event('fb-ready'));
+</script>
+
+<!-- APP LOGIC -->
+<script>
+  let currentStep = 1;
+  let docId = null;
+  const COLLECTION = 'leads_recrutement_coach';
+
+  const STEP_NAMES = ['', 'Coordonnées', 'Motivation', 'Résultats', 'Méthodes', 'Coaching & IA', 'Modalités'];
+
+  function v(id) { return document.getElementById(id)?.value?.trim() || ''; }
+
+  function showError(msg) {
+    const el = document.getElementById('formError');
+    el.textContent = msg; el.classList.add('show');
+    el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+  function clearError() { document.getElementById('formError').classList.remove('show'); }
+
+  function updateProgress(step) {
+    document.getElementById('stepNum').textContent = step;
+    document.getElementById('stepName').textContent = STEP_NAMES[step] || '';
+    document.getElementById('progressFill').style.width = (step / 6 * 100) + '%';
+  }
+
+  function showStep(n) {
+    document.querySelectorAll('.step-card').forEach(c => c.classList.remove('active'));
+    document.getElementById('step' + n)?.classList.add('active');
+    updateProgress(n);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    clearError();
+  }
+
+  function prevStep(from) { showStep(from - 1); }
+
+  function selectRadio(el, hiddenId, val) {
+    const group = el.closest('.radio-group');
+    group.querySelectorAll('.radio-card').forEach(c => c.classList.remove('selected'));
+    el.classList.add('selected');
+    document.getElementById(hiddenId).value = val;
+  }
+
+  function showConditional(id, show) {
+    document.getElementById(id).classList.toggle('show', show);
+  }
+
+  async function goStep1() {
+    clearError();
+    const nom = v('s1_nom'), dob = v('s1_dob'), tel = v('s1_tel'), linkedin = v('s1_linkedin');
+    if (!nom) { showError('Merci d\'entrer ton nom et prénom.'); return; }
+    if (!dob) { showError('Merci d\'entrer ton âge.'); return; }
+    if (!tel) { showError('Merci d\'entrer ton numéro WhatsApp.'); return; }
+    if (!linkedin) { showError('Merci d\'entrer ton profil LinkedIn.'); return; }
+
+    const btn = document.getElementById('btn1');
+    const lbl = document.getElementById('lbl1');
+    btn.disabled = true;
+    lbl.style.display = 'none';
+    btn.insertAdjacentHTML('beforeend', '<div class="spinner"></div>');
+
+    try {
+      const waitFb = () => new Promise(res => {
+        if (window._fbReady) { res(); return; }
+        document.addEventListener('fb-ready', res, { once: true });
+      });
+      await waitFb();
+
+      const ref = await window._fbAddDoc(
+        window._fbCollection(window._db, COLLECTION), {
+          nom_prenom: nom, age: dob, telephone: tel, linkedin,
+          step_reached: 1, complete: false,
+          source: 'recrutement-coach-acquisition',
+          poste: 'Coach Acquisition, Prospection & Vente',
+          createdAt: window._fbServerTimestamp(),
+          updatedAt: window._fbServerTimestamp()
+        }
+      );
+      docId = ref.id;
+      showStep(2);
+    } catch(e) {
+      console.error(e);
+      showError('Erreur : ' + (e.code || e.message || 'connexion impossible'));
+    } finally {
+      btn.disabled = false;
+      lbl.style.display = 'inline';
+      btn.querySelector('.spinner')?.remove();
+    }
+  }
+
+  async function goStep(from) {
+    clearError();
+    let data = {};
+
+    if (from === 2) {
+      const pourquoi = v('s2_pourquoi'), ville = v('s2_ville');
+      if (!pourquoi) { showError('Merci d\'expliquer ta motivation.'); return; }
+      if (!ville) { showError('Merci d\'indiquer ta ville.'); return; }
+      data = { pourquoi, ville };
+    } else if (from === 3) {
+      const resultats = v('s3_resultats'), venduPerso = v('s3_venduPerso');
+      if (!resultats) { showError('Merci de décrire tes résultats en acquisition.'); return; }
+      if (!venduPerso) { showError('Merci de répondre à la question sur la vente perso.'); return; }
+      data = { resultats_acquisition: resultats, vente_perso: venduPerso };
+    } else if (from === 4) {
+      const prospection = v('s4_prospection'), inbound = v('s4_inbound'), closing = v('s4_closing');
+      if (!prospection) { showError('Merci de décrire tes méthodes de prospection.'); return; }
+      if (!inbound) { showError('Merci de décrire ton inbound / marketing.'); return; }
+      if (!closing) { showError('Merci de décrire ton approche du closing.'); return; }
+      data = { methodes_prospection: prospection, methodes_inbound: inbound, approche_closing: closing };
+    } else if (from === 5) {
+      const coach = v('s5_coach'), niveauIA = v('s5_niveauIA'), offresPME = v('s5_offresPME');
+      if (!coach) { showError('Merci de répondre à la question sur le coaching.'); return; }
+      if (!niveauIA) { showError('Merci d\'indiquer ton niveau IA.'); return; }
+      if (!offresPME) { showError('Merci de décrire ce qu\'une agence IA peut vendre à une PME.'); return; }
+      data = { experience_coaching: coach, niveau_ia: niveauIA, offres_pme: offresPME };
+      if (coach === 'Oui') data.coaching_resultats = v('s5_coachDetail');
+    }
+
+    if (docId) {
+      try {
+        await window._fbUpdateDoc(
+          window._fbDoc(window._db, COLLECTION, docId),
+          { ...data, step_reached: from, updatedAt: window._fbServerTimestamp() }
+        );
+      } catch(e) { console.error('Update error:', e); }
+    }
+    showStep(from + 1);
+  }
+
+  async function submitForm() {
+    clearError();
+    const freelance = v('s6_freelance'), remuneration = v('s6_remuneration'),
+          temps = v('s6_temps'), demarrage = v('s6_demarrage'),
+          message = v('s6_message');
+    if (!freelance) { showError('Merci de répondre à la question freelance.'); return; }
+    if (!remuneration) { showError('Merci d\'indiquer tes prétentions.'); return; }
+    if (!temps) { showError('Merci d\'indiquer ta disponibilité horaire.'); return; }
+    if (!demarrage) { showError('Merci d\'indiquer quand tu peux démarrer.'); return; }
+
+    const btn = document.getElementById('btn6');
+    const lbl = document.getElementById('lbl6');
+    btn.disabled = true; lbl.style.display = 'none';
+    btn.insertAdjacentHTML('beforeend', '<div class="spinner"></div>');
+
+    try {
+      if (docId) {
+        await window._fbUpdateDoc(
+          window._fbDoc(window._db, COLLECTION, docId),
+          { statut_freelance: freelance, remuneration_souhaitee: remuneration,
+            temps_dispo: temps, demarrage, message_libre: message,
+            step_reached: 6, complete: true,
+            updatedAt: window._fbServerTimestamp() }
+        );
+      }
+      document.querySelectorAll('.step-card').forEach(c => c.classList.remove('active'));
+      document.getElementById('progressFill').style.width = '100%';
+      const nom = v('s1_nom').split(' ')[0];
+      document.getElementById('successName').textContent = nom;
+      document.getElementById('successCard').classList.add('show');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } catch(e) {
+      console.error(e);
+      showError('Erreur lors de l\'envoi — réessaie.');
+      btn.disabled = false; lbl.style.display = 'inline';
+      btn.querySelector('.spinner')?.remove();
+    }
+  }
+
+  window.goStep1 = goStep1;
+  window.goStep = goStep;
+  window.prevStep = prevStep;
+  window.selectRadio = selectRadio;
+  window.showConditional = showConditional;
+  window.submitForm = submitForm;
+</script>
+
+<!-- STARS CANVAS -->
+<script>
+(function() {
+  const cvs = document.getElementById('starsCanvas');
+  const ctx = cvs.getContext('2d');
+  function resize() { cvs.width = window.innerWidth; cvs.height = window.innerHeight; }
+  resize(); window.addEventListener('resize', resize, { passive: true });
+  const BG = Array.from({ length: 160 }, () => ({
+    x: Math.random(), y: Math.random(), r: Math.random() * 0.9 + 0.2,
+    a: Math.random() * 0.25 + 0.04, tw: Math.random() * Math.PI * 2, ts: Math.random() * 0.01 + 0.003
+  }));
+  (function loop() {
+    requestAnimationFrame(loop);
+    ctx.clearRect(0, 0, cvs.width, cvs.height);
+    BG.forEach(s => {
+      s.tw += s.ts;
+      ctx.beginPath(); ctx.arc(s.x * cvs.width, s.y * cvs.height, s.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(210,230,255,${s.a * (0.55 + 0.45 * Math.sin(s.tw))})`; ctx.fill();
+    });
+  })();
+})();
+</script>
+
+</body>
+</html>
