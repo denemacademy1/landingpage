@@ -1245,10 +1245,13 @@ src="https://www.facebook.com/tr?id=1648575453142677&ev=PageView&noscript=1"
       createdAt:  serverTimestamp()
     });
     // Webhook Make — séquence email Leads VSL
+    // keepalive: la requête doit survivre à la redirection (window.location.href)
+    // qui suit immédiatement, sinon le navigateur l'annule sur mobile/connexion lente.
     fetch("https://hook.eu1.make.com/3or9zws3mwu9q26s62pd9k9r7urjicro", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ prenom, email, telephone: telephone || "", source: "vsl-capture", type: "leads_vsl" })
+      body: JSON.stringify({ prenom, email, telephone: telephone || "", source: "vsl-capture", type: "leads_vsl" }),
+      keepalive: true
     }).catch(() => {});
   };
 </script>
