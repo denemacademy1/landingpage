@@ -292,15 +292,6 @@ src="https://www.facebook.com/tr?id=1648575453142677&ev=PageView&noscript=1"
 </head>
 <body class="checking">
 
-<!-- RUBAN URGENCE -->
-<div id="urgencyBanner" role="alert">
-  <span class="blink"></span>
-  <p style="font-size:.82rem;font-weight:600;color:#fff;text-align:center;line-height:1.5;letter-spacing:.1px">
-    ⚠️ Ne quitte surtout pas cette page — au risque de perdre définitivement accès à la vidéo de formation exclusive. <strong>C'est maintenant.</strong>
-  </p>
-  <span class="blink"></span>
-</div>
-
 <!-- ACCESS LIBRE — pas de contrôle, page accessible directement -->
 <script>
   document.body.classList.remove('checking');
@@ -317,19 +308,9 @@ src="https://www.facebook.com/tr?id=1648575453142677&ev=PageView&noscript=1"
   <p class="welcome-tag" id="welcomeTag">Ta vidéo est prête</p>
 
   <!-- Copy au-dessus de la vidéo -->
-  <h2 style="font-family:'Poppins',sans-serif;font-weight:800;font-size:clamp(1.2rem,3vw,1.65rem);line-height:1.35;letter-spacing:-.02em;text-align:center;color:#fff;max-width:620px;margin:0 auto 18px">
-    La méthode secrète pour gagner<br>entre <span style="color:var(--teal)">5.000€ et 10.000€</span><br>par mois grâce à ce métier IA
+  <h2 style="font-family:'Poppins',sans-serif;font-weight:800;font-size:clamp(1.2rem,3vw,1.65rem);line-height:1.35;letter-spacing:-.02em;text-align:center;color:#fff;max-width:680px;margin:0 auto 24px">
+    Notre méthode <span style="color:var(--teal)">BTD</span> pour générer <span style="color:var(--teal)">+10.000€ par mois</span> en vendant des solutions IA aux entreprises.
   </h2>
-
-  <!-- Compteur live -->
-  <div style="display:inline-flex;align-items:center;gap:10px;background:#fff;border-radius:99px;padding:7px 18px 7px 10px;margin-bottom:20px;box-shadow:0 4px 20px rgba(0,0,0,.25)">
-    <span style="background:#d93025;border-radius:99px;padding:4px 10px;font-size:.72rem;font-weight:700;color:#fff;display:inline-flex;align-items:center;gap:5px;letter-spacing:.3px">
-      <span style="width:7px;height:7px;background:#fff;border-radius:50%;opacity:.9;animation:blink-dot 1s ease-in-out infinite;flex-shrink:0"></span>
-      LIVE
-    </span>
-    <span style="font-size:.95rem;color:#1a1a2e;font-weight:700" id="liveCount">220</span>
-    <span style="font-size:.9rem;color:#555;font-weight:400">personnes regardent cette vidéo</span>
-  </div>
 
   <!-- Miniature cliquable -->
   <div id="vslWrapper" style="width:100%;position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--border);box-shadow:0 24px 64px rgba(0,0,0,.6);aspect-ratio:16/9;cursor:pointer;margin-bottom:32px" onclick="launchVideo()">
@@ -357,28 +338,14 @@ src="https://www.facebook.com/tr?id=1648575453142677&ev=PageView&noscript=1"
   </div>
   <script src="https://player.vimeo.com/api/player.js"></script>
 
-  <!-- Surprise button -->
-  <div id="surpriseBox" style="width:100%;display:flex;flex-direction:column;align-items:center;gap:10px;margin-bottom:36px">
-    <div id="surpriseLocked" style="display:inline-flex;align-items:center;gap:12px;background:rgba(13,12,20,.7);backdrop-filter:blur(10px);border:1px solid rgba(107,91,255,.25);border-radius:14px;padding:16px 28px;color:rgba(255,255,255,.45);font-size:.88rem;cursor:default;user-select:none;box-shadow:0 0 24px rgba(107,91,255,.1)">
-      <span style="font-size:1.2rem">🎁</span>
-      <span>Une surprise arrive dans <strong id="surpriseCountdown" style="font-family:'Poppins',sans-serif;color:var(--violet)">06:00</strong></span>
-    </div>
-    <!-- Widget iClosed (caché jusqu'à la fin du chrono) -->
-    <div id="surpriseUnlocked" style="display:none;flex-direction:column;align-items:center;gap:16px;width:100%;max-width:860px;animation:surprise-pop .5s ease forwards">
-      <p style="font-family:'Poppins',sans-serif;font-weight:700;font-size:1.1rem;color:#fff;text-align:center">🎁 Ta surprise est là — réserve ton bilan offert</p>
-      <!-- iClosed inline widget begin -->
-      <div class="iclosed-widget" data-url="https://app.iclosed.io/e/denemacademy/bilan-de-carri-re-ia-denem" title="Bilan de carrière IA - DENEM" style="width:100%;height:620px"></div>
-      <script type="text/javascript" src="https://app.iclosed.io/assets/widget.js" async></script>
-      <!-- iClosed inline widget end -->
-    </div>
-    <p id="surpriseNote" style="font-size:.72rem;color:rgba(255,255,255,.2)">Continue de regarder jusqu'à la fin de la vidéo</p>
+  <!-- Widget iClosed direct -->
+  <div style="width:100%;display:flex;flex-direction:column;align-items:center;gap:16px;margin-bottom:36px;max-width:860px;margin-left:auto;margin-right:auto">
+    <p style="font-family:'Poppins',sans-serif;font-weight:700;font-size:1.1rem;color:#fff;text-align:center">🎁 Réserve ton bilan offert</p>
+    <!-- iClosed inline widget begin -->
+    <div class="iclosed-widget" data-url="https://app.iclosed.io/e/denemacademy/bilan-de-carri-re-ia-denem" title="Bilan de carrière IA - DENEM" style="width:100%;height:620px"></div>
+    <script type="text/javascript" src="https://app.iclosed.io/assets/widget.js" async></script>
+    <!-- iClosed inline widget end -->
   </div>
-
-  <!-- iClosed popup trigger caché -->
-  <a id="iClosedPopupTrigger" data-url="https://app.iclosed.io/e/denemacademy/bilan-de-carri-re-ia-denem" style="display:none" aria-hidden="true"></a>
-  <!-- iClosed popup widget begin -->
-  <script type="text/javascript" src="https://app.iclosed.io/assets/widget.js" async></script>
-  <!-- iClosed popup widget end -->
 
 </main>
 
@@ -505,50 +472,6 @@ src="https://www.facebook.com/tr?id=1648575453142677&ev=PageView&noscript=1"
     document.getElementById('vslIframe').src =
       'https://player.vimeo.com/video/1185433009?h=256a22e697&badge=0&autopause=0&autoplay=1&player_id=0&app_id=58479';
     player.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    startSurpriseTimer();
-  }
-
-  setTimeout(() => document.getElementById('urgencyBanner').classList.add('show'), 5000);
-
-  // Compteur live fluctuant
-  (function() {
-    const el = document.getElementById('liveCount');
-    let count = 198 + Math.floor(Math.random() * 40);
-    el.textContent = count;
-    setInterval(() => {
-      const delta = Math.random() < 0.5 ? -1 : 1;
-      count = Math.min(268, Math.max(185, count + delta));
-      el.textContent = count;
-    }, 3800);
-  })();
-
-  function startSurpriseTimer() {
-    const TOTAL = 6 * 60; // 6 min
-    let remaining = TOTAL;
-    const countdown = document.getElementById('surpriseCountdown');
-    const locked    = document.getElementById('surpriseLocked');
-    const unlocked  = document.getElementById('surpriseUnlocked');
-    const note      = document.getElementById('surpriseNote');
-
-    const tick = setInterval(() => {
-      remaining--;
-      const m = Math.floor(remaining / 60);
-      const s = remaining % 60;
-      countdown.textContent = m + ':' + String(s).padStart(2, '0');
-
-      if (remaining <= 0) {
-        clearInterval(tick);
-        locked.style.display = 'none';
-        note.style.display = 'none';
-        unlocked.style.display = 'flex';
-        unlocked.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        // Déclenche aussi la popup iClosed
-        setTimeout(() => {
-          const trigger = document.getElementById('iClosedPopupTrigger');
-          if (trigger) trigger.click();
-        }, 800);
-      }
-    }, 1000);
   }
 </script>
 
