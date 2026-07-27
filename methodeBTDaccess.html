@@ -380,22 +380,13 @@ src="https://www.facebook.com/tr?id=1648575453142677&ev=PageView&noscript=1"
       <span style="font-size:1.2rem">🎁</span>
       <span>Une surprise arrive dans <strong id="surpriseCountdown" style="font-family:'Poppins',sans-serif;color:var(--violet)">06:00</strong></span>
     </div>
-    <!-- Widget iClosed (caché jusqu'à la fin du chrono) -->
-    <div id="surpriseUnlocked" style="display:none;flex-direction:column;align-items:center;gap:16px;width:100%;max-width:860px;animation:surprise-pop .5s ease forwards">
+    <!-- Widget booking DENEM (caché jusqu'à la fin du chrono) -->
+    <div id="surpriseUnlocked" style="display:none;flex-direction:column;align-items:center;gap:16px;width:100%;max-width:960px;animation:surprise-pop .5s ease forwards">
       <p style="font-family:'Poppins',sans-serif;font-weight:700;font-size:1.1rem;color:#fff;text-align:center">🎁 Ta surprise est là — réserve ton bilan offert</p>
-      <!-- iClosed inline widget begin -->
-      <div class="iclosed-widget" data-url="https://app.iclosed.io/e/denemacademy/bilan-de-carri-re-ia-denem" title="Bilan de carrière IA - DENEM" style="width:100%;height:620px"></div>
-      <script type="text/javascript" src="https://app.iclosed.io/assets/widget.js" async></script>
-      <!-- iClosed inline widget end -->
+      <iframe src="https://denemacademy.com/rdv.html" title="Réserver un bilan DENEM" style="width:100%;height:900px;border:none;border-radius:16px;background:transparent" loading="lazy"></iframe>
     </div>
     <p id="surpriseNote" style="font-size:.72rem;color:rgba(255,255,255,.2)">Continue de regarder jusqu'à la fin de la vidéo</p>
   </div>
-
-  <!-- iClosed popup trigger caché -->
-  <a id="iClosedPopupTrigger" data-url="https://app.iclosed.io/e/denemacademy/bilan-de-carri-re-ia-denem" style="display:none" aria-hidden="true"></a>
-  <!-- iClosed popup widget begin -->
-  <script type="text/javascript" src="https://app.iclosed.io/assets/widget.js" async></script>
-  <!-- iClosed popup widget end -->
 
 </main>
 
@@ -557,11 +548,6 @@ src="https://www.facebook.com/tr?id=1648575453142677&ev=PageView&noscript=1"
         note.style.display = 'none';
         unlocked.style.display = 'flex';
         unlocked.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        // Déclenche aussi la popup iClosed
-        setTimeout(() => {
-          const trigger = document.getElementById('iClosedPopupTrigger');
-          if (trigger) trigger.click();
-        }, 800);
       }
     }, 1000);
   }
