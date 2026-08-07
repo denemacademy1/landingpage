@@ -280,6 +280,17 @@ async function init() {
 }
 
 function attachContactInputs() {
+  // Pré-remplissage via query params (?prenom=X&nom=Y&email=Z&tel=W) pour ouverture depuis le setter
+  const params = new URLSearchParams(window.location.search);
+  const map = { 'f-tel':['telephone','tel'], 'f-prenom':['prenom'], 'f-nom':['nom'], 'f-email':['email'] };
+  Object.entries(map).forEach(([id, keys]) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    for (const k of keys) {
+      const v = params.get(k);
+      if (v) { el.value = v; state.data[keys[0]] = v; break; }
+    }
+  });
   ['f-tel','f-prenom','f-nom','f-email'].forEach(id => {
     const el = document.getElementById(id);
     if (!el) return;
@@ -289,6 +300,7 @@ function attachContactInputs() {
       updateFormState();
     });
   });
+  updateFormState();
 }
 
 function isFormValid() {
