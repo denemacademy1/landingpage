@@ -65,9 +65,10 @@ body {
 .form-group { margin-bottom: 14px; }
 .form-label { display: block; font-size: .82rem; color: rgba(255,255,255,.7); font-weight: 500; margin-bottom: 6px; }
 .form-label .req { color: #F87171; margin-left: 3px; }
-.form-input { background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1); color: #fff; padding: 12px 14px; border-radius: 10px; font-size: .95rem; font-family: inherit; transition: .15s; width: 100%; }
-.form-input:focus { outline: none; border-color: var(--violet); box-shadow: 0 0 0 3px rgba(107,91,255,.15); background: rgba(255,255,255,.08); }
-.form-input::placeholder { color: rgba(255,255,255,.28); }
+.form-input, .form-textarea { background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1); color: #fff; padding: 12px 14px; border-radius: 10px; font-size: .95rem; font-family: inherit; transition: .15s; width: 100%; }
+.form-input:focus, .form-textarea:focus { outline: none; border-color: var(--violet); box-shadow: 0 0 0 3px rgba(107,91,255,.15); background: rgba(255,255,255,.08); }
+.form-input::placeholder, .form-textarea::placeholder { color: rgba(255,255,255,.28); }
+.form-textarea { resize: vertical; min-height: 110px; line-height: 1.55; }
 .form-split { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 .tel-wrap { display: flex; gap: 8px; }
 .tel-flag { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1); padding: 12px 14px; border-radius: 10px; font-size: .9rem; display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
@@ -183,6 +184,10 @@ body {
           <label class="form-label">Email <span class="req">*</span></label>
           <input class="form-input" id="f-email" type="email" placeholder="jean@exemple.com">
         </div>
+        <div class="form-group">
+          <label class="form-label">Message pour Axel <span style="color:var(--dim);font-weight:400">(optionnel, aucune limite)</span></label>
+          <textarea class="form-textarea" id="f-message" placeholder="Ton contexte, ta situation, ce que tu attends du RDV…"></textarea>
+        </div>
 
         <div class="form-legal">En saisissant vos informations, vous acceptez que vos données soient enregistrées conformément à notre politique de confidentialité.</div>
 
@@ -240,7 +245,8 @@ const state = {
   selectedDate: null,
   selectedTime: null,
   slotsForDay: [],
-  data: { prenom:'', nom:'', email:'', telephone:'' },
+  data: { prenom:'', nom:'', email:'', telephone:'', message:'' },
+  source_hint: '',
   step: 1
 };
 
@@ -280,9 +286,16 @@ async function init() {
 }
 
 function attachContactInputs() {
-  // Pré-remplissage via query params (?prenom=X&nom=Y&email=Z&tel=W) pour ouverture depuis le setter
+  // Pré-remplissage via query params pour ouverture depuis le setter :
+  // ?prenom=X&nom=Y&email=Z&tel=W&message=M&source=S
   const params = new URLSearchParams(window.location.search);
-  const map = { 'f-tel':['telephone','tel'], 'f-prenom':['prenom'], 'f-nom':['nom'], 'f-email':['email'] };
+  const map = {
+    'f-tel':     ['telephone','tel'],
+    'f-prenom':  ['prenom'],
+    'f-nom':     ['nom'],
+    'f-email':   ['email'],
+    'f-message': ['message','note']
+  };
   Object.entries(map).forEach(([id, keys]) => {
     const el = document.getElementById(id);
     if (!el) return;
@@ -291,10 +304,13 @@ function attachContactInputs() {
       if (v) { el.value = v; state.data[keys[0]] = v; break; }
     }
   });
-  ['f-tel','f-prenom','f-nom','f-email'].forEach(id => {
+  // Source héritée (Meta Ads / LinkedIn / VSL Landing / etc.) — envoyée au backend
+  state.source_hint = params.get('source') || '';
+
+  ['f-tel','f-prenom','f-nom','f-email','f-message'].forEach(id => {
     const el = document.getElementById(id);
     if (!el) return;
-    const key = { 'f-tel':'telephone', 'f-prenom':'prenom', 'f-nom':'nom', 'f-email':'email' }[id];
+    const key = { 'f-tel':'telephone', 'f-prenom':'prenom', 'f-nom':'nom', 'f-email':'email', 'f-message':'message' }[id];
     el.addEventListener('input', () => {
       state.data[key] = el.value;
       updateFormState();
@@ -452,6 +468,8 @@ async function submitBooking() {
         nom: state.data.nom.trim(),
         email: state.data.email.trim(),
         telephone: tel,
+        message: state.data.message || '',
+        source_hint: state.source_hint || '',
         date: state.selectedDate,
         time: state.selectedTime
         // pas d'answers → réservation express sans questionnaire
