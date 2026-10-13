@@ -101,6 +101,12 @@
     .legal-table td { padding: .7rem 1rem; border-bottom: 1px solid rgba(107,91,255,.08); color: var(--text); }
     .legal-table tr:last-child td { border-bottom: none; }
     .legal-table tr:nth-child(even) td { background: rgba(107,91,255,.04); }
+    @media (max-width: 600px) {
+      .legal-table { display: block; overflow-x: auto; }
+      .legal-table td:last-child { -webkit-hyphens: auto; hyphens: auto; }
+      .legal-table th, .legal-table td { padding: .6rem .5rem; }
+      .legal-table th { letter-spacing: 0; font-size: .72rem; }
+    }
 
     /* CALLOUT */
     .callout {

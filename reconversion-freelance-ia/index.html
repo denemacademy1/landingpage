@@ -128,16 +128,6 @@
   </script>
 
 <style>
-.seo-hidden {
-  position: absolute !important;
-  width: 1px !important; height: 1px !important;
-  padding: 0 !important; margin: -1px !important;
-  overflow: hidden !important;
-  clip: rect(0, 0, 0, 0) !important;
-  white-space: nowrap !important;
-  border: 0 !important;
-  clip-path: inset(50%) !important;
-}
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 :root {
@@ -301,27 +291,26 @@ footer { background: rgba(13,12,20,0.95); border-top: 1px solid rgba(255,255,255
 .footer-tagline { color: var(--w35); font-size: 13px; }
 .footer-copy { color: rgba(255,255,255,0.2); font-size: 11px; }
 @media (max-width: 768px) {
+  :root { --nav-h: 70px; }
   nav#nav { padding: 0 20px; }
+  .nav-logo-img { height: 64px; }
+  .btn-nav { font-size: 12px; padding: 9px 16px; }
+  table { display: block; overflow-x: auto; }
+  td:last-child { -webkit-hyphens: auto; hyphens: auto; }
+  .pillar-section th, .pillar-section td { padding: 10px 8px !important; letter-spacing: 0 !important; }
   .nav-links { display: none; }
   .pillar-body { padding: 40px 20px 60px; }
   .month-grid { grid-template-columns: 1fr; }
 }
+@media (max-width: 380px) {
+  .pillar-h1 { font-size: 7.5vw; }
+  .cta-block { padding: 36px 20px; }
+  .cta-block h3 { font-size: 1.35rem; }
+  .pillar-section h2 { font-size: 1.35rem; }
+}
 </style>
 </head>
 <body>
-
-<div class="seo-hidden" itemscope itemtype="https://schema.org/BreadcrumbList">
-  <ol>
-    <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-      <a itemprop="item" href="https://denemacademy.com/"><span itemprop="name">Accueil DENEM Academy</span></a>
-      <meta itemprop="position" content="1">
-    </li>
-    <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-      <a itemprop="item" href="https://denemacademy.com/reconversion-freelance-ia/"><span itemprop="name">Reconversion Freelance IA</span></a>
-      <meta itemprop="position" content="2">
-    </li>
-  </ol>
-</div>
 
 <nav id="nav" role="navigation" aria-label="Navigation principale DENEM Academy">
   <a href="https://denemacademy.com/" class="nav-brand">
